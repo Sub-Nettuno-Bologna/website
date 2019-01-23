@@ -21,20 +21,25 @@ instagram_username: clubsubnettuno
 
 baseurl: "" # the subpath of your site, e.g. /blog/
 url: https://www.subnettuno.it
-google_verification:
-google_analytics:
+#google_verification:
+#google_analytics:
 
 # Build settings
 markdown: kramdown
 theme: jekyll-theme-primer
 plugins:
   - jekyll-feed
+  - jekyll-paginate-v2
+pagination:
+  enabled: true
+  per_page: 4
+  permalink: "/page/:num/"
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list
 # to override the default setting.
-# exclude:
-#   - Gemfile
-#   - Gemfile.lock
+exclude:
+  - Gemfile
+  - Gemfile.lock
 #   - node_modules
 #   - vendor/bundle/
 #   - vendor/cache/
