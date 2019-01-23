@@ -21,10 +21,18 @@
     margin: 0;
   }
 
+  a {
+    color: $black;
+
+    &:hover {
+      color: $blue;
+    }
+  }
+
   .description {
     display: none;
 
-    color: #686868;
+    color: $grey;
   }
 
   @include from-medium {

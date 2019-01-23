@@ -1,15 +1,23 @@
 ---
 layout: default
-pagination: 
+pagination:
   enabled: true
 ---
+
 <ul class="posts">
   {% for post in paginator.posts %}
   <li>
-    <h2>
-      <a href="{{ post.url }}">{{ post.title }}</a>
-    </h2>
-    <p>{{ post.excerpt }}</p>
+    <article class="post">
+      <header>
+        <h2>
+          <a href="{{ post.url }}">{{ post.title }}</a>
+        </h2>
+        <div class="meta">
+          <div>{{ post.date | date: "%m/%d/%Y" }}</div>
+        </div>
+      </header>
+      <p>{{ post.content }}</p>
+    </article>
   </li>
   {% endfor %}
 </ul>
@@ -18,10 +26,11 @@ pagination:
 <ul>
   {% if paginator.previous_page %}
   <li>
-    <a href="{{ paginator.previous_page_path | prepend: site.baseurl }}">Newer</a>
+    <a href="{{ paginator.previous_page_path | prepend: site.baseurl }}"
+      >Newer</a
+    >
   </li>
-  {% endif %}
-  {% if paginator.next_page %}
+  {% endif %} {% if paginator.next_page %}
   <li>
     <a href="{{ paginator.next_page_path | prepend: site.baseurl }}">Older</a>
   </li>

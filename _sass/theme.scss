@@ -1,12 +1,37 @@
 $black: #24292e;
+$grey: #686868;
+$blue: #005ba7;
 
 @import "base/mediaqueries";
 @import "base/html";
 @import "base/grid";
 @import "partials/header";
+@import "partials/aside";
+@import "partials/main";
 
 .posts {
   list-style: none;
   margin: 0;
   padding: 0;
+}
+
+.post {
+  h2 {
+    font-size: 2.5em;
+
+    a {
+      color: $black;
+
+      &:hover {
+        color: $blue;
+      }
+    }
+  }
+  header {
+    margin-bottom: 1.6em;
+  }
+  .meta {
+    font-size: 0.9em;
+    color: $grey;
+  }
 }

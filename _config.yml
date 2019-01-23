@@ -23,7 +23,7 @@ baseurl: "" # the subpath of your site, e.g. /blog/
 url: https://www.subnettuno.it
 #google_verification:
 #google_analytics:
-
+permalink: /:year/:month/:title
 # Build settings
 markdown: kramdown
 theme: jekyll-theme-primer
@@ -34,6 +34,7 @@ pagination:
   enabled: true
   per_page: 4
   permalink: "/page/:num/"
+  sort_reverse: true
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list
 # to override the default setting.
