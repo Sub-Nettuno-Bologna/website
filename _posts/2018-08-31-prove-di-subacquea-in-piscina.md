@@ -13,15 +13,14 @@ tags:
   - piscina
   - prove
 ---
- 
 
-Da lunedì 3 settembre 2018 vi aspettiamo presso la [nuova piscina olimpionica dello stadio &#8220;Carmen Longo&#8221; in via dello Sport, 4](http://www.subnettuno.it/dove-siamo/) per provare assieme a respirare sott&#8217;acqua.
+Da lunedì 3 settembre 2018 vi aspettiamo presso la [nuova piscina olimpionica dello stadio &#8220;Carmen Longo&#8221; in via dello Sport, 4]({% link dove-siamo.md %}) per provare assieme a respirare sott&#8217;acqua.
 
 L&#8217;appuntamento è alle 20:00 davanti all&#8217;ingresso della piscina e sarà necessario avere con sé costume, cuffia, ciabatte e accappatoio.
 
 Le prove continueranno mercoledì 5, lunedì 10 e mercoledì 12, con ritrovo sempre alle ore 20.
 
-Per informazioni potete telefonarci al 051 6153552 o [scriverci](http://www.subnettuno.it/contattaci/). [Per confermare la vostra presenza registratevi qui](https://goo.gl/forms/tDkDJgCLklrSKNrp2).
+Per informazioni potete telefonarci al 051 6153552 o [scriverci]({% link contattaci.md %}). [Per confermare la vostra presenza registratevi qui](https://goo.gl/forms/tDkDJgCLklrSKNrp2).
 
 ### Aggiornamento
 

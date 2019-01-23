@@ -1,0 +1,22 @@
+.sidebar {
+  @include from-medium {
+    width: 27%;
+  }
+
+  h2 {
+    text-transform: uppercase;
+  }
+
+  section {
+    border-top: 4px solid $black;
+    padding-top: 1.6em;
+
+    & + section {
+      margin-top: 1.6em;
+    }
+  }
+
+  ul {
+    padding-left: 1.4em;
+  }
+}

@@ -4,7 +4,7 @@
 
 html {
   font-size: 16px;
-  font-family: "Lato", sans-serif;
+  font-family: "Montserrat", sans-serif;
   color: $black;
 }
 
@@ -15,8 +15,10 @@ body {
 }
 
 h1,
-h2 {
+h2,
+h3 {
   margin: 0;
+  font-weight: 700;
 }
 
 h2 {

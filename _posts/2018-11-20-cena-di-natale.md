@@ -13,6 +13,7 @@ tags:
   - cena
   - natale
 ---
+
 Anche quest&#8217;anno organizziamo la cena sociale di fine anno per festeggiare insieme e scambiarci gli auguri di Natale.
 
 L&#8217;evento sarà il&nbsp;15 dicembre 2018 alle ore 20:30, presso il Circolo A.R.C.I. Eugenio Curiel.
@@ -22,6 +23,6 @@ L&#8217;evento sarà il&nbsp;15 dicembre 2018 alle ore 20:30, presso il Circolo 
   </div>
 </div>
 
-Vi chiediamo di confermare la vostra presenza [via email](http://www.subnettuno.it/contattaci/) o [in segreteria](http://www.subnettuno.it/dove-siamo/) entro lunedì 3 dicembre.
+Vi chiediamo di confermare la vostra presenza [via email]({% link contattaci.md %}) o [in segreteria]({% link dove-siamo.md %}) entro lunedì 3 dicembre.
 
 Vi aspettiamo numerosi per brindare insieme al nuovo anno!!!!!
