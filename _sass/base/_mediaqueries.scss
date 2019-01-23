@@ -1,0 +1,20 @@
+$medium-breakpoint: 32;
+$large-breakpoint: (900 / 16);
+
+@mixin from-large {
+  @media screen and (min-width: #{$large-breakpoint}em) {
+    @content;
+  }
+}
+
+@mixin from-medium {
+  @media screen and (min-width: #{$medium-breakpoint}em) {
+    @content;
+  }
+}
+
+@mixin small {
+  @media screen and (max-width: #{$medium-breakpoint}em) {
+    @content;
+  }
+}

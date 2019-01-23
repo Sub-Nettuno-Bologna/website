@@ -1,5 +1,6 @@
 $black: #24292e;
 
+@import "base/mediaqueries";
 @import "base/html";
 @import "base/grid";
 
@@ -10,12 +11,78 @@ h1 {
 }
 
 .header-main {
-  margin: 1em 0;
+  margin: 2em 0;
+
   .logo {
-    width: 240px;
+    text-align: center;
 
     img {
       width: 100%;
+      max-width: 240px;
+
+      height: auto;
+    }
+  }
+
+  h1 {
+    font-size: 1.4em;
+    text-align: center;
+  }
+
+  p {
+    margin: 0;
+  }
+
+  .description {
+    display: none;
+
+    color: #686868;
+  }
+
+  @include from-medium {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 6em 0;
+    h1 {
+      text-align: left;
+    }
+
+    .description {
+      display: block;
+    }
+  }
+
+  @include from-large {
+    h1 {
+      font-size: 2.1em;
+    }
+
+    .description {
+      font-size: 1.2em;
+    }
+  }
+}
+
+.federation {
+  display: flex;
+  justify-content: space-around;
+  margin: 1em 0;
+
+  &-logo {
+    flex: 1;
+    margin: 0 1em;
+    text-align: center;
+    display: block;
+  }
+
+  img {
+    max-width: 50px;
+  }
+
+  @include from-large {
+    img {
+      max-width: initial;
     }
   }
 }
