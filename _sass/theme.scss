@@ -1,0 +1,21 @@
+$black: #24292e;
+
+@import "base/html";
+@import "base/grid";
+
+h1 {
+  a {
+    color: red;
+  }
+}
+
+.header-main {
+  margin: 1em 0;
+  .logo {
+    width: 240px;
+
+    img {
+      width: 100%;
+    }
+  }
+}
