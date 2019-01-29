@@ -1,4 +1,11 @@
 ---
 layout: default
 ---
-{{ content }}
+
+<article class="post">
+  <header>
+    {% include post-meta.html date=page.date %}
+    <h2>{{ page.title }}</h2>
+  </header>
+  <div>{{ content }}</div>
+</article>
