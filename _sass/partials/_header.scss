@@ -1,6 +1,12 @@
-.header-main {
+.header-container {
   margin: 2em 0;
 
+  @include from-medium {
+    margin: 6em 0;
+  }
+}
+
+.header {
   .logo {
     text-align: center;
 
@@ -31,7 +37,6 @@
 
   .description {
     display: none;
-
     color: $grey;
   }
 
@@ -39,7 +44,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: 6em 0;
+
     h1 {
       text-align: left;
     }
@@ -80,5 +85,21 @@
     img {
       max-width: initial;
     }
+  }
+}
+
+.main-image {
+  margin: 1em 0;
+  min-height: 200px;
+  width: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+
+  @include from-medium {
+    min-height: 300px;
+  }
+
+  @include from-large {
+    min-height: 500px;
   }
 }

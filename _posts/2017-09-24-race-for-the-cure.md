@@ -6,7 +6,7 @@ author: Susy Ferrari
 layout: post
 guid: http://nuovo.subnettuno.it/?p=29
 permalink: /2017/09/race-for-the-cure/
-image: /wp-content/uploads/2018/06/RaceForCure2017.jpg
+image: /assets/uploads/2018/06/RaceForCure2017.jpg
 categories:
   - Eventi
 ---

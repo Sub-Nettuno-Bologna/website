@@ -6,7 +6,7 @@ author: carlo
 layout: post
 guid: http://www.subnettuno.it/?p=185
 permalink: /2018/08/prove-di-subacquea-in-piscina/
-image: /wp-content/uploads/2018/08/30420579_10216224716920788_4155180597659868351_o-1200x800.jpg
+image: /assets/uploads/2018/08/30420579_10216224716920788_4155180597659868351_o-1200x800.jpg
 categories:
   - Eventi
 tags:

@@ -5,7 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     {% seo %}
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
+      rel="stylesheet"
+    />
     <link
       rel="stylesheet"
       href="{{
@@ -16,77 +19,58 @@
     />
     <link rel="shortcut icon" href="/static/images/icon-144.png" />
   </head>
-  <body class="column">
-    <header class="header-main">
-      <div>
-        <div class="logo">
-          <img
-            src="{{
-              '/assets/theme/logo-simple.png?v='
-                | append: site.github.build_revision
-                | relative_url
-            }}"
-            alt="Club Sub Nettuno"
-          />
+  <body>
+    <header class="header-container">
+      <div class="header column">
+        <div>
+          <div class="logo">
+            <img
+              src="{{
+                '/assets/theme/logo-simple.png?v='
+                  | append: site.github.build_revision
+                  | relative_url
+              }}"
+              alt="Club Sub Nettuno"
+            />
+          </div>
+          <h1>
+            {% if page.url != '/' %}
+            <a href="{{ '/' | absolute_url }}">{{ site.title }}</a> {% else %}
+            {{ site.title }} {% endif %}
+          </h1>
+          <p class="description">{{ site.description }}</p>
         </div>
-        <h1>
-          {% if page.url != '/' %}
-          <a href="{{ '/' | absolute_url }}">{{ site.title }}</a> {% else %}
-          {{ site.title }} {% endif %}
-        </h1>
-        <p class="description">{{ site.description }}</p>
-      </div>
-      <div class="federation">
-        <a href="http://www.fipsas.it/" class="federation-logo">
-          <img
-            src="{{
-              '/assets/theme/fipsas-80.png?v='
-                | append: site.github.build_revision
-                | relative_url
-            }}"
-            alt=""
-          />
-        </a>
-        <a href="http://www.cmas.org/" class="federation-logo"
-          ><img
-            src="{{
-              '/assets/theme/cmas-80.png?v='
-                | append: site.github.build_revision
-                | relative_url
-            }}"
-            alt=""
-        /></a>
-      </div>
-    </header>
-    <main class="content-main">
-      <div class="content">{{ content }}</div>
-      <aside class="sidebar">
-        <section class="address">
-          <h2>Club Sub Nettuno</h2>
-          <address>
-            Associazione Sportiva Dilettantistica<br />
-            c/o piscina Stadio "Carmen Longo"<br />
-            accesso da via dello Sport 9<br />
-            Bologna<br />
 
-            tel. <a href="tel://051 6153552">051 6153552</a><br />
-            C.F. 01596311207<br />
-            P.IVA 2665601205
-          </address>
-        </section>
-        <section class="pages">
-          <h2>Pagine</h2>
-          <ul>
-            {% for page in site.pages %} {% if page.title %} {% unless
-            page.hidden or page.autogen %}
-            <li>
-              <a href="{{ page.url }}">{{ page.title }}</a>
-            </li>
-            {% endunless %} {% endif %} {% endfor %}
-          </ul>
-        </section>
-      </aside>
-    </main>
+        <div class="federation">
+          <a href="http://www.fipsas.it/" class="federation-logo">
+            <img
+              src="{{
+                '/assets/theme/fipsas-80.png?v='
+                  | append: site.github.build_revision
+                  | relative_url
+              }}"
+              alt=""
+            />
+          </a>
+          <a href="http://www.cmas.org/" class="federation-logo"
+            ><img
+              src="{{
+                '/assets/theme/cmas-80.png?v='
+                  | append: site.github.build_revision
+                  | relative_url
+              }}"
+              alt=""
+          /></a>
+        </div>
+      </div>
+      {% if page.image %}
+      <div
+        class="main-image"
+        style="background-image: url({{ page.image | relative_url }})"
+      ></div>
+      {% endif %}
+    </header>
+    <main class="main-content column">{{ content }}</main>
     {% if site.google_analytics %}
     <script>
       (function(i, s, o, g, r, a, m) {

@@ -6,7 +6,7 @@ author: carlo
 layout: post
 guid: http://www.subnettuno.it/?p=253
 permalink: /2018/11/cena-di-natale/
-image: /wp-content/uploads/2018/11/WhatsApp-Image-2018-11-20-at-10.04.05-1.jpeg
+image: /assets/uploads/2018/11/WhatsApp-Image-2018-11-20-at-10.04.05-1.jpeg
 categories:
   - Eventi
 tags:
