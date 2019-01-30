@@ -6,6 +6,7 @@ author: carlo
 layout: post
 guid: http://www.subnettuno.it/?p=257
 permalink: /2018/11/concorso-fotografico/
+comments: true
 categories:
   - Eventi
 ---

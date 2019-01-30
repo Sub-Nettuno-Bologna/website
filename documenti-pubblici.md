@@ -6,10 +6,11 @@ author: carlo
 layout: page
 guid: http://subnettuno.nightdrops.com/?page_id=73
 ---
-[Codice Etico Sub Nettuno &#8211; v02](http://subnettuno.nightdrops.com/wp-content/uploads/2018/06/Codice-Etico-Sub-Nettuno-v02.pdf)
 
-[STATUTO Club Sub Nettuno](http://subnettuno.nightdrops.com/wp-content/uploads/2018/06/STATUTO-Club-Sub-Nettuno.pdf)
+[Codice Etico Sub Nettuno &#8211; v02](/assets/uploads/2018/06/Codice-Etico-Sub-Nettuno-v02.pdf)
+
+[STATUTO Club Sub Nettuno](/assets/uploads/2018/06/STATUTO-Club-Sub-Nettuno.pdf)
 
 ## Logbook
 
-[Pagina didattica FIPSAS con il logo del club](http://subnettuno.nightdrops.com/wp-content/uploads/2018/06/Scheda-vuota-nettuno.pdf)
+[Pagina didattica FIPSAS con il logo del club](/assets/uploads/2018/06/Scheda-vuota-nettuno.pdf)

@@ -5,7 +5,7 @@ date: 2018-09-09T13:03:29+00:00
 author: carlo
 layout: page
 guid: http://www.subnettuno.it/?page_id=228
-image: /wp-content/uploads/2018/09/IMG_20180905_210900-1200x900.jpg
+image: /assets/uploads/2018/09/IMG_20180905_210900-1200x900.jpg
 ---
 
 Prova l&#8217;esperienza di respirare sott&#8217;acqua, in piscina con un istruttore qualificato. Potrebbe essere il primo passo verso delle vacanze indimenticabili o la nascita di amore per il mare e per la subacquea.

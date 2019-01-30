@@ -7,6 +7,7 @@ layout: post
 guid: http://www.subnettuno.it/?p=265
 permalink: /2018/12/corsi-e-prove-gratuite-di-gennaio/
 image: /assets/uploads/2018/12/GOPR1107-1200x900.jpg
+comments: true
 categories:
   - Corsi
 ---

@@ -6,9 +6,11 @@ author: carlo
 layout: post
 guid: http://www.subnettuno.it/?p=296
 permalink: /2019/01/elezioni-consiglio-direttivo-sub-nettuno/
+comments: true
 categories:
   - club
 ---
+
 Il giorno 4 marzo 2019 dalle 19 alle 21 si terranno le elezioni per il rinnovo del Consiglio Direttivo del Sub Nettuno.
 
 Puoi esprimere il tuo voto presso la segreteria indicando fino a due preferenze della lista dei candidati che verrà pubblicata nei prossimi giorni, in caso di impedimento puoi delegare un altro socio con delega scritta e fotocopia di documento.
