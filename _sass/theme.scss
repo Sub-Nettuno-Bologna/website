@@ -9,3 +9,48 @@ $blue: #005ba7;
 @import "partials/aside";
 @import "partials/posts";
 @import "partials/main";
+
+form {
+  input[type="text"],
+  input[type="password"],
+  input[type="email"],
+  textarea {
+    margin: 0.2em 0;
+    width: 100%;
+    background: #f7f7f7;
+    border: 1px solid #d1d1d1;
+    border-radius: 2px;
+    color: $grey;
+    padding: 0.625em 0.4375em;
+    font-size: 1rem;
+
+    &:focus {
+      background-color: #fff;
+      border-color: $blue;
+      color: #1a1a1a;
+      outline: 0;
+    }
+  }
+
+  label {
+    margin: 0.5em 0;
+    display: block;
+  }
+}
+
+.button {
+  margin: 0.2em 0;
+  background: #f7f7f7;
+  border: 1px solid #d1d1d1;
+  border-radius: 2px;
+  color: $grey;
+  padding: 0.625em 0.4375em;
+  font-size: 1em;
+  padding: 0.5em;
+  cursor: pointer;
+
+  &-primary {
+    background: $black;
+    color: #fff;
+  }
+}

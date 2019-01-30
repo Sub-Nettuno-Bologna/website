@@ -17,6 +17,8 @@ title: Club Sub Nettuno
 description: Corsi Sub a Bologna
 author: Carlo Panzi
 
+contactus_email: carlo.panzi@gmail.com
+
 instagram_username: clubsubnettuno
 
 baseurl: "" # the subpath of your site, e.g. /blog/
@@ -46,6 +48,7 @@ autopages:
 exclude:
   - Gemfile
   - Gemfile.lock
+  - README.md
 #   - node_modules
 #   - vendor/bundle/
 #   - vendor/cache/
