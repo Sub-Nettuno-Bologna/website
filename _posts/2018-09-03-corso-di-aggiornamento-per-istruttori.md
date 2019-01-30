@@ -4,11 +4,11 @@ title: Corso di aggiornamento per istruttori
 date: 2018-09-03T19:19:46+00:00
 author: carlo
 layout: post
-guid: http://www.subnettuno.it/?p=218
 permalink: /2018/09/corso-di-aggiornamento-per-istruttori/
 categories:
   - Eventi
 ---
+
 Domenica 23 settembre si terrà a Bologna l&#8217;aggiornamento NP1 (attività natatorie di base) necessario agli istruttori di apnea per mantenere attivo il titolo di istruttori di Apnea indoor.
 
 Per i nostri istruttori interessati, contattate Mauro o la segreteria per l&#8217;iscrizione.

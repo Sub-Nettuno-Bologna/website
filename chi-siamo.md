@@ -4,7 +4,6 @@ title: Chi siamo
 date: 2018-06-28T22:25:26+00:00
 author: carlo
 layout: page
-guid: http://nuovo.subnettuno.it/?page_id=21
 ---
 
 ## Lo Staff

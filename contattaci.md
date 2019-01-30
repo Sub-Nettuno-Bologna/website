@@ -4,7 +4,6 @@ title: Contattaci
 date: 2018-08-04T13:17:18+00:00
 author: carlo
 layout: page
-guid: http://ww2.subnettuno.it/?page_id=163
 ---
 
 <form action="https://formspree.io/{{ site.contactus_email }}" method="POST" >

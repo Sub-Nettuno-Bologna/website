@@ -4,7 +4,6 @@ title: Vi aspettiamo a Made in Parco Nord
 date: 2018-08-18T14:08:45+00:00
 author: carlo
 layout: post
-guid: http://ww2.subnettuno.it/?p=168
 permalink: /2018/08/vi-aspettiamo-a-made-in-parco-nord/
 image: /assets/uploads/2018/08/35841669_2123275244558312_8942867404925435904_o-1200x444.jpg
 categories:

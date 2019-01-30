@@ -4,8 +4,8 @@ title: Dove siamo
 date: 2018-07-31T20:52:42+00:00
 author: carlo
 layout: page
-guid: http://ww2.subnettuno.it/?page_id=153
 ---
+
 Il club ha la sede presso la piscina Carmen Longo, all&#8217;interno del complesso dello Stadio Comunale Dall&#8217;Ara di Bologna‎
 
 Via Costa Andrea, 174  

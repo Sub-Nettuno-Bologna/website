@@ -4,7 +4,6 @@ title: "Concorso fotografico &#8220;Amici Gustavo e Lele&#8221;"
 date: 2018-11-22T16:03:36+00:00
 author: carlo
 layout: post
-guid: http://www.subnettuno.it/?p=257
 permalink: /2018/11/concorso-fotografico/
 comments: true
 categories:

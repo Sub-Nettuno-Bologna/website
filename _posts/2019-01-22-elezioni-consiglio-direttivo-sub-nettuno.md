@@ -4,7 +4,6 @@ title: Elezioni consiglio direttivo Sub Nettuno
 date: 2019-01-22T10:35:16+00:00
 author: carlo
 layout: post
-guid: http://www.subnettuno.it/?p=296
 permalink: /2019/01/elezioni-consiglio-direttivo-sub-nettuno/
 comments: true
 categories:

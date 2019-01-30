@@ -4,18 +4,17 @@ title: Attività Didattica
 date: 2018-06-28T22:14:43+00:00
 author: carlo
 layout: page
-guid: http://nuovo.subnettuno.it/?page_id=17
 ---
 
 ## CORSI INTERNAZIONALI SUBACQUEA
 
 I nostri corsi sub sono riconosciuti in **TUTTO il mondo**, svolti secondo la didattica [FIPSAS](http://www.fipsas.it) &#8211; [CMAS](http://www.cmas.org/), la federazione subacquea italiana affiliata al CONI.
 
-- [Subacqueo 1 stella FIPSAS &#8211; CMAS](http://subnettuno.nightdrops.com/attivita-didattica/corso-di-1-grado-ar-p1/)
+- [Subacqueo 1 stella FIPSAS &#8211; CMAS]({% link attivita-didattica/corso-di-1-grado-ar-p1.md %})
 - Sommozzatore 2 stelle FIPSAS &#8211; CMAS
 - Sommozzatore esperto 3 stelle FIPSAS &#8211; CMAS
 - Apnea 1 e 2 grado
-- [MiniSub](http://ww2.subnettuno.it/attivita-didattica/corsi-minisub/) e MiniApnea (per bambini/ragazzi tra 8 e 13 anni)
+- [MiniSub e MiniApnea]({% link attivita-didattica/corsi-minisub.md %}) (per bambini/ragazzi tra 8 e 13 anni)
 - Subacquea e Apnea per diversamente abili
 
 ## CORSI DI SPECIALIZZAZIONE CON RILASCIO DI BREVETTO

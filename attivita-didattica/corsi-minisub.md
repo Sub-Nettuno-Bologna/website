@@ -4,8 +4,8 @@ title: Corsi MiniSub
 date: 2018-07-22T19:48:34+00:00
 author: carlo
 layout: page
-guid: http://ww2.subnettuno.it/?page_id=149
 ---
+
 I corsi di avviamento agli Sport Subacquei, chiamati per brevità “Corsi MiniSub”, si rivolgono ai giovani di età inferiore ai 14 anni o che li compiono nel corso dell’anno.
 
 L&#8217;obiettivo primario è quello di avvicinare i più giovani agli sport subacquei, fornendo contestualmente anche semplici nozioni di fisica, ambiente, marineria, ecc. e contribuendo così alla loro formazione sia psico-motoria sia culturale.

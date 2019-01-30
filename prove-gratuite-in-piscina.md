@@ -4,7 +4,6 @@ title: Prove gratuite in piscina
 date: 2018-09-09T13:03:29+00:00
 author: carlo
 layout: page
-guid: http://www.subnettuno.it/?page_id=228
 image: /assets/uploads/2018/09/IMG_20180905_210900-1200x900.jpg
 ---
 

@@ -4,7 +4,6 @@ title: Corsi e prove gratuite di gennaio
 date: 2018-12-20T15:41:03+00:00
 author: carlo
 layout: post
-guid: http://www.subnettuno.it/?p=265
 permalink: /2018/12/corsi-e-prove-gratuite-di-gennaio/
 image: /assets/uploads/2018/12/GOPR1107-1200x900.jpg
 comments: true
@@ -12,7 +11,7 @@ categories:
   - Corsi
 ---
 
-Da lunedì 21 gennaio inizieranno i nuovi corsi sub e apnea di primo livello ( [1° grado FIPSAS/CMAS](http://www.subnettuno.it/attivita-didattica/corso-di-1-grado-ar-p1/) ).
+Da lunedì 21 gennaio inizieranno i nuovi corsi sub e apnea di primo livello ( [1° grado FIPSAS/CMAS]({% link attivita-didattica/corso-di-1-grado-ar-p1.md %}) ).
 
 Prima dell&#8217;inizio dei corsi sarà possibile **provare gratuitamente** nelle seguenti date:
 

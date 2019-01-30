@@ -9,9 +9,7 @@
 }
 
 .post {
-  h2 {
-    font-size: 2.5em;
-
+  header {
     a {
       color: $black;
 
@@ -19,6 +17,12 @@
         color: $blue;
       }
     }
+  }
+  h1 {
+    font-size: 2.5em;
+  }
+  h2 {
+    font-size: 2.3em;
   }
   header {
     margin-bottom: 1.6em;

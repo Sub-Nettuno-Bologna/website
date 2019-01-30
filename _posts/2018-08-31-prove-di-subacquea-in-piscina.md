@@ -4,7 +4,6 @@ title: Prove di subacquea in piscina
 date: 2018-08-31T20:17:25+00:00
 author: carlo
 layout: post
-guid: http://www.subnettuno.it/?p=185
 permalink: /2018/08/prove-di-subacquea-in-piscina/
 image: /assets/uploads/2018/08/30420579_10216224716920788_4155180597659868351_o-1200x800.jpg
 categories:
@@ -24,4 +23,4 @@ Per informazioni potete telefonarci al 051 6153552 o [scriverci]({% link contatt
 
 ### Aggiornamento
 
-Visto l&#8217;interesse che avete dimostrato, abbiamo deciso di [prolungare le prove gratuite per la stagione 2018 &#8211; 2019](http://www.subnettuno.it/prove-gratuite-in-piscina/).
+Visto l&#8217;interesse che avete dimostrato, abbiamo deciso di [prolungare le prove gratuite per la stagione 2018 &#8211; 2019]({% link prove-gratuite-in-piscina.md %} ).

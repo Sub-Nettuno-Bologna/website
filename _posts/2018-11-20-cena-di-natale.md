@@ -4,7 +4,6 @@ title: Cena di Natale!
 date: 2018-11-20T12:39:09+00:00
 author: carlo
 layout: post
-guid: http://www.subnettuno.it/?p=253
 permalink: /2018/11/cena-di-natale/
 image: /assets/uploads/2018/11/WhatsApp-Image-2018-11-20-at-10.04.05-1.jpeg
 categories:
