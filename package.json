@@ -1,0 +1,11 @@
+{
+  "name": "subnettuno.it",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/kajyr/subnettuno.it",
+  "author": "Carlo Panzi <carlo.panzi@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "nanof": "^1.0.2"
+  }
+}
