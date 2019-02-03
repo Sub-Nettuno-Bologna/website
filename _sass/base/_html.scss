@@ -32,3 +32,31 @@ a {
     color: $blue;
   }
 }
+
+form {
+  input[type="text"],
+  input[type="password"],
+  input[type="email"],
+  textarea {
+    margin: 0.2em 0;
+    width: 100%;
+    background: #f7f7f7;
+    border: 1px solid #d1d1d1;
+    border-radius: 2px;
+    color: $grey;
+    padding: 0.625em 0.4375em;
+    font-size: 1rem;
+
+    &:focus {
+      background-color: #fff;
+      border-color: $blue;
+      color: #1a1a1a;
+      outline: 0;
+    }
+  }
+
+  label {
+    margin: 0.5em 0;
+    display: block;
+  }
+}

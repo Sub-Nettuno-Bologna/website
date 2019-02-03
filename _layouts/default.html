@@ -68,6 +68,12 @@
         class="main-image"
         style="background-image: url({{ page.image | relative_url }})"
       ></div>
+      {% else %}
+      <div
+        class="main-image"
+        controller="main-image-random"
+        data-images="{{ site.headers | jsonify | escape }}"
+      ></div>
       {% endif %}
     </header>
     <main class="main-content column">{{ content }}</main>
@@ -96,5 +102,12 @@
       ga("send", "pageview");
     </script>
     {% endif %}
+    <script
+      src="{{
+        '/assets/main.js?v='
+          | append: site.github.build_revision
+          | relative_url
+      }}"
+    ></script>
   </body>
 </html>

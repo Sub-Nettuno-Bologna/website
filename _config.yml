@@ -42,6 +42,12 @@ autopages:
   # Site-wide kill switch, disable here and it doesn't run at all
   enabled: false
 
+headers:
+  - /assets/uploads/2018/07/cropped-IMG_00320-1.jpg
+  - /assets/uploads/2018/07/cropped-IMG_00329-1.jpg
+  - /assets/uploads/2018/07/cropped-IMG_00329-2.jpg
+  - /assets/uploads/2018/07/cropped-IMG_00330-1.jpg
+
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list
 # to override the default setting.
@@ -50,7 +56,7 @@ exclude:
   - Gemfile.lock
   - README.md
   - Makefile
-#   - node_modules
+  - node_modules
 #   - vendor/bundle/
 #   - vendor/cache/
 #   - vendor/gems/

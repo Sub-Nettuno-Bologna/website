@@ -1,5 +1,5 @@
 ---
-id: 17
+id: attivita-didattica
 title: Attività Didattica
 date: 2018-06-28T22:14:43+00:00
 author: carlo

@@ -4,6 +4,7 @@ title: Corsi MiniSub
 date: 2018-07-22T19:48:34+00:00
 author: carlo
 layout: page
+parent: attivita-didattica
 ---
 
 I corsi di avviamento agli Sport Subacquei, chiamati per brevità “Corsi MiniSub”, si rivolgono ai giovani di età inferiore ai 14 anni o che li compiono nel corso dell’anno.

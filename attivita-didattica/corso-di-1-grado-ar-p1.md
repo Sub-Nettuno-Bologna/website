@@ -4,8 +4,9 @@ title: Corso di 1° Grado AR (P1)
 date: 2018-06-29T16:30:26+00:00
 author: carlo
 layout: page
-guid: http://subnettuno.nightdrops.com/?page_id=78
+parent: attivita-didattica
 ---
+
 ## Iniziamo l’avventura
 
 Anche noi abbiamo cominciato così, avvicinandoci a questo mondo sconosciuto ma che ci incuriosiva, di cui avevamo visto solo documentari, giocando con un paio di pinne ed una maschera guardandolo dall’alto dalla superficie del mare. Dalla curiosità ai fatti ci siamo iscritti ad un corso di subacquea per capire ed esplorare un mondo nuovo affascinante e diverso.

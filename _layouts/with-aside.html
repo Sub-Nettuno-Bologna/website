@@ -21,9 +21,20 @@ layout: default
     <h2>Pagine</h2>
     <ul>
       {% for page in site.pages %} {% if page.title %} {% unless page.hidden or
-      page.autogen %}
-      <li>
-        <a href="{{ page.url }}">{{ page.title }}</a>
+      page.autogen or page.parent %}
+      {% assign children = site.pages | where:'parent', page.id %}
+      {% assign children_count = children | size %}
+      <li class="{% if children_count > 0 %}with-children{% endif %}">
+        <a href="{{ page.url }}">{{ page.title }}</a>        
+        {% if children_count > 0 %}
+        <ul>
+          {% for child in children %}
+          <li>
+            <a href="{{ child.url }}">{{ child.title }}</a>
+          </li>
+          {% endfor %}
+        </ul>
+        {% endif %}
       </li>
       {% endunless %} {% endif %} {% endfor %}
     </ul>

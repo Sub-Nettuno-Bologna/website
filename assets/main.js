@@ -97,10 +97,59 @@
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var nanof__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! nanof */ "./node_modules/nanof/index.js");
 /* harmony import */ var nanof__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(nanof__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _pages_menu__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./pages-menu */ "./_js/pages-menu.js");
+/* harmony import */ var _main_image_random__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./main-image-random */ "./_js/main-image-random.js");
 
 
-nanof__WEBPACK_IMPORTED_MODULE_0___default.a.activate("pages-menu", function($, element) {
-  console.log("pages");
+
+
+nanof__WEBPACK_IMPORTED_MODULE_0___default.a.activate("pages-menu", _pages_menu__WEBPACK_IMPORTED_MODULE_1__["default"]);
+nanof__WEBPACK_IMPORTED_MODULE_0___default.a.activate("main-image-random", _main_image_random__WEBPACK_IMPORTED_MODULE_2__["default"]);
+
+
+/***/ }),
+
+/***/ "./_js/main-image-random.js":
+/*!**********************************!*\
+  !*** ./_js/main-image-random.js ***!
+  \**********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+const random = list => list[Math.floor(Math.random() * list.length)];
+
+/* harmony default export */ __webpack_exports__["default"] = (function($, element) {
+  const images = JSON.parse(element.getAttribute("data-images"));
+  const image = random(images);
+  element.style.backgroundImage = `url(${image})`;
+});
+
+
+/***/ }),
+
+/***/ "./_js/pages-menu.js":
+/*!***************************!*\
+  !*** ./_js/pages-menu.js ***!
+  \***************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var nanof__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! nanof */ "./node_modules/nanof/index.js");
+/* harmony import */ var nanof__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(nanof__WEBPACK_IMPORTED_MODULE_0__);
+
+
+/* harmony default export */ __webpack_exports__["default"] = (function($) {
+  Object(nanof__WEBPACK_IMPORTED_MODULE_0__["on"])($(".with-children"), "click", ({ target }) => {
+    if (target.classList.contains("open")) {
+      target.classList.remove("open");
+    } else {
+      target.classList.add("open");
+    }
+  });
 });
 
 

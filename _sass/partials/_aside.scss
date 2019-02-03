@@ -20,3 +20,28 @@
     padding-left: 1.4em;
   }
 }
+
+.pages {
+  > ul {
+    list-style-position: inside;
+    padding: 0;
+  }
+}
+
+.with-children {
+  cursor: pointer;
+  list-style-type: none;
+
+  &:before {
+    content: "+";
+    padding-right: 9px;
+  }
+
+  > ul {
+    display: none;
+  }
+
+  &.open ul {
+    display: block;
+  }
+}
