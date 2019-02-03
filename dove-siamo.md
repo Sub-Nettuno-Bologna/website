@@ -13,7 +13,4 @@ Via Costa Andrea, 174
 
 Per accedere alla piscina usare l&#8217;ingresso pedonale che si trova in via dello Sport 4
 
-<div class="wp-block-webfactory-map">
-  <div class="wp-block-webfactory-map">
-  </div>
-</div>
+{% include google-map.html address="Via dello Sport 4 Bologna" %}

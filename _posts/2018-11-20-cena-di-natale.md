@@ -17,10 +17,7 @@ Anche quest&#8217;anno organizziamo la cena sociale di fine anno per festeggiare
 
 L&#8217;evento sarà il&nbsp;15 dicembre 2018 alle ore 20:30, presso il Circolo A.R.C.I. Eugenio Curiel.
 
-<div class="wp-block-webfactory-map">
-  <div class="wp-block-webfactory-map">
-  </div>
-</div>
+{% include google-map.html address="Circolo A.R.C.I. Eugenio Curiel in Via Domenico Cimarosa, 113 Casalecchio di Reno" %}
 
 Vi chiediamo di confermare la vostra presenza [via email]({% link contattaci.md %}) o [in segreteria]({% link dove-siamo.md %}) entro lunedì 3 dicembre.
 

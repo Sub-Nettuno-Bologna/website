@@ -25,6 +25,7 @@ baseurl: "" # the subpath of your site, e.g. /blog/
 url: https://www.subnettuno.it
 #google_verification:
 #google_analytics:
+google_maps: AIzaSyDnmnbC5creEUJOvrDE7VSF6ZLDDwSHJTM
 permalink: /:year/:month/:title
 # Build settings
 markdown: kramdown
