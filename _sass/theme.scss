@@ -5,11 +5,13 @@ $blue: #005ba7;
 @import "base/mediaqueries";
 @import "base/html";
 @import "base/grid";
-@import "partials/header";
+// Partials
 @import "partials/aside";
-@import "partials/posts";
-@import "partials/main";
 @import "partials/cookie-bar";
+@import "partials/header";
+@import "partials/main";
+@import "partials/pagination";
+@import "partials/posts";
 
 .hidden {
   display: none;

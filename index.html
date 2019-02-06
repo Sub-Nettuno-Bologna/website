@@ -21,17 +21,18 @@ pagination:
 </ul>
 
 {% if paginator.total_pages > 1 %}
-<ul>
+<ul class="pagination">
+  {% if paginator.next_page %}
+  <li>
+    <a href="{{ paginator.next_page_path | prepend: site.baseurl }}">&larr; Precedenti</a>
+  </li>
+  {% endif %}
   {% if paginator.previous_page %}
   <li>
     <a href="{{ paginator.previous_page_path | prepend: site.baseurl }}"
-      >Newer</a
+      >Successivi &rarr;</a
     >
   </li>
-  {% endif %} {% if paginator.next_page %}
-  <li>
-    <a href="{{ paginator.next_page_path | prepend: site.baseurl }}">Older</a>
-  </li>
-  {% endif %}
+  {% endif %} 
 </ul>
 {% endif %}
