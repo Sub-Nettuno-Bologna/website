@@ -4,7 +4,6 @@ title: "Evento &#8220;COMUNICAZIONE SENZA FILI&#8221;"
 date: 2018-03-16T13:13:48+00:00
 author: Susy Ferrari
 layout: post
-guid: http://subnettuno.nightdrops.com/?p=63
 permalink: /2018/03/evento-comunicazione-senza-fili/
 image: /assets/uploads/2018/06/senzafilibologna-001.jpg
 categories:
