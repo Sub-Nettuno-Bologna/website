@@ -6,6 +6,7 @@
   "author": "Carlo Panzi <carlo.panzi@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "nanof": "^1.0.2"
+    "nanof": "^1.1.0",
+    "storage-factory": "^0.0.4"
   }
 }
