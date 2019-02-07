@@ -19,6 +19,7 @@ I nostri corsi sub sono riconosciuti in **TUTTO il mondo**, svolti secondo la di
 
 ## CORSI DI SPECIALIZZAZIONE CON RILASCIO DI BREVETTO
 
+- [Fotografia Subacquea]({% link attivita-didattica/fotografia-subacquea.md %})
 - Nitrox Base e Avanzato
 - Biologia Marina e Acque interne
 - Esecutore BLS-D (Primo soccorso con uso del defibrillatore)
@@ -28,7 +29,6 @@ I nostri corsi sub sono riconosciuti in **TUTTO il mondo**, svolti secondo la di
 - Immersione Notturna o con Scarsa Visibilità
 - Immersione su Relitti o Secche
 - Immersione in Corrente, Profonda o nel Blu
-- Fotografia Subacquea
 
 ## Link Utili
 
