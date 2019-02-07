@@ -25,8 +25,8 @@ layout: page
 </label>
 
 <div>
-  <input type="submit" value="Invia" class="button button-primary">
-<div>
+  <input type="submit" value="Invia" class="button button-primary" />
+</div>
 <p>I dati inseriti saranno utilizzati e trattati nel rispetto del regolamento UE2016/679.</p>
 
 </form>
