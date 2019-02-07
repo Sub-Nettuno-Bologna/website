@@ -11,8 +11,8 @@ layout: page
 I nostri corsi sub sono riconosciuti in **TUTTO il mondo**, svolti secondo la didattica [FIPSAS](http://www.fipsas.it) &#8211; [CMAS](http://www.cmas.org/), la federazione subacquea italiana affiliata al CONI.
 
 - [Subacqueo 1 stella FIPSAS &#8211; CMAS]({% link attivita-didattica/corso-di-1-grado-ar-p1.md %})
-- Sommozzatore 2 stelle FIPSAS &#8211; CMAS
-- Sommozzatore esperto 3 stelle FIPSAS &#8211; CMAS
+- [Sommozzatore 2 stelle FIPSAS &#8211; CMAS]({% link attivita-didattica/corso-di-2-grado-ar-p2.md %})
+- [Sommozzatore esperto 3 stelle FIPSAS &#8211; CMAS]({% link attivita-didattica/corso-di-3-grado-ar-p3.md %})
 - Apnea 1 e 2 grado
 - [MiniSub e MiniApnea]({% link attivita-didattica/corsi-minisub.md %}) (per bambini/ragazzi tra 8 e 13 anni)
 - Subacquea e Apnea per diversamente abili
