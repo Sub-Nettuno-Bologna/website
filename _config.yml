@@ -32,7 +32,6 @@ markdown: kramdown
 theme: jekyll-theme-primer
 plugins:
   - jekyll-feed
-  - jekyll-paginate-v2
 pagination:
   enabled: true
   per_page: 4
