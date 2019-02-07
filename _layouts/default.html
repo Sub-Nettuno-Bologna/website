@@ -63,7 +63,12 @@
           /></a>
         </div>
       </div>
-      {% if page.image %}
+      {% if page.banner %}
+      <div
+        class="main-image"
+        style="background-image: url({{ page.banner | relative_url }})"
+      ></div>
+      {% elsif page.image %}
       <div
         class="main-image"
         style="background-image: url({{ page.image | relative_url }})"
