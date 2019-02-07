@@ -48,3 +48,5 @@ Il corso è aperto a tutti i possessori di brevetto sub
   - Regola dei terzi
 
 - La manutenzione dell’attrezzatura
+
+![Volantino Corso Fotografia Subacquea](/assets/uploads/attivita-didattica/fotosub-locandina.jpg)
