@@ -22,7 +22,7 @@ contactus_email: carlo.panzi@gmail.com
 instagram_username: clubsubnettuno
 
 baseurl: "" # the subpath of your site, e.g. /blog/
-url: https://www.subnettuno.it
+url: http://subnettuno.it
 google_verification: googlebb8fbb436b30e768.html
 google_analytics: UA-121607341-1
 google_maps: AIzaSyDnmnbC5creEUJOvrDE7VSF6ZLDDwSHJTM
