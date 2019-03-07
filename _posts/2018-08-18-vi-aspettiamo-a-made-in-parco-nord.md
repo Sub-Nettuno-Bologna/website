@@ -19,7 +19,7 @@ Vi aspettiamo fino al 17 settembre a [Made in Parco Nord](https://www.facebook.c
 
 Stiamo montando una piscina gigante proprio in questo momento
 
-<figure class="wp-block-image">
+<figure>
 
 <img src="/assets/uploads/2018/08/piscina_1.jpg" alt="" class="wp-image-169" srcset="/assets/uploads/2018/08/piscina_1.jpg 1600w, /assets/uploads/2018/08/piscina_1-300x71.jpg 300w, /assets/uploads/2018/08/piscina_1-768x182.jpg 768w, /assets/uploads/2018/08/piscina_1-1024x243.jpg 1024w, /assets/uploads/2018/08/piscina_1-1200x284.jpg 1200w, /assets/uploads/2018/08/piscina_1-24x6.jpg 24w, /assets/uploads/2018/08/piscina_1-36x9.jpg 36w, /assets/uploads/2018/08/piscina_1-48x11.jpg 48w" sizes="(max-width: 709px) 85vw, (max-width: 909px) 67vw, (max-width: 1362px) 62vw, 840px" /></figure>
 
