@@ -43,10 +43,11 @@ autopages:
   enabled: false
 
 headers:
-  - /assets/uploads/2018/07/cropped-IMG_00320-1.jpg
-  - /assets/uploads/2018/07/cropped-IMG_00329-1.jpg
-  - /assets/uploads/2018/07/cropped-IMG_00329-2.jpg
-  - /assets/uploads/2018/07/cropped-IMG_00330-1.jpg
+  - /assets/uploads/headers/cropped-IMG_00320-1.jpg
+  - /assets/uploads/headers/cropped-IMG_00329-1.jpg
+  - /assets/uploads/headers/cropped-IMG_00329-2.jpg
+  - /assets/uploads/headers/cropped-IMG_00330-1.jpg
+  - /assets/uploads/headers/GOPR1437.jpg
 
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list
