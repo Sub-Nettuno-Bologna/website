@@ -1,9 +1,8 @@
 ---
-id: 185
 title: Prove di subacquea in piscina
 author: carlo
 layout: post
-permalink: /2019/08/prove-in-piscina/
+comments: true
 image: /assets/uploads/prove-in-piscina/GOPR1171.jpg
 categories:
   - eventi
