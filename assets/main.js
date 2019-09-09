@@ -131,6 +131,7 @@ const ACK_KEY = "cookie-acknowledge";
 
 /* harmony default export */ __webpack_exports__["default"] = (function($, element) {
   const ack = _storage__WEBPACK_IMPORTED_MODULE_1__["session"].getItem(ACK_KEY);
+  console.log("we", _storage__WEBPACK_IMPORTED_MODULE_1__["session"]);
   if (ack !== "true") {
     Object(nanof__WEBPACK_IMPORTED_MODULE_0__["addClass"])(element, "active open");
     Object(nanof__WEBPACK_IMPORTED_MODULE_0__["on"])($('[data-js="ack"]'), "click", () => {
@@ -204,7 +205,7 @@ __webpack_require__.r(__webpack_exports__);
 // storage.js
 
 
-const session = Object(storage_factory__WEBPACK_IMPORTED_MODULE_0__["storageFactory"])(sessionStorage);
+const session = Object(storage_factory__WEBPACK_IMPORTED_MODULE_0__["storageFactory"])(() => localStorage);
 
 
 /***/ }),
@@ -323,13 +324,13 @@ module.exports = {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-function storageFactory(storage) {
+function storageFactory(getStorage) {
     var inMemoryStorage = {};
     function isSupported() {
         try {
             var testKey = "__some_random_key_you_are_not_going_to_use__";
-            storage.setItem(testKey, testKey);
-            storage.removeItem(testKey);
+            getStorage().setItem(testKey, testKey);
+            getStorage().removeItem(testKey);
             return true;
         }
         catch (e) {
@@ -338,7 +339,7 @@ function storageFactory(storage) {
     }
     function clear() {
         if (isSupported()) {
-            storage.clear();
+            getStorage().clear();
         }
         else {
             inMemoryStorage = {};
@@ -346,7 +347,7 @@ function storageFactory(storage) {
     }
     function getItem(name) {
         if (isSupported()) {
-            return storage.getItem(name);
+            return getStorage().getItem(name);
         }
         if (inMemoryStorage.hasOwnProperty(name)) {
             return inMemoryStorage[name];
@@ -355,7 +356,7 @@ function storageFactory(storage) {
     }
     function key(index) {
         if (isSupported()) {
-            return storage.key(index);
+            return getStorage().key(index);
         }
         else {
             return Object.keys(inMemoryStorage)[index] || null;
@@ -363,7 +364,7 @@ function storageFactory(storage) {
     }
     function removeItem(name) {
         if (isSupported()) {
-            storage.removeItem(name);
+            getStorage().removeItem(name);
         }
         else {
             delete inMemoryStorage[name];
@@ -371,7 +372,7 @@ function storageFactory(storage) {
     }
     function setItem(name, value) {
         if (isSupported()) {
-            storage.setItem(name, value);
+            getStorage().setItem(name, value);
         }
         else {
             inMemoryStorage[name] = String(value);
@@ -379,7 +380,7 @@ function storageFactory(storage) {
     }
     function length() {
         if (isSupported()) {
-            return storage.length;
+            return getStorage().length;
         }
         else {
             return Object.keys(inMemoryStorage).length;
