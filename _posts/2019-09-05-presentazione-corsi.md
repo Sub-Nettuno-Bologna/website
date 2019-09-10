@@ -9,7 +9,7 @@ categories:
 
 Lunedì 16 Settembre si terrà presso la piscina dello stadio la presentazione dei corsi per la stagione 2019 - 2020.
 
-Inizieranno corsi per sommozzatori [FIPSAS / CMAS di 1, 2 e 3 grado]({% link attivita-didattica.md %}), che vi permetteranno di acquisire un brevetto internazionale per immergersi in sicurezza fino a 18 metri (1 grado), 30 o 42 (2 e 3 grado). Perleermo anche delle specializzazioni, come la muta stagna, le immersioni notturne, i relitti o la fotografia subacquea.
+Inizieranno corsi per sommozzatori [FIPSAS / CMAS di 1, 2 e 3 grado]({% link attivita-didattica.md %}), che vi permetteranno di acquisire un brevetto internazionale per immergersi in sicurezza fino a 18 metri (1 grado), 30 o 42 (2 e 3 grado). Parleremo anche delle specializzazioni, come la muta stagna, le immersioni notturne, i relitti o la fotografia subacquea.
 
 La serata prevede un incontro con il [Responsabile della Didattica e tutti gli Istruttori]({% link chi-siamo.md %}) che si presenteranno e racconteranno il proprio corso e la propria specialità.
 
