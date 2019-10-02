@@ -1,6 +1,8 @@
 ---
 title: Prove gratuite in piscina
+hidden: false
 ---
+
 Prova l'esperienza di respirare sott'acqua, in piscina con un istruttore qualificato. Potrebbe essere il primo passo verso delle vacanze indimenticabili o la nascita di amore per il mare e per la subacquea.
 
 Il Club Sub Nettuno mette a disposizione degli istruttori per accompagnarti in piscina durante la tua prova. Le prove si potranno effettuare tutti i lunedì dalle 22 alle 23:30 e i mercoledì dalle 20 alle 21:30 da settembre a giugno presso la [piscina Olimpionica dello Stadio](/dove-siamo).

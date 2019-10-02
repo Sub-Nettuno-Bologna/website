@@ -28,9 +28,9 @@ Dal mese di marzo 2020 partiranno i corsi di specializzazione di
 
 - Muta stagna
 - Biologia marina
-- Nitrox base
+- [Nitrox base](/attivita-didattica/nitrox-base)
 - BLS e primo soccorso con defibrillatore
-- [Fotografia subacquea]({% link attivita-didattica/fotografia-subacquea.md %} )
+- [Fotografia subacquea](/attivita-didattica/fotografia-subacquea/)
 - Immersione Notturna
 
 **Partecipi?**

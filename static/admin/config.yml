@@ -1,6 +1,6 @@
 backend:
   name: git-gateway
-  branch: master
+  branch: gatsby
 
 media_folder: content/media
 public_folder: /media
@@ -34,12 +34,14 @@ collections:
     fields:
       - { label: 'Titolo', name: 'title', widget: 'string' }
       - { label: 'Body', name: 'body', widget: 'markdown' }
+      - { label: 'Nascosta', name: 'hidden', widget: 'boolean' }
+
   - name: 'corsi'
     label: 'Corsi'
-    folder: 'content/attivita-didattica'
+    folder: 'content/corsi'
     create: true
-    slug: 'didattica-{{slug}}'
-    preview_path: '/{{slug}}'
+    slug: 'attivita-didattica/{{slug}}'
+    preview_path: '/attivita-didattica/{{slug}}'
     editor:
       preview: true
     fields:
@@ -59,6 +61,12 @@ collections:
           min: 10,
         }
       - { label: 'Codice', name: 'cert', widget: 'string' }
+      - {
+          label: 'Testata',
+          name: 'headerImage',
+          widget: 'image',
+          required: false,
+        }
       - { label: 'Descrizione', name: 'body', widget: 'markdown' }
   - name: 'istruttori'
     label: 'Istruttori'

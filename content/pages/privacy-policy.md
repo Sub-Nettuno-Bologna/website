@@ -1,6 +1,8 @@
 ---
 title: Privacy Policy
+hidden: false
 ---
+
 Questa pagina raccoglie alcuni dati personali dei propri utenti.
 
 Titolare del trattamento dei dati: ASD Club Sub Nettuno via dello Sport 6, Bologna – p.IVA: 2665601205\
@@ -28,10 +30,10 @@ Il Titolare tratta dati personali relativi all’utente in caso sussista una del
 
 l’utente ha prestato il consenso per una o più finalità specifiche; Nota: in alcuni ordinamenti il titolare può essere autorizzato a trattare Dati personali senza che debba sussistere il consenso dell’utente o un’altra delle basi giuridiche specificate di seguito, fino a quando l’utente non si opponga (“opt-out”) a tale trattamento. Ciò non è tuttavia applicabile qualora il trattamento di dati personali sia regolato dalla legislazione europea in materia di protezione dei dati personali.
 
-* Il trattamento è necessario all’esecuzione di un contratto con l’utente e/o all’esecuzione di misure precontrattuali;
-* Il trattamento è necessario per adempiere un obbligo legale al quale è soggetto il titolare;
-* Il trattamento è necessario per l’esecuzione di un compito di interesse pubblico o per l’esercizio di pubblici poteri di cui è investito il titolare;
-* Il trattamento è necessario per il perseguimento del legittimo interesse del titolare o di terzi.
+- Il trattamento è necessario all’esecuzione di un contratto con l’utente e/o all’esecuzione di misure precontrattuali;
+- Il trattamento è necessario per adempiere un obbligo legale al quale è soggetto il titolare;
+- Il trattamento è necessario per l’esecuzione di un compito di interesse pubblico o per l’esercizio di pubblici poteri di cui è investito il titolare;
+- Il trattamento è necessario per il perseguimento del legittimo interesse del titolare o di terzi.
 
 È comunque sempre possibile richiedere al titolare di chiarire la concreta base giuridica di ciascun trattamento ed in particolare di specificare se il trattamento sia basato sulla legge, previsto da un contratto o necessario per concludere un contratto.
 
