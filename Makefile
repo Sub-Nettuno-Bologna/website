@@ -2,7 +2,7 @@ update:
 	bundle update
 
 start:
-	bundle exec jekyll 
+	bundle exec jekyll serve
 	
 frontend:
 	webpack -w
