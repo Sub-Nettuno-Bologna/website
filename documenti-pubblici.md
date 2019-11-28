@@ -12,4 +12,4 @@ layout: page
 
 ## Logbook
 
-[Pagina didattica FIPSAS con il logo del club](/assets/uploads/2018/06/Scheda-vuota-nettuno.pdf)
+[Pagina didattica FIPSAS con il logo del club](/assets/attivita-didattica/Scheda-vuota-nettuno.pdf)
