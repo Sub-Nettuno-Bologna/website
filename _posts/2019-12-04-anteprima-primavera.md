@@ -29,7 +29,7 @@ Dal mese di marzo 2020 partiranno i corsi di specializzazione di
 - Biologia marina
 - Nitrox base
 - BLS e primo soccorso con defibrillatore
-- Fotografia subacquea
+- [Fotografia subacquea]({% link attivita-didattica/fotografia-subacquea.md %} )
 - Immersione Notturna
 
 **Partecipi?**

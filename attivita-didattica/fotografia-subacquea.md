@@ -17,8 +17,10 @@ Il corso è tenuto da [Mirko Mirabella](http://www.mirkomirabellaphoto.it), doce
 
 **Il corso prevede**
 
-3 Lezioni teoriche
-3 Lezioni pratiche in piscina
+- Teoria: 6 ore
+- Pratica piscina: 3 ore
+- Immersioni: 2
+
 Il corso è aperto a tutti i possessori di brevetto sub
 
 **Argomenti**
