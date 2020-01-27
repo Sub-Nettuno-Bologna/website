@@ -20,7 +20,7 @@ I nostri corsi sub sono riconosciuti in **TUTTO il mondo**, svolti secondo la di
 ## CORSI DI SPECIALIZZAZIONE CON RILASCIO DI BREVETTO
 
 - [Fotografia Subacquea]({% link attivita-didattica/fotografia-subacquea.md %})
-- Nitrox Base e Avanzato
+- [Nitrox Base]({% link attivita-didattica/specializzazione-nitrox.md %}) e Avanzato
 - Biologia Marina e Acque interne
 - Esecutore BLS-D (Primo soccorso con uso del defibrillatore)
 - Oxygen Provider (uso dell&#8217;ossigeno nel primo soccorso subacqueo)
