@@ -4,7 +4,6 @@ pagination:
   enabled: true
 ---
 
-
 <ul class="posts">
   {% for post in site.posts %}
   <li>
@@ -15,7 +14,20 @@ pagination:
           <a href="{{ post.url }}">{{ post.title }}</a>
         </h2>
       </header>
-      <div class="post-body">{{ post.content }}</div>
+
+      <div class="post-body">{{ post.content | truncatewords: 125 }}</div>
+
+      {% capture content_words %}{{ post.content | number_of_words }}{%
+      endcapture %} {% capture excerpt_words %}{{ post.content | truncatewords:
+      125 | number_of_words }}{% endcapture %}
+
+      <div>
+        {% if content_words != excerpt_words %}
+        <p>
+          <a href="{{site.baseurl}}{{ post.url }}">Leggi tutto</a>
+        </p>
+        {% endif %}
+      </div>
     </article>
   </li>
   {% endfor %}
