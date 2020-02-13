@@ -10,7 +10,7 @@ categories:
   - Eventi
 ---
 
-Durante la [cena di natale](/2018/2018-11-20-cena-di-natale) si terrà la premiazione del concorso fotografico di quest'anno!
+Durante la [cena di natale](/2018-11-20-cena-di-natale) si terrà la premiazione del concorso fotografico di quest'anno!
 
 <p style="text-align:center">
   🌅🌊🐋🐙🐟🐡🐠🐬🐳🦑
