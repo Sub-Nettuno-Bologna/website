@@ -1,0 +1,80 @@
+backend:
+  name: git-gateway
+  branch: master
+
+media_folder: content/media
+public_folder: /media
+
+collections:
+  - name: 'posts'
+    label: 'Posts'
+    folder: 'content/posts'
+    create: true
+    slug: '{{year}}/{{month}}-{{day}}-{{slug}}'
+    preview_path: '/{{slug}}'
+    editor:
+      preview: false
+    fields:
+      - { label: 'Titolo', name: 'title', widget: 'string' }
+      - { label: 'Data di pubblicazione', name: 'date', widget: 'datetime' }
+      - {
+          label: 'Testata',
+          name: 'headerImage',
+          widget: 'image',
+          required: false,
+        }
+      - { label: 'Body', name: 'body', widget: 'markdown' }
+  - name: 'pages'
+    label: 'Pagine'
+    folder: 'content/pages'
+    create: true
+    slug: '{{slug}}'
+    editor:
+      preview: true
+    fields:
+      - { label: 'Titolo', name: 'title', widget: 'string' }
+      - { label: 'Body', name: 'body', widget: 'markdown' }
+  - name: 'corsi'
+    label: 'Corsi'
+    folder: 'content/attivita-didattica'
+    create: true
+    slug: 'didattica-{{slug}}'
+    preview_path: '/{{slug}}'
+    editor:
+      preview: true
+    fields:
+      - { label: 'Titolo', name: 'title', widget: 'string' }
+      - {
+          label: 'Ordine',
+          name: 'order',
+          widget: 'number',
+          valueType: 'int',
+          min: 0,
+        }
+      - {
+          label: 'Età Minima',
+          name: 'min_age',
+          widget: 'number',
+          valueType: 'int',
+          min: 10,
+        }
+      - { label: 'Codice', name: 'cert', widget: 'string' }
+      - { label: 'Descrizione', name: 'body', widget: 'markdown' }
+  - name: 'istruttori'
+    label: 'Istruttori'
+    folder: 'content/istruttori'
+    identifier_field: name
+    create: true
+    slug: '{{fields.name}}'
+    editor:
+      preview: true
+    fields:
+      - { label: 'Nome', name: 'name', widget: 'string' }
+      - {
+          label: 'Brevetto',
+          name: 'cert',
+          widget: 'select',
+          options: ['M1', 'M2', 'M3'],
+        }
+      - { label: 'Foto', name: 'picture', widget: 'image', required: false }
+      - { label: 'Descrizione', name: 'body', widget: 'markdown' }
