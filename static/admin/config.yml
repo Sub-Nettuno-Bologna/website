@@ -40,8 +40,8 @@ collections:
     label: 'Corsi'
     folder: 'content/corsi'
     create: true
-    slug: 'attivita-didattica/{{slug}}'
-    preview_path: '/attivita-didattica/{{slug}}'
+    slug: 'didattica-{{slug}}'
+    preview_path: '/didattica-{{slug}}'
     editor:
       preview: true
     fields:

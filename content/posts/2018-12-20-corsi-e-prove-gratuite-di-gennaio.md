@@ -11,7 +11,7 @@ categories:
   - Corsi
 ---
 
-Da lunedì 21 gennaio inizieranno i nuovi corsi sub e apnea di primo livello ( [1° grado FIPSAS/CMAS](/attivita-didattica/corso-di-1-grado-ar-p1) ).
+Da lunedì 21 gennaio inizieranno i nuovi corsi sub e apnea di primo livello ( [1° grado FIPSAS/CMAS](/didattica-corso-di-1-grado-ar-p1) ).
 
 Prima dell'inizio dei corsi sarà possibile **provare gratuitamente** nelle seguenti date:
 
