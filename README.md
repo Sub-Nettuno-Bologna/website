@@ -22,6 +22,6 @@ Contact form: https://formspree.io/
 - [x] Cross Links
 - [x] Altre pagine
 - [x] Favicon
-- [ ] cookie-bar
+- [x] cookie-bar
 - [ ] 404
 - [ ] Disqs

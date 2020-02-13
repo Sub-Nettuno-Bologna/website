@@ -37,6 +37,9 @@ export const pageQuery = graphql`
           fields {
             slug
           }
+          wordCount {
+            words
+          }
           html
         }
       }

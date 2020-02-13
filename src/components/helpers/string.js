@@ -1,5 +1,4 @@
 export function template(content, replacements) {
-  console.log('---', content, replacements);
   return content.replace(/{{(.+)}}/g, (match, key) => {
     const value = replacements[key];
     if (typeof value !== 'undefined') {
