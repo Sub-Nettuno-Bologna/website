@@ -12,8 +12,8 @@ Durante la primavera il club organizzerà corsi e specializzazioni per chi ha gi
 
 - [Corso di specializzazione per miscele Nitrox Base](/didattica-nitrox-base)
 - Corso di specializzazione di biologia marina
-- Corso di specializzazione in immersioni notturne
-- Corso di specializzazione per l'utilizzo della muta stagna
+- [Corso di specializzazione in immersioni notturne](/didattica-immersione-notturna)
+- [Corso di specializzazione per l'utilizzo della muta stagna](/didattica-immersione-con-muta-stagna)
 - [Corso di fotografia subacquea](/didattica-fotografia-subacquea/)
 - BLS-D e primo soccorso
 

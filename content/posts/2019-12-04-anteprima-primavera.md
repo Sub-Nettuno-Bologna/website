@@ -26,12 +26,12 @@ Il 10 maggio organizzeremo una trasferta in giornata per immergersi nell'area ma
 
 Dal mese di marzo 2020 partiranno i corsi di specializzazione di
 
-- Muta stagna
+- [Muta stagna](/didattica-immersione-con-muta-stagna)
 - Biologia marina
 - [Nitrox base](/didattica-nitrox-base)
 - BLS e primo soccorso con defibrillatore
 - [Fotografia subacquea](/didattica-fotografia-subacquea/)
-- Immersione Notturna
+- [Immersione Notturna](/didattica-immersione-notturna)
 
 **Partecipi?**
 
