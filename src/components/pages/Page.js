@@ -24,7 +24,6 @@ export default function PostPage({
           dangerouslySetInnerHTML={{
             __html: template(html, {
               GATSBY_GA_MAPS_KEY: process.env.GATSBY_GA_MAPS_KEY,
-              GATSBY_CONTACT_EMAIL: process.env.GATSBY_CONTACT_EMAIL,
             }),
           }}
         />

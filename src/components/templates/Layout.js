@@ -22,8 +22,24 @@ import { fromMedium } from '../mediaqueries';
 import './layout.css';
 
 const GlobalStyle = createGlobalStyle`
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  font-family: 'Montserrat', sans-serif;
+}
+
+html,
 body {
-  color: ${p => p.theme.black};
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  color: ${(p) => p.theme.black};
 }
 h1,
 h2,
@@ -41,50 +57,20 @@ a {
  
 
   &, &:hover {
-    color: ${p => p.theme.blue};
+    color: ${(p) => p.theme.blue};
   }
 
 }
 
-
-
-form {
-  input[type="text"],
-  input[type="password"],
-  input[type="email"],
-  textarea {
-    margin: 0.2em 0;
-    width: 100%;
-    background: #f7f7f7;
-    border: 1px solid #d1d1d1;
-    border-radius: 2px;
-    color: $grey;
-    padding: 0.625em 0.4375em;
-    font-size: 1rem;
-
-    &:focus {
-      background-color: #fff;
-      border-color: ${p => p.theme.blue};
-      color: #1a1a1a;
-      outline: 0;
-    }
-  }
-
-  label {
-    margin: 0.5em 0;
-    display: block;
-  }
-}
 `;
 
 const Main = styled.main`
   ${columnCss}
 
-
   @media ${fromMedium} {
     display: flex;
   }
-  
+
   .content {
     flex: 1;
     margin-right: 1em;
@@ -92,7 +78,7 @@ const Main = styled.main`
 `;
 
 const Footer = styled.footer`
-  background: ${p => p.theme.black};
+  background: ${(p) => p.theme.black};
   color: white;
   padding: 2em 0;
   margin-top: 2em;
@@ -101,7 +87,7 @@ const Footer = styled.footer`
   }
 `;
 
-const rand = items => items[Math.floor(Math.random() * items.length)];
+const rand = (items) => items[Math.floor(Math.random() * items.length)];
 
 const Layout = ({ children, preventLinkHome, postHeader }) => {
   const data = useStaticQuery(graphql`
@@ -120,7 +106,7 @@ const Layout = ({ children, preventLinkHome, postHeader }) => {
     }
   `);
 
-  const images = data.allFile.edges.map(e => e.node);
+  const images = data.allFile.edges.map((e) => e.node);
 
   const headerImage = postHeader ? postHeader : rand(images);
 

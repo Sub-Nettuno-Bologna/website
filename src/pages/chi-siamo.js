@@ -31,8 +31,9 @@ const DidatticaPage = ({
           </li>
         ))}
       </Ol>
+      <hr />
       <p>
-        <hr />I nostri corsi non sarebbero comunque possibili senza l’aiuto di
+        I nostri corsi non sarebbero comunque possibili senza l’aiuto di
         Annalisa Costa, Carlo Crocetti, Danilo Sasdelli, Enrico Scaglioni,
         Giancarlo Danielli, Mimmo Brico e Francesca Marziano, impegnati nel
         percorso formativo per diventare i futuri istruttori del Club Sub

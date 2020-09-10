@@ -14,7 +14,7 @@ const Aside = styled.aside`
   }
 
   section {
-    border-top: 4px solid ${p => p.theme.black};
+    border-top: 4px solid ${(p) => p.theme.black};
     padding-top: 1.6em;
 
     & + section {
@@ -72,7 +72,7 @@ const Sidebar = () => {
   `);
 
   const { edges } = data.pages;
-  const corsiTreeList = data.corsi.edges.map(e => e.node);
+  const corsiTreeList = data.corsi.edges.map((e) => e.node);
 
   return (
     <Aside>
@@ -99,7 +99,7 @@ const Sidebar = () => {
             <TreeList
               title="Attività didattica"
               list={corsiTreeList}
-              itemRenderer={node => (
+              itemRenderer={(node) => (
                 <Link to={node.fields.slug}>{node.frontmatter.title}</Link>
               )}
             />
@@ -113,6 +113,9 @@ const Sidebar = () => {
           })}
           <li>
             <Link to="/chi-siamo">Chi siamo</Link>
+          </li>
+          <li>
+            <Link to="/contattaci">Contattaci</Link>
           </li>
         </ul>
       </section>
