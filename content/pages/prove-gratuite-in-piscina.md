@@ -13,4 +13,4 @@ L'istruttore e gli aiuto istruttori presenti ti spiegheranno brevemente il funzi
 
 [Scrivici o telefonaci per prenotare la tua prova!](/contattaci)
 
-![](/media/prove-gratuite.jpg)
+![](../media/prove-gratuite.jpg)

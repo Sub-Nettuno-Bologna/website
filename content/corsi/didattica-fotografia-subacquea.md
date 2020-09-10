@@ -48,4 +48,4 @@ Il corso è aperto a tutti i possessori di brevetto sub
 
 - La manutenzione dell’attrezzatura
 
-![](/media/fotosub-locandina.jpg)
+![](../media/fotosub-locandina.jpg)

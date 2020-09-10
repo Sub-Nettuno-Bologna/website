@@ -7,7 +7,7 @@ Vi aspettiamo fino al 17 settembre a [Made in Parco Nord](https://www.facebook.c
 
 Stiamo montando una piscina gigante proprio in questo momento
 
-![](/media/parco-nord-2018-piscina_1.jpg)
+![](../media/parco-nord-2018-piscina_1.jpg)
 
 ## Il programma delle serate
 
@@ -21,4 +21,4 @@ Stiamo montando una piscina gigante proprio in questo momento
 
 [Guarda sulla nostra pagina facebook le altre foto!](https://www.facebook.com/pg/clubsubnettuno/photos/?tab=album&album_id=2298168600215747)
 
-![](/media/parco-nord-2018-volantino-02.jpg)
+![](../media/parco-nord-2018-volantino-02.jpg)

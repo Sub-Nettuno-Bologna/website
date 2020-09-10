@@ -18,6 +18,8 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
         path.dirname(node.fileAbsolutePath),
         path.join(__dirname, '/content/', node.frontmatter.headerImage)
       );
+
+      console.log(node.frontmatter.headerImage)
     }
 
     const value = createFilePath({ node, getNode });

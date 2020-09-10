@@ -3,7 +3,7 @@ title: Fotografie in fondo al mare
 author: carlo
 layout: post
 comments: true
-featuredImage: /media/2019/fotografie-in-fondo-al-mare.jpg
+headerImage: /media/2019/fotografie-in-fondo-al-mare.jpg
 permalink: /fotografie-in-fondo-al-mare
 date: 2019-03-07T00:01:00+00:00
 categories:
@@ -20,4 +20,4 @@ Per chi ne avesse voglia la serata proseguirà in pizzeria.
 
 Vi aspettiamo numerosi
 
-![](/media/2019/fotografie-in-fondo-al-mare.jpg)
+![](../media/2019/fotografie-in-fondo-al-mare.jpg)

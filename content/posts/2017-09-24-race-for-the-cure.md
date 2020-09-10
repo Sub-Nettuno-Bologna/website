@@ -7,4 +7,4 @@ Ecco il gruppo Sub Nettuno che ha partecipato alla manifestazione non agonistica
 
 Un ringraziamento a tutti i soci e amici che hanno partecipato a questa iniziativa.
 
-![](/media/RaceForCure2017.jpg)
+![](../media/RaceForCure2017.jpg)

@@ -3,7 +3,7 @@ title: Lago di Capo d'Acqua
 author: carlo
 layout: post
 comments: true
-featuredImage: /media/capodacqua_4989227455_ac2a0db82c_o.jpg
+headerImage: /media/capodacqua_4989227455_ac2a0db82c_o.jpg
 date: 2019-08-06T00:01:00+00:00
 permalink: /2019/08/capodacqua
 categories:

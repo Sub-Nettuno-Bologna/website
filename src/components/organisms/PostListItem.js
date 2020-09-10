@@ -18,7 +18,7 @@ const LIMIT_WORDS = 125;
 const PostListItem = ({ post }) => {
   const { words } = post.wordCount;
 
-  const hasMore = words > LIMIT_WORDS;
+  const hasMore = !!post.html && words > LIMIT_WORDS;
 
   const html = hasMore ? truncateWords(post.html, LIMIT_WORDS) : post.html;
 
