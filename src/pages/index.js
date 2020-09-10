@@ -2,7 +2,6 @@ import React from 'react';
 import { graphql } from 'gatsby';
 import Layout from '../components/templates/Layout';
 import PostListItem from '../components/organisms/PostListItem';
-import SEO from '../components/seo';
 
 const IndexPage = ({
   data: {
@@ -10,7 +9,6 @@ const IndexPage = ({
   },
 }) => (
   <Layout preventLinkHome>
-    <SEO title="Home" />
     <div>
       {edges.map((edge) => (
         <PostListItem key={edge.node.id} post={edge.node} />

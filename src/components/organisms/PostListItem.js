@@ -6,11 +6,7 @@ import { Body, Article } from '../atoms/Article';
 import { template } from '../helpers/string';
 
 function truncateWords(text, words) {
-  return text
-    .split(' ')
-    .splice(0, words)
-    .join(' ')
-    .concat('&hellip;');
+  return text.split(' ').splice(0, words).join(' ').concat('&hellip;');
 }
 
 const LIMIT_WORDS = 125;

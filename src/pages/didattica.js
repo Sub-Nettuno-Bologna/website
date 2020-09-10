@@ -3,7 +3,6 @@ import { graphql, Link } from 'gatsby';
 import styled from 'styled-components';
 
 import Layout from '../components/templates/Layout';
-import SEO from '../components/seo';
 
 import ExternalLink from '../components/atoms/ExternalLink';
 
@@ -21,10 +20,8 @@ const DidatticaPage = ({
     allMarkdownRemark: { edges },
   },
 }) => (
-  <Layout>
-    <SEO title="Attività didattica" />
+  <Layout title="Corsi internazionali di subacquea">
     <div>
-      <h1>Corsi internazionali di subacquea</h1>
       <p>
         I nostri corsi sub sono riconosciuti in TUTTO il mondo, svolti secondo
         la didattica{' '}

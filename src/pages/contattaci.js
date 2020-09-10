@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import Layout from '../components/templates/Layout';
-import SEO from '../components/seo';
 
 const Form = styled.form`
   input[type='text'],
@@ -32,15 +31,12 @@ const Form = styled.form`
 `;
 
 const Contattaci = () => (
-  <Layout>
-    <SEO title="Contattaci" />
-    <h1>Contattaci</h1>
+  <Layout title="Contattaci">
     <Form
       action={`https://formspree.io/${process.env.GATSBY_CONTACT_EMAIL}`}
       method="POST"
     >
       <input type="hidden" name="_subject" value="Nuovo messaggio" />
-
       <label htmlFor="name"> Il tuo nome (richiesto)</label>
       <input
         id="name"

@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import Layout from '../components/templates/Layout';
-import SEO from '../components/seo';
 
 const Address = styled.address`
   display: block;
@@ -9,9 +8,7 @@ const Address = styled.address`
 `;
 
 const DoveSiamo = () => (
-  <Layout>
-    <SEO title="Dove siamo" />
-    <h1>Dove siamo</h1>
+  <Layout title="Dove siamo">
     <p>
       Il club ha la sede presso la piscina Carmen Longo, all'interno del
       complesso dello Stadio Comunale Dall'Ara di Bologna

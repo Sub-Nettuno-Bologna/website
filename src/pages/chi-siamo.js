@@ -3,7 +3,6 @@ import { graphql } from 'gatsby';
 import styled from 'styled-components';
 
 import Layout from '../components/templates/Layout';
-import SEO from '../components/seo';
 
 const Ol = styled.ol`
   list-style: none;
@@ -19,10 +18,8 @@ const DidatticaPage = ({
     allMarkdownRemark: { edges },
   },
 }) => (
-  <Layout>
-    <SEO title="Attività didattica" />
+  <Layout title="Lo Staff">
     <div>
-      <h1>Lo Staff</h1>
       <Ol>
         {edges.map(({ node }) => (
           <li key={node.id}>

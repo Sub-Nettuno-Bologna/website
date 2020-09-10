@@ -12,10 +12,10 @@ import { useStaticQuery, graphql } from 'gatsby';
 
 import Header from '../organisms/Header';
 import Sidebar from '../organisms/Sidebar';
-
+import PostHeader from '../molecules/Post/Header';
 import CookieBar from '../molecules/CookieBar';
-
 import { columnCss } from '../atoms/Grid';
+import SEO from '../atoms/SEO';
 
 import theme from '../../theme';
 import { fromMedium } from '../mediaqueries';
@@ -74,6 +74,7 @@ const Main = styled.main`
   .content {
     flex: 1;
     margin-right: 1em;
+    margin-bottom: 7em;
   }
 `;
 
@@ -89,14 +90,21 @@ const Footer = styled.footer`
 
 const rand = (items) => items[Math.floor(Math.random() * items.length)];
 
-const Layout = ({ children, preventLinkHome, postHeader }) => {
+const Layout = ({
+  children,
+  preventLinkHome,
+  postHeader,
+  title,
+  date,
+  isArticle,
+}) => {
   const data = useStaticQuery(graphql`
     query {
       allFile(filter: { sourceInstanceName: { eq: "site-headers" } }) {
         edges {
           node {
             childImageSharp {
-              fluid(maxHeight: 500) {
+              fluid(maxHeight: 500, maxWidth: 2000) {
                 ...GatsbyImageSharpFluid
               }
             }
@@ -110,15 +118,24 @@ const Layout = ({ children, preventLinkHome, postHeader }) => {
 
   const headerImage = postHeader ? postHeader : rand(images);
 
+  const ContentElement = isArticle ? 'article' : 'section';
+
   return (
     <ThemeProvider theme={theme}>
       <>
         <GlobalStyle />
+        <SEO
+          title={title}
+          image={postHeader ? postHeader.childImageSharp.fluid.src : undefined}
+        />
         <Header preventLinkHome={preventLinkHome} image={headerImage} />
 
         <Main>
           <Sidebar />
-          <div className="content">{children}</div>
+          <ContentElement className="content">
+            {title && <PostHeader title={title} date={date} />}
+            {children}
+          </ContentElement>
         </Main>
         <Footer>
           <div>{new Date().getFullYear()} Club Sub Nettuno</div>
@@ -133,6 +150,9 @@ Layout.propTypes = {
   children: PropTypes.node.isRequired,
   preventLinkHome: PropTypes.bool,
   postHeader: PropTypes.object,
+  title: PropTypes.string,
+  date: PropTypes.string,
+  isArticle: PropTypes.bool,
 };
 
 export default Layout;
