@@ -112,6 +112,9 @@ const Sidebar = () => {
             );
           })}
           <li>
+            <Link to="/dove-siamo">Dove siamo</Link>
+          </li>
+          <li>
             <Link to="/chi-siamo">Chi siamo</Link>
           </li>
           <li>

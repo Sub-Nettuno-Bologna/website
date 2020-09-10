@@ -12,7 +12,7 @@ const IndexPage = ({
   <Layout preventLinkHome>
     <SEO title="Home" />
     <div>
-      {edges.map(edge => (
+      {edges.map((edge) => (
         <PostListItem key={edge.node.id} post={edge.node} />
       ))}
     </div>
