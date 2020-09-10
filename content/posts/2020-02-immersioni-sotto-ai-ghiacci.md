@@ -2,12 +2,13 @@
 title: Immersione sotto ai ghiacci
 layout: post
 comments: true
-headerImage: /media/2020/immersione-sotto-ghiaccio/testata.jpg
+headerImage: ../media/2020/immersione-sotto-ghiaccio/testata.jpg
 date: 2020-02-03T00:02:00+00:00
 permalink: /2020/02/immersioni-sotto-ai-ghiacci
 categories:
   - uscite
 ---
+
 Fine settimana diverso per alcuni diver del Club Sub Nettuno, impegnati in quel di Bolzano per delle immersioni "particolari", quelle sotto i ghiacci.
 
 Le immersioni sotto i ghiacci e in quota, richiedono un brevetto a parte, la particolarità di queste immersioni è che per farle, bisogna essere oltre i 700 metri s.l.m.

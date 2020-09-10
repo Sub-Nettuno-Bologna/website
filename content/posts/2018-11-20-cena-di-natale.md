@@ -5,7 +5,7 @@ date: 2018-11-20T12:39:09+00:00
 author: carlo
 layout: post
 permalink: /2018/11/cena-di-natale/
-headerImage: /media/2018/WhatsApp-Image-2018-11-20-at-10.04.05-1.jpeg
+headerImage: ../media/2018/WhatsApp-Image-2018-11-20-at-10.04.05-1.jpeg
 categories:
   - Eventi
 tags:

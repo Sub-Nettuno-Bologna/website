@@ -5,7 +5,7 @@ date: 2018-12-20T15:41:03+00:00
 author: carlo
 layout: post
 permalink: /2018/12/corsi-e-prove-gratuite-di-gennaio/
-headerImage: /media/2018/GOPR1107-1200x900.jpg
+headerImage: ../media/2018/GOPR1107-1200x900.jpg
 comments: true
 categories:
   - Corsi

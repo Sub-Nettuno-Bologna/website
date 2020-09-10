@@ -5,7 +5,7 @@ date: 2018-03-16T13:13:48+00:00
 author: Susy Ferrari
 layout: post
 permalink: /2018/03/evento-comunicazione-senza-fili/
-headerImage: /media/2018/senzafilibologna-001.jpg
+headerImage: ../media/2018/senzafilibologna-001.jpg
 categories:
   - Eventi
 ---

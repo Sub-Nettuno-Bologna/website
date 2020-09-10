@@ -3,7 +3,7 @@ title: Fotografie in fondo al mare
 author: carlo
 layout: post
 comments: true
-headerImage: /media/2019/fotografie-in-fondo-al-mare.jpg
+headerImage: ../media/2019/fotografie-in-fondo-al-mare.jpg
 permalink: /fotografie-in-fondo-al-mare
 date: 2019-03-07T00:01:00+00:00
 categories:

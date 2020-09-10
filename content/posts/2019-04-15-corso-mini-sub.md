@@ -3,7 +3,7 @@ title: Corso Mini Sub e Mini Apnea Primaverile
 author: carlo
 layout: post
 comments: true
-headerImage: /media/minisub-testata.jpg
+headerImage: ../media/minisub-testata.jpg
 permalink: /2019/04/corso-mini-sub
 date: 2019-04-15T00:01:00+00:00
 categories:

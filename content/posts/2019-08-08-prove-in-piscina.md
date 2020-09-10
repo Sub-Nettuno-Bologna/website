@@ -3,7 +3,7 @@ title: Prove di subacquea in piscina
 author: carlo
 layout: post
 comments: true
-headerImage: /media/prove-in-piscina_1.jpg
+headerImage: ../media/prove-in-piscina_1.jpg
 date: 2019-08-08T00:01:00+00:00
 permalink: /2019/08/prove-in-piscina
 categories:

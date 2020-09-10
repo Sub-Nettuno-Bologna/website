@@ -13,15 +13,6 @@ const pageTemplate = path.resolve(`src/components/pages/Page.js`);
 exports.onCreateNode = ({ node, actions, getNode }) => {
   const { createNodeField } = actions;
   if (node.internal.type === `MarkdownRemark`) {
-    if (node.frontmatter && node.frontmatter.headerImage) {
-      node.frontmatter.headerImage = path.relative(
-        path.dirname(node.fileAbsolutePath),
-        path.join(__dirname, '/content/', node.frontmatter.headerImage)
-      );
-
-      console.log(node.frontmatter.headerImage)
-    }
-
     const value = createFilePath({ node, getNode });
     createNodeField({
       name: `slug`,

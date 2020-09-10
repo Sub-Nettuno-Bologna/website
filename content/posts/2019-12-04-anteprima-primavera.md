@@ -2,7 +2,7 @@
 title: Anteprima eventi di primavera
 layout: post
 permalink: /2019/12/anteprima-primavera
-headerImage: /media/spiaggia.jpg
+headerImage: ../media/spiaggia.jpg
 comments: true
 date: 2019-12-04T00:01:00+00:00
 categories:

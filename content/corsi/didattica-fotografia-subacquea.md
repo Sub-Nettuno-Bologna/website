@@ -2,7 +2,7 @@
 title: Fotografia Subacquea
 order: 20
 min_age: 14
-headerImage: /media/fotosub-banner.jpg
+headerImage: ../media/fotosub-banner.jpg
 cert: PFs
 ---
 

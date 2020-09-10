@@ -2,7 +2,7 @@
 title: Corso Fotografia Subacquea 2020
 layout: post
 permalink: /2019/12/corso-fotosub
-headerImage: /media/fotosub-banner.jpg
+headerImage: ../media/fotosub-banner.jpg
 comments: true
 date: 2019-12-11T00:02:00+00:00
 categories:
