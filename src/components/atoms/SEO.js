@@ -34,7 +34,7 @@ function SEO({ description, lang, title, image, article }) {
         lang,
       }}
       title={metaTitle}
-      titleTemplate={`%s | ${metaTitle}`}
+      titleTemplate={`%s`}
     >
       {(article ? true : null) && <meta property="og:type" content="article" />}
       {metaTitle && <meta property="og:title" content={metaTitle} />}
