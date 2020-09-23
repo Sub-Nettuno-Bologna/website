@@ -24,6 +24,7 @@ export const pageQuery = graphql`
     allMarkdownRemark(
       sort: { order: DESC, fields: [frontmatter___date] }
       filter: { fields: { sourceInstanceName: { eq: "posts" } } }
+      limit: 10
     ) {
       edges {
         node {
