@@ -55,6 +55,7 @@ const Sidebar = () => {
       }
       corsi: allMarkdownRemark(
         filter: { fields: { sourceInstanceName: { eq: "corsi" } } }
+        sort: { order: ASC, fields: frontmatter___order }
       ) {
         edges {
           node {
