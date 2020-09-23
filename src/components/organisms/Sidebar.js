@@ -13,15 +13,6 @@ const Aside = styled.aside`
     text-transform: uppercase;
   }
 
-  section {
-    border-top: 4px solid ${(p) => p.theme.black};
-    padding-top: 1.6em;
-
-    & + section {
-      margin-top: 1.6em;
-    }
-  }
-
   ul {
     padding-left: 1.4em;
   }
@@ -29,6 +20,15 @@ const Aside = styled.aside`
   @media ${fromMedium} {
     width: 27%;
     margin: 0;
+  }
+`;
+
+const AsideSection = styled.section`
+  border-top: 4px solid ${(p) => p.theme.black};
+  padding-top: 1.6em;
+
+  & + & {
+    margin-top: 1.6em;
   }
 `;
 
@@ -77,7 +77,7 @@ const Sidebar = () => {
 
   return (
     <Aside>
-      <section className="address">
+      <AsideSection>
         <h2>Club Sub Nettuno</h2>
         <address>
           Associazione Sportiva Dilettantistica
@@ -93,8 +93,8 @@ const Sidebar = () => {
           <br />
           P.IVA 2665601205
         </address>
-      </section>
-      <section className="pages" controller="pages-menu">
+      </AsideSection>
+      <AsideSection>
         <ul>
           <li>
             <TreeList
@@ -122,7 +122,30 @@ const Sidebar = () => {
             <Link to="/contattaci">Contattaci</Link>
           </li>
         </ul>
-      </section>
+      </AsideSection>
+      <AsideSection>
+        <p>Seguici sui social:</p>
+        <ul>
+          <li>
+            <a
+              href="https://www.facebook.com/clubsubnettuno"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Facebook
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://www.instagram.com/clubsubnettuno/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Instagram
+            </a>
+          </li>
+        </ul>
+      </AsideSection>
     </Aside>
   );
 };

@@ -135,10 +135,18 @@ const Header = ({ preventLinkHome, image }) => {
         </LogoWrapper>
 
         <FederationWrapper>
-          <a href="http://www.fipsas.it/">
+          <a
+            href="http://www.fipsas.it/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <img src={fipsas} alt="FIPSAS logo" />
           </a>
-          <a href="http://www.cmas.org/">
+          <a
+            href="http://www.cmas.org/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <img src={cmas} alt="CMAS logo" />
           </a>
         </FederationWrapper>
