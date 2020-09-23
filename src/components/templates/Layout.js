@@ -83,8 +83,17 @@ const Footer = styled.footer`
   color: white;
   padding: 2em 0;
   margin-top: 2em;
-  > div {
-    ${columnCss}
+  a {
+    color: inherit;
+  }
+`;
+
+const InnerFooter = styled.div`
+  ${columnCss}
+  text-align: center;
+
+  @media ${fromMedium} {
+    text-align: left;
   }
 `;
 
@@ -138,7 +147,25 @@ const Layout = ({
           </ContentElement>
         </Main>
         <Footer>
-          <div>{new Date().getFullYear()} Club Sub Nettuno</div>
+          <InnerFooter>
+            <span>{new Date().getFullYear()} Club Sub Nettuno</span>
+            {' - '}
+            <a
+              href="https://www.facebook.com/clubsubnettuno"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Facebook
+            </a>
+            {' - '}
+            <a
+              href="https://www.instagram.com/clubsubnettuno/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Instagram
+            </a>
+          </InnerFooter>
         </Footer>
         <CookieBar />
       </>
