@@ -12,7 +12,7 @@ Lunedì 16 Settembre si terrà presso la piscina dello stadio la presentazione d
 
 Inizieranno corsi per sommozzatori [FIPSAS / CMAS di 1, 2 e 3 grado](/didattica), che vi permetteranno di acquisire un brevetto internazionale per immergersi in sicurezza fino a 18 metri (1 grado), 30 o 42 (2 e 3 grado). Parleremo anche delle specializzazioni, come la [muta stagna](/didattica-immersione-con-muta-stagna), le [immersioni notturne](/didattica-immersione-notturna), i relitti o la fotografia subacquea.
 
-La serata prevede un incontro con il [Responsabile della Didattica e tutti gli Istruttori](/chi-siamo) che si presenteranno e racconteranno il proprio corso e la propria specialità.
+La serata prevede un incontro con il [Responsabile della Didattica e tutti gli Istruttori](/staff) che si presenteranno e racconteranno il proprio corso e la propria specialità.
 
 A seguire ci sarà ancora la possibilità di effettuare una prova in piscina per chi non lo avesse ancora fatto, o di iniziare i corsi per i veterani.
 

@@ -116,7 +116,7 @@ const Sidebar = () => {
             <Link to="/dove-siamo">Dove siamo</Link>
           </li>
           <li>
-            <Link to="/chi-siamo">Chi siamo</Link>
+            <Link to="/staff">Lo Staff</Link>
           </li>
           <li>
             <Link to="/contattaci">Contattaci</Link>
