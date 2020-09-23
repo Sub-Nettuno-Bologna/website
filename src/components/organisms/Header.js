@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import Img from 'gatsby-image';
 import { Link, useStaticQuery, graphql } from 'gatsby';
 import { columnCss } from '../atoms/Grid';
+import ConditionalWrapper from '../atoms/ConditionalWrapper';
 import { fromMedium, fromLarge } from '../mediaqueries';
 import logo from '../../images/logo-simple.png';
 import fipsas from '../../images/fipsas-80.png';
@@ -20,23 +21,53 @@ const Wrapper = styled.header`
     &,
     &:visited,
     &:hover {
-      color: ${p => p.theme.black};
+      color: ${(p) => p.theme.black};
     }
   }
 `;
 
 const MainHeader = styled.div`
   ${columnCss}
+  @media ${fromMedium} {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+`;
 
-  .logo {
+const FederationWrapper = styled.div`
+  display: flex;
+  justify-content: space-around;
+  margin: 1em 0;
+
+  a {
+    flex: 1;
+    margin: 0 1em;
     text-align: center;
+    display: block;
+  }
 
+  img {
+    width: 100%;
+    max-width: 100px;
+  }
+
+  @media ${fromLarge} {
     img {
-      width: 100%;
-      max-width: 240px;
-
-      height: auto;
+      max-width: initial;
     }
+  }
+`;
+
+const LogoWrapper = styled.div`
+  img {
+    width: 100%;
+    max-width: 240px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+
+    height: auto;
   }
 
   h1 {
@@ -46,30 +77,22 @@ const MainHeader = styled.div`
 
   p {
     margin: 0;
+    display: none;
+    color: ${(p) => p.theme.grey};
   }
 
   a {
-    color: ${p => p.theme.black};
-
     &:hover {
-      color: ${p => p.theme.blue};
+      color: ${(p) => p.theme.blue};
     }
   }
 
-  .description {
-    display: none;
-    color: ${p => p.theme.grey};
-  }
   @media ${fromMedium} {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
     h1 {
       text-align: left;
     }
 
-    .description {
+    p {
       display: block;
     }
   }
@@ -79,31 +102,8 @@ const MainHeader = styled.div`
       font-size: 2.1em;
     }
 
-    .description {
+    p {
       font-size: 1.2em;
-    }
-  }
-`;
-
-const FederationWrapper = styled.div`
-  display: flex;
-  justify-content: space-around;
-  margin: 1em 0;
-
-  .federation-logo {
-    flex: 1;
-    margin: 0 1em;
-    text-align: center;
-    display: block;
-  }
-
-  img {
-    max-width: 50px;
-  }
-
-  @media ${fromLarge} {
-    img {
-      max-width: initial;
     }
   }
 `;
@@ -123,25 +123,22 @@ const Header = ({ preventLinkHome, image }) => {
   return (
     <Wrapper>
       <MainHeader>
-        <div>
-          <div className="logo">
-            <img src={logo} alt="Logo" />
-          </div>
-          <h1>
-            {preventLinkHome ? (
-              data.site.siteMetadata.title
-            ) : (
-              <Link to="/">{data.site.siteMetadata.title}</Link>
-            )}
-          </h1>
-          <p className="description">{data.site.siteMetadata.claim}</p>
-        </div>
+        <LogoWrapper>
+          <ConditionalWrapper
+            condition={!preventLinkHome}
+            wrapper={(children) => <Link to="/">{children}</Link>}
+          >
+            <img src={logo} alt="Logo del Club Sub Nettuno" />
+            <h1>{data.site.siteMetadata.title}</h1>
+          </ConditionalWrapper>
+          <p>{data.site.siteMetadata.claim}</p>
+        </LogoWrapper>
 
-        <FederationWrapper className="federation">
-          <a href="http://www.fipsas.it/" className="federation-logo">
+        <FederationWrapper>
+          <a href="http://www.fipsas.it/">
             <img src={fipsas} alt="FIPSAS logo" />
           </a>
-          <a href="http://www.cmas.org/" className="federation-logo">
+          <a href="http://www.cmas.org/">
             <img src={cmas} alt="CMAS logo" />
           </a>
         </FederationWrapper>
