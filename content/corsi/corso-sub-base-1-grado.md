@@ -21,5 +21,3 @@ Il brevetto CMAS/FIPSAS è riconosciuto a livello internazionale: lo potrai util
 - 10 lezioni in piscina, il lunedì o il mercoledì
 
 Non è richiesta esperienza precedente di nuoto.
-
-

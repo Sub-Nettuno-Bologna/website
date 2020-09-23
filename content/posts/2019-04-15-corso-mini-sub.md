@@ -11,7 +11,7 @@ categories:
 ---
 
 Il Club Sub Nettuno organizza il Corso Subacqueo primaverile dedicato
-ai [Mini Sub e ai Mini Apneisti](/didattica-corsi-minisub) (età inferiore ai 14 anni)
+ai [Mini Sub e ai Mini Apneisti](/corso-minisub-bambini) (età inferiore ai 14 anni)
 
 Il corso verrà svolto presso la [nuova Piscina Olimpionica Stadio, in Via dello Sport 4 a Bologna](/dove-siamo)
 

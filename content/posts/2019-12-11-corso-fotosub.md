@@ -9,7 +9,7 @@ categories:
   - Corsi
 ---
 
-Cominciamo il 2020 con il corso di [fotografia subacquea](/didattica-fotografia-subacquea/), tenuto da Mirko Mirabella, docente di fotografia presso la Blu Cobalto Photo Academy.
+Cominciamo il 2020 con il corso di [fotografia subacquea](/corso-fotografia-subacquea/), tenuto da Mirko Mirabella, docente di fotografia presso la Blu Cobalto Photo Academy.
 
 Il corso è aperto a tutti i possessori di brevetto sub e prevede:
 

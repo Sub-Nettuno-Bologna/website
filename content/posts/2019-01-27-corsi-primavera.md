@@ -10,11 +10,11 @@ categories:
 
 Durante la primavera il club organizzerà corsi e specializzazioni per chi ha già un brevetto. In particolare stiamo preparando:
 
-- [Corso di specializzazione per miscele Nitrox Base](/didattica-nitrox-base)
+- [Corso di specializzazione per miscele Nitrox Base](/corso-nitrox-base)
 - Corso di specializzazione di biologia marina
-- [Corso di specializzazione in immersioni notturne](/didattica-immersione-notturna)
-- [Corso di specializzazione per l'utilizzo della muta stagna](/didattica-immersione-con-muta-stagna)
-- [Corso di fotografia subacquea](/didattica-fotografia-subacquea/)
+- [Corso di specializzazione in immersioni notturne](/corso-immersione-notturna)
+- [Corso di specializzazione per l'utilizzo della muta stagna](/corso-immersione-con-muta-stagna)
+- [Corso di fotografia subacquea](/corso-fotografia-subacquea/)
 - BLS-D e primo soccorso
 
 Se siete interessati [contattateci](/contattaci) o fate un salto in sede!

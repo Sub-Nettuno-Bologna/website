@@ -1,5 +1,5 @@
 ---
-title: Corso sub avanzato - 2° Grado 
+title: Corso sub avanzato - 2° Grado
 order: 4
 min_age: 15
 cert: P2
