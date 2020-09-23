@@ -129,7 +129,7 @@ const Header = ({ preventLinkHome, image }) => {
             wrapper={(children) => <Link to="/">{children}</Link>}
           >
             <img src={logo} alt="Logo del Club Sub Nettuno" />
-            <h1>{data.site.siteMetadata.title}</h1>
+            <h1>Club Sub Nettuno</h1>
           </ConditionalWrapper>
           <p>{data.site.siteMetadata.claim}</p>
         </LogoWrapper>

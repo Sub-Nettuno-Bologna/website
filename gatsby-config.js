@@ -7,8 +7,8 @@ require('dotenv').config({
 
 module.exports = {
   siteMetadata: {
-    title: `Club Sub Nettuno`,
-    description: ``,
+    title: `Club Sub Nettuno: corsi subacquea bologna`,
+    description: `Vieni a scoprire il mondo subacqueo attraverso corsi per tutti, uscite in mare, con un team di istruttori sommozzatori esperti. Ottieni un brevetto internazionale subacqueo o segui i nostri corsi di apnea.`,
     claim: 'Corsi Sub a Bologna',
     author: `@kajyr`,
   },

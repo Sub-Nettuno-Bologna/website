@@ -17,7 +17,7 @@ Il brevetto CMAS/FIPSAS è riconosciuto a livello internazionale: lo potrai util
 
 ### Il corso di 1° grado AR (P1) prevede:
 
-- 10 lezioni di teoria, il lunedì dalle 20:30
-- 10 lezioni in piscina, il lunedì o il mercoledì
+- 12 ore di teoria divise in lezioni in aula o da remoto
+- 10 ore di piscina divise in lezioni settimanali
 
 Non è richiesta esperienza precedente di nuoto.
