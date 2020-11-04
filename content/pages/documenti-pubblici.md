@@ -11,4 +11,4 @@ layout: page
 
 ## Logbook
 
-[Scheda formato A5 per il tuo logbook](../media/Scheda-vuota-nettuno.pdf)
+[Scheda formato A5 per il tuo logbook](/scheda-vuota-nettuno.pdf)
