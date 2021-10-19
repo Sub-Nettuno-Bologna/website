@@ -1,4 +1,5 @@
 import React from 'react';
+import { Helmet } from 'react-helmet';
 import styled from 'styled-components';
 import Layout from '../components/templates/Layout';
 
@@ -32,8 +33,11 @@ const Form = styled.form`
 
 const Contattaci = () => (
   <Layout title="Contattaci">
+    <Helmet>
+      <meta name="referrer" content="origin" />
+    </Helmet>
     <Form
-      action={`https://formspree.io/${process.env.GATSBY_CONTACT_EMAIL}`}
+      action={`https://formspree.io/f/${process.env.GATSBY_CONTACT_EMAIL}`}
       method="POST"
     >
       <input type="hidden" name="_subject" value="Nuovo messaggio" />
@@ -43,8 +47,8 @@ const Contattaci = () => (
         type="text"
         name="name"
         size="40"
-        aria-required="true"
-        required="true"
+        aria-required={true}
+        required={true}
       />
       <label htmlFor="email">La tua email (richiesto)</label>
       <input
@@ -52,8 +56,8 @@ const Contattaci = () => (
         type="email"
         name="_replyto"
         size="40"
-        aria-required="true"
-        required="true"
+        aria-required={true}
+        required={true}
       />
       <label htmlFor="messaggio">Il tuo messaggio</label>
       <textarea id="messaggio" name="messaggio" cols="40" rows="10"></textarea>
