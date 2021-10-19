@@ -17,7 +17,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
-        trackingId: process.env.GATSBY_GA_TRACKING_ID,
+        trackingId: process.env.GATSBY_GA_TRACKING_ID || 'none',
         // this option places the tracking script into the head of the DOM
         head: true,
         // other options
@@ -112,7 +112,6 @@ module.exports = {
       },
     },
     `gatsby-plugin-styled-components`,
-    `gatsby-source-instance-name-for-remark`,
     `gatsby-plugin-catch-links`,
     {
       resolve: `gatsby-plugin-page-creator`,

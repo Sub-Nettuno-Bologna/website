@@ -15,7 +15,7 @@ import Sidebar from '../organisms/Sidebar';
 import PostHeader from '../molecules/Post/Header';
 import CookieBar from '../molecules/CookieBar';
 import { columnCss } from '../atoms/Grid';
-import SEO from '../atoms/SEO';
+import Seo from '../atoms/SEO';
 
 import theme from '../../theme';
 import { fromMedium } from '../mediaqueries';
@@ -133,7 +133,7 @@ const Layout = ({
     <ThemeProvider theme={theme}>
       <>
         <GlobalStyle />
-        <SEO
+        <Seo
           title={title}
           image={postHeader ? postHeader.childImageSharp.fluid.src : undefined}
         />

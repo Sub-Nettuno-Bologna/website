@@ -19,6 +19,13 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
       node,
       value,
     });
+
+    const fileNode = getNode(node.parent);
+    createNodeField({
+      node,
+      name: 'sourceInstanceName',
+      value: fileNode.sourceInstanceName,
+    });
   }
 };
 
