@@ -6,7 +6,7 @@
  */
 
 import React from 'react';
-import PropTypes from 'prop-types';
+import { getImage } from 'gatsby-plugin-image';
 import styled, { createGlobalStyle, ThemeProvider } from 'styled-components';
 import { useStaticQuery, graphql } from 'gatsby';
 
@@ -113,9 +113,7 @@ const Layout = ({
         edges {
           node {
             childImageSharp {
-              fluid(maxHeight: 500, maxWidth: 2000) {
-                ...GatsbyImageSharpFluid
-              }
+              gatsbyImageData(layout: FULL_WIDTH)
             }
           }
         }
@@ -129,13 +127,15 @@ const Layout = ({
 
   const ContentElement = isArticle ? 'article' : 'section';
 
+  const image = postHeader ? getImage(postHeader) : null;
+
   return (
     <ThemeProvider theme={theme}>
       <>
         <GlobalStyle />
         <Seo
           title={title}
-          image={postHeader ? postHeader.childImageSharp.fluid.src : undefined}
+          image={image ? image.images.fallback.src : undefined}
         />
         <Header preventLinkHome={preventLinkHome} image={headerImage} />
 
@@ -171,15 +171,6 @@ const Layout = ({
       </>
     </ThemeProvider>
   );
-};
-
-Layout.propTypes = {
-  children: PropTypes.node.isRequired,
-  preventLinkHome: PropTypes.bool,
-  postHeader: PropTypes.object,
-  title: PropTypes.string,
-  date: PropTypes.string,
-  isArticle: PropTypes.bool,
 };
 
 export default Layout;

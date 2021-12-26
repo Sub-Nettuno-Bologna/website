@@ -1,4 +1,4 @@
-const mediumBreakpoint = 1020;
+const mediumBreakpoint = 768;
 const largeBreakpoint = 1600;
 
 export const fromMedium = `screen and (min-width: ${mediumBreakpoint}px)`;

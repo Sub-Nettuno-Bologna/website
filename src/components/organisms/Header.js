@@ -1,14 +1,10 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import Img from 'gatsby-image';
+import { StaticImage, GatsbyImage, getImage } from 'gatsby-plugin-image';
 import { Link, useStaticQuery, graphql } from 'gatsby';
 import { columnCss } from '../atoms/Grid';
 import ConditionalWrapper from '../atoms/ConditionalWrapper';
 import { fromMedium, fromLarge } from '../mediaqueries';
-import logo from '../../images/logo-simple.png';
-import fipsas from '../../images/fipsas-80.png';
-import cmas from '../../images/cmas-80.png';
 
 const Wrapper = styled.header`
   margin: 2em 0;
@@ -60,14 +56,9 @@ const FederationWrapper = styled.div`
 `;
 
 const LogoWrapper = styled.div`
-  img {
-    width: 100%;
-    max-width: 240px;
-    display: block;
+  .gatsby-image-wrapper {
     margin-left: auto;
     margin-right: auto;
-
-    height: auto;
   }
 
   h1 {
@@ -95,8 +86,10 @@ const LogoWrapper = styled.div`
     p {
       display: block;
     }
+    .gatsby-image-wrapper {
+      max-width: 240px;
+    }
   }
-
   @media ${fromLarge} {
     h1 {
       font-size: 2.1em;
@@ -128,7 +121,10 @@ const Header = ({ preventLinkHome, image }) => {
             condition={!preventLinkHome}
             wrapper={(children) => <Link to="/">{children}</Link>}
           >
-            <img src={logo} alt="Logo del Club Sub Nettuno" />
+            <StaticImage
+              src="../../images/logo-simple.png"
+              alt="Logo del Club Sub Nettuno"
+            />
             <h1>Club Sub Nettuno</h1>
           </ConditionalWrapper>
           <p>{data.site.siteMetadata.claim}</p>
@@ -140,30 +136,26 @@ const Header = ({ preventLinkHome, image }) => {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <img src={fipsas} alt="FIPSAS logo" />
+            <StaticImage src="../../images/fipsas-80.png" alt="FIPSAS logo" />
           </a>
           <a
             href="http://www.cmas.org/"
             target="_blank"
             rel="noopener noreferrer"
           >
-            <img src={cmas} alt="CMAS logo" />
+            <StaticImage src="../../images/cmas-80.png" alt="CMAS logo" />
           </a>
         </FederationWrapper>
       </MainHeader>
       {!!image && (
-        <Img
-          fluid={image.childImageSharp.fluid}
+        <GatsbyImage
+          image={getImage(image)}
           style={{ maxHeight: '500px', margin: '1em 0' }}
+          alt="Fotografia del club"
         />
       )}
     </Wrapper>
   );
-};
-
-Header.propTypes = {
-  preventLinkHome: PropTypes.bool,
-  image: PropTypes.object,
 };
 
 Header.defaultProps = {

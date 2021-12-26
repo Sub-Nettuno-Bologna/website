@@ -26,7 +26,7 @@ export default function PostPage({ data }) {
   );
 }
 export const pageQuery = graphql`
-  query($id: String!) {
+  query ($id: String!) {
     markdownRemark(id: { eq: $id }) {
       html
       frontmatter {
@@ -35,9 +35,11 @@ export const pageQuery = graphql`
         permalink
         headerImage {
           childImageSharp {
-            fluid(maxWidth: 2000) {
-              ...GatsbyImageSharpFluid_withWebp
-            }
+            gatsbyImageData(
+              placeholder: DOMINANT_COLOR
+              formats: [AUTO, WEBP]
+              layout: FULL_WIDTH
+            )
           }
         }
       }
