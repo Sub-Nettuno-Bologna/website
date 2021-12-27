@@ -6,25 +6,22 @@
 
 const path = require(`path`);
 const { createFilePath } = require('gatsby-source-filesystem');
-const { graphql } = require('gatsby');
 
 const postTemplate = path.resolve(`src/components/pages/Post.js`);
 const pageTemplate = path.resolve(`src/components/pages/Page.js`);
+const sanityPageTemplate = path.resolve(`src/components/pages/SanityPage.js`);
 
-const guidesQuery = `
-    {
-      allMarkdownRemark(limit: 1000) {
-        edges {
-          node {
-            id
-            fields {
-              slug
-              sourceInstanceName
-            }
-          }
-        }
+const pagesQuery = `
+query PageQuery {
+  allSanityPagina {
+    nodes {
+      id
+      slug {
+        current
       }
     }
+  }
+}
   `;
 
 exports.onCreateNode = ({ node, actions, getNode }) => {
@@ -83,4 +80,20 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
       },
     });
   });
+
+  // Sanity Pages
+  const pagesResults = await graphql(pagesQuery);
+
+  const pages = pagesResults.data.allSanityPagina.nodes;
+
+  for (const page of pages) {
+    createPage({
+      path: page.slug.current,
+      component: sanityPageTemplate,
+      context: {
+        id: page.id,
+        slug: page.slug.current,
+      },
+    });
+  }
 };

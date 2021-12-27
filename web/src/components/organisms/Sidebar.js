@@ -36,10 +36,7 @@ const Sidebar = () => {
   const data = useStaticQuery(graphql`
     query {
       pages: allMarkdownRemark(
-        filter: {
-          fields: { sourceInstanceName: { eq: "pages" } }
-          frontmatter: { hidden: { ne: true } }
-        }
+        filter: { fields: { sourceInstanceName: { eq: "pages" } } }
       ) {
         edges {
           node {
@@ -50,6 +47,15 @@ const Sidebar = () => {
             fields {
               slug
             }
+          }
+        }
+      }
+      sanityPages: allSanityPagina(sort: { order: ASC, fields: title }) {
+        nodes {
+          id
+          title
+          slug {
+            current
           }
         }
       }
@@ -73,6 +79,7 @@ const Sidebar = () => {
   `);
 
   const { edges } = data.pages;
+  const sanityPages = data.sanityPages.nodes;
   const corsiTreeList = data.corsi.edges.map((e) => e.node);
 
   return (
@@ -109,6 +116,13 @@ const Sidebar = () => {
             return (
               <li key={node.id}>
                 <Link to={node.fields.slug}>{node.frontmatter.title}</Link>
+              </li>
+            );
+          })}
+          {sanityPages.map((page) => {
+            return (
+              <li key={page.id}>
+                <Link to={`/${page.slug.current}`}>{page.title}</Link>
               </li>
             );
           })}
