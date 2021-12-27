@@ -6,36 +6,34 @@ export default {
     // 'create',
     'update',
     // 'delete',
-    'publish'
+    'publish',
   ],
   fields: [
     {
       name: 'title',
       type: 'string',
-      title: 'Title'
+      title: 'Titolo',
+    },
+    {
+      name: 'subtitle',
+      type: 'string',
+      title: 'Sottotitolo',
     },
     {
       name: 'description',
       type: 'text',
       title: 'Description',
-      description: 'Describe your portfolio for search engines and social media.'
+      description: 'Descrizione per il SEO',
     },
     {
       name: 'keywords',
       type: 'array',
       title: 'Keywords',
-      description: 'Add keywords that describes your portfolio.',
-      of: [{type: 'string'}],
+      description: 'Keywords per descrivere il sito',
+      of: [{ type: 'string' }],
       options: {
-        layout: 'tags'
-      }
+        layout: 'tags',
+      },
     },
-    {
-      name: 'author',
-      type: 'reference',
-      description: 'Publish an author and set a reference to them here.',
-      title: 'Author',
-      to: [{type: 'person'}]
-    }
-  ]
-}
+  ],
+};

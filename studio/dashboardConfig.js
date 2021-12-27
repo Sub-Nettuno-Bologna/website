@@ -1,12 +1,6 @@
 export default {
   widgets: [
-    {
-      name: 'sanity-tutorials',
-      options: {
-        templateRepoId: 'sanity-io/sanity-template-gatsby-portfolio'
-      }
-    },
-    {name: 'structure-menu'},
+    { name: 'structure-menu' },
     {
       name: 'project-info',
       options: {
@@ -21,37 +15,42 @@ export default {
                   buildHookId: '61c8d4e89516345887ace730',
                   title: 'Sanity Studio',
                   name: 'subnettuno-sanity-studio',
-                  apiId: 'a069426b-4078-4739-bb84-93bf7ae69ffc'
+                  apiId: 'a069426b-4078-4739-bb84-93bf7ae69ffc',
                 },
                 {
-                  buildHookId: '61c8d4e730f206216f46e6d6',
-                  title: 'Portfolio Website',
-                  name: 'subnettuno-sanity',
-                  apiId: 'cda6dfa4-a585-41c3-9303-b43cdd277828'
-                }
-              ]
-            }
-          }
+                  buildHookId: '61c99ccc375345182a0bcef9',
+                  title: 'Sito pubblico',
+                  name: 'blue-lagoon-505905',
+                  url: 'https://subnettuno.it',
+                  apiId: '2957c68e-a3eb-40f4-b127-32195e2837dd',
+                },
+              ],
+            },
+          },
         ],
         data: [
           {
             title: 'GitHub repo',
             value: 'https://github.com/kajyr/subnettuno-sanity',
-            category: 'Code'
+            category: 'Code',
           },
           {
             title: 'Frontend',
-            value: 'https://subnettuno-sanity.netlify.app',
-            category: 'apps'
-          }
-        ]
-      }
+            value: 'https://subnettuno.it',
+            category: 'apps',
+          },
+        ],
+      },
     },
-    {name: 'project-users', layout: {height: 'auto'}},
     {
       name: 'document-list',
-      options: {title: 'Recent projects', order: '_createdAt desc', types: ['sampleProject']},
-      layout: {width: 'medium'}
-    }
-  ]
-}
+      options: {
+        title: 'Recent projects',
+        order: '_createdAt desc',
+        types: ['sampleProject'],
+      },
+      layout: { width: 'medium' },
+    },
+    { name: 'project-users', layout: { height: 'auto' } },
+  ],
+};
