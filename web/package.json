@@ -1,11 +1,12 @@
 {
-  "name": "subnettuno.it",
+  "name": "web",
   "private": true,
   "version": "0.1.0",
   "repository": "https://github.com/kajyr/subnettuno.it",
   "author": "Carlo Panzi <carlo.panzi@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "@sanity/block-content-to-react": "^3.0.0",
     "babel-plugin-styled-components": "^2.0.2",
     "dotenv": "^10.0.0",
     "gatsby": "^4.4.0",
@@ -22,6 +23,7 @@
     "gatsby-remark-images": "^6.4.0",
     "gatsby-remark-relative-images": "^2.0.2",
     "gatsby-source-filesystem": "^4.4.0",
+    "gatsby-source-sanity": "^7.3.2",
     "gatsby-transformer-remark": "^5.4.0",
     "gatsby-transformer-sharp": "^4.4.0",
     "prop-types": "^15.8.0",
@@ -46,6 +48,7 @@
     "build": "gatsby build",
     "develop": "gatsby develop",
     "start": "npm run develop",
+    "dev": "npm run develop",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing \""

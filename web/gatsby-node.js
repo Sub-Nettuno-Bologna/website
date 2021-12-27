@@ -34,10 +34,7 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
 
   const posts = await graphql(`
     {
-      allMarkdownRemark(
-        limit: 1000
-        filter: { fields: { sourceInstanceName: { ne: "istruttori" } } }
-      ) {
+      allMarkdownRemark(limit: 1000) {
         edges {
           node {
             id

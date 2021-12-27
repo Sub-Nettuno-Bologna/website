@@ -5,6 +5,10 @@ require('dotenv').config({
   path: `.env.${activeEnv}`,
 });
 
+const clientConfig = require('./client-config');
+const token = process.env.SANITY_READ_TOKEN;
+const isProd = process.env.NODE_ENV === 'production';
+
 module.exports = {
   siteMetadata: {
     title: `Club Sub Nettuno: corsi subacquea bologna`,
@@ -27,6 +31,15 @@ module.exports = {
       resolve: `gatsby-plugin-facebook-pixel`,
       options: {
         pixelId: '282753405758990',
+      },
+    },
+    {
+      resolve: 'gatsby-source-sanity',
+      options: {
+        ...clientConfig.sanity,
+        token,
+        watchMode: !isProd,
+        overlayDrafts: !isProd && token,
       },
     },
     `gatsby-plugin-react-helmet`,
@@ -63,13 +76,6 @@ module.exports = {
       options: {
         name: `corsi`,
         path: `${__dirname}/content/corsi`,
-      },
-    },
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        name: `istruttori`,
-        path: `${__dirname}/content/istruttori`,
       },
     },
     `gatsby-plugin-image`,

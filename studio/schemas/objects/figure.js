@@ -3,32 +3,23 @@ export default {
   title: 'Image',
   type: 'image',
   options: {
-    hotspot: true
+    hotspot: true,
   },
   fields: [
     {
-      title: 'Caption',
-      name: 'caption',
-      type: 'string',
-      options: {
-        isHighlighted: true
-      }
-    },
-    {
       name: 'alt',
       type: 'string',
-      title: 'Alternative text',
-      validation: Rule => Rule.error('You have to fill out the alternative text.').required(),
-      description: 'Important for SEO and accessiblity.',
+      title: 'Testo alternativo',
+      validation: Rule => Rule.error('Devi riempirlo.').required(),
+      description: "Importante per il SEO e l'accessibilità",
       options: {
-        isHighlighted: true
-      }
-    }
+        isHighlighted: true,
+      },
+    },
   ],
   preview: {
     select: {
       imageUrl: 'asset.url',
-      title: 'caption'
-    }
-  }
-}
+    },
+  },
+};
