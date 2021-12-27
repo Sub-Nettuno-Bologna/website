@@ -1,41 +1,40 @@
 import { MdPerson } from "react-icons/md";
 
 export default {
-  name: 'person',
-  type: 'document',
-  title: 'Person',
+  name: "person",
+  type: "document",
+  title: "Person",
   icon: MdPerson,
   fields: [
     {
-      name: 'name',
-      type: 'string',
-      title: 'Name'
+      name: "name",
+      type: "string",
+      title: "Name"
     },
     {
-      name: 'slug',
-      type: 'slug',
-      title: 'Slug',
-      description: 'Some frontend will require a slug to be set to be able to show the person',
+      name: "brevetto",
+      title: "Brevetto",
+      type: "string",
       options: {
-        source: 'name',
-        maxLength: 96
+        list: ["M1", "M2", "M3", "PAiAr"],
+        layout: "dropdown"
       }
     },
     {
-      name: 'image',
-      title: 'Image',
-      type: 'figure'
+      name: "bio",
+      title: "Bio",
+      type: "bioPortableText"
     },
     {
-      name: 'bio',
-      title: 'Bio',
-      type: 'bioPortableText'
+      name: "image",
+      title: "Foto",
+      type: "figure"
     }
   ],
   preview: {
     select: {
-      title: 'name',
-      media: 'image'
+      title: "name",
+      media: "image"
     }
   }
-}
+};
