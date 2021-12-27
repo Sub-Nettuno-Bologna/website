@@ -45,9 +45,9 @@ export default {
     {
       name: 'document-list',
       options: {
-        title: 'Recent projects',
+        title: 'Documenti recenti',
         order: '_createdAt desc',
-        types: ['sampleProject'],
+        types: ['page'],
       },
       layout: { width: 'medium' },
     },

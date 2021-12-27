@@ -6,9 +6,26 @@
 
 const path = require(`path`);
 const { createFilePath } = require('gatsby-source-filesystem');
+const { graphql } = require('gatsby');
 
 const postTemplate = path.resolve(`src/components/pages/Post.js`);
 const pageTemplate = path.resolve(`src/components/pages/Page.js`);
+
+const guidesQuery = `
+    {
+      allMarkdownRemark(limit: 1000) {
+        edges {
+          node {
+            id
+            fields {
+              slug
+              sourceInstanceName
+            }
+          }
+        }
+      }
+    }
+  `;
 
 exports.onCreateNode = ({ node, actions, getNode }) => {
   const { createNodeField } = actions;
