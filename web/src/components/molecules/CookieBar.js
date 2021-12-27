@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Link } from 'gatsby';
-import { storageFactory } from 'storage-factory';
+import { storageFactory } from '../../hacks/storage-factory';
 
 import { PrimaryButton } from '../atoms/Buttons';
 import { columnCss } from '../atoms/Grid';
@@ -9,11 +9,11 @@ import { columnCss } from '../atoms/Grid';
 const local = storageFactory(() => localStorage);
 const ACK_KEY = 'cookie-acknowledge';
 
-const useSessionStorage = key => {
+const useSessionStorage = (key) => {
   const currentValue = local.getItem(key);
   const [, updateState] = useState(currentValue);
 
-  const update = value => {
+  const update = (value) => {
     updateState(value);
     local.setItem(key, value);
   };

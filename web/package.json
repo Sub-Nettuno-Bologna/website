@@ -1,7 +1,6 @@
 {
   "name": "subnettuno.it",
   "private": true,
-  "description": "A simple starter to get up and developing quickly with Gatsby",
   "version": "0.1.0",
   "repository": "https://github.com/kajyr/subnettuno.it",
   "author": "Carlo Panzi <carlo.panzi@gmail.com>",
@@ -50,8 +49,5 @@
     "serve": "gatsby serve",
     "clean": "gatsby clean",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing \""
-  },
-  "bugs": {
-    "url": "https://github.com/gatsbyjs/gatsby/issues"
   }
 }
