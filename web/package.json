@@ -37,13 +37,6 @@
   "devDependencies": {
     "prettier": "^2.5.1"
   },
-  "keywords": [
-    "subnettuno",
-    "sub",
-    "didattica",
-    "subacquea",
-    "bologna"
-  ],
   "scripts": {
     "build": "gatsby build",
     "develop": "gatsby develop",

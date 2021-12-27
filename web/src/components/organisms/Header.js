@@ -101,17 +101,17 @@ const LogoWrapper = styled.div`
   }
 `;
 
-const Header = ({ preventLinkHome, image }) => {
-  const data = useStaticQuery(graphql`
-    query SiteTitleQuery {
-      site {
-        siteMetadata {
-          title
-          claim
-        }
-      }
+const titleQuery = graphql`
+  query SiteTitleQuery {
+    site: sanitySiteSettings(_id: { eq: "siteSettings" }) {
+      title
+      subtitle
     }
-  `);
+  }
+`;
+
+const Header = ({ preventLinkHome, image }) => {
+  const { site } = useStaticQuery(titleQuery);
 
   return (
     <Wrapper>
@@ -125,9 +125,9 @@ const Header = ({ preventLinkHome, image }) => {
               src="../../images/logo-simple.png"
               alt="Logo del Club Sub Nettuno"
             />
-            <h1>Club Sub Nettuno</h1>
+            <h1>{site.title}</h1>
           </ConditionalWrapper>
-          <p>{data.site.siteMetadata.claim}</p>
+          <p>{site.subtitle}</p>
         </LogoWrapper>
 
         <FederationWrapper>

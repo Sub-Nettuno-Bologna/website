@@ -10,12 +10,6 @@ const token = process.env.SANITY_READ_TOKEN;
 const isProd = process.env.NODE_ENV === 'production';
 
 module.exports = {
-  siteMetadata: {
-    title: `Club Sub Nettuno: corsi subacquea bologna`,
-    description: `Vieni a scoprire il mondo subacqueo attraverso corsi per tutti, uscite in mare, con un team di istruttori sommozzatori esperti. Ottieni un brevetto internazionale subacqueo o segui i nostri corsi di apnea.`,
-    claim: 'Corsi Sub a Bologna',
-    author: `@kajyr`,
-  },
   plugins: [
     // Make sure this plugin is first in the array of plugins
     {

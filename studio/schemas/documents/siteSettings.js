@@ -25,15 +25,5 @@ export default {
       title: 'Description',
       description: 'Descrizione per il SEO',
     },
-    {
-      name: 'keywords',
-      type: 'array',
-      title: 'Keywords',
-      description: 'Keywords per descrivere il sito',
-      of: [{ type: 'string' }],
-      options: {
-        layout: 'tags',
-      },
-    },
   ],
 };
