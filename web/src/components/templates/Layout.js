@@ -6,9 +6,7 @@
  */
 
 import React from 'react';
-import { getImage } from 'gatsby-plugin-image';
 import styled, { ThemeProvider } from 'styled-components';
-import { useStaticQuery, graphql } from 'gatsby';
 
 import Header from '../organisms/Header';
 import Sidebar from '../organisms/Sidebar';
@@ -55,8 +53,6 @@ const InnerFooter = styled.div`
   }
 `;
 
-const rand = (items) => items[Math.floor(Math.random() * items.length)];
-
 const Layout = ({
   children,
   preventLinkHome,
@@ -65,38 +61,14 @@ const Layout = ({
   date,
   isArticle,
 }) => {
-  const data = useStaticQuery(graphql`
-    query {
-      allFile(filter: { sourceInstanceName: { eq: "site-headers" } }) {
-        edges {
-          node {
-            childImageSharp {
-              gatsbyImageData(layout: FULL_WIDTH)
-            }
-          }
-        }
-      }
-    }
-  `);
-
-  const images = data.allFile.edges.map((e) => e.node);
-
-  const headerImage = postHeader ? postHeader : rand(images);
-
   const ContentElement = isArticle ? 'article' : 'section';
-
-  const image = postHeader ? getImage(postHeader) : null;
 
   return (
     <ThemeProvider theme={theme}>
       <>
         <GlobalStyle />
-        <Seo
-          title={title}
-          image={image ? image.images.fallback.src : undefined}
-        />
-        <Header preventLinkHome={preventLinkHome} image={headerImage} />
-
+        <Seo title={title} />
+        <Header preventLinkHome={preventLinkHome} image={postHeader} />
         <Main>
           <Sidebar />
           <ContentElement className="content">

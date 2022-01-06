@@ -25,5 +25,23 @@ export default {
       title: 'Description',
       description: 'Descrizione per il SEO',
     },
+    {
+      name: 'headerImages',
+      type: 'array',
+      title: 'Headers',
+      of: [
+        {
+          name: 'image',
+          type: 'image',
+          title: 'Image',
+          options: {
+            hotspot: true,
+          },
+        },
+      ],
+      options: {
+        layout: 'grid',
+      },
+    },
   ],
 };

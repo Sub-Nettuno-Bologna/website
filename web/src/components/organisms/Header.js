@@ -101,17 +101,31 @@ const LogoWrapper = styled.div`
   }
 `;
 
-const titleQuery = graphql`
+const headerQuery = graphql`
   query SiteTitleQuery {
-    site: sanitySiteSettings(_id: { eq: "siteSettings" }) {
+    site: sanitySiteSettings {
       title
       subtitle
+      headerImages {
+        asset {
+          gatsbyImageData(
+            placeholder: DOMINANT_COLOR
+            formats: [AUTO, WEBP]
+            layout: FULL_WIDTH
+          )
+        }
+      }
     }
   }
 `;
+const rand = (items) => items[Math.floor(Math.random() * items.length)];
 
 const Header = ({ preventLinkHome, image }) => {
-  const { site } = useStaticQuery(titleQuery);
+  const { site } = useStaticQuery(headerQuery);
+
+  const images = site.headerImages.map((e) => e.asset);
+
+  const headerImage = image ? image.childImageSharp : rand(images);
 
   return (
     <Wrapper>
@@ -124,6 +138,8 @@ const Header = ({ preventLinkHome, image }) => {
             <StaticImage
               src="../../images/logo-simple.png"
               alt="Logo del Club Sub Nettuno"
+              loading="eager"
+              placeholder="#fff"
             />
             <h1>{site.title}</h1>
           </ConditionalWrapper>
@@ -136,24 +152,32 @@ const Header = ({ preventLinkHome, image }) => {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <StaticImage src="../../images/fipsas-80.png" alt="FIPSAS logo" />
+            <StaticImage
+              src="../../images/fipsas-80.png"
+              alt="FIPSAS logo"
+              loading="eager"
+              placeholder="#fff"
+            />
           </a>
           <a
             href="http://www.cmas.org/"
             target="_blank"
             rel="noopener noreferrer"
           >
-            <StaticImage src="../../images/cmas-80.png" alt="CMAS logo" />
+            <StaticImage
+              src="../../images/cmas-80.png"
+              alt="CMAS logo"
+              loading="eager"
+              placeholder="#fff"
+            />
           </a>
         </FederationWrapper>
       </MainHeader>
-      {!!image && (
-        <GatsbyImage
-          image={getImage(image)}
-          style={{ maxHeight: '500px', margin: '1em 0' }}
-          alt="Fotografia del club"
-        />
-      )}
+      <GatsbyImage
+        image={headerImage.gatsbyImageData}
+        style={{ maxHeight: '500px', margin: '1em 0' }}
+        alt="Fotografia del club"
+      />
     </Wrapper>
   );
 };
