@@ -21,7 +21,7 @@ export default {
     {
       name: 'body',
       title: 'Body',
-      type: 'projectPortableText',
+      type: 'pagePortableText',
     },
     {
       name: 'category',

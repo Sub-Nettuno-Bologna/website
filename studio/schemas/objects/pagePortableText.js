@@ -1,7 +1,7 @@
 import { FaExternalLinkAlt, FaLink } from 'react-icons/fa';
 export default {
   title: 'Portable Text',
-  name: 'projectPortableText',
+  name: 'pagePortableText',
   type: 'array',
   of: [
     {
@@ -12,12 +12,11 @@ export default {
       // you want and decide how you want to deal with it where you want to
       // use your content.
       styles: [
-        { title: 'Normal', value: 'normal' },
-        { title: 'H1', value: 'h1' },
-        { title: 'H2', value: 'h2' },
-        { title: 'H3', value: 'h3' },
-        { title: 'H4', value: 'h4' },
-        { title: 'Quote', value: 'blockquote' },
+        { title: 'Normale', value: 'normal' },
+        { title: 'Titolo', value: 'h2' },
+        { title: 'Titolo 2', value: 'h3' },
+        { title: 'Sezione', value: 'h4' },
+        { title: 'Citazione', value: 'blockquote' },
       ],
       lists: [{ title: 'Bullet', value: 'bullet' }],
       // Marks let you mark up inline text in the block editor.
@@ -25,8 +24,8 @@ export default {
         // Decorators usually describe a single property – e.g. a typographic
         // preference or highlighting by editors.
         decorators: [
-          { title: 'Strong', value: 'strong' },
-          { title: 'Emphasis', value: 'em' },
+          { title: 'Grassetto', value: 'strong' },
+          { title: 'Enfasi', value: 'em' },
         ],
         // Annotations can be any object structure – e.g. a link or a footnote.
         annotations: [
