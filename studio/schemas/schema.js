@@ -24,8 +24,6 @@ export default createSchema({
   // Then proceed to concatenate our our document type
   // to the ones provided by any plugins that are installed
   types: schemaTypes.concat([
-    // When added to this list, object types can be used as
-    // { type: 'typename' } in other document schemas
     bioPortableText,
     figure,
     projectMember,

@@ -17,7 +17,7 @@
     "dashboard-widget-structure-menu",
     "dashboard-widget-document-list",
     "dashboard-widget-netlify",
-    "@sanity/studio-hints"
+    "media"
   ],
   "parts": [
     {
@@ -26,15 +26,15 @@
     },
     {
       "name": "part:@sanity/desk-tool/structure",
-      "path": "./deskStructure.js"
+      "path": "./parts/desk.js"
     },
     {
       "implements": "part:@sanity/dashboard/config",
-      "path": "./dashboardConfig.js"
+      "path": "./parts/dashboard.js"
     },
     {
-      "implements": "part:@sanity/default-layout/studio-hints-config",
-      "path": "./studioHintsConfig.js"
+      "implements": "part:@sanity/form-builder/input/image/asset-sources",
+      "path": "./parts/assetSources.js"
     }
   ]
 }
