@@ -1,10 +1,10 @@
-import { MdPerson } from 'react-icons/md';
+import { FiUsers } from 'react-icons/fi';
 
 export default {
   name: 'person',
   type: 'document',
   title: 'Person',
-  icon: MdPerson,
+  icon: FiUsers,
   fields: [
     {
       name: 'name',

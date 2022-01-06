@@ -1,7 +1,10 @@
+import { GiScubaTanks } from 'react-icons/gi';
+
 export default {
   name: 'corso',
   title: 'Corsi',
   type: 'document',
+  icon: GiScubaTanks,
   fields: [
     {
       name: 'title',
