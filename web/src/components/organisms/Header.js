@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { StaticImage, GatsbyImage, getImage } from 'gatsby-plugin-image';
+import { StaticImage, GatsbyImage } from 'gatsby-plugin-image';
 import { Link, useStaticQuery, graphql } from 'gatsby';
 import { columnCss } from '../atoms/Grid';
 import ConditionalWrapper from '../atoms/ConditionalWrapper';

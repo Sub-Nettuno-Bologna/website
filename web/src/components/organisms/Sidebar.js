@@ -63,16 +63,23 @@ const Sidebar = () => {
         filter: { fields: { sourceInstanceName: { eq: "corsi" } } }
         sort: { order: ASC, fields: frontmatter___order }
       ) {
-        edges {
-          node {
-            id
-            frontmatter {
-              title
-            }
-            fields {
-              slug
-            }
+        nodes {
+          id
+          frontmatter {
+            title
           }
+          fields {
+            slug
+          }
+        }
+      }
+      allSanityCorso(sort: { fields: title }) {
+        nodes {
+          id
+          slug {
+            current
+          }
+          title
         }
       }
     }
@@ -80,7 +87,7 @@ const Sidebar = () => {
 
   const { edges } = data.pages;
   const sanityPages = data.sanityPages.nodes;
-  const corsiTreeList = data.corsi.edges.map((e) => e.node);
+  const corsiTreeList = data.corsi.nodes.concat(data.allSanityCorso.nodes);
 
   return (
     <Aside>
@@ -108,7 +115,11 @@ const Sidebar = () => {
               title="Attività didattica"
               list={corsiTreeList}
               itemRenderer={(node) => (
-                <Link to={node.fields.slug}>{node.frontmatter.title}</Link>
+                <Link
+                  to={node.slug ? `/${node.slug.current}` : node.fields.slug}
+                >
+                  {node.title || node.frontmatter?.title}
+                </Link>
               )}
             />
           </li>
