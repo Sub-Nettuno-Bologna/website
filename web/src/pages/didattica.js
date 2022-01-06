@@ -17,7 +17,6 @@ const Ol = styled.ol`
 
 const DidatticaPage = ({
   data: {
-    allMarkdownRemark: { nodes: mdCorsi },
     allSanityCorso: { nodes: sanityCorsi },
   },
 }) => (
@@ -32,11 +31,6 @@ const DidatticaPage = ({
         federazione subacquea italiana affiliata al CONI.
       </p>
       <Ol>
-        {mdCorsi.map((node) => (
-          <li key={node.id}>
-            <Link to={node.fields.slug}>{node.frontmatter.title}</Link>
-          </li>
-        ))}
         {sanityCorsi.map((node) => (
           <li key={node.id}>
             <Link to={`/${node.slug.current}`}>{node.title}</Link>
@@ -51,21 +45,6 @@ export default DidatticaPage;
 
 export const pageQuery = graphql`
   query {
-    allMarkdownRemark(
-      sort: { order: ASC, fields: [frontmatter___order] }
-      filter: { fields: { sourceInstanceName: { eq: "corsi" } } }
-    ) {
-      nodes {
-        id
-        frontmatter {
-          title
-          order
-        }
-        fields {
-          slug
-        }
-      }
-    }
     allSanityCorso(sort: { fields: title }) {
       nodes {
         id

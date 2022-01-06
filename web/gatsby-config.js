@@ -58,13 +58,6 @@ module.exports = {
         path: `${__dirname}/content/pages`,
       },
     },
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        name: `corsi`,
-        path: `${__dirname}/content/corsi`,
-      },
-    },
     `gatsby-plugin-image`,
     {
       resolve: `gatsby-plugin-sharp`,

@@ -59,21 +59,7 @@ const Sidebar = () => {
           }
         }
       }
-      corsi: allMarkdownRemark(
-        filter: { fields: { sourceInstanceName: { eq: "corsi" } } }
-        sort: { order: ASC, fields: frontmatter___order }
-      ) {
-        nodes {
-          id
-          frontmatter {
-            title
-          }
-          fields {
-            slug
-          }
-        }
-      }
-      allSanityCorso(sort: { fields: title }) {
+      corsi: allSanityCorso(sort: { fields: title }) {
         nodes {
           id
           slug {
@@ -87,7 +73,7 @@ const Sidebar = () => {
 
   const { edges } = data.pages;
   const sanityPages = data.sanityPages.nodes;
-  const corsiTreeList = data.corsi.nodes.concat(data.allSanityCorso.nodes);
+  const corsiTreeList = data.corsi.nodes;
 
   return (
     <Aside>
@@ -115,11 +101,7 @@ const Sidebar = () => {
               title="Attività didattica"
               list={corsiTreeList}
               itemRenderer={(node) => (
-                <Link
-                  to={node.slug ? `/${node.slug.current}` : node.fields.slug}
-                >
-                  {node.title || node.frontmatter?.title}
-                </Link>
+                <Link to={`/${node.slug.current}`}>{node.title}</Link>
               )}
             />
           </li>
