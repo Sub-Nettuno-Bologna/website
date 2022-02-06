@@ -5,7 +5,6 @@ require('dotenv').config({
   path: `.env.${activeEnv}`,
 });
 
-const clientConfig = require('./client-config');
 const token = process.env.SANITY_READ_TOKEN;
 const isProd = process.env.NODE_ENV === 'production';
 
@@ -30,10 +29,11 @@ module.exports = {
     {
       resolve: 'gatsby-source-sanity',
       options: {
-        ...clientConfig.sanity,
+        projectId: process.env.GATSBY_SANITY_PROJECT_ID,
+        dataset: process.env.GATSBY_SANITY_DATASET,
         token,
         watchMode: !isProd,
-        overlayDrafts: !isProd && token,
+        overlayDrafts: !isProd && !!token,
       },
     },
     `gatsby-plugin-react-helmet`,
