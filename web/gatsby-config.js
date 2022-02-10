@@ -6,7 +6,7 @@ require('dotenv').config({
 });
 
 const token = process.env.SANITY_READ_TOKEN;
-const isProd = process.env.NODE_ENV === 'production';
+const isProd = activeEnv === 'production';
 
 module.exports = {
   plugins: [
