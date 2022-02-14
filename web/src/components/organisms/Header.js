@@ -5,12 +5,13 @@ import { Link, useStaticQuery, graphql } from 'gatsby';
 import { columnCss } from '../atoms/Grid';
 import ConditionalWrapper from '../atoms/ConditionalWrapper';
 import { fromMedium, fromLarge } from '../mediaqueries';
+import { FacebookLink, InstagramLink } from '../atoms/Social';
 
 const Wrapper = styled.header`
-  margin: 2em 0;
+  margin: 10px 0 2em 0;
 
   @media ${fromMedium} {
-    margin: 6em 0;
+    margin: 10px 0 6em 0;
   }
 
   a {
@@ -45,7 +46,6 @@ const FederationWrapper = styled.div`
 
   img {
     width: 100%;
-    max-width: 100px;
   }
 
   @media ${fromLarge} {
@@ -100,6 +100,25 @@ const LogoWrapper = styled.div`
     }
   }
 `;
+const SocialWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+
+  > * {
+    margin-right: 10px;
+  }
+
+  @media ${fromMedium} {
+    .label {
+      width: 100%;
+      margin-bottom: 10px;
+    }
+    justify-content: flex-start;
+  }
+`;
 
 const headerQuery = graphql`
   query SiteTitleQuery {
@@ -118,6 +137,7 @@ const headerQuery = graphql`
     }
   }
 `;
+
 const rand = (items) => items[Math.floor(Math.random() * items.length)];
 
 const Header = ({ preventLinkHome, image }) => {
@@ -130,6 +150,12 @@ const Header = ({ preventLinkHome, image }) => {
   return (
     <Wrapper>
       <MainHeader>
+        <SocialWrapper>
+          <div class="label">Seguici su</div>
+          <FacebookLink color="#5976C0" />
+          <InstagramLink color="#5976C0" />
+        </SocialWrapper>
+
         <LogoWrapper>
           <ConditionalWrapper
             condition={!preventLinkHome}
@@ -153,10 +179,11 @@ const Header = ({ preventLinkHome, image }) => {
             rel="noopener noreferrer"
           >
             <StaticImage
-              src="../../images/fipsas-80.png"
+              src="../../images/fipsaslogo.png"
               alt="FIPSAS logo"
               loading="eager"
               placeholder="#fff"
+              width={120}
             />
           </a>
           <a
@@ -165,10 +192,11 @@ const Header = ({ preventLinkHome, image }) => {
             rel="noopener noreferrer"
           >
             <StaticImage
-              src="../../images/cmas-80.png"
+              src="../../images/cmas.png"
               alt="CMAS logo"
               loading="eager"
               placeholder="#fff"
+              width={120}
             />
           </a>
         </FederationWrapper>

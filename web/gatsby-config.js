@@ -5,7 +5,6 @@ require('dotenv').config({
   path: `.env.${activeEnv}`,
 });
 
-const token = process.env.SANITY_READ_TOKEN;
 const isProd = activeEnv === 'production';
 
 module.exports = {
@@ -31,9 +30,9 @@ module.exports = {
       options: {
         projectId: process.env.GATSBY_SANITY_PROJECT_ID,
         dataset: process.env.GATSBY_SANITY_DATASET,
-        token,
+        token: process.env.SANITY_READ_TOKEN,
         watchMode: !isProd,
-        overlayDrafts: !isProd && !!token,
+        overlayDrafts: !isProd,
       },
     },
     `gatsby-plugin-react-helmet`,

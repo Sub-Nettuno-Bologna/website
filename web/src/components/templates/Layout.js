@@ -7,7 +7,6 @@
 
 import React from 'react';
 import styled, { ThemeProvider } from 'styled-components';
-
 import Header from '../organisms/Header';
 import Sidebar from '../organisms/Sidebar';
 import PostHeader from '../molecules/Post/Header';
@@ -19,6 +18,7 @@ import GlobalStyle from '../atoms/GlobalStyle';
 import theme from '../../theme';
 import { fromMedium } from '../mediaqueries';
 import './layout.css';
+import { FacebookLink, InstagramLink } from '../atoms/Social';
 
 const Main = styled.main`
   ${columnCss}
@@ -47,6 +47,12 @@ const Footer = styled.footer`
 const InnerFooter = styled.div`
   ${columnCss}
   text-align: center;
+  display: flex;
+  align-items: center;
+
+  > a {
+    margin-left: 1em;
+  }
 
   @media ${fromMedium} {
     text-align: left;
@@ -79,22 +85,8 @@ const Layout = ({
         <Footer>
           <InnerFooter>
             <span>{new Date().getFullYear()} Club Sub Nettuno</span>
-            {' - '}
-            <a
-              href="https://www.facebook.com/clubsubnettuno"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Facebook
-            </a>
-            {' - '}
-            <a
-              href="https://www.instagram.com/clubsubnettuno/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Instagram
-            </a>
+            <FacebookLink />
+            <InstagramLink />
           </InnerFooter>
         </Footer>
         <CookieBar />

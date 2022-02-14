@@ -30,7 +30,7 @@ export default {
         data: [
           {
             title: 'GitHub repo',
-            value: 'https://github.com/kajyr/subnettuno-sanity',
+            value: 'https://github.com/kajyr/subnettuno.it',
             category: 'Code',
           },
           {
