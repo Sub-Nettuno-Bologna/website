@@ -15,6 +15,11 @@ const Wrapper = styled.header`
   @media ${fromMedium} {
     margin: 10px 0 6em 0;
   }
+`;
+
+const MainHeader = styled.div`
+  ${columnCss}
+  margin-bottom: 10px;
 
   a {
     &,
@@ -23,10 +28,7 @@ const Wrapper = styled.header`
       color: ${(p) => p.theme.black};
     }
   }
-`;
 
-const MainHeader = styled.div`
-  ${columnCss}
   @media ${fromMedium} {
     display: flex;
     justify-content: space-between;
@@ -153,7 +155,7 @@ const Header = ({ preventLinkHome, image }) => {
     <Wrapper>
       <MainHeader>
         <SocialWrapper>
-          <div class="label">Seguici su</div>
+          <div className="label">Seguici su</div>
           <FacebookLink color={theme.blue} />
           <InstagramLink color={theme.blue} />
         </SocialWrapper>
@@ -206,7 +208,7 @@ const Header = ({ preventLinkHome, image }) => {
       <Menu />
       <GatsbyImage
         image={headerImage.gatsbyImageData}
-        style={{ maxHeight: '500px', margin: '1em 0' }}
+        style={{ maxHeight: '500px' }}
         alt="Fotografia del club"
       />
     </Wrapper>

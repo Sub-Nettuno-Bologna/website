@@ -1,64 +1,68 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useStaticQuery, graphql, Link } from 'gatsby';
+import { columnCss } from 'atoms/Grid';
 import { fromMedium } from 'mediaqueries';
+import { Menu } from '@mantine/core';
 
-import TreeList from 'atoms/TreeList';
+const Nav = styled.nav`
+  background: ${(p) => p.theme.blue};
 
-const Aside = styled.aside`
-  order: 1;
-  margin: 1em 0;
+  button {
+    text-align: left;
+    appearance: none;
+    border: none;
+    background: ${(p) => p.theme.blue};
+    font-size: 1em;
+    color: white;
 
-  h2 {
-    text-transform: uppercase;
+    &[aria-expanded='true'] {
+      background-color: white;
+      color: ${(p) => p.theme.blue};
+    }
   }
 
-  ul {
-    padding-left: 1.4em;
+  a {
+    &,
+    &:visited {
+      color: white;
+    }
+
+    &:hover {
+      background-color: white;
+      color: ${(p) => p.theme.blue};
+    }
+
+    &.active {
+      background-color: white;
+      color: ${(p) => p.theme.blue};
+    }
   }
 
-  @media ${fromMedium} {
-    width: 27%;
-    margin: 0;
+  .inner {
+    display: flex;
+    flex-direction: column;
+
+    a,
+    button {
+      padding: 10px 7px;
+    }
+
+    @media ${fromMedium} {
+      ${columnCss}
+      flex-direction: row;
+
+      a,
+      button {
+        margin-right: 1em;
+      }
+    }
   }
 `;
 
-const AsideSection = styled.section`
-  border-top: 4px solid ${(p) => p.theme.black};
-  padding-top: 1.6em;
-
-  & + & {
-    margin-top: 1.6em;
-  }
-`;
-
-const Menu = () => {
+const NavMenu = () => {
   const data = useStaticQuery(graphql`
     query {
-      pages: allMarkdownRemark(
-        filter: { fields: { sourceInstanceName: { eq: "pages" } } }
-      ) {
-        edges {
-          node {
-            id
-            frontmatter {
-              title
-            }
-            fields {
-              slug
-            }
-          }
-        }
-      }
-      sanityPages: allSanityPagina(sort: { order: ASC, fields: title }) {
-        nodes {
-          id
-          title
-          slug {
-            current
-          }
-        }
-      }
       corsi: allSanityCorso(sort: { fields: title }) {
         nodes {
           id
@@ -71,90 +75,37 @@ const Menu = () => {
     }
   `);
 
-  const { edges } = data.pages;
-  const sanityPages = data.sanityPages.nodes;
-  const corsiTreeList = data.corsi.nodes;
+  console.log(data.corsi.nodes);
 
   return (
-    <Aside>
-      <AsideSection>
-        <h2>Club Sub Nettuno</h2>
-        <address>
-          Associazione Sportiva Dilettantistica
-          <br />
-          c/o piscina Stadio "Carmen Longo"
-          <br />
-          accesso da via dello Sport 9<br />
-          Bologna
-          <br />
-          tel. <a href="tel://051 6153552">051 6153552</a>
-          <br />
-          C.F. 01596311207
-          <br />
-          P.IVA 2665601205
-        </address>
-      </AsideSection>
-      <AsideSection>
-        <ul>
-          <li>
-            <TreeList
-              title="Attività didattica"
-              list={corsiTreeList}
-              itemRenderer={(node) => (
-                <Link to={`/${node.slug.current}`}>{node.title}</Link>
-              )}
-            />
-          </li>
-          {edges.map(({ node }) => {
-            return (
-              <li key={node.id}>
-                <Link to={node.fields.slug}>{node.frontmatter.title}</Link>
-              </li>
-            );
-          })}
-          {sanityPages.map((page) => {
-            return (
-              <li key={page.id}>
-                <Link to={`/${page.slug.current}`}>{page.title}</Link>
-              </li>
-            );
-          })}
-          <li>
-            <Link to="/dove-siamo">Dove siamo</Link>
-          </li>
-          <li>
-            <Link to="/staff">Lo Staff</Link>
-          </li>
-          <li>
-            <Link to="/contattaci">Contattaci</Link>
-          </li>
-        </ul>
-      </AsideSection>
-      <AsideSection>
-        <p>Seguici sui social:</p>
-        <ul>
-          <li>
-            <a
-              href="https://www.facebook.com/clubsubnettuno"
-              target="_blank"
-              rel="noopener noreferrer"
+    <Nav>
+      <div className="inner">
+        <Link activeClassName="active" to="/">
+          Home
+        </Link>
+        <Menu control={<button>Corsi</button>} size={'xl'}>
+          {data.corsi.nodes.map((corso) => (
+            <Menu.Item
+              key={corso.id}
+              component={Link}
+              to={`/${corso.slug.current}`}
             >
-              Facebook
-            </a>
-          </li>
-          <li>
-            <a
-              href="https://www.instagram.com/clubsubnettuno/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Instagram
-            </a>
-          </li>
-        </ul>
-      </AsideSection>
-    </Aside>
+              {corso.title}
+            </Menu.Item>
+          ))}
+        </Menu>
+        <Link activeClassName="active" to="/dove-siamo">
+          Dove siamo
+        </Link>
+        <Link activeClassName="active" to="/staff">
+          Lo Staff
+        </Link>
+        <Link activeClassName="active" to="/contattaci">
+          Contattaci
+        </Link>
+      </div>
+    </Nav>
   );
 };
 
-export default Menu;
+export default NavMenu;
