@@ -2,14 +2,23 @@ import S from '@sanity/desk-tool/structure-builder';
 import { FiSettings, FiFileText } from 'react-icons/fi';
 
 const hiddenDocTypes = listItem =>
-  !['category', 'person', 'siteSettings', 'pagina', 'media.tag'].includes(
-    listItem.getId()
-  );
+  ![
+    'category',
+    'person',
+    'siteSettings',
+    'pagina',
+    'media.tag',
+    'post',
+  ].includes(listItem.getId());
 
 export default () =>
   S.list()
     .title('Contenuti')
     .items([
+      S.listItem()
+        .title('Post')
+        .schemaType('post')
+        .child(S.documentTypeList('post').title('Posts')),
       S.listItem()
         .title('Pagine')
         .icon(FiFileText)

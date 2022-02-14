@@ -46,7 +46,7 @@ export default {
       options: {
         title: 'Documenti recenti',
         order: '_createdAt desc',
-        types: ['pagina', 'corso'],
+        types: ['pagina', 'corso', 'post'],
       },
       layout: { width: 'medium' },
     },
