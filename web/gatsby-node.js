@@ -71,14 +71,21 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
 
   const posts = await graphql(`
     {
-      allMarkdownRemark(limit: 1000) {
-        edges {
-          node {
-            id
-            fields {
-              slug
-              sourceInstanceName
-            }
+      sanity: allSanityPost {
+        nodes {
+          id
+          title
+          slug {
+            current
+          }
+        }
+      }
+      markdown: allMarkdownRemark {
+        nodes {
+          id
+          fields {
+            slug
+            sourceInstanceName
           }
         }
       }
@@ -91,13 +98,23 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
     return;
   }
 
-  posts.data.allMarkdownRemark.edges.forEach(({ node }) => {
+  posts.data.markdown.nodes.forEach((node) => {
     createPage({
       path: node.fields.slug,
       component:
         node.fields.sourceInstanceName === 'posts'
           ? postTemplate
           : pageTemplate,
+      context: {
+        id: node.id,
+      },
+    });
+  });
+
+  posts.data.sanity.nodes.forEach((node) => {
+    createPage({
+      path: `/${node.slug.current}`,
+      component: postTemplate,
       context: {
         id: node.id,
       },

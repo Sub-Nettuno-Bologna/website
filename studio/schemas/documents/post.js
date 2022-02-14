@@ -1,4 +1,5 @@
 import { FiFileText } from 'react-icons/fi';
+import format from 'date-fns/format';
 
 export default {
   name: 'post',
@@ -25,7 +26,7 @@ export default {
       validation: Rule => Rule.required(),
       description: "Per costruire l'indirizzo della pagina",
       options: {
-        source: 'title',
+        source: doc => `${format(new Date(doc.date), 'yyyy-MM')}-${doc.title} `,
         maxLength: 96,
       },
     },

@@ -3,19 +3,38 @@ import { graphql } from 'gatsby';
 import Layout from '../components/templates/Layout';
 import PostListItem from '../components/organisms/PostListItem';
 
+function sanityToMd(node) {
+  return {
+    ...node,
+    frontmatter: {
+      title: node.title,
+      date: node.date,
+    },
+    fields: {
+      slug: node.slug.current,
+    },
+  };
+}
+
 const IndexPage = ({
   data: {
     allMarkdownRemark: { edges },
+    sanity,
   },
-}) => (
-  <Layout preventLinkHome>
-    <div>
-      {edges.map((edge) => (
-        <PostListItem key={edge.node.id} post={edge.node} />
-      ))}
-    </div>
-  </Layout>
-);
+}) => {
+  const posts = sanity.nodes
+    .map(sanityToMd)
+    .concat(edges.map((edge) => edge.node));
+  return (
+    <Layout preventLinkHome>
+      <div>
+        {posts.map((node) => (
+          <PostListItem key={node.id} post={node} />
+        ))}
+      </div>
+    </Layout>
+  );
+};
 
 export default IndexPage;
 
@@ -24,7 +43,7 @@ export const pageQuery = graphql`
     allMarkdownRemark(
       sort: { order: DESC, fields: [frontmatter___date] }
       filter: { fields: { sourceInstanceName: { eq: "posts" } } }
-      limit: 10
+      limit: 5
     ) {
       edges {
         node {
@@ -41,6 +60,17 @@ export const pageQuery = graphql`
           }
           html
         }
+      }
+    }
+    sanity: allSanityPost(sort: { fields: date, order: DESC }, limit: 5) {
+      nodes {
+        id
+        title
+        date
+        slug {
+          current
+        }
+        _rawBody(resolveReferences: { maxDepth: 5 })
       }
     }
   }
