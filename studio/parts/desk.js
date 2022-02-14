@@ -11,16 +11,6 @@ export default () =>
     .title('Contenuti')
     .items([
       S.listItem()
-        .title('Configurazione')
-        .icon(FiSettings)
-        .child(
-          S.editor()
-            .id('siteSettings')
-            .schemaType('siteSettings')
-            .documentId('siteSettings')
-        ),
-      S.divider(),
-      S.listItem()
         .title('Pagine')
         .icon(FiFileText)
         .child(
@@ -47,4 +37,14 @@ export default () =>
         .title('Staff')
         .schemaType('person')
         .child(S.documentTypeList('person').title('Persone')),
+      S.divider(),
+      S.listItem()
+        .title('Configurazione')
+        .icon(FiSettings)
+        .child(
+          S.editor()
+            .id('siteSettings')
+            .schemaType('siteSettings')
+            .documentId('siteSettings')
+        ),
     ]);
