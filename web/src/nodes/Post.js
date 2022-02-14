@@ -1,10 +1,10 @@
 import React from 'react';
 import { graphql } from 'gatsby';
-import Layout from '../components/templates/Layout';
-import { Body } from '../components/atoms/Article';
+import Layout from 'templates/Layout';
+import { Body } from 'atoms/Article';
 
-import { template } from '../components/helpers/string';
-import PortableText from '../components/molecules/PortableText';
+import { template } from 'helpers/string';
+import PortableText from 'molecules/PortableText';
 
 export default function PostPage({ data }) {
   const { markdown, sanity } = data; // data.markdownRemark holds our post data

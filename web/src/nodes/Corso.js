@@ -1,9 +1,9 @@
 import React from 'react';
 import { graphql, Link } from 'gatsby';
 
-import Layout from '../components/templates/Layout';
-import { Body } from '../components/atoms/Article';
-import PortableText from '../components/molecules/PortableText';
+import Layout from 'templates/Layout';
+import { Body } from 'atoms/Article';
+import PortableText from 'molecules/PortableText';
 
 export default function Corso({ data }) {
   const { sanityCorso } = data;

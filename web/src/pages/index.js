@@ -1,7 +1,7 @@
 import React from 'react';
 import { graphql } from 'gatsby';
-import Layout from '../components/templates/Layout';
-import PostListItem from '../components/organisms/PostListItem';
+import Layout from 'templates/Layout';
+import PostListItem from 'organisms/PostListItem';
 
 function sanityToMd(node) {
   return {

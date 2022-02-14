@@ -7,10 +7,10 @@
 const path = require(`path`);
 const { createFilePath } = require('gatsby-source-filesystem');
 
-const postTemplate = path.resolve(`src/templates/Post.js`);
-const pageTemplate = path.resolve(`src/templates/Page.js`);
-const corsoTemplate = path.resolve(`src/templates/Corso.js`);
-const sanityPageTemplate = path.resolve(`src/templates/SanityPage.js`);
+const postTemplate = path.resolve(`src/nodes/Post.js`);
+const pageTemplate = path.resolve(`src/nodes/Page.js`);
+const corsoTemplate = path.resolve(`src/nodes/Corso.js`);
+const sanityPageTemplate = path.resolve(`src/nodes/SanityPage.js`);
 
 const pagesQuery = `
 query PageQuery {

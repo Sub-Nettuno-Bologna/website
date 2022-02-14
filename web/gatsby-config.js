@@ -35,6 +35,7 @@ module.exports = {
         overlayDrafts: !isProd,
       },
     },
+    `gatsby-plugin-root-import`,
     `gatsby-plugin-react-helmet`,
     {
       resolve: `gatsby-source-filesystem`,

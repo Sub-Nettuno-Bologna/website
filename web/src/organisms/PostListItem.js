@@ -1,10 +1,10 @@
 import React from 'react';
 import { Link } from 'gatsby';
-import PostHeader from '../molecules/Post/Header';
-import { Body, Article } from '../atoms/Article';
-import PortableText from '../molecules/PortableText';
+import PostHeader from 'molecules/Post/Header';
+import { Body, Article } from 'atoms/Article';
+import PortableText from 'molecules/PortableText';
 
-import { template } from '../helpers/string';
+import { template } from 'helpers/string';
 
 function truncateWords(text, words) {
   return text.split(' ').splice(0, words).join(' ').concat('&hellip;');

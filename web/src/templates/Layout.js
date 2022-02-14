@@ -7,18 +7,18 @@
 
 import React from 'react';
 import styled, { ThemeProvider } from 'styled-components';
-import Header from '../organisms/Header';
-import Sidebar from '../organisms/Sidebar';
-import PostHeader from '../molecules/Post/Header';
-import CookieBar from '../molecules/CookieBar';
-import { columnCss } from '../atoms/Grid';
-import Seo from '../atoms/SEO';
-import GlobalStyle from '../atoms/GlobalStyle';
+import Header from 'organisms/Header';
+import Sidebar from 'organisms/Sidebar';
+import PostHeader from 'molecules/Post/Header';
+import CookieBar from 'molecules/CookieBar';
+import { columnCss } from 'atoms/Grid';
+import Seo from 'atoms/SEO';
+import GlobalStyle from 'atoms/GlobalStyle';
 
-import theme from '../../theme';
-import { fromMedium } from '../mediaqueries';
+import theme from 'theme';
+import { fromMedium } from 'mediaqueries';
 import './layout.css';
-import { FacebookLink, InstagramLink } from '../atoms/Social';
+import { FacebookLink, InstagramLink } from 'atoms/Social';
 
 const Main = styled.main`
   ${columnCss}

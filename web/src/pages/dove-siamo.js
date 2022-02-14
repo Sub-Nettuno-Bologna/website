@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import Layout from '../components/templates/Layout';
+import Layout from 'templates/Layout';
 
 const Address = styled.address`
   display: block;

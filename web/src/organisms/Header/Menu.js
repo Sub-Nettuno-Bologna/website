@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useStaticQuery, graphql, Link } from 'gatsby';
-import { fromMedium } from '../mediaqueries';
+import { fromMedium } from 'mediaqueries';
 
-import TreeList from '../atoms/TreeList';
+import TreeList from 'atoms/TreeList';
 
 const Aside = styled.aside`
   order: 1;
@@ -32,7 +32,7 @@ const AsideSection = styled.section`
   }
 `;
 
-const Sidebar = () => {
+const Menu = () => {
   const data = useStaticQuery(graphql`
     query {
       pages: allMarkdownRemark(
@@ -157,4 +157,4 @@ const Sidebar = () => {
   );
 };
 
-export default Sidebar;
+export default Menu;

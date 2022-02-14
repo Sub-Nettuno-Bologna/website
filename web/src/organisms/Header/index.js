@@ -2,10 +2,12 @@ import React from 'react';
 import styled from 'styled-components';
 import { StaticImage, GatsbyImage } from 'gatsby-plugin-image';
 import { Link, useStaticQuery, graphql } from 'gatsby';
-import { columnCss } from '../atoms/Grid';
-import ConditionalWrapper from '../atoms/ConditionalWrapper';
-import { fromMedium, fromLarge } from '../mediaqueries';
-import { FacebookLink, InstagramLink } from '../atoms/Social';
+import { columnCss } from 'atoms/Grid';
+import ConditionalWrapper from 'atoms/ConditionalWrapper';
+import { fromMedium, fromLarge } from 'mediaqueries';
+import { FacebookLink, InstagramLink } from 'atoms/Social';
+import theme from 'theme';
+import Menu from './Menu';
 
 const Wrapper = styled.header`
   margin: 10px 0 2em 0;
@@ -152,8 +154,8 @@ const Header = ({ preventLinkHome, image }) => {
       <MainHeader>
         <SocialWrapper>
           <div class="label">Seguici su</div>
-          <FacebookLink color="#5976C0" />
-          <InstagramLink color="#5976C0" />
+          <FacebookLink color={theme.blue} />
+          <InstagramLink color={theme.blue} />
         </SocialWrapper>
 
         <LogoWrapper>
@@ -162,7 +164,7 @@ const Header = ({ preventLinkHome, image }) => {
             wrapper={(children) => <Link to="/">{children}</Link>}
           >
             <StaticImage
-              src="../../images/logo-simple.png"
+              src="./logo-simple.png"
               alt="Logo del Club Sub Nettuno"
               loading="eager"
               placeholder="#fff"
@@ -179,7 +181,7 @@ const Header = ({ preventLinkHome, image }) => {
             rel="noopener noreferrer"
           >
             <StaticImage
-              src="../../images/fipsaslogo.png"
+              src="./fipsaslogo.png"
               alt="FIPSAS logo"
               loading="eager"
               placeholder="#fff"
@@ -192,7 +194,7 @@ const Header = ({ preventLinkHome, image }) => {
             rel="noopener noreferrer"
           >
             <StaticImage
-              src="../../images/cmas.png"
+              src="./cmas.png"
               alt="CMAS logo"
               loading="eager"
               placeholder="#fff"
@@ -201,6 +203,7 @@ const Header = ({ preventLinkHome, image }) => {
           </a>
         </FederationWrapper>
       </MainHeader>
+      <Menu />
       <GatsbyImage
         image={headerImage.gatsbyImageData}
         style={{ maxHeight: '500px', margin: '1em 0' }}

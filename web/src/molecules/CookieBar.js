@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Link } from 'gatsby';
-import { storageFactory } from '../../hacks/storage-factory';
+import { storageFactory } from 'hacks/storage-factory';
 
-import { PrimaryButton } from '../atoms/Buttons';
-import { columnCss } from '../atoms/Grid';
+import { PrimaryButton } from 'atoms/Buttons';
+import { columnCss } from 'atoms/Grid';
 
 const local = storageFactory(() => localStorage);
 const ACK_KEY = 'cookie-acknowledge';

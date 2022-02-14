@@ -3,7 +3,7 @@ import { graphql } from 'gatsby';
 import styled from 'styled-components';
 import BlockContent from '@sanity/block-content-to-react';
 
-import Layout from '../components/templates/Layout';
+import Layout from 'templates/Layout';
 
 const Ol = styled.ol`
   list-style: none;

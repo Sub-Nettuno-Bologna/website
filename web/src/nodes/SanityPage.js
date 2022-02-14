@@ -3,8 +3,8 @@ import { graphql, Link } from 'gatsby';
 import urlBuilder from '@sanity/image-url';
 import styled from 'styled-components';
 
-import Layout from '../components/templates/Layout';
-import { Body } from '../components/atoms/Article';
+import Layout from 'templates/Layout';
+import { Body } from 'atoms/Article';
 import BlockContent from '@sanity/block-content-to-react';
 
 const Figure = styled.figure`

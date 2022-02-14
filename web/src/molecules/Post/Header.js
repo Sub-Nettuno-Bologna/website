@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'gatsby';
-import { Header as ArticleHeader } from '../../atoms/Article';
+import { Header as ArticleHeader } from 'atoms/Article';
 import formatDate from '../../helpers/formatDate';
 
 const Meta = styled.div`

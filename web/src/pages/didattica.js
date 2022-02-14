@@ -2,9 +2,9 @@ import React from 'react';
 import { graphql, Link } from 'gatsby';
 import styled from 'styled-components';
 
-import Layout from '../components/templates/Layout';
+import Layout from 'templates/Layout';
 
-import ExternalLink from '../components/atoms/ExternalLink';
+import ExternalLink from '../atoms/ExternalLink';
 
 const Ol = styled.ol`
   list-style: none;
