@@ -1,13 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
-import { StaticImage, GatsbyImage } from 'gatsby-plugin-image';
+import { StaticImage } from 'gatsby-plugin-image';
 import { Link, useStaticQuery, graphql } from 'gatsby';
 import { columnCss } from 'atoms/Grid';
 import ConditionalWrapper from 'atoms/ConditionalWrapper';
 import { fromMedium, fromLarge } from 'mediaqueries';
 import { FacebookLink, InstagramLink } from 'atoms/Social';
 import theme from 'theme';
-import Menu from './Menu';
+import Menu from './nav-menu';
+import HeaderImage from './header-image';
 
 const Wrapper = styled.header`
   margin: 10px 0 2em 0;
@@ -129,27 +130,12 @@ const headerQuery = graphql`
     site: sanitySiteSettings {
       title
       subtitle
-      headerImages {
-        asset {
-          gatsbyImageData(
-            placeholder: DOMINANT_COLOR
-            formats: [AUTO, WEBP]
-            layout: FULL_WIDTH
-          )
-        }
-      }
     }
   }
 `;
 
-const rand = (items) => items[Math.floor(Math.random() * items.length)];
-
 const Header = ({ preventLinkHome, image }) => {
   const { site } = useStaticQuery(headerQuery);
-
-  const images = site.headerImages.map((e) => e.asset);
-
-  const headerImage = image ? image.childImageSharp : rand(images);
 
   return (
     <Wrapper>
@@ -206,11 +192,7 @@ const Header = ({ preventLinkHome, image }) => {
         </FederationWrapper>
       </MainHeader>
       <Menu />
-      <GatsbyImage
-        image={headerImage.gatsbyImageData}
-        style={{ maxHeight: '500px' }}
-        alt="Fotografia del club"
-      />
+      <HeaderImage postImage={image} />
     </Wrapper>
   );
 };
