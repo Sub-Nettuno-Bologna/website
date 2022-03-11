@@ -1,9 +1,14 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { useStaticQuery, graphql, Link } from 'gatsby';
 import { columnCss } from 'atoms/Grid';
 import { fromMedium } from 'mediaqueries';
 import { Menu } from '@mantine/core';
+
+const selected = css`
+  background-color: white;
+  color: ${(p) => p.theme.blue};
+`;
 
 const Nav = styled.nav`
   background: ${(p) => p.theme.blue};
@@ -17,8 +22,11 @@ const Nav = styled.nav`
     color: white;
 
     &[aria-expanded='true'] {
-      background-color: white;
-      color: ${(p) => p.theme.blue};
+      ${selected}
+    }
+
+    &:hover {
+      ${selected}
     }
   }
 
@@ -29,13 +37,11 @@ const Nav = styled.nav`
     }
 
     &:hover {
-      background-color: white;
-      color: ${(p) => p.theme.blue};
+      ${selected}
     }
 
     &.active {
-      background-color: white;
-      color: ${(p) => p.theme.blue};
+      ${selected}
     }
   }
 
@@ -82,6 +88,9 @@ const NavMenu = () => {
       <div className="inner">
         <Link activeClassName="active" to="/">
           Home
+        </Link>
+        <Link activeClassName="active" to="/eventi">
+          Eventi
         </Link>
         <Menu control={<button>Corsi</button>} size={'xl'}>
           {data.corsi.nodes.map((corso) => (

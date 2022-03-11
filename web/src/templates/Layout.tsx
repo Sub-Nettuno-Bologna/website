@@ -5,7 +5,7 @@
  * See: https://www.gatsbyjs.org/docs/use-static-query/
  */
 
-import React from 'react';
+import React, { FC } from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 import Header from 'organisms/Header';
 import Sidebar from 'organisms/Sidebar';
@@ -59,13 +59,23 @@ const InnerFooter = styled.div`
   }
 `;
 
-const Layout = ({
+const Layout: FC<{
+  date?: string;
+  isArticle?: boolean;
+  postHeader?: any;
+  preventLinkHome?: boolean;
+  showHeaderImage?: boolean;
+  showSidebar?: boolean;
+  title?: string;
+}> = ({
   children,
-  preventLinkHome,
-  postHeader,
-  title,
   date,
   isArticle,
+  postHeader,
+  preventLinkHome,
+  showHeaderImage,
+  showSidebar = true,
+  title,
 }) => {
   const ContentElement = isArticle ? 'article' : 'section';
 
@@ -74,9 +84,13 @@ const Layout = ({
       <>
         <GlobalStyle />
         <Seo title={title} />
-        <Header preventLinkHome={preventLinkHome} image={postHeader} />
+        <Header
+          image={postHeader}
+          preventLinkHome={preventLinkHome}
+          showHeaderImage={showHeaderImage}
+        />
         <Main>
-          <Sidebar />
+          {showSidebar && <Sidebar />}
           <ContentElement className="content">
             {title && <PostHeader title={title} date={date} />}
             {children}

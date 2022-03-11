@@ -134,7 +134,7 @@ const headerQuery = graphql`
   }
 `;
 
-const Header = ({ preventLinkHome, image }) => {
+const Header = ({ preventLinkHome, image, showHeaderImage = true }) => {
   const { site } = useStaticQuery(headerQuery);
 
   return (
@@ -192,7 +192,7 @@ const Header = ({ preventLinkHome, image }) => {
         </FederationWrapper>
       </MainHeader>
       <Menu />
-      <HeaderImage postImage={image} />
+      {showHeaderImage && <HeaderImage postImage={image} />}
     </Wrapper>
   );
 };
