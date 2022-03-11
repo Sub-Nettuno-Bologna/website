@@ -7,6 +7,7 @@ import schemaTypes from 'all:part:@sanity/base/schema-type';
 // Document types
 import category from './documents/category';
 import corso from './documents/corso';
+import event from './documents/event';
 import page from './documents/page';
 import person from './documents/person';
 import post from './documents/post';
@@ -29,6 +30,7 @@ export default createSchema({
     bioPortableText,
     category,
     corso,
+    event,
     figure,
     page,
     pagePortableText,

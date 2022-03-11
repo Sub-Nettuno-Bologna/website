@@ -9,6 +9,7 @@ const hiddenDocTypes = listItem =>
     'pagina',
     'media.tag',
     'post',
+    'event',
   ].includes(listItem.getId());
 
 export default () =>
@@ -38,6 +39,10 @@ export default () =>
       // defined in schema.js. We filter out those that we have
       // defined the structure above
       ...S.documentTypeListItems().filter(hiddenDocTypes),
+      S.listItem()
+        .title('Eventi')
+        .schemaType('event')
+        .child(S.documentTypeList('event').title('Eventi')),
       S.listItem()
         .title('Categorie')
         .schemaType('category')
