@@ -1,6 +1,5 @@
 {
   "name": "web",
-  "private": true,
   "version": "0.1.0",
   "repository": "https://github.com/kajyr/subnettuno.it",
   "author": "Carlo Panzi <carlo.panzi@gmail.com>",
