@@ -1,17 +1,30 @@
 {
-  "packages": ["web", "studio"],
-  "version": "1.0.0",
+  "packages": [
+    "web",
+    "studio"
+  ],
+  "version": "1.1.0",
   "command": {
     "publish": {
       "message": "chore(release): publish",
       "allowBranch": "master",
-      "ignoreChanges": ["*.test.js", "*.test.ts", "*.test.tsx", "*.md"],
+      "ignoreChanges": [
+        "*.test.js",
+        "*.test.ts",
+        "*.test.tsx",
+        "*.md"
+      ],
       "skipNpm": true
     },
     "version": {
       "message": "chore(release): version",
       "allowBranch": "master",
-      "ignoreChanges": ["*.test.js", "*.test.ts", "*.test.tsx", "*.md"],
+      "ignoreChanges": [
+        "*.test.js",
+        "*.test.ts",
+        "*.test.tsx",
+        "*.md"
+      ],
       "private": false,
       "skipNpm": true,
       "conventionalCommits": true
