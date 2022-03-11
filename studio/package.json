@@ -1,6 +1,6 @@
 {
   "name": "studio",
-  "version": "1.0.6",
+  "version": "1.0.0",
   "main": "package.json",
   "author": "Sanity <hello@sanity.io>",
   "scripts": {
