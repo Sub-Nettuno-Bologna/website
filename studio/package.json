@@ -5,10 +5,8 @@
   "author": "Sanity <hello@sanity.io>",
   "scripts": {
     "start": "sanity start",
-    "format": "prettier-eslint --write \"**/*.js\" \"!node_modules/**\"",
     "build": "sanity build",
     "graphql-deploy": "sanity graphql deploy --playground",
-    "lint": "eslint .",
     "test": "sanity check"
   },
   "dependencies": {
@@ -30,17 +28,5 @@
     "sanity-plugin-dashboard-widget-netlify": "^1.2.1",
     "sanity-plugin-media": "^1.4.4",
     "styled-components": "^5.3.3"
-  },
-  "devDependencies": {
-    "babel-eslint": "^10.1.0",
-    "eslint": "^8.10.0",
-    "eslint-config-standard": "^16.0.3",
-    "eslint-config-standard-react": "^11.0.1",
-    "eslint-plugin-import": "^2.25.4",
-    "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-promise": "^6.0.0",
-    "eslint-plugin-react": "^7.29.3",
-    "eslint-plugin-standard": "^5.0.0",
-    "prettier-eslint-cli": "^5.0.1"
   }
 }
