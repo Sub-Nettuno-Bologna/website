@@ -20,8 +20,8 @@ const seoQuery = graphql`
 function SEO({ description, lang, title, image, article }) {
   const { site } = useStaticQuery(seoQuery);
 
-  const metaTitle = title || site.title;
-  const metaDescription = description || site.description;
+  const metaTitle = title || site?.title;
+  const metaDescription = description || site?.description;
 
   return (
     <Helmet

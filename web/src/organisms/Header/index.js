@@ -157,9 +157,9 @@ const Header = ({ preventLinkHome, image, showHeaderImage = true }) => {
               loading="eager"
               placeholder="#fff"
             />
-            <h1>{site.title}</h1>
+            <h1>{site?.title}</h1>
           </ConditionalWrapper>
-          <p>{site.subtitle}</p>
+          <p>{site?.subtitle}</p>
         </LogoWrapper>
 
         <FederationWrapper>

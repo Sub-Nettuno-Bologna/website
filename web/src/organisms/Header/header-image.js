@@ -20,7 +20,7 @@ const headerQuery = graphql`
 
 const HeaderImage = ({ postImage }) => {
   const { site } = useStaticQuery(headerQuery);
-  const images = site.headerImages.map((e) => e.asset);
+  const images = site?.headerImages.map((e) => e.asset) || [];
 
   if (postImage) {
     return (
