@@ -9,22 +9,6 @@ const isProd = activeEnv === 'production';
 
 module.exports = {
   plugins: [
-    // Make sure this plugin is first in the array of plugins
-    {
-      resolve: `gatsby-plugin-google-analytics`,
-      options: {
-        trackingId: process.env.GATSBY_GA_TRACKING_ID || 'none',
-        // this option places the tracking script into the head of the DOM
-        head: true,
-        // other options
-      },
-    },
-    {
-      resolve: `gatsby-plugin-facebook-pixel`,
-      options: {
-        pixelId: '282753405758990',
-      },
-    },
     {
       resolve: 'gatsby-source-sanity',
       options: {
