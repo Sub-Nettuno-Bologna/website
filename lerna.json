@@ -1,6 +1,7 @@
 {
   "packages": ["web", "studio"],
   "version": "1.1.0",
+  "useNx": true,
   "command": {
     "publish": {
       "message": "chore(release): publish",
