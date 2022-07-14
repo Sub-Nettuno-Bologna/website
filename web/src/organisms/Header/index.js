@@ -11,11 +11,7 @@ import Menu from './nav-menu';
 import HeaderImage from './header-image';
 
 const Wrapper = styled.header`
-  margin: 10px 0 2em 0;
-
-  @media ${fromMedium} {
-    margin: 10px 0 6em 0;
-  }
+  margin: 10px 0 20px 0;
 `;
 
 const MainHeader = styled.div`

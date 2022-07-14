@@ -78,23 +78,6 @@ const Sidebar = () => {
   return (
     <Aside>
       <AsideSection>
-        <h2>Club Sub Nettuno</h2>
-        <address>
-          Associazione Sportiva Dilettantistica
-          <br />
-          c/o piscina Stadio "Carmen Longo"
-          <br />
-          accesso da via dello Sport 9<br />
-          Bologna
-          <br />
-          tel. <a href="tel://051 6153552">051 6153552</a>
-          <br />
-          C.F. 01596311207
-          <br />
-          P.IVA 2665601205
-        </address>
-      </AsideSection>
-      <AsideSection>
         <ul>
           <li>
             <TreeList

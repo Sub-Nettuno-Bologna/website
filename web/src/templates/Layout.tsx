@@ -5,28 +5,21 @@
  * See: https://www.gatsbyjs.org/docs/use-static-query/
  */
 
-import React, { FC } from 'react';
+import React, { FC, ReactNode } from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 import Header from 'organisms/Header';
 import Sidebar from 'organisms/Sidebar';
 import PostHeader from 'molecules/Post/Header';
 import CookieBar from 'molecules/CookieBar';
-import { columnCss } from 'atoms/Grid';
 import Seo from 'atoms/SEO';
 import GlobalStyle from 'atoms/GlobalStyle';
 
 import theme from 'theme';
 import { fromMedium } from 'mediaqueries';
 import './layout.css';
-import { FacebookLink, InstagramLink } from 'atoms/Social';
+import Footer from 'organisms/footer';
 
 const Main = styled.main`
-  ${columnCss}
-
-  @media ${fromMedium} {
-    display: flex;
-  }
-
   .content {
     flex: 1;
     margin-right: 1em;
@@ -34,28 +27,9 @@ const Main = styled.main`
   }
 `;
 
-const Footer = styled.footer`
-  background: ${(p) => p.theme.black};
-  color: white;
-  padding: 2em 0;
-  margin-top: 2em;
-  a {
-    color: inherit;
-  }
-`;
-
-const InnerFooter = styled.div`
-  ${columnCss}
-  text-align: center;
-  display: flex;
-  align-items: center;
-
-  > a {
-    margin-left: 1em;
-  }
-
+const Inner = styled.div`
   @media ${fromMedium} {
-    text-align: left;
+    display: flex;
   }
 `;
 
@@ -67,8 +41,10 @@ const Layout: FC<{
   showHeaderImage?: boolean;
   showSidebar?: boolean;
   title?: string;
+  topContent?: ReactNode;
 }> = ({
   children,
+  topContent,
   date,
   isArticle,
   postHeader,
@@ -89,20 +65,17 @@ const Layout: FC<{
           preventLinkHome={preventLinkHome}
           showHeaderImage={showHeaderImage}
         />
-        <Main>
-          {showSidebar && <Sidebar />}
-          <ContentElement className="content">
-            {title && <PostHeader title={title} date={date} />}
-            {children}
-          </ContentElement>
+        <Main className="column">
+          {topContent}
+          <Inner>
+            {showSidebar && <Sidebar />}
+            <ContentElement className="content">
+              {title && <PostHeader title={title} date={date} />}
+              {children}
+            </ContentElement>
+          </Inner>
         </Main>
-        <Footer>
-          <InnerFooter>
-            <span>{new Date().getFullYear()} Club Sub Nettuno</span>
-            <FacebookLink />
-            <InstagramLink />
-          </InnerFooter>
-        </Footer>
+        <Footer />
         <CookieBar />
       </>
     </ThemeProvider>

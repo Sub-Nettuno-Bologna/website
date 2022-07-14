@@ -2,6 +2,7 @@ import React from 'react';
 import { graphql } from 'gatsby';
 import Layout from 'templates/Layout';
 import PostListItem from 'organisms/PostListItem';
+import FocusBar from 'molecules/focus-bar';
 
 function sanityToMd(node) {
   return {
@@ -26,7 +27,7 @@ const IndexPage = ({
     .map(sanityToMd)
     .concat(edges.map((edge) => edge.node));
   return (
-    <Layout preventLinkHome>
+    <Layout preventLinkHome topContent={<FocusBar />}>
       <div>
         {posts.map((node) => (
           <PostListItem key={node.id} post={node} />
