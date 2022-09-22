@@ -50,7 +50,7 @@ const Footer = () => {
             <br />
             c/o piscina Stadio "Carmen Longo"
             <br />
-            accesso da via dello Sport 9<br />
+            accesso da via dello Sport 6<br />
             Bologna
             <br />
             tel. <a href="tel://051 6153552">051 6153552</a>

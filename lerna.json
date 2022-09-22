@@ -17,6 +17,5 @@
       "skipNpm": true,
       "conventionalCommits": true
     }
-  },
-  "useNx": true
+  }
 }

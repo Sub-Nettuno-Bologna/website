@@ -20,7 +20,7 @@ const DoveSiamo = () => (
     </Address>
     <p>
       Per accedere alla piscina usare l'ingresso pedonale che si trova in via
-      dello Sport 4
+      dello Sport 6
     </p>
     <iframe
       title="map"
