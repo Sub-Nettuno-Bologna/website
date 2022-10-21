@@ -9,6 +9,6 @@ updates:
     directory: '/web' # Location of package manifests
     schedule:
       interval: 'weekly'
-    reviewers:
+    assignees:
       - 'kajyr'
     open-pull-requests-limit: 3
