@@ -5,9 +5,10 @@
 
 version: 2
 updates:
-  - package-ecosystem: "npm" # See documentation for possible values
-    directory: "/web" # Location of package manifests
+  - package-ecosystem: 'npm' # See documentation for possible values
+    directory: '/web' # Location of package manifests
     schedule:
-      interval: "weekly"
+      interval: 'weekly'
     reviewers:
-      - "kajyr"
+      - 'kajyr'
+    open-pull-requests-limit: 3
