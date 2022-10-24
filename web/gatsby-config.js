@@ -97,11 +97,5 @@ module.exports = {
     },
     `gatsby-plugin-styled-components`,
     `gatsby-plugin-catch-links`,
-    {
-      resolve: `gatsby-plugin-page-creator`,
-      options: {
-        path: `${__dirname}/src/pages`,
-      },
-    },
   ],
 };

@@ -4,8 +4,6 @@ import { useStaticQuery, graphql } from 'gatsby';
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css'; // requires a loader
 
-//const Carousel = RRC.Carousel;
-
 const headerQuery = graphql`
   query ImageHeader {
     site: sanitySiteSettings {
