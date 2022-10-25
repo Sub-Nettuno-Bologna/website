@@ -5,10 +5,24 @@
 
 version: 2
 updates:
-  - package-ecosystem: 'npm' # See documentation for possible values
-    directory: '/web' # Location of package manifests
+  - package-ecosystem: 'npm'
+    directory: '/' 
     schedule:
       interval: 'weekly'
     assignees:
       - 'kajyr'
-    open-pull-requests-limit: 3
+    open-pull-requests-limit: 2
+  - package-ecosystem: 'npm'
+    directory: '/web' 
+    schedule:
+      interval: 'weekly'
+    assignees:
+      - 'kajyr'
+    open-pull-requests-limit: 2
+    - package-ecosystem: 'npm'
+    directory: '/studio' 
+    schedule:
+      interval: 'weekly'
+    assignees:
+      - 'kajyr'
+    open-pull-requests-limit: 2
