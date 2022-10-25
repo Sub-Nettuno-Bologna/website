@@ -35,7 +35,7 @@
     "react-icons": "^4.6.0",
     "react-responsive-carousel": "^3.2.23",
     "slugify": "^1.6.5",
-    "storage-factory": "^0.2.0",
+    "storage-factory": "^0.2.1",
     "styled-components": "^5.3.6"
   },
   "devDependencies": {
