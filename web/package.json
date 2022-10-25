@@ -11,7 +11,7 @@
     "@sanity/image-url": "^1.0.1",
     "@types/styled-components": "^5.1.24",
     "babel-plugin-styled-components": "^2.0.6",
-    "dotenv": "^10.0.0",
+    "dotenv": "^16.0.3",
     "gatsby": "^4.24.4",
     "gatsby-plugin-catch-links": "^4.24.0",
     "gatsby-plugin-image": "^2.24.0",
