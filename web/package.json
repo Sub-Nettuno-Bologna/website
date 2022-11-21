@@ -9,7 +9,7 @@
     "@mantine/hooks": "^4.0.0",
     "@sanity/block-content-to-react": "^3.0.0",
     "@sanity/image-url": "^1.0.1",
-    "@types/styled-components": "^5.1.24",
+    "@types/styled-components": "^5.1.26",
     "babel-plugin-styled-components": "^2.0.7",
     "dotenv": "^16.0.3",
     "gatsby": "^4.24.8",
