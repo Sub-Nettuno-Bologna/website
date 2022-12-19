@@ -12,12 +12,15 @@ jobs:
       GATSBY_SANITY_DATASET: ${{ secrets.GATSBY_SANITY_DATASET }}
     steps:
       - uses: actions/checkout@v3
+      - name: Read .nvmrc
+        run: echo "nvmrc=$(cat .nvmrc)" >> $GITHUB_OUTPUT
+        id: nvm
       - uses: actions/setup-node@v3
         with:
-          node-version: '18.11'
+          node-version: '${{ steps.nvm.outputs.nvmrc }}'
       - uses: actions/cache@v3
         with:
           path: '**/node_modules'
-          key: ${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
+          key: ${{ steps.nvm.outputs.nvmrc }}-${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
       - run: npm ci
       - run: npm run build
