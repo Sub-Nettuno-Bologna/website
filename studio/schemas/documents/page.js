@@ -1,6 +1,7 @@
 import { FiFileText } from 'react-icons/fi';
+import { defineType, defineField } from 'sanity';
 
-export default {
+export const page = defineType({
   name: 'pagina',
   title: 'Pagine',
   type: 'document',
@@ -52,4 +53,4 @@ export default {
       };
     },
   },
-};
+});

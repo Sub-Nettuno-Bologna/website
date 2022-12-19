@@ -1,7 +1,6 @@
-import S from '@sanity/desk-tool/structure-builder';
 import { FiSettings, FiFileText } from 'react-icons/fi';
 
-const hiddenDocTypes = listItem =>
+const hiddenDocTypes = (listItem) =>
   ![
     'category',
     'person',
@@ -12,7 +11,7 @@ const hiddenDocTypes = listItem =>
     'event',
   ].includes(listItem.getId());
 
-export default () =>
+export default (S) =>
   S.list()
     .title('Contenuti')
     .items([
@@ -27,7 +26,7 @@ export default () =>
           S.documentTypeList('category')
             .title('Categorie')
             .child(
-              id =>
+              (id) =>
                 S.documentList()
                   .title('Pagine')
                   .schemaType('pagina')
