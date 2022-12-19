@@ -5,7 +5,7 @@
   "author": "Carlo Panzi <carlo.panzi@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "@mantine/core": "^4.0.0",
+    "@mantine/core": "^5.9.5",
     "@mantine/hooks": "^4.0.0",
     "@sanity/block-content-to-react": "^3.0.0",
     "@sanity/image-url": "^1.0.1",
