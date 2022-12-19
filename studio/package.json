@@ -6,7 +6,7 @@
   "scripts": {
     "start": "sanity dev",
     "build": "sanity build",
-    "graphql-deploy": "sanity graphql deploy --playground",
+    "graphql-deploy": "sanity graphql deploy",
     "test": "sanity check",
     "watch": "sanity dev"
   },

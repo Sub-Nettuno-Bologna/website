@@ -48,7 +48,7 @@ export default defineConfig({
             {
               apiId: '2957c68e-a3eb-40f4-b127-32195e2837dd',
               buildHookId: '61c99ccc375345182a0bcef9',
-              name: 'blue-lagoon-505905',
+              name: 'subnettuno',
               title: 'Sito pubblico',
               url: 'https://subnettuno.it',
             },
