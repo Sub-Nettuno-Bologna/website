@@ -9,7 +9,7 @@ import siteSettings from './documents/siteSettings';
 
 // Object types
 import bioPortableText from './objects/bioPortableText';
-import figure from './objects/figure';
+import { figure } from './objects/figure';
 import projectMember from './objects/projectMember';
 import pagePortableText from './objects/pagePortableText';
 import simplePortableText from './objects/simplePortableText';
