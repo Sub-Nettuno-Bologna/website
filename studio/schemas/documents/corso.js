@@ -1,35 +1,30 @@
 import { GiScubaTanks } from 'react-icons/gi';
 
 export default {
-  name: 'corso',
-  title: 'Corsi',
-  type: 'document',
-  icon: GiScubaTanks,
   fields: [
     {
       name: 'title',
       title: 'Titolo',
       type: 'string',
-      validation: Rule => Rule.required(),
+      validation: (Rule) => Rule.required(),
     },
     {
-      title: 'Slug',
-      type: 'slug',
       description: "Per costruire l'indirizzo della pagina",
       name: 'slug',
       options: {
         maxLength: 96,
-        slugify: input =>
+        slugify: (input) =>
           input
             .toLowerCase()
             .replace(/[\s-°:]+/g, '-')
             .slice(0, 200),
-        source: 'title',
-        source: doc => {
+        source: (doc) => {
           return `corso-${doc.title.replace(/^Corso\s+/i, '')}`;
         },
       },
-      validation: Rule => Rule.required(),
+      title: 'Slug',
+      type: 'slug',
+      validation: (Rule) => Rule.required(),
     },
     {
       name: 'minAge',
@@ -43,28 +38,32 @@ export default {
     },
     {
       name: 'requirement',
-      title: 'Brevetto richiesto',
-      type: 'reference',
-      to: { type: 'corso' },
       options: { disableNew: true },
+      title: 'Brevetto richiesto',
+      to: { type: 'corso' },
+      type: 'reference',
     },
     {
       name: 'body',
       title: 'Descrizione',
       type: 'pagePortableText',
-      validation: Rule => Rule.required(),
+      validation: (Rule) => Rule.required(),
     },
   ],
+  icon: GiScubaTanks,
+  name: 'corso',
   preview: {
-    select: {
-      title: 'title',
-      slug: 'slug',
-    },
     prepare({ title = 'No title', slug = {} }) {
       return {
-        title,
         subtitle: `/${slug.current}`,
+        title,
       };
     },
+    select: {
+      slug: 'slug',
+      title: 'title',
+    },
   },
+  title: 'Corsi',
+  type: 'document',
 };
