@@ -6,7 +6,7 @@
   "license": "MIT",
   "dependencies": {
     "@mantine/core": "^4.0.0",
-    "@mantine/hooks": "^4.0.0",
+    "@mantine/hooks": "^5.9.6",
     "@sanity/block-content-to-react": "^3.0.0",
     "@sanity/image-url": "^1.0.1",
     "@types/styled-components": "^5.1.26",
