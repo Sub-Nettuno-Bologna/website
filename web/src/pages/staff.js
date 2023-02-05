@@ -71,10 +71,7 @@ export default DidatticaPage;
 
 export const pageQuery = graphql`
   query {
-    allSanityPerson(
-      filter: { active: { eq: true } }
-      sort: { fields: name, order: ASC }
-    ) {
+    allSanityPerson(filter: { active: { eq: true } }, sort: { name: ASC }) {
       nodes {
         id
         name

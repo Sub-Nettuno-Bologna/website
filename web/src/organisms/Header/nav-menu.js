@@ -69,7 +69,7 @@ const Nav = styled.nav`
 const NavMenu = () => {
   const data = useStaticQuery(graphql`
     query {
-      corsi: allSanityCorso(sort: { fields: title }) {
+      corsi: allSanityCorso(sort: { title: ASC }) {
         nodes {
           id
           slug {

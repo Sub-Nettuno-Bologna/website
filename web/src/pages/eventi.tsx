@@ -20,7 +20,7 @@ export default EventiPage;
 
 export const pageQuery = graphql`
   query {
-    sanity: allSanityEvent(sort: { fields: date, order: DESC }, limit: 5) {
+    sanity: allSanityEvent(sort: { date: DESC }, limit: 5) {
       nodes {
         id
         title

@@ -50,7 +50,7 @@ const Sidebar = () => {
           }
         }
       }
-      sanityPages: allSanityPagina(sort: { order: ASC, fields: title }) {
+      sanityPages: allSanityPagina(sort: { title: ASC }) {
         nodes {
           id
           title
@@ -59,7 +59,7 @@ const Sidebar = () => {
           }
         }
       }
-      corsi: allSanityCorso(sort: { fields: title }) {
+      corsi: allSanityCorso(sort: { title: ASC }) {
         nodes {
           id
           slug {

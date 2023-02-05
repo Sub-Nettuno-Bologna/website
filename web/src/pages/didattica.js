@@ -45,7 +45,7 @@ export default DidatticaPage;
 
 export const pageQuery = graphql`
   query {
-    allSanityCorso(sort: { fields: title }) {
+    allSanityCorso(sort: { title: ASC }) {
       nodes {
         id
         slug {

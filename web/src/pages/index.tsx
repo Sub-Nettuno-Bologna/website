@@ -7,12 +7,12 @@ import FocusBar from 'molecules/focus-bar';
 function sanityToMd(node) {
   return {
     ...node,
-    frontmatter: {
-      title: node.title,
-      date: node.date,
-    },
     fields: {
       slug: node.slug.current,
+    },
+    frontmatter: {
+      date: node.date,
+      title: node.title,
     },
   };
 }
@@ -42,7 +42,7 @@ export default IndexPage;
 export const pageQuery = graphql`
   query {
     allMarkdownRemark(
-      sort: { order: DESC, fields: [frontmatter___date] }
+      sort: { frontmatter: { date: DESC } }
       filter: { fields: { sourceInstanceName: { eq: "posts" } } }
       limit: 5
     ) {
@@ -63,7 +63,7 @@ export const pageQuery = graphql`
         }
       }
     }
-    sanity: allSanityPost(sort: { fields: date, order: DESC }, limit: 5) {
+    sanity: allSanityPost(sort: { date: DESC }, limit: 5) {
       nodes {
         id
         title
