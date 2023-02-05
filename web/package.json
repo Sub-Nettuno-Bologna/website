@@ -29,6 +29,7 @@
     "gatsby-source-sanity": "^7.6.1",
     "gatsby-transformer-remark": "^6.3.2",
     "gatsby-transformer-sharp": "^5.3.1",
+    "logbook-templates": "^2.8.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-helmet": "^6.1.0",
@@ -43,6 +44,9 @@
     "react-is": "^18.2.0"
   },
   "scripts": {
+    "gen:logbook-didattica": "npx logbook-templates -l --empty --template=didattica --dest=static/scheda-vuota-nettuno-didattica.pdf",
+    "gen:logbook-base": "npx logbook-templates -l --empty --template=base --dest=static/scheda-vuota-nettuno-base.pdf",
+    "prebuild": "npm run gen:logbook-didattica && npm run gen:logbook-base",
     "build": "gatsby build",
     "clean": "gatsby clean",
     "dev": "gatsby develop",

@@ -11,4 +11,5 @@ layout: page
 
 ## Logbook
 
-[Scheda formato A5 per il tuo logbook](/scheda-vuota-nettuno.pdf)
+- [Scheda formato A5 per il tuo logbook - immersioni didattiche](/scheda-vuota-nettuno-didattica.pdf)
+- [Scheda formato A5 per il tuo logbook](/scheda-vuota-nettuno-base.pdf)
