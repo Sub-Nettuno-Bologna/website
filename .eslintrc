@@ -8,7 +8,7 @@
   },
   "settings": {
     "react": {
-      "version": "18"
+      "version": "detect"
     }
   },
   "rules": {
@@ -18,7 +18,8 @@
     "@typescript-eslint/no-explicit-any": 0,
     "@typescript-eslint/no-namespace": 0,
     "@typescript-eslint/no-var-requires": 0,
-    "eqeqeq": ["error", "smart"]
+    "eqeqeq": ["error", "smart"],
+    "react/prop-types": "off"
   },
   "extends": [
     "plugin:react/recommended",
