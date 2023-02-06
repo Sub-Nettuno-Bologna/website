@@ -1,4 +1,8 @@
-import { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle, css } from 'styled-components';
+
+export const fontFamily = css`
+  font-family: 'Montserrat', sans-serif;
+`;
 
 const GlobalStyle = createGlobalStyle`
 
@@ -8,7 +12,7 @@ const GlobalStyle = createGlobalStyle`
 
 html {
   font-size: 16px;
-  font-family: 'Montserrat', sans-serif;
+  ${fontFamily}
 }
 
 html,
@@ -39,6 +43,10 @@ a {
     color: ${(p) => p.theme.blue};
   }
 
+}
+
+button {
+  ${fontFamily}
 }
 
 `;

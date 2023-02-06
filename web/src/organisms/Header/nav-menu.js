@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components';
 import { useStaticQuery, graphql, Link } from 'gatsby';
 import { columnCss } from 'atoms/Grid';
 import { fromMedium } from 'mediaqueries';
-import { Menu } from '@mantine/core';
+import { createStyles, Menu } from '@mantine/core';
 
 const selected = css`
   background-color: white;
@@ -13,44 +13,11 @@ const selected = css`
 const Nav = styled.nav`
   background: ${(p) => p.theme.blue};
 
-  button {
-    text-align: left;
-    appearance: none;
-    border: none;
-    background: ${(p) => p.theme.blue};
-    font-size: 1em;
-    color: white;
-
-    &[aria-expanded='true'] {
-      ${selected}
-    }
-
-    &:hover {
-      ${selected}
-    }
-  }
-
-  a {
-    &,
-    &:visited {
-      color: white;
-    }
-
-    &:hover {
-      ${selected}
-    }
-
-    &.active {
-      ${selected}
-    }
-  }
-
   .inner {
     display: flex;
     flex-direction: column;
 
-    a,
-    button {
+    > * {
       padding: 10px 7px;
     }
 
@@ -58,13 +25,50 @@ const Nav = styled.nav`
       ${columnCss}
       flex-direction: row;
 
-      a,
-      button {
+      > * {
         margin-right: 1em;
       }
     }
   }
 `;
+
+const MenuLink = styled(Link)`
+  &,
+  &:visited {
+    color: white;
+  }
+
+  &:hover {
+    ${selected}
+  }
+
+  &.active {
+    font-weight: 700;
+  }
+`;
+
+const MenuBtn = styled.button`
+  &[data-expanded] {
+    ${selected}
+  }
+
+  text-align: left;
+  appearance: none;
+  border: none;
+  background: ${(p) => p.theme.blue};
+  font-size: 1em;
+  color: white;
+`;
+
+const useStyles = createStyles((theme) => ({
+  item: {
+    '&[data-hovered]': {
+      backgroundColor:
+        theme.colors[theme.primaryColor][theme.fn.primaryShade()],
+      color: theme.white,
+    },
+  },
+}));
 
 const NavMenu = () => {
   const data = useStaticQuery(graphql`
@@ -80,38 +84,41 @@ const NavMenu = () => {
       }
     }
   `);
-
-  console.log(data.corsi.nodes);
-
+  const { classes } = useStyles();
   return (
     <Nav>
       <div className="inner">
-        <Link activeClassName="active" to="/">
+        <MenuLink activeClassName="active" to="/">
           Home
-        </Link>
-        <Link activeClassName="active" to="/eventi">
+        </MenuLink>
+        <MenuLink activeClassName="active" to="/eventi">
           Eventi
-        </Link>
-        <Menu control={<button>Corsi</button>} size={'xl'}>
-          {data.corsi.nodes.map((corso) => (
-            <Menu.Item
-              key={corso.id}
-              component={Link}
-              to={`/${corso.slug.current}`}
-            >
-              {corso.title}
-            </Menu.Item>
-          ))}
+        </MenuLink>
+        <Menu size={'xl'} classNames={classes} trigger="hover">
+          <Menu.Target>
+            <MenuBtn>Corsi</MenuBtn>
+          </Menu.Target>
+          <Menu.Dropdown>
+            {data.corsi.nodes.map((corso) => (
+              <Menu.Item
+                key={corso.id}
+                component={Link}
+                to={`/${corso.slug.current}`}
+              >
+                {corso.title}
+              </Menu.Item>
+            ))}
+          </Menu.Dropdown>
         </Menu>
-        <Link activeClassName="active" to="/dove-siamo">
+        <MenuLink activeClassName="active" to="/dove-siamo">
           Dove siamo
-        </Link>
-        <Link activeClassName="active" to="/staff">
+        </MenuLink>
+        <MenuLink activeClassName="active" to="/staff">
           Lo Staff
-        </Link>
-        <Link activeClassName="active" to="/contattaci">
+        </MenuLink>
+        <MenuLink activeClassName="active" to="/contattaci">
           Contattaci
-        </Link>
+        </MenuLink>
       </div>
     </Nav>
   );
