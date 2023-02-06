@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 import styled from 'styled-components';
 import { useStaticQuery, graphql, Link } from 'gatsby';
 import { fromMedium } from 'mediaqueries';
@@ -32,25 +32,16 @@ const AsideSection = styled.section`
   }
 `;
 
-const Sidebar = () => {
+const Sidebar: FC = () => {
   const data = useStaticQuery(graphql`
     query {
-      pages: allMarkdownRemark(
-        filter: { fields: { sourceInstanceName: { eq: "pages" } } }
-      ) {
-        edges {
-          node {
-            id
-            frontmatter {
-              title
-            }
-            fields {
-              slug
-            }
-          }
+      sanityPages: allSanityPagina(
+        sort: { title: ASC }
+        filter: {
+          sidebar: { ne: false }
+          category: { title: { eq: "Pagine varie del sito" } }
         }
-      }
-      sanityPages: allSanityPagina(sort: { title: ASC }) {
+      ) {
         nodes {
           id
           title
@@ -71,7 +62,6 @@ const Sidebar = () => {
     }
   `);
 
-  const { edges } = data.pages;
   const sanityPages = data.sanityPages.nodes;
   const corsiTreeList = data.corsi.nodes;
 
@@ -88,13 +78,6 @@ const Sidebar = () => {
               )}
             />
           </li>
-          {edges.map(({ node }) => {
-            return (
-              <li key={node.id}>
-                <Link to={node.fields.slug}>{node.frontmatter.title}</Link>
-              </li>
-            );
-          })}
           {sanityPages.map((page) => {
             return (
               <li key={page.id}>
@@ -104,6 +87,9 @@ const Sidebar = () => {
           })}
           <li>
             <Link to="/dove-siamo">Dove siamo</Link>
+          </li>
+          <li>
+            <Link to="/guide">Guide</Link>
           </li>
           <li>
             <Link to="/staff">Lo Staff</Link>

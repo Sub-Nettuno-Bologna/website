@@ -1,11 +1,7 @@
 import { FiFileText } from 'react-icons/fi';
-import { defineType, defineField } from 'sanity';
+import { defineType } from 'sanity';
 
 export const page = defineType({
-  name: 'pagina',
-  title: 'Pagine',
-  type: 'document',
-  icon: FiFileText,
   fields: [
     {
       name: 'title',
@@ -13,14 +9,14 @@ export const page = defineType({
       type: 'string',
     },
     {
+      description: "Per costruire l'indirizzo della pagina",
       name: 'slug',
+      options: {
+        maxLength: 96,
+        source: 'title',
+      },
       title: 'Slug',
       type: 'slug',
-      description: "Per costruire l'indirizzo della pagina",
-      options: {
-        source: 'title',
-        maxLength: 96,
-      },
     },
     {
       name: 'body',
@@ -29,10 +25,16 @@ export const page = defineType({
     },
     {
       name: 'category',
-      title: 'Categoria',
-      type: 'reference',
-      to: { type: 'category' },
       options: { disableNew: true },
+      title: 'Categoria',
+      to: { type: 'category' },
+      type: 'reference',
+    },
+    {
+      initialValue: true,
+      name: 'sidebar',
+      title: 'Mostra nella sidebar del sito',
+      type: 'boolean',
     },
     /*    {
       name: 'related corsi',
@@ -41,16 +43,20 @@ export const page = defineType({
       of: [{ type: 'reference', to: { type: 'sampleProject' } }],
     }, */
   ],
+  icon: FiFileText,
+  name: 'pagina',
   preview: {
-    select: {
-      title: 'title',
-      slug: 'slug',
-    },
     prepare({ title = 'No title', slug = {} }) {
       return {
-        title,
         subtitle: `/${slug.current}`,
+        title,
       };
     },
+    select: {
+      slug: 'slug',
+      title: 'title',
+    },
   },
+  title: 'Pagine',
+  type: 'document',
 });

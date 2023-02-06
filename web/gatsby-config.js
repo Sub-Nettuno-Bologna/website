@@ -12,7 +12,7 @@ module.exports = {
     {
       options: {
         dataset: process.env.GATSBY_SANITY_DATASET,
-        overlayDrafts: false,
+        overlayDrafts: !isProd,
         projectId: process.env.GATSBY_SANITY_PROJECT_ID,
         token: process.env.SANITY_READ_TOKEN,
         watchMode: !isProd,
@@ -33,13 +33,6 @@ module.exports = {
       options: {
         name: `posts`,
         path: `${__dirname}/content/posts`,
-      },
-      resolve: `gatsby-source-filesystem`,
-    },
-    {
-      options: {
-        name: `pages`,
-        path: `${__dirname}/content/pages`,
       },
       resolve: `gatsby-source-filesystem`,
     },

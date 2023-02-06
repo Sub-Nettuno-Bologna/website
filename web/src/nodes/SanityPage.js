@@ -15,30 +15,21 @@ const Figure = styled.figure`
 
 const urlFor = (source) =>
   urlBuilder({
-    projectId: process.env.GATSBY_SANITY_PROJECT_ID,
     dataset: 'production',
+    projectId: process.env.GATSBY_SANITY_PROJECT_ID,
   }).image(source);
 
 const serializers = {
-  types: {
-    block: (props) => {
-      return BlockContent.defaultSerializers.types.block(props);
-    },
-    image: (props) => BlockContent.defaultSerializers.types.image(props),
-    figure: (props) => {
-      return (
-        <Figure>
-          <img
-            src={urlFor(props.node.asset).width(780).url()}
-            alt={props.node.alt}
-          />
-          {props.node.caption && <figcaption>{props.node.caption}</figcaption>}
-        </Figure>
-      );
-    },
-  },
-  span: (props) => BlockContent.defaultSerializers.span(props),
   marks: {
+    internalLink: ({ mark, children }) => {
+      const { slug = {} } = mark;
+      const href = `/${slug.current}`;
+      return <Link to={href}>{children}</Link>;
+    },
+    internalOldLink: ({ mark, children }) => {
+      const { href = {} } = mark;
+      return <Link to={href}>{children}</Link>;
+    },
     link: ({ mark, children }) => {
       const { blank, href } = mark;
       return blank ? (
@@ -54,15 +45,24 @@ const serializers = {
         <a href={href}>{children}</a>
       );
     },
-    internalLink: ({ mark, children }) => {
-      const { slug = {} } = mark;
-      const href = `/${slug.current}`;
-      return <Link to={href}>{children}</Link>;
+  },
+  span: (props) => BlockContent.defaultSerializers.span(props),
+  types: {
+    block: (props) => {
+      return BlockContent.defaultSerializers.types.block(props);
     },
-    internalOldLink: ({ mark, children }) => {
-      const { href = {} } = mark;
-      return <Link to={href}>{children}</Link>;
+    figure: (props) => {
+      return (
+        <Figure>
+          <img
+            src={urlFor(props.node.asset).width(780).url()}
+            alt={props.node.alt}
+          />
+          {props.node.caption && <figcaption>{props.node.caption}</figcaption>}
+        </Figure>
+      );
     },
+    image: (props) => BlockContent.defaultSerializers.types.image(props),
   },
   unknownType: (props) => {
     console.log('unknownType', props);

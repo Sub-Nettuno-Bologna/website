@@ -10,8 +10,8 @@ const Address = styled.address`
 const DoveSiamo = () => (
   <Layout title="Dove siamo">
     <p>
-      Il club ha la sede presso la piscina Carmen Longo, all'interno del
-      complesso dello Stadio Comunale Dall'Ara di Bologna
+      Il club ha la sede presso la piscina Carmen Longo, all&apos;interno del
+      complesso dello Stadio Comunale Dall&apos;Ara di Bologna
     </p>
     <Address>
       Via Costa Andrea, 174
@@ -19,8 +19,8 @@ const DoveSiamo = () => (
       40134 Bologna (BO)
     </Address>
     <p>
-      Per accedere alla piscina usare l'ingresso pedonale che si trova in via
-      dello Sport 6
+      Per accedere alla piscina usare l&apos;ingresso pedonale che si trova in
+      via dello Sport 6
     </p>
     <iframe
       title="map"

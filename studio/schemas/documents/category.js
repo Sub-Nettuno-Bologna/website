@@ -1,20 +1,20 @@
 import { FiTag } from 'react-icons/fi';
 
 export default {
-  name: 'category',
-  type: 'document',
-  title: 'Category',
-  icon: FiTag,
   fields: [
     {
       name: 'title',
-      type: 'string',
       title: 'Title',
+      type: 'string',
     },
     {
       name: 'description',
-      type: 'text',
       title: 'Description',
+      type: 'text',
     },
   ],
+  icon: FiTag,
+  name: 'category',
+  title: 'Category',
+  type: 'document',
 };

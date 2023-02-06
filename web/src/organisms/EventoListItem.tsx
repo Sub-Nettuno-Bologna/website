@@ -1,5 +1,4 @@
 import React from 'react';
-import styled from 'styled-components';
 
 import { Article } from 'atoms/Article';
 import Lightbox from 'atoms/Lightbox';
@@ -12,8 +11,6 @@ import { Group } from '@mantine/core';
 import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 
 const EventoListItem = ({ post }) => {
-  console.log(post);
-
   return (
     <Article>
       <PostHeader title={post.title} date={post.date} />
@@ -31,7 +28,7 @@ const EventoListItem = ({ post }) => {
             <Group position="center">
               <GatsbyImage
                 image={getImage(post.locandina.asset)}
-                style={{ width: '100%', maxHeight: '600px' }}
+                style={{ maxHeight: '600px', width: '100%' }}
                 objectFit="contain"
                 alt={'title'}
               />
@@ -40,7 +37,7 @@ const EventoListItem = ({ post }) => {
         >
           <GatsbyImage
             image={getImage(post.locandina.asset)}
-            style={{ width: '100%', maxHeight: '70vh' }}
+            style={{ maxHeight: '70vh', width: '100%' }}
             objectFit="contain"
             alt={'title'}
           />

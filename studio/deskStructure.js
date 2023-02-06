@@ -34,6 +34,10 @@ export default (S) =>
                   .params({ id }) // use the id in the filter to return sampleProjects that has a reference to the category
             )
         ),
+      /*  S.listItem()
+        .title('All Pagine')
+        .icon(FiFileText)
+        .child(S.documentTypeList('pagina').title('Pagine ')), */
       // This returns an array of all the document types
       // defined in schema.js. We filter out those that we have
       // defined the structure above
