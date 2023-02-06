@@ -36,7 +36,7 @@ query PageQuery {
 exports.onCreateNode = ({ node, actions, getNode }) => {
   const { createNodeField } = actions;
   if (node.internal.type === `MarkdownRemark`) {
-    const value = createFilePath({ node, getNode });
+    const value = createFilePath({ getNode, node });
     createNodeField({
       name: `slug`,
       node,
@@ -45,8 +45,8 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
 
     const fileNode = getNode(node.parent);
     createNodeField({
-      node,
       name: 'sourceInstanceName',
+      node,
       value: fileNode.sourceInstanceName,
     });
   }
@@ -56,12 +56,12 @@ function mkSanityPages(list, component, createPage) {
   for (const page of list) {
     console.log(`Creating page: ${page.slug.current}`);
     createPage({
-      path: page.slug.current,
       component,
       context: {
         id: page.id,
         slug: page.slug.current,
       },
+      path: page.slug.current,
     });
   }
 }
@@ -100,7 +100,6 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
 
   posts.data.markdown.nodes.forEach((node) => {
     createPage({
-      path: node.fields.slug,
       component:
         node.fields.sourceInstanceName === 'posts'
           ? postTemplate
@@ -108,16 +107,17 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
       context: {
         id: node.id,
       },
+      path: node.fields.slug,
     });
   });
 
   posts.data.sanity.nodes.forEach((node) => {
     createPage({
-      path: `/${node.slug.current}`,
       component: postTemplate,
       context: {
         id: node.id,
       },
+      path: `/${node.slug.current}`,
     });
   });
 
