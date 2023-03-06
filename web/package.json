@@ -38,7 +38,7 @@
     "react-responsive-carousel": "^3.2.23",
     "slugify": "^1.6.5",
     "storage-factory": "^0.2.0",
-    "styled-components": "^5.3.6"
+    "styled-components": "^5.3.8"
   },
   "devDependencies": {
     "prettier": "^2.8.4",
