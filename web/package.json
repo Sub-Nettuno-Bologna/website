@@ -15,7 +15,7 @@
     "dotenv": "^16.0.3",
     "gatsby": "^5.7.0",
     "gatsby-plugin-catch-links": "^5.8.0",
-    "gatsby-plugin-image": "^3.7.0",
+    "gatsby-plugin-image": "^3.8.0",
     "gatsby-plugin-manifest": "^5.8.0",
     "gatsby-plugin-mantine": "^5.0.0",
     "gatsby-plugin-offline": "^6.8.0",
