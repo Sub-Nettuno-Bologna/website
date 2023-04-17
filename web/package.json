@@ -7,7 +7,7 @@
   "dependencies": {
     "@emotion/react": "^11.10.6",
     "@mantine/core": "^6.0.7",
-    "@mantine/hooks": "^6.0.6",
+    "@mantine/hooks": "^6.0.7",
     "@sanity/block-content-to-react": "^3.0.0",
     "@sanity/image-url": "^1.0.2",
     "@types/styled-components": "^5.1.26",
