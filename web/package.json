@@ -41,7 +41,7 @@
     "styled-components": "^5.3.10"
   },
   "devDependencies": {
-    "prettier": "^2.8.7",
+    "prettier": "^2.8.8",
     "react-is": "^18.2.0"
   },
   "scripts": {
