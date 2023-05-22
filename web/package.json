@@ -14,7 +14,7 @@
     "babel-plugin-styled-components": "^2.1.3",
     "dotenv": "^16.0.3",
     "gatsby": "^5.10.0",
-    "gatsby-plugin-catch-links": "^5.9.0",
+    "gatsby-plugin-catch-links": "^5.10.0",
     "gatsby-plugin-image": "^3.10.0",
     "gatsby-plugin-manifest": "^5.10.0",
     "gatsby-plugin-mantine": "^5.0.0",
