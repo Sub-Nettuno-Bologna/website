@@ -32,6 +32,12 @@ export default {
       title: 'Staff attivo?',
       type: 'boolean',
     },
+    {
+      initialValue: false,
+      name: 'council',
+      title: 'Membro del consiglio?',
+      type: 'boolean',
+    },
   ],
   icon: FiUsers,
   name: 'person',
