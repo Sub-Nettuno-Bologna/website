@@ -10,6 +10,7 @@ const headerQuery = graphql`
       headerImages {
         asset {
           gatsbyImageData(placeholder: DOMINANT_COLOR, layout: FULL_WIDTH)
+          _id
         }
       }
     }
@@ -32,13 +33,16 @@ const HeaderImage = ({ postImage }) => {
 
   return (
     <Carousel showStatus={false} dynamicHeight>
-      {images.map((image) => (
-        <GatsbyImage
-          image={image.gatsbyImageData}
-          style={{ height: '500px' }}
-          alt="Fotografia del post"
-        />
-      ))}
+      {images.map((image) => {
+        return (
+          <GatsbyImage
+            key={image._id}
+            image={image.gatsbyImageData}
+            style={{ height: '500px' }}
+            alt="Fotografia del post"
+          />
+        );
+      })}
     </Carousel>
   );
 };
