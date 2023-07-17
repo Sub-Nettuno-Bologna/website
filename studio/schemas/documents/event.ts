@@ -2,10 +2,6 @@ import { FiSun } from 'react-icons/fi';
 import format from 'date-fns/format';
 
 export default {
-  name: 'event',
-  title: 'Evento',
-  type: 'document',
-  icon: FiSun,
   fields: [
     {
       name: 'title',
@@ -20,15 +16,15 @@ export default {
       validation: Rule => Rule.required(),
     },
     {
+      description: "Per costruire l'indirizzo della pagina",
       name: 'slug',
+      options: {
+        maxLength: 96,
+        source: doc => `${format(new Date(doc.date), 'yyyy-MM')}-${doc.title} `,
+      },
       title: 'Slug',
       type: 'slug',
       validation: Rule => Rule.required(),
-      description: "Per costruire l'indirizzo della pagina",
-      options: {
-        source: doc => `${format(new Date(doc.date), 'yyyy-MM')}-${doc.title} `,
-        maxLength: 96,
-      },
     },
     {
       name: 'body',
@@ -37,34 +33,38 @@ export default {
     },
     {
       name: 'locandina',
-      type: 'figure',
       title: 'Locandina',
+      type: 'figure',
+    },
+  ],
+  icon: FiSun,
+  name: 'event',
+  orderings: [
+    {
+      by: [{ direction: 'desc', field: ' v' }],
+      name: 'dateDesc',
+      title: 'Data',
+    },
+    {
+      by: [{ direction: 'asc', field: 'date' }],
+      name: 'dateAsc',
+      title: 'Data - più vecchi',
     },
   ],
   preview: {
-    select: {
-      title: 'title',
-      date: 'date',
-      media: 'locandina',
-    },
     prepare({ title = 'Ancora nessun titolo', date, media }) {
       return {
-        title,
-        subtitle: date,
         media,
+        subtitle: date,
+        title,
       };
     },
+    select: {
+      date: 'date',
+      media: 'locandina',
+      title: 'title',
+    },
   },
-  orderings: [
-    {
-      title: 'Data',
-      name: 'dateDesc',
-      by: [{ field: ' v', direction: 'desc' }],
-    },
-    {
-      title: 'Data - più vecchi',
-      name: 'dateAsc',
-      by: [{ field: 'date', direction: 'asc' }],
-    },
-  ],
+  title: 'Evento',
+  type: 'document',
 };

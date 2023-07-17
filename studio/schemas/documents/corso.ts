@@ -55,6 +55,7 @@ export default {
   preview: {
     prepare({ title = 'No title', slug = {} }) {
       return {
+        //@ts-expect-error
         subtitle: `/${slug.current}`,
         title,
       };

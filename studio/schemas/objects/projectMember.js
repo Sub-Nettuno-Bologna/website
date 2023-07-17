@@ -1,42 +1,42 @@
 export default {
-  type: 'object',
-  name: 'projectMember',
-  title: 'Project Member',
   fields: [
     {
-      title: 'Person',
       name: 'person',
+      title: 'Person',
+      to: { type: 'person' },
       type: 'reference',
-      to: {type: 'person'}
     },
     {
-      title: 'Roles',
       name: 'roles',
-      type: 'array',
-      of: [{type: 'string'}],
+      of: [{ type: 'string' }],
       options: {
         layout: 'radio',
         list: [
-          {title: 'Designer', value: 'designer'},
-          {title: 'Developer', value: 'developer'},
-          {title: 'Editor', value: 'editor'},
-          {title: 'Manager', value: 'manager'}
-        ]
-      }
-    }
-  ],
-  preview: {
-    select: {
-      personName: 'person.name',
-      roles: 'roles',
-      media: 'person.image'
+          { title: 'Designer', value: 'designer' },
+          { title: 'Developer', value: 'developer' },
+          { title: 'Editor', value: 'editor' },
+          { title: 'Manager', value: 'manager' },
+        ],
+      },
+      title: 'Roles',
+      type: 'array',
     },
-    prepare (data) {
+  ],
+  name: 'projectMember',
+  preview: {
+    prepare(data) {
       return {
         ...data,
+        subtitle: data.roles && data.roles.join('/'),
         title: data.personName,
-        subtitle: data.roles && data.roles.join('/')
-      }
-    }
-  }
-}
+      };
+    },
+    select: {
+      media: 'person.image',
+      personName: 'person.name',
+      roles: 'roles',
+    },
+  },
+  title: 'Project Member',
+  type: 'object',
+};

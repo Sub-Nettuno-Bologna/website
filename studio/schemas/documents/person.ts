@@ -1,24 +1,20 @@
 import { FiUsers } from 'react-icons/fi';
 
 export default {
-  name: 'person',
-  type: 'document',
-  title: 'Person',
-  icon: FiUsers,
   fields: [
     {
       name: 'name',
-      type: 'string',
       title: 'Name',
+      type: 'string',
     },
     {
       name: 'brevetto',
+      options: {
+        layout: 'dropdown',
+        list: ['M1', 'M2', 'M3', 'PAiAr'],
+      },
       title: 'Brevetto',
       type: 'string',
-      options: {
-        list: ['M1', 'M2', 'M3', 'PAiAr'],
-        layout: 'dropdown',
-      },
     },
     {
       name: 'bio',
@@ -31,16 +27,20 @@ export default {
       type: 'figure',
     },
     {
-      title: 'Staff attivo?',
-      name: 'active',
-      type: 'boolean',
       initialValue: true,
+      name: 'active',
+      title: 'Staff attivo?',
+      type: 'boolean',
     },
   ],
+  icon: FiUsers,
+  name: 'person',
   preview: {
     select: {
-      title: 'name',
       media: 'image',
+      title: 'name',
     },
   },
+  title: 'Person',
+  type: 'document',
 };

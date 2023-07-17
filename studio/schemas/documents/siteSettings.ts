@@ -1,44 +1,44 @@
 import { FiSettings } from 'react-icons/fi';
 
 export default {
-  name: 'siteSettings',
-  type: 'document',
-  title: 'Site Settings',
-  icon: FiSettings,
   fields: [
     {
       name: 'title',
-      type: 'string',
       title: 'Titolo',
+      type: 'string',
     },
     {
       name: 'subtitle',
-      type: 'string',
       title: 'Sottotitolo',
+      type: 'string',
     },
     {
-      name: 'description',
-      type: 'text',
-      title: 'Description',
       description: 'Descrizione per il SEO',
+      name: 'description',
+      title: 'Description',
+      type: 'text',
     },
     {
       name: 'headerImages',
-      type: 'array',
-      title: 'Headers',
       of: [
         {
           name: 'image',
-          type: 'image',
-          title: 'Image',
           options: {
             hotspot: true,
           },
+          title: 'Image',
+          type: 'image',
         },
       ],
       options: {
         layout: 'grid',
       },
+      title: 'Headers',
+      type: 'array',
     },
   ],
+  icon: FiSettings,
+  name: 'siteSettings',
+  title: 'Site Settings',
+  type: 'document',
 };
