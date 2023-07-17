@@ -13,7 +13,7 @@
     "@trivago/prettier-plugin-sort-imports": "^4.1.1",
     "@typescript-eslint/eslint-plugin": "^6.0.0",
     "@typescript-eslint/parser": "^6.0.0",
-    "eslint": "^8.45.0",
+    "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-prettier": "^5.0.0",
     "eslint-plugin-sort-keys-fix": "^1.1.2",
@@ -21,8 +21,11 @@
     "lerna": "^7.1.4",
     "lint-staged": "^13.2.3",
     "nx": "^16.5.2",
-        "prettier": "^3.0.0",
+    "prettier": "^3.0.0",
     "react-is": "^18.2.0"
   },
-  "workspaces": ["web", "studio"]
+  "workspaces": [
+    "web",
+    "studio"
+  ]
 }
