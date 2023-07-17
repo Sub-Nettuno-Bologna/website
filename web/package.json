@@ -49,7 +49,6 @@
     "dev": "gatsby develop",
     "serve": "gatsby serve",
     "start": "npm run develop",
-    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1",
     "watch": "gatsby develop"
   }
 }
