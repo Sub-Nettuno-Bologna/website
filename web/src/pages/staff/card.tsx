@@ -13,7 +13,7 @@ const PersonCard: FC<{ data: Person }> = ({ data }) => {
       <Card.Section>
         <Image
           src={
-            ['Sonia Scanu', 'Francesca Marziano'].includes(data.name)
+            ['Sonia Scanu', 'Francesca Marziano'].includes(data?.name)
               ? placeholderFemale
               : placeholderMale
           }

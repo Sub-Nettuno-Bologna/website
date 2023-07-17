@@ -32,7 +32,7 @@ const HeaderImage = ({ postImage }) => {
   }
 
   return (
-    <Carousel showStatus={false} dynamicHeight>
+    <Carousel showStatus={false} dynamicHeight showThumbs={false}>
       {images.map((image) => {
         return (
           <GatsbyImage
