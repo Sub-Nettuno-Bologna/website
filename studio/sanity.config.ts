@@ -16,7 +16,8 @@ export default defineConfig({
     actions: (prev, { schemaType }) => {
       if (schemaType === 'settings') {
         return prev.filter(
-          ({ action }) => !['unpublish', 'delete', 'duplicate'].includes(action)
+          ({ action }) =>
+            !['unpublish', 'delete', 'duplicate'].includes(action || '')
         );
       }
       return prev;

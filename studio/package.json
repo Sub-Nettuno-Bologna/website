@@ -7,7 +7,6 @@
     "start": "sanity dev",
     "build": "sanity build",
     "graphql-deploy": "sanity graphql deploy",
-    "test": "sanity check",
     "watch": "sanity dev"
   },
   "dependencies": {
@@ -16,6 +15,7 @@
     "@sanity/dashboard": "^3.1.4",
     "@sanity/structure": "^2.36.1",
     "date-fns": "^2.30.0",
+    "dotenv": "^16.3.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.10.1",
