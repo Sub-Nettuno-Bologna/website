@@ -40,10 +40,6 @@
     "storage-factory": "^0.2.1",
     "styled-components": "^5.3.11"
   },
-  "devDependencies": {
-    "prettier": "^3.0.0",
-    "react-is": "^18.2.0"
-  },
   "scripts": {
     "gen:logbook-didattica": "npx logbook-templates -l --empty --template=didattica --dest=static/scheda-vuota-nettuno-didattica.pdf",
     "gen:logbook-base": "npx logbook-templates -l --empty --template=base --dest=static/scheda-vuota-nettuno-base.pdf",

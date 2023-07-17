@@ -23,4 +23,4 @@ jobs:
           path: '**/node_modules'
           key: ${{ steps.nvm.outputs.nvmrc }}-${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
       - run: npm ci
-      - run: npm run build
+      - run: npm run build -ws

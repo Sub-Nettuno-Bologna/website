@@ -3,7 +3,7 @@ const activeEnv =
 
 console.log(`Using environment config: '${activeEnv}'`);
 
-require('dotenv').config();
+require('dotenv').config({ path: '../.env' });
 
 const isProd = activeEnv === 'production';
 

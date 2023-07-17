@@ -3,15 +3,10 @@
   "name": "subnettuno.it",
   "version": "0.0.0",
   "scripts": {
-    "build-studio": "lerna bootstrap && (cd studio && npm run build)",
-    "build-web": "lerna bootstrap && (cd studio && SANITY_AUTH_TOKEN=$SANITY_DEPLOY_STUDIO_TOKEN npm run graphql-deploy) && (cd web && npm run build)",
-    "build": "lerna run build --parallel",
-    "dev": "lerna run dev --parallel",
-    "graphql-deploy": "lerna run graphql-deploy",
+    "build-studio": "npm run build -w studio",
+    "build-web": "SANITY_AUTH_TOKEN=$SANITY_DEPLOY_STUDIO_TOKEN npm run graphql-deploy -w studio && npm run build -w web",
     "lint": "eslint .",
-    "postinstall": "lerna bootstrap",
     "release": "lerna version",
-    "test": "echo \"Error: no test specified\" && exit 1",
     "prepare": "husky install"
   },
   "devDependencies": {
@@ -27,6 +22,9 @@
     "husky": "^8.0.3",
     "lerna": "^6.5.1",
     "lint-staged": "^13.2.0",
-    "nx": "^15.8.7"
-  }
+    "nx": "^15.8.7",
+        "prettier": "^3.0.0",
+    "react-is": "^18.2.0"
+  },
+  "workspaces": ["web", "studio"]
 }
