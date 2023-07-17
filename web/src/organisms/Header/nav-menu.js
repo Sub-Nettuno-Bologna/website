@@ -1,7 +1,7 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 import { useStaticQuery, graphql, Link } from 'gatsby';
-import { columnCss } from 'atoms/Grid';
+import { columnCss } from 'atoms/grid';
 import { fromMedium } from 'mediaqueries';
 import { createStyles, Menu } from '@mantine/core';
 

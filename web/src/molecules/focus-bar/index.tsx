@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { fromMedium } from 'mediaqueries';
 
-import { columnCss } from 'atoms/Grid';
+import { columnCss } from 'atoms/grid';
 
 import prove from './prove-in-piscina.jpg';
 import eventi from './eventi.jpg';

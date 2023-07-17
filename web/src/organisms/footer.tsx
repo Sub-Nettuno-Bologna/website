@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { fromMedium } from 'mediaqueries';
-import { columnCss } from 'atoms/Grid';
+import { columnCss } from 'atoms/grid';
 
 import { FacebookLink, InstagramLink } from 'atoms/Social';
 

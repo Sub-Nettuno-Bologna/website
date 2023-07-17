@@ -10,7 +10,7 @@ import styled, { ThemeProvider } from 'styled-components';
 import Header from 'organisms/Header';
 import Sidebar from 'organisms/Sidebar';
 import PostHeader from 'molecules/Post/Header';
-import CookieBar from 'molecules/CookieBar';
+import CookieBar from 'molecules/cookie-bar';
 import Seo from 'atoms/SEO';
 import GlobalStyle from 'atoms/GlobalStyle';
 

@@ -5,7 +5,7 @@
  * See: https://www.gatsbyjs.org/docs/use-static-query/
  */
 
-import React from 'react';
+import React, { FC } from 'react';
 import Helmet from 'react-helmet';
 import { useStaticQuery, graphql } from 'gatsby';
 
@@ -17,7 +17,13 @@ const seoQuery = graphql`
     }
   }
 `;
-function SEO({ description, lang, title, image, article }) {
+const SEO: FC<{
+  description?: string;
+  lang?: string;
+  title?: string;
+  image?: string;
+  article?: string;
+}> = ({ description, lang = 'it', title, image, article }) => {
   const { site } = useStaticQuery(seoQuery);
 
   const metaTitle = title || site?.title;
@@ -45,11 +51,6 @@ function SEO({ description, lang, title, image, article }) {
       {image && <meta name="twitter:image" content={image} />}
     </Helmet>
   );
-}
-
-SEO.defaultProps = {
-  lang: `en`,
-  description: ``,
 };
 
 export default SEO;

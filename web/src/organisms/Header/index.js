@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { StaticImage } from 'gatsby-plugin-image';
 import { Link, useStaticQuery, graphql } from 'gatsby';
-import { columnCss } from 'atoms/Grid';
+import { columnCss } from 'atoms/grid';
 import ConditionalWrapper from 'atoms/ConditionalWrapper';
 import { fromMedium, fromLarge } from 'mediaqueries';
 import { FacebookLink, InstagramLink } from 'atoms/Social';
