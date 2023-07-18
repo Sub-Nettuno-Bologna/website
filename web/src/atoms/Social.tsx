@@ -1,7 +1,11 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { FaInstagram, FaFacebookSquare } from 'react-icons/fa';
 
-export const FacebookLink = ({ color, ...props }) => (
+type Props = {
+  color?: string;
+};
+
+export const FacebookLink: FC<Props> = ({ color, ...props }) => (
   <a
     href="https://www.facebook.com/clubsubnettuno"
     target="_blank"
@@ -12,7 +16,7 @@ export const FacebookLink = ({ color, ...props }) => (
   </a>
 );
 
-export const InstagramLink = ({ color, ...props }) => (
+export const InstagramLink: FC<Props> = ({ color, ...props }) => (
   <a
     href="https://www.instagram.com/clubsubnettuno/"
     target="_blank"

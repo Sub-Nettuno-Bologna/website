@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 import styled from 'styled-components';
 import { StaticImage } from 'gatsby-plugin-image';
 import { Link, useStaticQuery, graphql } from 'gatsby';
@@ -9,6 +9,8 @@ import { FacebookLink, InstagramLink } from 'atoms/Social';
 import theme from 'theme';
 import Menu from './nav-menu';
 import HeaderImage from './header-image';
+import { Group, Text } from '@mantine/core';
+import { ImageSharp, Maybe } from 'types';
 
 const Wrapper = styled.header`
   margin: 10px 0 20px 0;
@@ -30,6 +32,10 @@ const MainHeader = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
+
+    .social {
+      order: -1;
+    }
   }
 `;
 
@@ -101,25 +107,6 @@ const LogoWrapper = styled.div`
     }
   }
 `;
-const SocialWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 20px;
-  flex-wrap: wrap;
-
-  > * {
-    margin-right: 10px;
-  }
-
-  @media ${fromMedium} {
-    .label {
-      width: 100%;
-      margin-bottom: 10px;
-    }
-    justify-content: flex-start;
-  }
-`;
 
 const headerQuery = graphql`
   query SiteTitleQuery {
@@ -130,18 +117,16 @@ const headerQuery = graphql`
   }
 `;
 
-const Header = ({ preventLinkHome, image, showHeaderImage = true }) => {
+const Header: FC<{
+  preventLinkHome: boolean;
+  image: Maybe<ImageSharp>;
+  showHeaderImage?: boolean;
+}> = ({ preventLinkHome, image, showHeaderImage = true }) => {
   const { site } = useStaticQuery(headerQuery);
 
   return (
     <Wrapper>
       <MainHeader>
-        <SocialWrapper>
-          <div className="label">Seguici su</div>
-          <FacebookLink color={theme.blue} />
-          <InstagramLink color={theme.blue} />
-        </SocialWrapper>
-
         <LogoWrapper>
           <ConditionalWrapper
             condition={!preventLinkHome}
@@ -151,7 +136,7 @@ const Header = ({ preventLinkHome, image, showHeaderImage = true }) => {
               src="./logo-simple.png"
               alt="Logo del Club Sub Nettuno"
               loading="eager"
-              placeholder="#fff"
+              placeholder="none"
             />
             <h1>{site?.title}</h1>
           </ConditionalWrapper>
@@ -168,7 +153,7 @@ const Header = ({ preventLinkHome, image, showHeaderImage = true }) => {
               src="./fipsaslogo.png"
               alt="FIPSAS logo"
               loading="eager"
-              placeholder="#fff"
+              placeholder="none"
               width={120}
             />
           </a>
@@ -181,20 +166,26 @@ const Header = ({ preventLinkHome, image, showHeaderImage = true }) => {
               src="./cmas.png"
               alt="CMAS logo"
               loading="eager"
-              placeholder="#fff"
+              placeholder="none"
               width={120}
             />
           </a>
         </FederationWrapper>
+
+        <div className="social">
+          <Text mb="xs" fz="md">
+            Seguici su
+          </Text>
+          <Group spacing="xl">
+            <FacebookLink color={theme.blue} />
+            <InstagramLink color={theme.blue} />
+          </Group>
+        </div>
       </MainHeader>
       <Menu />
       {showHeaderImage && <HeaderImage postImage={image} />}
     </Wrapper>
   );
-};
-
-Header.defaultProps = {
-  title: ``,
 };
 
 export default Header;

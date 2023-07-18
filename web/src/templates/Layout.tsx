@@ -8,7 +8,6 @@
 import React, { FC, ReactNode } from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 import Header from 'organisms/Header';
-import Sidebar from 'organisms/Sidebar';
 import PostHeader from 'molecules/Post/Header';
 import CookieBar from 'molecules/cookie-bar';
 import Seo from 'atoms/seo';
@@ -39,7 +38,6 @@ const Layout: FC<{
   postHeader?: any;
   preventLinkHome?: boolean;
   showHeaderImage?: boolean;
-  showSidebar?: boolean;
   title?: string;
   topContent?: ReactNode;
 }> = ({
@@ -50,7 +48,6 @@ const Layout: FC<{
   postHeader,
   preventLinkHome,
   showHeaderImage,
-  showSidebar = true,
   title,
 }) => {
   const ContentElement = isArticle ? 'article' : 'section';
@@ -68,7 +65,6 @@ const Layout: FC<{
         <Main className="column">
           {topContent}
           <Inner>
-            {showSidebar && <Sidebar />}
             <ContentElement className="content">
               {title && <PostHeader title={title} date={date} />}
               {children}

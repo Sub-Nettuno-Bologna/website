@@ -6,7 +6,7 @@ import EventoListItem from 'organisms/EventoListItem';
 const EventiPage = ({ data: { sanity } }) => {
   const posts = sanity.nodes;
   return (
-    <Layout showHeaderImage={false} showSidebar={false}>
+    <Layout showHeaderImage={false}>
       <div>
         {posts.map((node) => (
           <EventoListItem key={node.id} post={node} />

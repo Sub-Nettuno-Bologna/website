@@ -3,7 +3,7 @@ import { GatsbyImage } from 'gatsby-plugin-image';
 import { useStaticQuery, graphql } from 'gatsby';
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css'; // requires a loader
-import { Maybe } from 'types';
+import { ImageSharp, Maybe } from 'types';
 import { Box } from '@mantine/core';
 
 const headerQuery = graphql`
@@ -18,12 +18,6 @@ const headerQuery = graphql`
     }
   }
 `;
-
-type ImageSharp = {
-  childImageSharp: {
-    gatsbyImageData: any;
-  };
-};
 
 const HeaderImage: FC<{ postImage: Maybe<ImageSharp> }> = ({ postImage }) => {
   const { site } = useStaticQuery(headerQuery);
