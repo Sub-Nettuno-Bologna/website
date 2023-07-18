@@ -8,7 +8,13 @@ const Contattaci: FC = () => (
     <Helmet>
       <meta name="referrer" content="origin" />
     </Helmet>
-    <form data-netlify="true" method="POST" name="contact-form">
+    <form
+      data-netlify="true"
+      method="POST"
+      name="contact-form"
+      action="/contattaci-ok"
+    >
+      <input type="hidden" name="form-name" value="contact-form" />
       <TextInput
         mt="md"
         label="Il tuo nome"
@@ -30,7 +36,6 @@ const Contattaci: FC = () => (
         aria-required={true}
         required={true}
       />
-
       <TextInput
         mt="md"
         label="Il tuo cellulare (dove possibile ti contatteremo su WhatsApp)"
@@ -39,7 +44,6 @@ const Contattaci: FC = () => (
         type="tel"
         name="cell"
       />
-
       <Textarea
         mt="md"
         label="Il tuo messaggio"
