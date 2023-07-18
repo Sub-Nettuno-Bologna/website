@@ -8,6 +8,9 @@ import placeholderMale from './placeholder-male.png';
 import { Person } from '.';
 
 const PersonCard: FC<{ data: Person }> = ({ data }) => {
+  if (!data) {
+    return null;
+  }
   return (
     <Card shadow="none" radius="md">
       <Card.Section>
