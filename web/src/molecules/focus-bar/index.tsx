@@ -2,28 +2,19 @@ import React from 'react';
 import styled from 'styled-components';
 import { fromMedium } from 'mediaqueries';
 
-import { columnCss } from 'atoms/grid';
+import { Column } from 'atoms/grid';
 
 import prove from './prove-in-piscina.jpg';
 import eventi from './eventi.jpg';
 import { Link } from 'gatsby';
+import { Box, MediaQuery, Title } from '@mantine/core';
 
-const Bar = styled.div`
-  margin-top: -20px;
-  margin-bottom: 50px;
-  .inner {
-    ${columnCss}
-  }
+const Inner = styled(Column)`
+  display: flex;
+  justify-content: center;
 `;
 
-const Inner = styled.div`
-  @media ${fromMedium} {
-    display: flex;
-    justify-content: center;
-  }
-`;
-
-const Box = styled(Link)<{ background?: string }>`
+const BoxInner = styled(Link)<{ background?: string }>`
   height: 200px;
   background: blue;
   text-align: center;
@@ -53,16 +44,18 @@ const Box = styled(Link)<{ background?: string }>`
 
 const FocusBar = () => {
   return (
-    <Bar>
-      <Inner className="column">
-        <Box background={prove} to="/prove-gratuite-in-piscina">
-          <h3>Prove gratuite</h3>
-        </Box>
-        <Box to="/eventi" background={eventi}>
-          <h3>Eventi</h3>
-        </Box>
-      </Inner>
-    </Bar>
+    <MediaQuery smallerThan="md" styles={{ display: 'none' }}>
+      <Box mb="xl">
+        <Inner>
+          <BoxInner to="/prove-gratuite-in-piscina" background={prove}>
+            <Title order={3}>Prove gratuite</Title>
+          </BoxInner>
+          <BoxInner to="/eventi" background={eventi}>
+            <Title order={3}>Eventi</Title>
+          </BoxInner>
+        </Inner>
+      </Box>
+    </MediaQuery>
   );
 };
 
