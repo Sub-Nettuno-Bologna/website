@@ -8,11 +8,7 @@ const Contattaci: FC = () => (
     <Helmet>
       <meta name="referrer" content="origin" />
     </Helmet>
-    <form
-      action={`https://formspree.io/f/${process.env.GATSBY_CONTACT_EMAIL}`}
-      method="POST"
-    >
-      <input type="hidden" name="_subject" value="Nuovo messaggio" />
+    <form data-netlify="true" method="POST" name="contact-form">
       <TextInput
         mt="md"
         label="Il tuo nome"
