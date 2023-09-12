@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import BlockContent from '@sanity/block-content-to-react';
+import { PortableText } from '@portabletext/react';
 
 import { Card, Group, Image, Text } from '@mantine/core';
 
@@ -32,7 +32,7 @@ const PersonCard: FC<{ data: Person }> = ({ data }) => {
 
       {data.bio && (
         <Text size="sm" color="dimmed">
-          <BlockContent blocks={data.bio} />
+          <PortableText value={data.bio as any} />
         </Text>
       )}
     </Card>
