@@ -3,7 +3,7 @@ import { Link } from 'gatsby';
 import { storageFactory } from 'hacks/storage-factory';
 
 import { Column } from 'atoms/grid';
-import { Button, Drawer, Group, Text } from '@mantine/core';
+import { Drawer, Group, Text } from '@mantine/core';
 
 const local = storageFactory(() => localStorage);
 const ACK_KEY = 'cookie-acknowledge-142';
@@ -45,7 +45,12 @@ const CookieBar = () => {
             negare il tuo consenso.{' '}
           </Text>
           <Group spacing="xl">
-            <Button onClick={() => setAccepted('true')}>Nessun problema</Button>{' '}
+            <button
+              className="bg-blue-700 text-gray-50 p-2 rounded-lg"
+              onClick={() => setAccepted('true')}
+            >
+              Nessun problema
+            </button>{' '}
             <Link to="/privacy-policy">Ulteriori informazioni</Link>
           </Group>
         </Group>

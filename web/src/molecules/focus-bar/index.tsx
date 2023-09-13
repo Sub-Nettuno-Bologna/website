@@ -9,11 +9,6 @@ import eventi from './eventi.jpg';
 import { Link } from 'gatsby';
 import { Box, MediaQuery, Title } from '@mantine/core';
 
-const Inner = styled(Column)`
-  display: flex;
-  justify-content: center;
-`;
-
 const BoxInner = styled(Link)<{ background?: string }>`
   height: 200px;
   background: blue;
@@ -46,14 +41,14 @@ const FocusBar = () => {
   return (
     <MediaQuery smallerThan="md" styles={{ display: 'none' }}>
       <Box mb="xl">
-        <Inner>
+        <Column className="flex justify-center">
           <BoxInner to="/prove-gratuite-in-piscina" background={prove}>
             <Title order={3}>Prove gratuite</Title>
           </BoxInner>
           <BoxInner to="/eventi" background={eventi}>
             <Title order={3}>Eventi</Title>
           </BoxInner>
-        </Inner>
+        </Column>
       </Box>
     </MediaQuery>
   );

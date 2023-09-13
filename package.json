@@ -27,5 +27,8 @@
   "workspaces": [
     "web",
     "studio"
-  ]
+  ],
+  "dependencies": {
+    "prettier-plugin-tailwindcss": "^0.5.4"
+  }
 }

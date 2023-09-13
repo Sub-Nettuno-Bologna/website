@@ -1,4 +1,4 @@
-import { Box, Button, TextInput, Textarea } from '@mantine/core';
+import { TextInput, Textarea } from '@mantine/core';
 import React, { FC } from 'react';
 import { Helmet } from 'react-helmet';
 import Layout from 'templates/Layout';
@@ -52,10 +52,15 @@ const Contattaci: FC = () => (
         name="messaggio"
         size="md"
       />
-      <Box mt="md">
-        <Button type="submit">Invia</Button>
-      </Box>
-      <p>
+      <div className="my-4">
+        <button
+          className="bg-blue-700 text-gray-50 p-2 rounded-md"
+          type="submit"
+        >
+          Invia
+        </button>
+      </div>
+      <p className="text-xs">
         I dati inseriti saranno utilizzati e trattati nel rispetto del
         regolamento UE2016/679.
       </p>

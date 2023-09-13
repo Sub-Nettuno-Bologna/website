@@ -11,11 +11,9 @@ import Header from 'organisms/Header';
 import PostHeader from 'molecules/Post/Header';
 import CookieBar from 'molecules/cookie-bar';
 import Seo from 'atoms/seo';
-import GlobalStyle from 'atoms/GlobalStyle';
 
 import theme from 'theme';
 import { fromMedium } from 'mediaqueries';
-import './layout.css';
 import Footer from 'organisms/footer';
 
 const Main = styled.main`
@@ -55,14 +53,13 @@ const Layout: FC<{
   return (
     <ThemeProvider theme={theme}>
       <>
-        <GlobalStyle />
         <Seo title={title} />
         <Header
           image={postHeader}
           preventLinkHome={preventLinkHome}
           showHeaderImage={showHeaderImage}
         />
-        <Main className="column">
+        <Main className="max-w-6xl w-4/5 mx-auto">
           {topContent}
           <Inner>
             <ContentElement className="content">
