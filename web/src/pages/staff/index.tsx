@@ -109,7 +109,7 @@ const DidatticaPage: FC<{ data: SanityData }> = ({ data }) => {
         ))}
       </SimpleGrid>
       <Title order={2} m="sm">
-        Lo Staff
+        Gli istruttori
       </Title>
       <SimpleGrid breakpoints={breakpoints}>
         {staffSorted.map((person) => (
