@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import { Link } from 'gatsby';
 import { Header as ArticleHeader } from 'atoms/Article';
 import formatDate from '../../helpers/formatDate';
-import { Text, Title } from '@mantine/core';
+import { Text } from '@mantine/core';
 
 const PostHeader: FC<{
   permalink?: string;
@@ -15,7 +15,7 @@ const PostHeader: FC<{
         {formatDate(date)}
       </Text>
     )}
-    <Title order={2}>
+    <h2>
       {permalink ? (
         <Link to={permalink} style={{ color: 'inherit' }}>
           {title}
@@ -23,7 +23,7 @@ const PostHeader: FC<{
       ) : (
         title
       )}
-    </Title>
+    </h2>
   </ArticleHeader>
 );
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'gatsby';
 import PostHeader from 'molecules/Post/Header';
-import { Body, Article } from 'atoms/Article';
+import { Body } from 'atoms/Article';
 import PortableText from 'molecules/PortableText';
 
 import { template } from 'helpers/string';
@@ -24,7 +24,7 @@ const PostListItem = ({ post }) => {
   const html = hasMore ? truncateWords(post.html, LIMIT_WORDS) : post.html;
 
   return (
-    <Article>
+    <article>
       <PostHeader
         permalink={post.fields.slug}
         title={post.frontmatter.title}
@@ -47,7 +47,7 @@ const PostListItem = ({ post }) => {
         />
       )}
       {hasMore && <Link to={post.fields.slug}>Leggi tutto...</Link>}
-    </Article>
+    </article>
   );
 };
 

@@ -1,13 +1,13 @@
 import React from 'react';
 import { graphql } from 'gatsby';
 import Layout from 'templates/Layout';
-import EventoListItem from 'organisms/EventoListItem';
+import EventoListItem from 'organisms/event';
 
 const EventiPage = ({ data: { sanity } }) => {
   const posts = sanity.nodes;
   return (
     <Layout showHeaderImage={false}>
-      <div>
+      <div className="grid grid-cols-2 gap-4 lg:grid-cols-3">
         {posts.map((node) => (
           <EventoListItem key={node.id} post={node} />
         ))}

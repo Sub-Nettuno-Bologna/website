@@ -1,8 +1,7 @@
-import React, { FC } from 'react';
+import React, { FC, ReactNode } from 'react';
 import { graphql } from 'gatsby';
 
 import Layout from 'templates/Layout';
-import { SimpleGrid, Text, Title } from '@mantine/core';
 import PersonCard from './card';
 
 const certs = ['P1', 'P2', 'P3', 'PAiAr', 'M1', 'M2', 'M3'] as const;
@@ -84,11 +83,13 @@ type SanityData = {
   aiuti: { nodes: Person[] };
 };
 
-const breakpoints = [
-  { cols: 3, minWidth: 'md', spacing: 'xs' },
-  { cols: 2, minWidth: 'sm', spacing: 'xs' },
-  { cols: 1, minWidth: 'xs', spacing: 'none' },
-];
+const Grid: FC<{ children: ReactNode }> = ({ children }) => {
+  return (
+    <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+      {children}
+    </div>
+  );
+};
 
 const DidatticaPage: FC<{ data: SanityData }> = ({ data }) => {
   const { council, staff, aiuti } = data;
@@ -100,27 +101,23 @@ const DidatticaPage: FC<{ data: SanityData }> = ({ data }) => {
 
   return (
     <Layout>
-      <Title order={2} m="sm">
-        Il consiglio
-      </Title>
-      <SimpleGrid breakpoints={breakpoints}>
+      <h2 className="m-4">Il consiglio</h2>
+      <Grid>
         {councilSorted.map((person) => (
           <PersonCard key={person.id} data={person} />
         ))}
-      </SimpleGrid>
-      <Title order={2} m="sm">
-        Gli istruttori
-      </Title>
-      <SimpleGrid breakpoints={breakpoints}>
+      </Grid>
+      <h2 className="m-4">Gli istruttori</h2>
+      <Grid>
         {staffSorted.map((person) => (
           <PersonCard key={person.id} data={person} />
         ))}
-      </SimpleGrid>
-      <Text m="xl">
+      </Grid>
+      <p className="mx-4 my-8">
         I nostri corsi non sarebbero comunque possibili senza l’aiuto di{' '}
         {aiuti_str} e tutti i soci impegnati nel percorso formativo per
         diventare i futuri istruttori del Club Sub Nettuno.
-      </Text>
+      </p>
     </Layout>
   );
 };

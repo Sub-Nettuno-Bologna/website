@@ -8,14 +8,6 @@ export const Body = styled.div`
   }
 `;
 
-export const Article = styled.article`
-  margin-bottom: 7em;
-`;
-
 export const Header = styled.header`
   margin-bottom: 1.6em;
-
-  h2  {
-    font-size: 2.3em;
-  }
 `;

@@ -7,7 +7,6 @@ import { Column } from 'atoms/grid';
 import prove from './prove-in-piscina.jpg';
 import eventi from './eventi.jpg';
 import { Link } from 'gatsby';
-import { Box, MediaQuery, Title } from '@mantine/core';
 
 const BoxInner = styled(Link)<{ background?: string }>`
   height: 200px;
@@ -39,18 +38,16 @@ const BoxInner = styled(Link)<{ background?: string }>`
 
 const FocusBar = () => {
   return (
-    <MediaQuery smallerThan="md" styles={{ display: 'none' }}>
-      <Box mb="xl">
-        <Column className="flex justify-center">
-          <BoxInner to="/prove-gratuite-in-piscina" background={prove}>
-            <Title order={3}>Prove gratuite</Title>
-          </BoxInner>
-          <BoxInner to="/eventi" background={eventi}>
-            <Title order={3}>Eventi</Title>
-          </BoxInner>
-        </Column>
-      </Box>
-    </MediaQuery>
+    <nav className="mb-16 hidden lg:block">
+      <Column className="flex justify-center">
+        <BoxInner to="/prove-gratuite-in-piscina" background={prove}>
+          <div className="text-xl font-bold text-white">Prove gratuite</div>
+        </BoxInner>
+        <BoxInner to="/eventi" background={eventi}>
+          <div className="text-xl font-bold text-white">Eventi</div>
+        </BoxInner>
+      </Column>
+    </nav>
   );
 };
 
