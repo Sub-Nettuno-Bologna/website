@@ -33,10 +33,27 @@ export default {
       type: 'boolean',
     },
     {
+      hidden: ({ document }) => !document?.active,
       initialValue: false,
       name: 'council',
       title: 'Membro del consiglio?',
       type: 'boolean',
+    },
+    {
+      hidden: ({ document }) => !document?.active || !document?.council,
+      name: 'council_seat',
+      options: {
+        layout: 'dropdown',
+        list: [
+          'Presidente',
+          'Consigliere',
+          'Segretario',
+          'Tesoriere',
+          'Vicepresidente',
+        ],
+      },
+      title: 'Posto nel consiglio',
+      type: 'string',
     },
   ],
   icon: FiUsers,

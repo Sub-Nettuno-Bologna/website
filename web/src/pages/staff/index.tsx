@@ -3,15 +3,11 @@ import { graphql } from 'gatsby';
 
 import Layout from 'templates/Layout';
 import PersonCard from './card';
+import { sortByCert, sortBySeat } from './sort';
+import { certs, seats } from './const';
 
-const certs = ['P1', 'P2', 'P3', 'PAiAr', 'M1', 'M2', 'M3'] as const;
 type CertType = (typeof certs)[number];
-
-function sortByCert(p1, p2) {
-  const i1 = certs.indexOf(p1.brevetto);
-  const i2 = certs.indexOf(p2.brevetto);
-  return i2 - i1;
-}
+type SeatType = (typeof seats)[number];
 
 export const pageQuery = graphql`
   fragment Fields on SanityPerson {
@@ -39,6 +35,7 @@ export const pageQuery = graphql`
       sort: { name: ASC }
     ) {
       nodes {
+        council_seat
         ...Fields
       }
     }
@@ -77,8 +74,12 @@ export type Person = {
   bio: unknown;
 };
 
+export type Council = Person & {
+  council_seat: SeatType;
+};
+
 type SanityData = {
-  council: { nodes: Person[] };
+  council: { nodes: Council[] };
   staff: { nodes: Person[] };
   aiuti: { nodes: Person[] };
 };
@@ -95,8 +96,7 @@ const DidatticaPage: FC<{ data: SanityData }> = ({ data }) => {
   const { council, staff, aiuti } = data;
 
   const staffSorted = staff.nodes.sort(sortByCert);
-  const councilSorted = council.nodes.sort(sortByCert);
-
+  const councilSorted = council.nodes.sort(sortBySeat);
   const aiuti_str = aiuti.nodes.map((a) => a.name).join(', ');
 
   return (
