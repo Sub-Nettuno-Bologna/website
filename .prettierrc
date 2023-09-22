@@ -2,5 +2,27 @@
   "singleQuote": true,
   "tabWidth": 2,
   "trailingComma": "es5",
-  "plugins": ["prettier-plugin-tailwindcss"]
+  "plugins": ["prettier-plugin-tailwindcss"],
+  "importOrder": [
+    "^../public-path$",
+    "^$",
+    "^fonts/?",
+    "^(prop|react)",
+    "^@radar",
+    "<THIRD_PARTY_MODULES>",
+    "^icons/",
+    "^typings/",
+    "^(helper|hooks|actions|stores|reducers|features)/",
+    "^hoc/",
+    "^atoms/",
+    "^molecules/",
+    "^organisms/",
+    "^templates/",
+    "^pages/",
+    "^components/",
+    "^[@]",
+    "^[.../]",
+    "^./$",
+    "^[./]"
+  ]
 }
