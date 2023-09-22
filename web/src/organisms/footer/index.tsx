@@ -1,35 +1,15 @@
 import React from 'react';
-import styled from 'styled-components';
 import { Column } from 'atoms/grid';
 
 import { FacebookLink, InstagramLink } from 'atoms/Social';
-import { SimpleGrid, Title, Text, Group } from '@mantine/core';
+import { Title, Text, Group } from '@mantine/core';
 import Navigation from './navigation';
-
-const Wrapper = styled.footer`
-  background: ${(p) => p.theme.black};
-  color: white;
-  padding: 2em 0;
-  margin-top: 2em;
-`;
-
-const Inner = styled(Column)``;
-
-const Address = styled.address`
-  font-style: normal;
-`;
-
-const breakpoints = [
-  { cols: 3, minWidth: 'md', spacing: 'xs' },
-  { cols: 2, minWidth: 'sm', spacing: 'xs' },
-  { cols: 1, minWidth: 'xs', spacing: 'none' },
-];
 
 const Footer = () => {
   return (
-    <Wrapper>
-      <Inner>
-        <SimpleGrid breakpoints={breakpoints}>
+    <footer className="mt-4 bg-stone-800 py-8 text-white">
+      <Column>
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
           <div>
             <Title order={3} mb="md">
               Sul sito
@@ -40,7 +20,7 @@ const Footer = () => {
             <Title order={3} mb="md">
               Vieni a trovarci
             </Title>
-            <Address>
+            <address className="not-italic">
               <Text
                 c="white"
                 sx={{
@@ -63,7 +43,7 @@ const Footer = () => {
                 <br />
                 P.IVA 2665601205
               </Text>
-            </Address>
+            </address>
           </div>
           <div>
             <Title order={3} mb="md">
@@ -74,13 +54,13 @@ const Footer = () => {
               <InstagramLink color="white" />
             </Group>
           </div>
-        </SimpleGrid>
+        </div>
 
         <Text my="xl" fz="sm">
           &copy; Club Sub Nettuno - {new Date().getFullYear()}
         </Text>
-      </Inner>
-    </Wrapper>
+      </Column>
+    </footer>
   );
 };
 

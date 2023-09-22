@@ -1,11 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
 import Layout from 'templates/Layout';
-
-const Address = styled.address`
-  display: block;
-  margin: 1em 0;
-`;
 
 const DoveSiamo = () => (
   <Layout title="Dove siamo">
@@ -13,11 +7,11 @@ const DoveSiamo = () => (
       Il club ha la sede presso la piscina Carmen Longo, all&apos;interno del
       complesso dello Stadio Comunale Dall&apos;Ara di Bologna
     </p>
-    <Address>
+    <address className="block not-italic">
       Via Costa Andrea, 174
       <br />
       40134 Bologna (BO)
-    </Address>
+    </address>
     <p>
       Per accedere alla piscina usare l&apos;ingresso pedonale che si trova in
       via dello Sport 6

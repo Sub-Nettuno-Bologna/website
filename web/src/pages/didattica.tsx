@@ -1,19 +1,9 @@
 import React from 'react';
 import { graphql, Link } from 'gatsby';
-import styled from 'styled-components';
 
 import Layout from 'templates/Layout';
 
 import ExternalLink from '../atoms/ExternalLink';
-
-const Ol = styled.ol`
-  list-style: none;
-  padding: 0;
-
-  li {
-    padding: 0.4em 0;
-  }
-`;
 
 const DidatticaPage = ({
   data: {
@@ -30,13 +20,13 @@ const DidatticaPage = ({
         <ExternalLink href="http://www.cmas.org/">CMAS</ExternalLink>, la
         federazione subacquea italiana affiliata al CONI.
       </p>
-      <Ol>
+      <ol className="my-2 list-inside list-disc">
         {sanityCorsi.map((node) => (
-          <li key={node.id}>
+          <li key={node.id} className="pb-2">
             <Link to={`/${node.slug.current}`}>{node.title}</Link>
           </li>
         ))}
-      </Ol>
+      </ol>
     </div>
   </Layout>
 );

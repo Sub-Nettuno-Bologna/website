@@ -3,7 +3,7 @@ import { Link } from 'gatsby';
 import { storageFactory } from 'hacks/storage-factory';
 
 import { Column } from 'atoms/grid';
-import { Drawer, Group, Text } from '@mantine/core';
+import { Drawer, Text } from '@mantine/core';
 
 const local = storageFactory(() => localStorage);
 const ACK_KEY = 'cookie-acknowledge-142';
@@ -32,28 +32,26 @@ const CookieBar = () => {
   return (
     <Drawer
       opened={!accepted}
-      size="15%"
+      size="auto"
       onClose={() => setAccepted('true')}
       position="bottom"
       withCloseButton={false}
       closeOnEscape={false}
     >
-      <Column>
-        <Group position="apart">
-          <Text>
-            Questo sito fa utilizzo di cookie. Come tutti. Se preferisci puoi
-            negare il tuo consenso.{' '}
-          </Text>
-          <Group spacing="xl">
-            <button
-              className="bg-blue-700 text-gray-50 p-2 rounded-lg"
-              onClick={() => setAccepted('true')}
-            >
-              Nessun problema
-            </button>{' '}
-            <Link to="/privacy-policy">Ulteriori informazioni</Link>
-          </Group>
-        </Group>
+      <Column className="items-center justify-between space-y-4 lg:flex lg:space-x-4 lg:space-y-0">
+        <Text className="flex-1">
+          Questo sito fa utilizzo di cookie. Come tutti. Se preferisci puoi
+          negare il tuo consenso.{' '}
+        </Text>
+        <button
+          className="flex-initial rounded-lg bg-blue-700 p-2 text-gray-50"
+          onClick={() => setAccepted('true')}
+        >
+          Nessun problema
+        </button>{' '}
+        <Link to="/privacy-policy" className="block">
+          Ulteriori informazioni
+        </Link>
       </Column>
     </Drawer>
   );

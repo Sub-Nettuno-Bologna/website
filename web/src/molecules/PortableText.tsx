@@ -2,14 +2,7 @@ import React from 'react';
 import { Link } from 'gatsby';
 
 import { PortableText } from '@portabletext/react';
-import { styled } from 'styled-components';
 import urlBuilder from '@sanity/image-url';
-
-const Figure = styled.figure`
-  img {
-    width: 50%;
-  }
-`;
 
 const urlFor = (source) =>
   urlBuilder({
@@ -47,10 +40,14 @@ const serializers = {
   types: {
     figure: ({ value }) => {
       return (
-        <Figure>
-          <img src={urlFor(value.asset).width(780).url()} alt={value.alt} />
+        <figure>
+          <img
+            className="w-1/2"
+            src={urlFor(value.asset).width(780).url()}
+            alt={value.alt}
+          />
           {value.caption && <figcaption>{value.caption}</figcaption>}
-        </Figure>
+        </figure>
       );
     },
   },

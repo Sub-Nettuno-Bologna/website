@@ -94,7 +94,7 @@ const NavMenu = () => {
         <MenuLink activeClassName="active" to="/eventi">
           Eventi
         </MenuLink>
-        <Menu size={'xl'} classNames={classes} trigger="hover">
+        <Menu classNames={classes} trigger="hover">
           <Menu.Target>
             <MenuBtn>Corsi</MenuBtn>
           </Menu.Target>
