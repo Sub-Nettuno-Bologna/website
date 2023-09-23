@@ -2,9 +2,9 @@ import React, { FC, ReactNode } from 'react';
 import { graphql } from 'gatsby';
 
 import Layout from 'templates/Layout';
-import PersonCard from './card';
-import { sortByCert, sortBySeat } from './sort';
-import { certs, seats } from './const';
+import PersonCard from '../organisms/staff-page/card';
+import { sortByCert, sortBySeat } from '../organisms/staff-page/sort';
+import { certs, seats } from '../organisms/staff-page/const';
 
 type CertType = (typeof certs)[number];
 type SeatType = (typeof seats)[number];

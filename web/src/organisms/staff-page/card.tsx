@@ -5,7 +5,7 @@ import { Card, Group, Image, Text } from '@mantine/core';
 
 import placeholderFemale from './placeholder-female.png';
 import placeholderMale from './placeholder-male.png';
-import { Person } from '.';
+import { Person } from '../../pages/staff';
 
 const PersonCard: FC<{ data: Person }> = ({ data }) => {
   if (!data) {
