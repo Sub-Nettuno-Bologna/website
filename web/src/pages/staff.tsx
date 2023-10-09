@@ -14,6 +14,7 @@ export const pageQuery = graphql`
     id
     name
     brevetto
+    gender
     bio {
       _key
       _rawChildren
@@ -70,6 +71,7 @@ export type Person = {
   id: string;
   name: string;
   brevetto: CertType;
+  gender: 'Uomo' | 'Donna';
   council: boolean;
   bio: unknown;
 };

@@ -15,15 +15,7 @@ const PersonCard: FC<{ data: Person }> = ({ data }) => {
     <Card shadow="none" radius="md">
       <Card.Section>
         <Image
-          src={
-            [
-              'Sonia Scanu',
-              'Francesca Marziano',
-              'Elisabetta Grannonio',
-            ].includes(data?.name)
-              ? placeholderFemale
-              : placeholderMale
-          }
+          src={data.gender === 'Donna' ? placeholderFemale : placeholderMale}
           height={160}
           alt="Placeholder photo"
           fit="contain"

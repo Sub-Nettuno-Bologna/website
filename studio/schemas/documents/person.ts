@@ -28,6 +28,16 @@ export default {
     },
     {
       initialValue: true,
+      name: 'gender',
+      options: {
+        layout: 'dropdown',
+        list: ['Uomo', 'Donna', 'Non specificato'],
+      },
+      title: 'Genere',
+      type: 'string',
+    },
+    {
+      initialValue: true,
       name: 'active',
       title: 'Staff attivo?',
       type: 'boolean',
