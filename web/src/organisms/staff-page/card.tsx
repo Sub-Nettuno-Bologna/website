@@ -5,21 +5,42 @@ import { Card, Group, Image, Text } from '@mantine/core';
 
 import placeholderFemale from './placeholder-female.png';
 import placeholderMale from './placeholder-male.png';
-import { Person } from '../../pages/staff';
+import { GatsbyImage, getImage } from 'gatsby-plugin-image';
+import { Person, WithImage } from 'pages/staff';
 
-const PersonCard: FC<{ data: Person }> = ({ data }) => {
+interface PersonWithImage extends Person, WithImage {}
+
+const PersonCard: FC<{ data: PersonWithImage }> = ({ data }) => {
   if (!data) {
     return null;
   }
+  const hasImage = !!data.image?.asset;
+
   return (
     <Card shadow="none" radius="md">
       <Card.Section>
-        <Image
-          src={data.gender === 'Donna' ? placeholderFemale : placeholderMale}
-          height={160}
-          alt="Placeholder photo"
-          fit="contain"
-        />
+        {hasImage ? (
+          <GatsbyImage
+            image={getImage(data.image.asset)}
+            style={{ maxHeight: '400px', width: '100%' }}
+            objectFit="contain"
+            alt={'Foto'}
+          />
+        ) : (
+          <div
+            className="h-400 flex items-center justify-items-center"
+            style={{ height: '400px' }}
+          >
+            <Image
+              src={
+                data.gender === 'Donna' ? placeholderFemale : placeholderMale
+              }
+              height={160}
+              alt="Placeholder photo"
+              fit="contain"
+            />
+          </div>
+        )}
       </Card.Section>
 
       <Group mt="md" mb="xs" position="apart">

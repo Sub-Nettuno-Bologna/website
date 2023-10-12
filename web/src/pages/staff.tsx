@@ -5,6 +5,7 @@ import Layout from 'templates/Layout';
 import PersonCard from '../organisms/staff-page/card';
 import { sortByCert, sortBySeat } from '../organisms/staff-page/sort';
 import { certs, seats } from '../organisms/staff-page/const';
+import { Maybe } from 'types';
 
 type CertType = (typeof certs)[number];
 type SeatType = (typeof seats)[number];
@@ -26,6 +27,11 @@ export const pageQuery = graphql`
         marks
         text
         _type
+      }
+    }
+    image {
+      asset {
+        gatsbyImageData(width: 1024, placeholder: NONE)
       }
     }
   }
@@ -67,22 +73,35 @@ export const pageQuery = graphql`
   }
 `;
 
-export type Person = {
+export interface Person {
   id: string;
   name: string;
   brevetto: CertType;
   gender: 'Uomo' | 'Donna';
   council: boolean;
   bio: unknown;
-};
+}
 
-export type Council = Person & {
+export interface WithImage {
+  image: {
+    asset: Maybe<{
+      gatsbyImageData: {
+        width: number;
+        height: number;
+      };
+    }>;
+  };
+}
+
+export interface Council extends Person, WithImage {
   council_seat: SeatType;
-};
+}
+
+interface Staff extends Person, WithImage {}
 
 type SanityData = {
   council: { nodes: Council[] };
-  staff: { nodes: Person[] };
+  staff: { nodes: Staff[] };
   aiuti: { nodes: Person[] };
 };
 
