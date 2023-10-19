@@ -1,7 +1,63 @@
-import { TextInput, Textarea } from '@mantine/core';
 import React, { FC } from 'react';
 import { Helmet } from 'react-helmet';
 import Layout from 'templates/Layout';
+
+const TextInput: FC<{
+  id: string;
+  placeholder?: string;
+  label: string;
+  type?: string;
+  name?: string;
+  required?: boolean;
+}> = ({ id, placeholder, label, type = 'text', required, name }) => {
+  return (
+    <div className="mb-4">
+      <label
+        htmlFor={id}
+        className="mb-2 block text-sm font-medium text-gray-900"
+      >
+        {label}
+      </label>
+      <input
+        type={type}
+        name={name || id}
+        id={id}
+        className="block w-full rounded-md border border-gray-300 bg-white p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500"
+        placeholder={placeholder}
+        required={required}
+        aria-required={required}
+      />
+    </div>
+  );
+};
+
+const Textarea: FC<{
+  id: string;
+  placeholder?: string;
+  label: string;
+  type?: string;
+  name?: string;
+  required?: boolean;
+}> = ({ id, placeholder, label, required, name }) => {
+  return (
+    <div className="mb-4">
+      <label
+        htmlFor={id}
+        className="mb-2 block text-sm font-medium text-gray-900"
+      >
+        {label}
+      </label>
+      <textarea
+        name={name || id}
+        id={id}
+        className="block w-full rounded-md border border-gray-300 bg-white p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500"
+        placeholder={placeholder}
+        required={required}
+        aria-required={required}
+      />
+    </div>
+  );
+};
 
 const Contattaci: FC = () => (
   <Layout title="Contattaci">
@@ -16,20 +72,13 @@ const Contattaci: FC = () => (
     >
       <input type="hidden" name="form-name" value="contact-form" />
       <TextInput
-        mt="md"
         label="Il tuo nome"
-        withAsterisk
-        name="name"
         id="name"
-        size="md"
         required={true}
         aria-required={true}
       />
       <TextInput
-        mt="md"
         label="La tua email"
-        withAsterisk
-        size="md"
         id="email"
         type="email"
         name="_replyto"
@@ -37,9 +86,7 @@ const Contattaci: FC = () => (
         required={true}
       />
       <TextInput
-        mt="md"
         label="Il tuo cellulare (dove possibile ti contatteremo su WhatsApp)"
-        size="md"
         id="cell"
         type="tel"
         name="cell"
@@ -54,7 +101,7 @@ const Contattaci: FC = () => (
       />
       <div className="my-4">
         <button
-          className="bg-blue-700 text-gray-50 p-2 rounded-md"
+          className="rounded-md bg-blue-700 p-2 text-gray-50"
           type="submit"
         >
           Invia

@@ -7,7 +7,6 @@
 const path = require(`path`);
 const { createFilePath } = require('gatsby-source-filesystem');
 
-const postTemplate = path.resolve(`src/nodes/Post.js`);
 const corsoTemplate = path.resolve(`src/nodes/Corso.js`);
 const sanityPageTemplate = path.resolve(`src/nodes/SanityPage.js`);
 
@@ -97,7 +96,7 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
     return;
   }
 
-  posts.data.markdown.nodes.forEach((node) => {
+  /*   posts.data.markdown.nodes.forEach((node) => {
     createPage({
       component: postTemplate,
       context: {
@@ -115,7 +114,7 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
       },
       path: `/${node.slug.current}`,
     });
-  });
+  }); */
 
   // Sanity Pages
   const sanity = await graphql(pagesQuery);

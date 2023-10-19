@@ -1,8 +1,6 @@
 import React, { FC } from 'react';
 import { PortableText } from '@portabletext/react';
 
-import { Card, Group, Image, Text } from '@mantine/core';
-
 import placeholderFemale from './placeholder-female.png';
 import placeholderMale from './placeholder-male.png';
 import { GatsbyImage, getImage } from 'gatsby-plugin-image';
@@ -17,42 +15,36 @@ const PersonCard: FC<{ data: PersonWithImage }> = ({ data }) => {
   const hasImage = !!data.image?.asset;
 
   return (
-    <Card shadow="none" radius="md">
-      <Card.Section>
+    <div>
+      <div className="mb-4">
         {hasImage ? (
           <GatsbyImage
+            className="h-[400px] w-full"
             image={getImage(data.image.asset)}
-            style={{ maxHeight: '400px', width: '100%' }}
             objectFit="contain"
             alt={'Foto'}
           />
         ) : (
-          <div
-            className="h-400 flex items-center justify-items-center"
-            style={{ height: '400px' }}
-          >
-            <Image
+          <div className="flex h-[400px] items-center justify-items-center">
+            <img
               src={
                 data.gender === 'Donna' ? placeholderFemale : placeholderMale
               }
-              height={160}
+              className="h-[160px] w-full object-contain"
               alt="Placeholder photo"
-              fit="contain"
             />
           </div>
         )}
-      </Card.Section>
+      </div>
 
-      <Group mt="md" mb="xs" position="apart">
-        <Text weight={500}>{data.name}</Text>
-      </Group>
+      <div className="mb-4 font-bold">{data.name}</div>
 
       {data.bio && (
-        <Text size="sm" color="dimmed">
+        <div className="text-md text-gray-600">
           <PortableText value={data.bio as any} />
-        </Text>
+        </div>
       )}
-    </Card>
+    </div>
   );
 };
 

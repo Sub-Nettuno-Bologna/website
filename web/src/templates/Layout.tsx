@@ -8,7 +8,6 @@
 import React, { FC, ReactNode } from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 import Header from 'organisms/Header';
-import PostHeader from 'molecules/Post/Header';
 import CookieBar from 'molecules/cookie-bar';
 import Seo from 'atoms/seo';
 
@@ -41,7 +40,6 @@ const Layout: FC<{
 }> = ({
   children,
   topContent,
-  date,
   isArticle,
   postHeader,
   preventLinkHome,
@@ -59,11 +57,15 @@ const Layout: FC<{
           preventLinkHome={preventLinkHome}
           showHeaderImage={showHeaderImage}
         />
-        <Main className="max-w-6xl w-4/5 mx-auto">
+        <Main className="mx-auto w-4/5 max-w-6xl">
           {topContent}
           <Inner>
             <ContentElement className="content">
-              {title && <PostHeader title={title} date={date} />}
+              {title && (
+                <div className="mb-6 py-2">
+                  <h2>{title}</h2>
+                </div>
+              )}
               {children}
             </ContentElement>
           </Inner>

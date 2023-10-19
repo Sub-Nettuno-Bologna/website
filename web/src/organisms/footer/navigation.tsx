@@ -1,8 +1,6 @@
 import React, { FC } from 'react';
 import { useStaticQuery, graphql, Link } from 'gatsby';
 
-import { List, Text } from '@mantine/core';
-
 const Navigation: FC = () => {
   const data = useStaticQuery(graphql`
     query {
@@ -27,42 +25,42 @@ const Navigation: FC = () => {
   const sanityPages = data.sanityPages.nodes;
 
   return (
-    <List listStyleType="none">
-      <List.Item>
-        <Text c="white" component={Link} to="/didattica">
+    <ul>
+      <li>
+        <Link className="text-white" to="/didattica">
           Attività didattica
-        </Text>
-      </List.Item>
+        </Link>
+      </li>
       {sanityPages.map((page) => {
         return (
-          <List.Item key={page.id}>
-            <Text c="white" component={Link} to={`/${page.slug.current}`}>
+          <li key={page.id}>
+            <Link className="text-white" to={`/${page.slug.current}`}>
               {page.title}
-            </Text>
-          </List.Item>
+            </Link>
+          </li>
         );
       })}
-      <List.Item>
-        <Text c="white" component={Link} to="/dove-siamo">
+      <li>
+        <Link className="text-white" to="/dove-siamo">
           Dove siamo
-        </Text>
-      </List.Item>
-      <List.Item>
-        <Text c="white" component={Link} to="/guide">
+        </Link>
+      </li>
+      <li>
+        <Link className="text-white" to="/guide">
           Guide
-        </Text>
-      </List.Item>
-      <List.Item>
-        <Text c="white" component={Link} to="/staff">
+        </Link>
+      </li>
+      <li>
+        <Link className="text-white" to="/staff">
           Lo Staff
-        </Text>
-      </List.Item>
-      <List.Item>
-        <Text c="white" component={Link} to="/contattaci">
+        </Link>
+      </li>
+      <li>
+        <Link className="text-white" to="/contattaci">
           Contattaci
-        </Text>
-      </List.Item>
-    </List>
+        </Link>
+      </li>
+    </ul>
   );
 };
 

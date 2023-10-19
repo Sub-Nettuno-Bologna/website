@@ -3,7 +3,7 @@ import { Link } from 'gatsby';
 import { storageFactory } from 'hacks/storage-factory';
 
 import { Column } from 'atoms/grid';
-import { Drawer, Text } from '@mantine/core';
+import { Drawer } from '@mantine/core';
 
 const local = storageFactory(() => localStorage);
 const ACK_KEY = 'cookie-acknowledge-142';
@@ -39,10 +39,10 @@ const CookieBar = () => {
       closeOnEscape={false}
     >
       <Column className="items-center justify-between space-y-4 lg:flex lg:space-x-4 lg:space-y-0">
-        <Text className="flex-1">
+        <p className="flex-1">
           Questo sito fa utilizzo di cookie. Come tutti. Se preferisci puoi
           negare il tuo consenso.{' '}
-        </Text>
+        </p>
         <button
           className="flex-initial rounded-lg bg-blue-700 p-2 text-gray-50"
           onClick={() => setAccepted('true')}

@@ -9,7 +9,6 @@ import { FacebookLink, InstagramLink } from 'atoms/Social';
 import theme from 'theme';
 import Menu from './nav-menu';
 import HeaderImage from './header-image';
-import { Group, Text } from '@mantine/core';
 import { ImageSharp, Maybe } from 'types';
 import classNames from 'classnames';
 
@@ -131,13 +130,11 @@ const Header: FC<{
         </div>
 
         <div className="social sm:-order-1">
-          <Text mb="xs" fz="md">
-            Seguici su
-          </Text>
-          <Group spacing="xl">
+          <div className="font-sm mb-2">Seguici su</div>
+          <div className="flex space-x-4">
             <FacebookLink color={theme.blue} />
             <InstagramLink color={theme.blue} />
-          </Group>
+          </div>
         </div>
       </div>
       <Menu />

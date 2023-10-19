@@ -4,7 +4,6 @@ import { useStaticQuery, graphql } from 'gatsby';
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css'; // requires a loader
 import { ImageSharp, Maybe } from 'types';
-import { Box } from '@mantine/core';
 
 const headerQuery = graphql`
   query ImageHeader {
@@ -25,18 +24,18 @@ const HeaderImage: FC<{ postImage: Maybe<ImageSharp> }> = ({ postImage }) => {
 
   if (postImage) {
     return (
-      <Box mb="xl">
+      <div className="mb-6">
         <GatsbyImage
           image={postImage.childImageSharp.gatsbyImageData}
           style={{ maxHeight: '500px' }}
           alt="Fotografia del post"
         />
-      </Box>
+      </div>
     );
   }
 
   return (
-    <Box mb="xl">
+    <div className="mb-6">
       <Carousel showStatus={false} dynamicHeight showThumbs={false}>
         {images.map((image) => {
           return (
@@ -49,7 +48,7 @@ const HeaderImage: FC<{ postImage: Maybe<ImageSharp> }> = ({ postImage }) => {
           );
         })}
       </Carousel>
-    </Box>
+    </div>
   );
 };
 
