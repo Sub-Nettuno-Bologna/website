@@ -1,21 +1,36 @@
 import React, { FC, ReactNode, useState } from 'react';
 
-import { Modal, UnstyledButton } from '@mantine/core';
+import { Dialog } from '@headlessui/react';
+
+type ModelProps = {
+  children: ReactNode;
+  onClose: () => void;
+  isOpen: boolean;
+  title?: string;
+};
+
+function Modal({ children, isOpen, onClose, title }: ModelProps) {
+  return (
+    <Dialog open={isOpen} onClose={onClose}>
+      <div className="fixed inset-0 bg-black/30" aria-hidden="true" />
+      <div className="fixed inset-0 flex w-screen items-center justify-center p-4">
+        <Dialog.Panel className="w-full max-w-lg rounded bg-white p-4">
+          {title && <Dialog.Title>Deactivate account</Dialog.Title>}
+          {children}
+        </Dialog.Panel>
+      </div>
+    </Dialog>
+  );
+}
 
 const Lightbox: FC<{ hook: ReactNode }> = ({ hook, children }) => {
   const [isOpen, setIsOpen] = useState(false);
   return (
     <>
-      <Modal
-        centered
-        opened={isOpen}
-        onClose={() => setIsOpen(false)}
-        size="lg"
-        withCloseButton={false}
-      >
+      <Modal isOpen={isOpen} onClose={() => setIsOpen(false)}>
         {children}
       </Modal>
-      <UnstyledButton onClick={() => setIsOpen(true)}>{hook}</UnstyledButton>
+      <button onClick={() => setIsOpen(true)}>{hook}</button>
     </>
   );
 };
