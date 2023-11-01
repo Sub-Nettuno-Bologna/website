@@ -125,3 +125,19 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
   );
   mkSanityPages(sanity.data.allSanityCorso.nodes, corsoTemplate, createPage);
 };
+
+// Prevents leaflet to break the SSR build
+exports.onCreateWebpackConfig = ({ stage, loaders, actions }) => {
+  if (stage === 'build-html') {
+    actions.setWebpackConfig({
+      module: {
+        rules: [
+          {
+            test: /leaflet/,
+            use: loaders.null(),
+          },
+        ],
+      },
+    });
+  }
+};
