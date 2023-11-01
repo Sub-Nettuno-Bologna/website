@@ -91,14 +91,7 @@ const Contattaci: FC = () => (
         type="tel"
         name="cell"
       />
-      <Textarea
-        mt="md"
-        label="Il tuo messaggio"
-        withAsterisk
-        id="messaggio"
-        name="messaggio"
-        size="md"
-      />
+      <Textarea label="Il tuo messaggio" id="messaggio" name="messaggio" />
       <div className="my-4">
         <button
           className="bg-blue-nettuno rounded-md p-2 text-gray-50"
