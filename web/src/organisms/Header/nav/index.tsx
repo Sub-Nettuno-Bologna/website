@@ -1,6 +1,6 @@
 import React from 'react';
 import { useStaticQuery, graphql, Link } from 'gatsby';
-import { columnClasses } from 'atoms/grid';
+import { columnClasses } from 'atoms/page-elements';
 import classNames from 'classnames';
 import Menu from './menu';
 import { Maybe } from 'types';

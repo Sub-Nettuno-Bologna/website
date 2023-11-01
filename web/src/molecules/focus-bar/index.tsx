@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { fromMedium } from 'mediaqueries';
 
-import { Column } from 'atoms/grid';
+import { Column } from 'atoms/page-elements';
 
 import prove from './prove-in-piscina.jpg';
 import eventi from './eventi.jpg';

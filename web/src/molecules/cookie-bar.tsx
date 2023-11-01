@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'gatsby';
 import { storageFactory } from 'hacks/storage-factory';
 
-import { Column } from 'atoms/grid';
+import { Column } from 'atoms/page-elements';
 import { Drawer } from '@mantine/core';
 
 const local = storageFactory(() => localStorage);

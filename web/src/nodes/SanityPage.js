@@ -1,5 +1,6 @@
 import React from 'react';
 import { graphql } from 'gatsby';
+import { Column, PageTitle } from 'atoms/page-elements';
 
 import Layout from 'templates/Layout';
 import { Body } from 'atoms/Article';
@@ -11,9 +12,12 @@ export default function PostPage({ data }) {
 
   return (
     <Layout title={title}>
-      <Body>
-        <PortableText raw={_rawBody} />
-      </Body>
+      <Column>
+        <PageTitle>{title}</PageTitle>
+        <Body>
+          <PortableText raw={_rawBody} />
+        </Body>
+      </Column>
     </Layout>
   );
 }

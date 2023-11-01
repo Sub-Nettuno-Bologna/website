@@ -1,5 +1,6 @@
 import React from 'react';
 import { graphql, Link } from 'gatsby';
+import { Column, PageTitle } from 'atoms/page-elements';
 
 import Layout from 'templates/Layout';
 import { Body } from 'atoms/Article';
@@ -11,22 +12,25 @@ export default function Corso({ data }) {
 
   return (
     <Layout title={title}>
-      <Body>
-        <PortableText
-          raw={_rawBody}
-          projectId={process.env.GATSBY_SANITY_PROJECT_ID}
-          dataset="production"
-        />
-        <div>
-          <p>
-            Per informazioni sui corsi potete{' '}
-            <Link to="/contattaci">
-              chiamare in segreteria o scrivere una mail
-            </Link>
-            .
-          </p>
-        </div>
-      </Body>
+      <Column>
+        <PageTitle>{title}</PageTitle>
+        <Body>
+          <PortableText
+            raw={_rawBody}
+            projectId={process.env.GATSBY_SANITY_PROJECT_ID}
+            dataset="production"
+          />
+          <div>
+            <p>
+              Per informazioni sui corsi potete{' '}
+              <Link to="/contattaci">
+                chiamare in segreteria o scrivere una mail
+              </Link>
+              .
+            </p>
+          </div>
+        </Body>
+      </Column>
     </Layout>
   );
 }

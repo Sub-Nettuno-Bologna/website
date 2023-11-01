@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { Column } from 'atoms/grid';
+import { Column } from 'atoms/page-elements';
 
 import { FacebookLink, InstagramLink } from 'atoms/Social';
 import Navigation from './navigation';

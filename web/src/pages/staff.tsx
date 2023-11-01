@@ -6,6 +6,7 @@ import PersonCard from '../organisms/staff-page/card';
 import { sortByCert, sortBySeat } from '../organisms/staff-page/sort';
 import { certs, seats } from '../organisms/staff-page/const';
 import { Maybe } from 'types';
+import { Column } from 'atoms/page-elements';
 
 type CertType = (typeof certs)[number];
 type SeatType = (typeof seats)[number];
@@ -122,23 +123,25 @@ const DidatticaPage: FC<{ data: SanityData }> = ({ data }) => {
 
   return (
     <Layout>
-      <h2 className="m-4">Il consiglio</h2>
-      <Grid>
-        {councilSorted.map((person) => (
-          <PersonCard key={person.id} data={person} />
-        ))}
-      </Grid>
-      <h2 className="m-4">Gli istruttori</h2>
-      <Grid>
-        {staffSorted.map((person) => (
-          <PersonCard key={person.id} data={person} />
-        ))}
-      </Grid>
-      <p className="mx-4 my-8">
-        I nostri corsi non sarebbero comunque possibili senza l’aiuto di{' '}
-        {aiuti_str} e tutti i soci impegnati nel percorso formativo per
-        diventare i futuri istruttori del Club Sub Nettuno.
-      </p>
+      <Column>
+        <h2 className="m-4">Il consiglio</h2>
+        <Grid>
+          {councilSorted.map((person) => (
+            <PersonCard key={person.id} data={person} />
+          ))}
+        </Grid>
+        <h2 className="m-4">Gli istruttori</h2>
+        <Grid>
+          {staffSorted.map((person) => (
+            <PersonCard key={person.id} data={person} />
+          ))}
+        </Grid>
+        <p className="mx-4 my-8">
+          I nostri corsi non sarebbero comunque possibili senza l’aiuto di{' '}
+          {aiuti_str} e tutti i soci impegnati nel percorso formativo per
+          diventare i futuri istruttori del Club Sub Nettuno.
+        </p>
+      </Column>
     </Layout>
   );
 };

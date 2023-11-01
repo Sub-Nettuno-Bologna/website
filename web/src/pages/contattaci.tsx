@@ -1,5 +1,5 @@
+import { Column, PageTitle } from 'atoms/page-elements';
 import React, { FC } from 'react';
-import { Helmet } from 'react-helmet';
 import Layout from 'templates/Layout';
 
 const TextInput: FC<{
@@ -61,50 +61,50 @@ const Textarea: FC<{
 
 const Contattaci: FC = () => (
   <Layout title="Contattaci">
-    <Helmet>
-      <meta name="referrer" content="origin" />
-    </Helmet>
-    <form
-      data-netlify="true"
-      method="POST"
-      name="contact-form"
-      action="/contattaci-ok"
-    >
-      <input type="hidden" name="form-name" value="contact-form" />
-      <TextInput
-        label="Il tuo nome"
-        id="name"
-        required={true}
-        aria-required={true}
-      />
-      <TextInput
-        label="La tua email"
-        id="email"
-        type="email"
-        name="_replyto"
-        aria-required={true}
-        required={true}
-      />
-      <TextInput
-        label="Il tuo cellulare (dove possibile ti contatteremo su WhatsApp)"
-        id="cell"
-        type="tel"
-        name="cell"
-      />
-      <Textarea label="Il tuo messaggio" id="messaggio" name="messaggio" />
-      <div className="my-4">
-        <button
-          className="bg-blue-nettuno rounded-md p-2 text-gray-50"
-          type="submit"
-        >
-          Invia
-        </button>
-      </div>
-      <p className="text-xs">
-        I dati inseriti saranno utilizzati e trattati nel rispetto del
-        regolamento UE2016/679.
-      </p>
-    </form>
+    <Column>
+      <PageTitle>Contattaci</PageTitle>
+      <form
+        data-netlify="true"
+        method="POST"
+        name="contact-form"
+        action="/contattaci-ok"
+      >
+        <input type="hidden" name="form-name" value="contact-form" />
+        <TextInput
+          label="Il tuo nome"
+          id="name"
+          required={true}
+          aria-required={true}
+        />
+        <TextInput
+          label="La tua email"
+          id="email"
+          type="email"
+          name="_replyto"
+          aria-required={true}
+          required={true}
+        />
+        <TextInput
+          label="Il tuo cellulare (dove possibile ti contatteremo su WhatsApp)"
+          id="cell"
+          type="tel"
+          name="cell"
+        />
+        <Textarea label="Il tuo messaggio" id="messaggio" name="messaggio" />
+        <div className="my-4">
+          <button
+            className="bg-blue-nettuno rounded-md p-2 text-gray-50"
+            type="submit"
+          >
+            Invia
+          </button>
+        </div>
+        <p className="text-xs">
+          I dati inseriti saranno utilizzati e trattati nel rispetto del
+          regolamento UE2016/679.
+        </p>
+      </form>
+    </Column>
   </Layout>
 );
 

@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import styled from 'styled-components';
 import { StaticImage } from 'gatsby-plugin-image';
 import { Link, useStaticQuery, graphql } from 'gatsby';
-import { columnClasses } from 'atoms/grid';
+import { columnClasses } from 'atoms/page-elements';
 import ConditionalWrapper from 'atoms/ConditionalWrapper';
 import { fromMedium, fromLarge } from 'mediaqueries';
 import { FacebookLink, InstagramLink } from 'atoms/Social';
@@ -25,7 +25,6 @@ const LogoWrapper = styled.div`
   p {
     margin: 0;
     display: none;
-    color: ${(p) => p.theme.grey};
   }
 
   @media ${fromMedium} {

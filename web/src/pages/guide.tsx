@@ -1,3 +1,4 @@
+import { Column, PageTitle } from 'atoms/page-elements';
 import { graphql, Link, useStaticQuery } from 'gatsby';
 import React from 'react';
 import Layout from 'templates/Layout';
@@ -23,15 +24,18 @@ const Guide = () => {
   const data = useStaticQuery(query);
   return (
     <Layout title="Guide">
-      <ul>
-        {data.guides.nodes.map((page) => {
-          return (
-            <li key={page.id}>
-              <Link to={`/${page.slug.current}`}>{page.title}</Link>
-            </li>
-          );
-        })}
-      </ul>
+      <Column>
+        <PageTitle>Guide</PageTitle>
+        <ul>
+          {data.guides.nodes.map((page) => {
+            return (
+              <li key={page.id}>
+                <Link to={`/${page.slug.current}`}>{page.title}</Link>
+              </li>
+            );
+          })}
+        </ul>
+      </Column>
     </Layout>
   );
 };
