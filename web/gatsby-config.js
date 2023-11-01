@@ -21,7 +21,6 @@ module.exports = {
     },
     `gatsby-plugin-root-import`,
     `gatsby-plugin-react-helmet`,
-    `gatsby-plugin-mantine`,
     {
       options: {
         name: `images`,

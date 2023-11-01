@@ -7,7 +7,7 @@
 
 import React, { FC } from 'react';
 import Header from 'organisms/Header';
-import CookieBar from 'molecules/cookie-bar';
+import CookieBar from 'molecules/cookie-notice';
 import Seo from 'atoms/seo';
 
 import Footer from 'organisms/footer';

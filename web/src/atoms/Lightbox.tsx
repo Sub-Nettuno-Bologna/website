@@ -15,7 +15,7 @@ function Modal({ children, isOpen, onClose, title }: ModelProps) {
       <div className="fixed inset-0 bg-black/30" aria-hidden="true" />
       <div className="fixed inset-0 flex w-screen items-center justify-center p-4">
         <Dialog.Panel className="w-full max-w-lg rounded bg-white p-4">
-          {title && <Dialog.Title>Deactivate account</Dialog.Title>}
+          {title && <Dialog.Title>{title}</Dialog.Title>}
           {children}
         </Dialog.Panel>
       </div>
