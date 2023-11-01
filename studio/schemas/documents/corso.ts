@@ -37,6 +37,12 @@ export default {
       type: 'number',
     },
     {
+      name: 'codice',
+      title: 'Codice corso',
+      type: 'string',
+      validation: (Rule) => Rule.required(),
+    },
+    {
       name: 'requirement',
       options: { disableNew: true },
       title: 'Brevetto richiesto',

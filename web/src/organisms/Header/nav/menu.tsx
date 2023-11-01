@@ -5,8 +5,44 @@ import classNames from 'classnames';
 import { Corsi } from './';
 import { Link } from 'gatsby';
 
+function partition<T>(
+  arr: Array<T>,
+  predicate: (val: T) => boolean
+): [Array<T>, Array<T>] {
+  const partitioned: [Array<T>, Array<T>] = [[], []];
+  for (const val of arr) {
+    const partitionIndex: 0 | 1 = predicate(val) ? 0 : 1;
+    partitioned[partitionIndex].push(val);
+  }
+  return partitioned;
+}
+
+type GridProps = { list: Corsi[]; title: string };
+
+function Grid({ list, title }: GridProps) {
+  return (
+    <div className="my-2">
+      <div className="mb-2 font-bold">{title}</div>
+      <div className="grid gap-2 lg:grid-cols-2">
+        {list.map((item) => (
+          <Link
+            to={`/${item.slug.current}`}
+            key={item.slug.current}
+            className="flex items-center rounded-lg p-2 transition duration-150 ease-in-out hover:bg-gray-100 focus:outline-none focus-visible:ring focus-visible:ring-orange-500/50"
+          >
+            {item.title}
+          </Link>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 type Props = { list: Corsi[] };
 export default function Menu({ list }: Props) {
+  const [base, specs] = partition(list, (item) =>
+    ['p1', 'p2', 'p3'].includes(item.codice?.toLowerCase())
+  );
   return (
     <Popover>
       {({ open }) => (
@@ -29,24 +65,9 @@ export default function Menu({ list }: Props) {
             leaveTo="opacity-0 translate-y-1"
           >
             <Popover.Panel className="absolute left-1/2 z-10 mt-3 w-screen max-w-sm -translate-x-1/2 transform px-4 sm:px-0 lg:max-w-3xl">
-              <div className="grid gap-8 overflow-hidden rounded-lg bg-white p-7 shadow-lg ring-1 ring-black/5 lg:grid-cols-2">
-                {list.map((item) => (
-                  <Link
-                    to={`/${item.slug.current}`}
-                    key={item.slug.current}
-                    className="-m-3 flex items-center rounded-lg p-2 transition duration-150 ease-in-out hover:bg-gray-50 focus:outline-none focus-visible:ring focus-visible:ring-orange-500/50"
-                  >
-                    <div className="ml-4">
-                      <p className="text-sm font-medium text-gray-900">
-                        {item.title}
-                      </p>
-                      <p className="text-sm text-gray-500">
-                        {/* @ts-expect-error */}
-                        {item.description}
-                      </p>
-                    </div>
-                  </Link>
-                ))}
+              <div className="overflow-hidden rounded-lg bg-white p-6 shadow-lg ring-1  ring-black/5">
+                <Grid list={base} title="Corsi base" />
+                <Grid list={specs} title="Specializzazioni" />
               </div>
             </Popover.Panel>
           </Transition>

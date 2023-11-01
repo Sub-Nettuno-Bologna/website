@@ -3,9 +3,11 @@ import { useStaticQuery, graphql, Link } from 'gatsby';
 import { columnClasses } from 'atoms/grid';
 import classNames from 'classnames';
 import Menu from './menu';
+import { Maybe } from 'types';
 
 export type Corsi = {
   id: string;
+  codice: Maybe<string>;
   slug: {
     current: string;
   };
@@ -24,6 +26,7 @@ const NavMenu = () => {
       corsi: allSanityCorso(sort: { title: ASC }) {
         nodes {
           id
+          codice
           slug {
             current
           }
