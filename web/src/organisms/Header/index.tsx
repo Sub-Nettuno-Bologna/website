@@ -7,7 +7,7 @@ import ConditionalWrapper from 'atoms/ConditionalWrapper';
 import { fromMedium, fromLarge } from 'mediaqueries';
 import { FacebookLink, InstagramLink } from 'atoms/Social';
 import theme from 'theme';
-import Menu from './nav-menu';
+import Menu from './nav';
 import HeaderImage from './header-image';
 import { ImageSharp, Maybe } from 'types';
 import classNames from 'classnames';

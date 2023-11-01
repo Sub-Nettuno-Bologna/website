@@ -64,3 +64,17 @@ hr {
   height: 0;
   border-bottom: 1px solid #eaecef;
 }
+
+/* Nav menu */
+
+.nav-menu-item {
+  @apply hover:text-blue-nettuno px-4 py-4 text-white hover:bg-white;
+}
+
+.nav-menu-item.active {
+  @apply font-bold;
+}
+
+.nav-menu-item.menu-open {
+  @apply text-blue-nettuno bg-white;
+}
