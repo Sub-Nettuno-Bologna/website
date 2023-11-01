@@ -63,11 +63,17 @@ const Header: FC<{
   preventLinkHome: boolean;
   image: Maybe<ImageSharp>;
   showHeaderImage?: boolean;
-}> = ({ preventLinkHome, image, showHeaderImage = true }) => {
+  preventMarginBottom?: boolean;
+}> = ({
+  preventLinkHome,
+  image,
+  showHeaderImage = true,
+  preventMarginBottom,
+}) => {
   const { site } = useStaticQuery(headerQuery);
 
   return (
-    <header className="mb-4 mt-2">
+    <header className={classNames('mt-2', { 'mb-4': !preventMarginBottom })}>
       <div
         className={classNames(
           columnClasses,

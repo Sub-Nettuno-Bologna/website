@@ -18,8 +18,16 @@ const Layout: FC<{
   postHeader?: any;
   preventLinkHome?: boolean;
   showHeaderImage?: boolean;
+  preventMarginBottom?: boolean;
   title?: string;
-}> = ({ children, postHeader, title, preventLinkHome, showHeaderImage }) => {
+}> = ({
+  children,
+  postHeader,
+  title,
+  preventLinkHome,
+  showHeaderImage,
+  preventMarginBottom,
+}) => {
   return (
     <>
       <Seo title={title} />
@@ -27,8 +35,9 @@ const Layout: FC<{
         image={postHeader}
         preventLinkHome={preventLinkHome}
         showHeaderImage={showHeaderImage}
+        preventMarginBottom={preventMarginBottom}
       />
-      <main className="md:flex">
+      <main className="min-h-screen md:flex">
         <div className="flex-1">{children}</div>
       </main>
       <Footer />
