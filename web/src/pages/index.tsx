@@ -10,7 +10,7 @@ const PhotoHolder = ({ className }) => {
     <div
       className={classNames(
         className,
-        'flex items-center justify-center bg-slate-400 p-4'
+        'flex items-center justify-center rounded-lg bg-slate-400 p-4'
       )}
     >
       <div className=" ">

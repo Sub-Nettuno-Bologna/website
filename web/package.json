@@ -9,7 +9,6 @@
     "@headlessui/react": "^1.7.17",
     "@portabletext/react": "^3.0.7",
     "@sanity/image-url": "^1.0.2",
-    "babel-plugin-styled-components": "^2.1.4",
     "classnames": "^2.3.2",
     "dotenv": "^16.3.1",
     "gatsby": "^5.12.4",
@@ -19,7 +18,6 @@
     "gatsby-plugin-react-helmet": "^6.12.0",
     "gatsby-plugin-root-import": "^2.0.9",
     "gatsby-plugin-sharp": "^5.12.0",
-    "gatsby-plugin-styled-components": "^6.12.0",
     "gatsby-remark-copy-linked-files": "^6.12.0",
     "gatsby-remark-images": "^7.12.0",
     "gatsby-remark-relative-images": "^2.0.5",
@@ -35,8 +33,7 @@
     "react-icons": "^4.11.0",
     "react-responsive-carousel": "^3.2.23",
     "slugify": "^1.6.6",
-    "storage-factory": "^0.2.1",
-    "styled-components": "^6.0.7"
+    "storage-factory": "^0.2.1"
   },
   "scripts": {
     "gen:logbook-didattica": "npx logbook-templates -l --empty --template=didattica --dest=static/scheda-vuota-nettuno-didattica.pdf",

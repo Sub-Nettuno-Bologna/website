@@ -85,7 +85,6 @@ module.exports = {
       },
       resolve: 'gatsby-transformer-remark',
     },
-    `gatsby-plugin-styled-components`,
     `gatsby-plugin-postcss`,
   ],
 };

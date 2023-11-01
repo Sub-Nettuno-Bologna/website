@@ -73,3 +73,14 @@ hr {
 .nav-menu-item.menu-open {
   @apply text-blue-nettuno bg-white;
 }
+
+.focus-bar-box {
+  @apply bg-blue-nettuno h-[200px] w-[280px]  bg-cover bg-center bg-no-repeat text-center;
+}
+
+.focus-bar-box:first-child {
+  @apply rounded-l-lg;
+}
+.focus-bar-box:last-child {
+  @apply rounded-r-lg;
+}

@@ -1,52 +1,26 @@
 import React from 'react';
-import styled from 'styled-components';
-import { fromMedium } from 'mediaqueries';
-
-import { Column } from 'atoms/page-elements';
 
 import prove from './prove-in-piscina.jpg';
 import eventi from './eventi.jpg';
 import { Link } from 'gatsby';
 
-const BoxInner = styled(Link)<{ background?: string }>`
-  height: 200px;
-  background: blue;
-  text-align: center;
-  background-image: url(${(p) => p.background});
-  background-size: cover;
-  background-repeat: no-repeat;
-  padding-top: 15px;
-  background-position: center;
-
-  h3 {
-    font-size: 1.3em;
-    color: white;
-  }
-
-  @media ${fromMedium} {
-    width: 280px;
-
-    &:first-child {
-      border-radius: 15px 0 0 15px;
-    }
-
-    &:last-child {
-      border-radius: 0 15px 15px 0;
-    }
-  }
-`;
-
 const FocusBar = () => {
   return (
-    <nav className="mb-16 hidden lg:block">
-      <Column className="flex justify-center">
-        <BoxInner to="/prove-gratuite-in-piscina" background={prove}>
-          <div className="text-xl font-bold text-white">Prove gratuite</div>
-        </BoxInner>
-        <BoxInner to="/eventi" background={eventi}>
-          <div className="text-xl font-bold text-white">Eventi</div>
-        </BoxInner>
-      </Column>
+    <nav className="mb-16 hidden justify-center lg:flex ">
+      <Link
+        to="/prove-gratuite-in-piscina"
+        className="focus-bar-box"
+        style={{ backgroundImage: `url(${prove})` }}
+      >
+        <div className="text-xl font-bold text-white">Prove gratuite</div>
+      </Link>
+      <Link
+        to="/eventi"
+        className="focus-bar-box"
+        style={{ backgroundImage: `url(${eventi})` }}
+      >
+        <div className="text-xl font-bold text-white">Eventi</div>
+      </Link>
     </nav>
   );
 };
