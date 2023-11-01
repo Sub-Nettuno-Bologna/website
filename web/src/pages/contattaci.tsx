@@ -101,7 +101,7 @@ const Contattaci: FC = () => (
       />
       <div className="my-4">
         <button
-          className="rounded-md bg-blue-700 p-2 text-gray-50"
+          className="bg-blue-nettuno rounded-md p-2 text-gray-50"
           type="submit"
         >
           Invia

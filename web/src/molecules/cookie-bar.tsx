@@ -44,7 +44,7 @@ const CookieBar = () => {
           negare il tuo consenso.{' '}
         </p>
         <button
-          className="flex-initial rounded-lg bg-blue-700 p-2 text-gray-50"
+          className="bg-blue-nettuno flex-initial rounded-lg p-2 text-gray-50"
           onClick={() => setAccepted('true')}
         >
           Nessun problema

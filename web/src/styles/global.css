@@ -56,7 +56,7 @@ a {
 }
 
 a:hover {
-  @apply text-blue-700;
+  @apply text-blue-nettuno;
 }
 
 hr {

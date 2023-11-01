@@ -6,7 +6,6 @@ import { columnClasses } from 'atoms/grid';
 import ConditionalWrapper from 'atoms/ConditionalWrapper';
 import { fromMedium, fromLarge } from 'mediaqueries';
 import { FacebookLink, InstagramLink } from 'atoms/Social';
-import theme from 'theme';
 import Menu from './nav';
 import HeaderImage from './header-image';
 import { ImageSharp, Maybe } from 'types';
@@ -27,12 +26,6 @@ const LogoWrapper = styled.div`
     margin: 0;
     display: none;
     color: ${(p) => p.theme.grey};
-  }
-
-  a {
-    &:hover {
-      color: ${(p) => p.theme.blue};
-    }
   }
 
   @media ${fromMedium} {
@@ -132,8 +125,8 @@ const Header: FC<{
         <div className="social sm:-order-1">
           <div className="font-sm mb-2">Seguici su</div>
           <div className="flex space-x-4">
-            <FacebookLink color={theme.blue} />
-            <InstagramLink color={theme.blue} />
+            <FacebookLink className="text-blue-nettuno" />
+            <InstagramLink className="text-blue-nettuno" />
           </div>
         </div>
       </div>

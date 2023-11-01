@@ -4,7 +4,6 @@ const theme = {
   black: '#24292e',
   blue: '#005ba7',
   grey,
-  scubaBlue: '#005ba7',
   textSecondary: grey,
 };
 
