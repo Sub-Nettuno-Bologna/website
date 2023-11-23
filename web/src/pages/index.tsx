@@ -1,23 +1,28 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import Layout from 'templates/Layout';
 import FocusBar from 'molecules/focus-bar';
 import classNames from 'classnames';
 import groupPhoto from './homepage/club_banner.jpeg';
+import scarpe from './homepage/scarpe_rosse.jpg';
 import { Column } from 'atoms/page-elements';
 
-const PhotoHolder = ({ className }) => {
+const PhotoHolder = ({
+  className,
+  src,
+  alt,
+  caption,
+}: {
+  className?: string;
+  src: string;
+  alt: string;
+  caption?: ReactNode;
+}) => {
   return (
-    <div
-      className={classNames(
-        className,
-        'flex items-center justify-center rounded-lg bg-slate-400 p-4'
-      )}
-    >
-      <img
-        className=""
-        src={groupPhoto}
-        alt="Foto di gruppo prima di partire con un pullman"
-      />
+    <div className={classNames(className, 'rounded-lg bg-slate-400 p-4')}>
+      <div className={classNames(className, 'flex items-center ')}>
+        <img src={src} alt={alt} />
+      </div>
+      {caption}
     </div>
   );
 };
@@ -27,7 +32,23 @@ const IndexPage = () => {
     <Layout preventLinkHome>
       <Column>
         <FocusBar />
-        <section className="my-16 space-x-6 space-y-6 leading-7 lg:flex lg:space-y-0">
+        <section className="my-16">
+          <h2>Il club Sub Nettuno è con le donne.</h2>
+          <PhotoHolder
+            src={scarpe}
+            alt="Foto di gruppo prima di partire con un pullman"
+            caption={
+              <div className="mt-4">
+                Foto scattata dal socio Stefano Colombo
+                <br />
+                Modella Annalisa Costa
+                <br />
+                Titolo dell’opera: <em>L’amore non incatena</em>
+              </div>
+            }
+          />
+        </section>
+        <section className="my-16 space-x-6 space-y-6 leading-7 xl:flex xl:space-y-0">
           <div className="xl:w-3/5">
             <h2>Il club</h2>
             <p className="mb-2">
@@ -58,7 +79,11 @@ const IndexPage = () => {
               Italiano e di altre destinazioni subacquee.
             </p>
           </div>
-          <PhotoHolder className="xl:w-2/5" />
+          <PhotoHolder
+            className="xl:w-2/5"
+            src={groupPhoto}
+            alt="Foto di gruppo prima di partire con un pullman"
+          />
         </section>
         <section className="mb-16 leading-7">
           <h2>La didattica</h2>
