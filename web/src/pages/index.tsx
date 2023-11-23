@@ -13,13 +13,11 @@ const PhotoHolder = ({ className }) => {
         'flex items-center justify-center rounded-lg bg-slate-400 p-4'
       )}
     >
-      <div className=" ">
-        <img
-          className="h-full"
-          src={groupPhoto}
-          alt="Foto di gruppo prima di partire con un pullman"
-        />
-      </div>
+      <img
+        className=""
+        src={groupPhoto}
+        alt="Foto di gruppo prima di partire con un pullman"
+      />
     </div>
   );
 };
@@ -30,7 +28,7 @@ const IndexPage = () => {
       <Column>
         <FocusBar />
         <section className="my-16 space-x-6 space-y-6 leading-7 lg:flex lg:space-y-0">
-          <div className="lg:w-3/5">
+          <div className="xl:w-3/5">
             <h2>Il club</h2>
             <p className="mb-2">
               Il Club Sub Nettuno, fondato nel 1984, rappresenta un'istituzione
@@ -60,7 +58,7 @@ const IndexPage = () => {
               Italiano e di altre destinazioni subacquee.
             </p>
           </div>
-          <PhotoHolder className="lg:w-2/5" />
+          <PhotoHolder className="xl:w-2/5" />
         </section>
         <section className="mb-16 leading-7">
           <h2>La didattica</h2>
