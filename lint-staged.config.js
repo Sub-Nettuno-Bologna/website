@@ -1,5 +1,5 @@
 'use strict';
 
 module.exports = {
-  '*.{ts,tsx,js}': 'eslint --cache --fix',
+  '*.{ts,tsx,js}': 'eslint --fix',
 };
