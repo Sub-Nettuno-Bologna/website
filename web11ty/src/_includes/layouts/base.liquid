@@ -17,57 +17,54 @@
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"></script>
   </head>
   <body>
-      <header class='pt-4 {% if preventMarginBottom != true %}mb-6{% endif %}'>
-        <div class='mx-auto my-0 w-10/12 max-w-6xl align-center mb-2 flex flex-col space-y-4  md:flex-row md:space-x-4 md:space-y-0'>
-          <div class='flex flex-1 justify-between space-x-4'>
-            <div>
-              {% if linkHome %}<a href='/' class='text-2xl font-bold'>{% endif %}
-              <div class='md:max-w-[300px]'>
-                <img src='/images/logo-simple.png' alt='Il logo del club'>
-              </div>
-              <h1 class='text-center text-2xl md:text-4xl'>
-                {{ site.title }}
-              </h1>
-              {% if linkHome %}</a>{% endif %}
-              <p class='hidden md:block'>{{ site.subtitle }}</p>
+      <header class='pt-4'>
+        <div class='column grid grid-cols-2 gap-4 header-grid mb-4 grid-rows-[repeat(3,auto)] sm:grid-cols-[5fr_1fr_1fr_1fr] sm:grid-rows-[repeat(2,auto)]'>
+          <div class="col-span-2 sm:row-span-2 sm:col-span-1  sm:col-start-1">
+            {% if linkHome %}<a href='/' class='text-2xl font-bold'>{% endif %}
+            <div class='md:max-w-[300px]'>
+              <img src='/images/logo-simple.png' alt='Il logo del club'>
             </div>
-            <div class='ml-auto flex flex-col justify-around space-y-4  md:flex-row md:space-x-2 md:space-y-0'>
-              <a
-                href='http://www.fipsas.it/'
-                target='_blank'
-                rel='noopener noreferrer'
-              >
-                <div class='max-w-[120px]'>
-                  <img
-                    class='header-static-image'
-                    src='/images/fipsaslogo.png'
-                    alt='FIPSAS logo'
-                    loading='eager'
-                    placeholder='none'
-                    width='{120}'
-                  >
-                </div>
-              </a>
-              <a
-                href='http://www.cmas.org/'
-                target='_blank'
-                rel='noopener noreferrer'
-              >
-                <div class='max-w-[120px]'>
-                  <img
-                    class='header-static-image'
-                    src='/images/cmas.png'
-                    alt='CMAS logo'
-                    loading='eager'
-                    placeholder='none'
-                    width='{120}'
-                  >
-                </div>
-              </a>
-            </div>
+            <h1 class='text-2xl md:text-4xl'>
+              {{ site.title }}
+            </h1>
+            {% if linkHome %}</a>{% endif %}
+            <p class='hidden md:block'>{{ site.subtitle }}</p>
           </div>
-
-          <div class='flex items-center space-x-4 md:flex-col md:space-x-0'>
+            <a
+              class="row-start-2 sm:row-start-1 sm:col-start-2"
+              href='http://www.fipsas.it/'
+              target='_blank'
+              rel='noopener noreferrer'
+            >
+              <div class='max-w-[120px] mx-auto'>
+                <img
+                  class='header-static-image'
+                  src='/images/fipsaslogo.png'
+                  alt='FIPSAS logo'
+                  loading='eager'
+                  placeholder='none'
+                  width='{120}'
+                >
+              </div>
+            </a>
+            <a
+              class="row-start-2 sm:row-start-1 sm:col-start-3"
+              href='http://www.cmas.org/'
+              target='_blank'
+              rel='noopener noreferrer'
+            >
+              <div class='max-w-[120px] mx-auto'>
+                <img
+                  class='header-static-image'
+                  src='/images/cmas.png'
+                  alt='CMAS logo'
+                  loading='eager'
+                  placeholder='none'
+                  width='{120}'
+                >
+              </div>
+            </a>
+          <div class='flex items-center space-x-4 sm:flex-col sm:space-x-0 col-span-2 sm:col-span-1 sm:col-start-4'>
             <div class='font-sm'>Seguici su</div>
             <div class='flex space-x-4'>
               <a
@@ -90,10 +87,12 @@
           </div>
         </div>
         {% include 'menu.liquid' %}
+        </header>
+      {% block hero %}
         {% if hideHeaderImages != true %}
-          {% include 'header_image.liquid' %}
+          {% include 'hero.liquid' %}
         {% endif %}
-      </header>
+      {% endblock %}
       <main  class="min-h-screen md:flex">
         <div  class="flex-1">
         {% block content %}

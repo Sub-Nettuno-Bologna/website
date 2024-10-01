@@ -2,7 +2,6 @@
 layout: layouts/base.liquid
 title: subnettuno.it
 linkHome: true
-preventMarginBottom: true
 hideHeaderImages: true
 ---
 
@@ -10,9 +9,12 @@ hideHeaderImages: true
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" />
 {% endblock %}
 
+{% block hero %}
+  <div id="map" class="map-element mb-4 h-[600px] w-full"></div>
+{% endblock %}
+
 
 {% block content %}
-<div id="map" class="mb-4 h-[600px] w-full"></div>
  <div class="column">
     {% include 'atoms/page-title.liquid' title: "Dove siamo" %}
     <p>

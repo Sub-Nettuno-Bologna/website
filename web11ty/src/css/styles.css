@@ -79,7 +79,7 @@ hr {
 }
 
 .focus-bar-box {
-  @apply bg-blue-nettuno h-[200px] w-[280px]  bg-cover bg-center bg-no-repeat text-center;
+  @apply bg-blue-nettuno h-[200px] w-[280px] bg-cover bg-center bg-no-repeat text-center;
 }
 
 .focus-bar-box:first-child {
@@ -87,4 +87,7 @@ hr {
 }
 .focus-bar-box:last-child {
   @apply rounded-r-lg;
+}
+
+.header-grid {
 }
