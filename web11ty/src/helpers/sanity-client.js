@@ -6,7 +6,7 @@ const projectId = process.env.SANITY_PROJECT;
 const apiToken = process.env.SANITY_READ_TOKEN;
 
 console.log('projectId', projectId);
-console.log('projectId', apiToken);
+console.log('apiToken', apiToken);
 
 if (!projectId) {
   throw new Error('Missing env SANITY_PROJECT');

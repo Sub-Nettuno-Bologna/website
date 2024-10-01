@@ -17,4 +17,4 @@ jobs:
         with:
           node-version-file: '.nvmrc'
       - run: npm ci
-      - run: npm run build -ws
+      - run: npm run build -w=studio -w=web11ty
