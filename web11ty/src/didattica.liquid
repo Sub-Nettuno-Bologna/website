@@ -1,0 +1,27 @@
+---
+layout: layouts/base.liquid
+title: Eventi subnettuno.it
+linkHome: true
+---
+<div class="column">
+<h2 class="my-4">Attività didattica</h2>
+      <div>
+        <p>
+          I nostri corsi sub sono riconosciuti in TUTTO il mondo, svolti secondo
+          la didattica
+          <a href="http://www.fipsas.it" rel="noindex nofollow external">FIPSAS</a>
+           - 
+          <a href="http://www.cmas.org/" rel="noindex nofollow external">CMAS</a>, la
+          federazione subacquea italiana affiliata al CONI.
+        </p>
+        <ol class="my-2 list-inside list-disc">
+            {% for corso in corsi %}
+        
+            <li  class="pb-2">
+                <a href="/{{corso.slug.current}}">{{corso.title}}</a>
+                </li>
+           
+            {% endfor %}
+        </ol>
+      </div>
+    </div>

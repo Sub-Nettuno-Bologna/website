@@ -1,0 +1,27 @@
+---
+pagination:
+  data: corsi
+  size: 1
+  alias: corso
+permalink: "/{{ corso.slug.current }}"
+layout: layouts/base.liquid
+title: "{{corso.title}}"
+---
+
+<article class="column">
+
+    <h2 class="my-4">{{corso.title}}</h2>
+    <div class="leading-6">
+        {{corso.body | sanityToHTML}}
+        </div>
+        <footer class="mt-6">
+        <p>
+            Per informazioni sui corsi potete
+            <a href="/contattaci">
+            chiamare in segreteria o scrivere una mail
+            </a>
+            .
+        </p>
+        </footer>
+
+</article>
