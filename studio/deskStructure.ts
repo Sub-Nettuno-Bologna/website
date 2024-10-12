@@ -1,11 +1,6 @@
 import { FiSettings, FiFileText } from 'react-icons/fi';
 
-const hiddenDocTypes = (listItem) =>
-  !['person', 'siteSettings', 'pagina', 'media.tag', 'event'].includes(
-    listItem.getId()
-  );
-
-export default (S) =>
+export default (S: any) =>
   S.list()
     .title('Contenuti')
     .items([
@@ -13,14 +8,6 @@ export default (S) =>
         .title('Pagine')
         .icon(FiFileText)
         .child(S.documentTypeList('pagina').title('Pagine')),
-      /*  S.listItem()
-        .title('All Pagine')
-        .icon(FiFileText)
-        .child(S.documentTypeList('pagina').title('Pagine ')), */
-      // This returns an array of all the document types
-      // defined in schema.js. We filter out those that we have
-      // defined the structure above
-      ...S.documentTypeListItems().filter(hiddenDocTypes),
       S.listItem()
         .title('Eventi')
         .schemaType('event')
