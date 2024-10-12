@@ -2,7 +2,7 @@
 const { client } = require('../helpers/sanity-client');
 
 const query = `
-    *[_type == "pagina"]{
+    *[_type == "pagina" && title != "homepage"]{
       ...
     } | order(title asc)
   `;

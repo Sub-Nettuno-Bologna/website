@@ -2,31 +2,10 @@
 
 require('dotenv').config({ path: '../.env' });
 const { urlFor } = require('./src/helpers/sanity-client');
+const {
+  myPortableTextComponents,
+} = require('./src/helpers/portable-text-components');
 const { toHTML } = require('@portabletext/to-html');
-
-const myPortableTextComponents = {
-  marks: {
-    internalLink: ({ value, children }) => {
-      console.log('Missing link to a recipe', value);
-      return `<a className="underline">${children}</a>`;
-    },
-    link: ({ value, children }) => {
-      const { blank, href } = value;
-      return blank
-        ? `<a
-          href="${href}"
-          className="underline"
-          target="_blank"
-          rel="noreferrer noopener"
-        >
-          ${children}
-        </a>`
-        : `<a href={href} className="underline">
-          ${children} 
-        </a>`;
-    },
-  },
-};
 
 module.exports = (config) => {
   config.addPassthroughCopy({

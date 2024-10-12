@@ -8,7 +8,7 @@ const theme = {
 };
 
 module.exports = {
-  content: ['./src/**/*.{html,njk,md,liquid}'],
+  content: ['./src/**/*.{html,njk,md,liquid,js}'],
   plugins: [],
   theme: {
     extend: {
