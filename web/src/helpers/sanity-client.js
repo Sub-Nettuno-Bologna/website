@@ -25,38 +25,7 @@ function urlFor(source) {
   return builder.image(source);
 }
 
-function getRicetteThumbs() {
-  return client.fetch(
-    `
-    *[ _type == "ricetta" ]{
-      title,
-      slug { current },
-      mainImage {
-        asset
-      },
-      category -> { title }
-    } | order(title desc)
-  `,
-    {}
-  );
-}
-
-function getAllCategories() {
-  return client.fetch(
-    `
-    *[ _type == "category" ]{
-      title,
-      slug { current },
-   
-    }
-  `,
-    {}
-  );
-}
-
 module.exports = {
   client,
-  getAllCategories,
-  getRicetteThumbs,
   urlFor,
 };
