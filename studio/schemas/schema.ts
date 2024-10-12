@@ -10,7 +10,6 @@ import bioPortableText from './objects/bioPortableText';
 import { figure } from './objects/figure';
 import projectMember from './objects/projectMember';
 import pagePortableText from './objects/pagePortableText';
-import simplePortableText from './objects/simplePortableText';
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default [
@@ -22,6 +21,5 @@ export default [
   pagePortableText,
   person,
   projectMember,
-  simplePortableText,
   siteSettings,
 ];
