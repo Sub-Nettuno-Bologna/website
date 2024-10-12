@@ -14,7 +14,6 @@
       type='image/png'
     >
     {% block header %}{% endblock %}
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"></script>
   </head>
   <body>
       <header class=''>
@@ -43,7 +42,8 @@
                   alt='FIPSAS logo'
                   loading='eager'
                   placeholder='none'
-                  width='{120}'
+                  width='120px'
+                  height='120px'
                 >
               </div>
             </a>
@@ -60,7 +60,8 @@
                   alt='CMAS logo'
                   loading='eager'
                   placeholder='none'
-                  width='{120}'
+                  width='120px'
+                  height='120px'
                 >
               </div>
             </a>
@@ -156,5 +157,8 @@
       </div>
     </footer>
     {% block footer %}{% endblock %}
+    {% if hideHeaderImages != true %}
+      <script src={{"/js/swiper-element-bundle.min.js" | url  }}></script>
+    {% endif %}
   </body>
 </html>
