@@ -1,6 +1,7 @@
 import { FiUsers } from 'react-icons/fi';
+import { defineType } from 'sanity';
 
-export default {
+export default defineType({
   fields: [
     {
       name: 'name',
@@ -76,4 +77,4 @@ export default {
   },
   title: 'Person',
   type: 'document',
-};
+});

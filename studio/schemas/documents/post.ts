@@ -1,10 +1,11 @@
 import { FiFileText } from 'react-icons/fi';
 import format from 'date-fns/format';
+import { defineType } from 'sanity';
 /**
  * Deprecated
  *
  */
-export default {
+export default defineType({
   fields: [
     {
       name: 'title',
@@ -24,7 +25,7 @@ export default {
       options: {
         maxLength: 96,
         source: (doc) =>
-          `${format(new Date(doc.date), 'yyyy-MM')}-${doc.title} `,
+          `${format(new Date(doc.date as string), 'yyyy-MM')}-${doc.title} `,
       },
       title: 'Slug',
       type: 'slug',
@@ -42,7 +43,6 @@ export default {
   preview: {
     prepare({ title = 'Ancora nessun titolo', slug = {} }) {
       return {
-        //@ts-expect-error
         subtitle: `/${slug.current}`,
         title,
       };
@@ -54,4 +54,4 @@ export default {
   },
   title: 'Post',
   type: 'document',
-};
+});

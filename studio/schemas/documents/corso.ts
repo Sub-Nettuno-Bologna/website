@@ -1,6 +1,7 @@
 import { GiScubaTanks } from 'react-icons/gi';
+import { defineType } from 'sanity';
 
-export default {
+export default defineType({
   fields: [
     {
       name: 'title',
@@ -19,7 +20,7 @@ export default {
             .replace(/[\s-°:]+/g, '-')
             .slice(0, 200),
         source: (doc) => {
-          return `corso-${doc.title.replace(/^Corso\s+/i, '')}`;
+          return `corso-${(doc.title as string).replace(/^Corso\s+/i, '')}`;
         },
       },
       title: 'Slug',
@@ -61,7 +62,6 @@ export default {
   preview: {
     prepare({ title = 'No title', slug = {} }) {
       return {
-        //@ts-expect-error
         subtitle: `/${slug.current}`,
         title,
       };
@@ -73,4 +73,4 @@ export default {
   },
   title: 'Corsi',
   type: 'document',
-};
+});
