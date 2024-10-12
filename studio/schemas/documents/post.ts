@@ -1,6 +1,9 @@
 import { FiFileText } from 'react-icons/fi';
 import format from 'date-fns/format';
-
+/**
+ * Deprecated
+ *
+ */
 export default {
   fields: [
     {
