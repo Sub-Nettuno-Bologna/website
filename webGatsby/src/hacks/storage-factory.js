@@ -8,7 +8,7 @@ export function storageFactory(getStorage) {
       getStorage().setItem(testKey, testKey);
       getStorage().removeItem(testKey);
       return true;
-    } catch (e) {
+    } catch () {
       return false;
     }
   }

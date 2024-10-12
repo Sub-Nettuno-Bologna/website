@@ -69,7 +69,7 @@ export default [
       '**/public',
       '**/.cache',
       '**/dist',
-      '**/web/**',
+      '**/webGatsby/**',
     ],
   },
 ];
