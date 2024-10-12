@@ -63,7 +63,7 @@ export default defineConfig({
     }),
     media(),
   ],
-  projectId: process.env.SANITY_PROJECT,
+  projectId: '31d7d4ws',
   root: true,
   schema: {
     types: schemaTypes,

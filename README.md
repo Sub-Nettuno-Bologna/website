@@ -3,6 +3,10 @@
 [![Netlify Status](https://api.netlify.com/api/v1/badges/2957c68e-a3eb-40f4-b127-32195e2837dd/deploy-status)](https://app.netlify.com/sites/blue-lagoon-505905/deploys)
 [![GH Build](https://github.com/kajyr/subnettuno.it/actions/workflows/test.yml/badge.svg)](https://github.com/kajyr/subnettuno.it/actions/workflows/test.yml)
 
+## Backend
+
+[![Netlify Status](https://api.netlify.com/api/v1/badges/a069426b-4078-4739-bb84-93bf7ae69ffc/deploy-status)](https://app.netlify.com/sites/subnettuno-backend/deploys)
+
 Commenti: disqus
 Contact form: https://formspree.io/
 
