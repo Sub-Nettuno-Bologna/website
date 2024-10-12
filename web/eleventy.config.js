@@ -24,12 +24,9 @@ module.exports = (config) => {
   });
 
   return {
-    dataTemplateEngine: 'njk',
     dir: {
       input: 'src',
       output: 'public',
     },
-    htmlTemplateEngine: 'njk',
-    markdownTemplateEngine: 'njk',
   };
 };
