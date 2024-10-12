@@ -1,5 +1,4 @@
-/* eslint-disable @typescript-eslint/no-require-imports */
-const { client } = require('../helpers/sanity-client');
+import { client } from '../helpers/sanity-client.js';
 
 const query = `
     *[_type == "pagina" && title != "homepage"]{
@@ -7,7 +6,7 @@ const query = `
     } | order(title asc)
   `;
 
-module.exports = async function () {
+export default async function () {
   try {
     const fetched = await client.fetch(query);
 
@@ -18,4 +17,4 @@ module.exports = async function () {
     console.error('Error fetching Sanity data: ', err);
     return []; // Return an empty array if something goes wrong
   }
-};
+}

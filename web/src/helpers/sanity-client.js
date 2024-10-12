@@ -1,6 +1,7 @@
-require('dotenv').config({ path: '../.env' });
-const { createClient } = require('@sanity/client');
-const imageUrlBuilder = require('@sanity/image-url');
+import dotenv from 'dotenv';
+dotenv.config({ path: '../.env' });
+import { createClient } from '@sanity/client';
+import imageUrlBuilder from '@sanity/image-url';
 
 const projectId = process.env.SANITY_PROJECT;
 const apiToken = process.env.SANITY_READ_TOKEN;
@@ -12,7 +13,7 @@ if (!projectId) {
   throw new Error('Missing env SANITY_PROJECT');
 }
 
-const client = createClient({
+export const client = createClient({
   apiVersion: '2021-08-31',
   dataset: 'production',
   projectId,
@@ -21,11 +22,6 @@ const client = createClient({
 });
 const builder = imageUrlBuilder(client);
 
-function urlFor(source) {
+export function urlFor(source) {
   return builder.image(source);
 }
-
-module.exports = {
-  client,
-  urlFor,
-};

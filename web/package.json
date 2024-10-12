@@ -2,6 +2,7 @@
   "name": "web11ty",
   "version": "3.0.0",
   "license": "MIT",
+  "type": "module",
   "scripts": {
     "build": "eleventy && tailwindcss -i ./src/css/styles.css -o ./public/css/styles.css --minify",
     "watch": "eleventy --serve & tailwindcss -i ./src/css/styles.css -o ./public/css/styles.css --watch"

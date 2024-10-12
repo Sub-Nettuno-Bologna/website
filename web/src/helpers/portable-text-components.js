@@ -1,11 +1,11 @@
-const { urlFor } = require('./sanity-client');
+import { urlFor } from './sanity-client.js';
 
 const replaceTags = (str) => {
   const html = str ? str.replace(/\n/g, '<br />') : str;
   return html;
 };
 
-const myPortableTextComponents = {
+export const myPortableTextComponents = {
   marks: {
     internalLink: ({ value, children }) => {
       return `<a className="underline internalLink" href="${value.href}">${children}</a>`;
@@ -46,5 +46,3 @@ const myPortableTextComponents = {
     },
   },
 };
-
-module.exports = { myPortableTextComponents };

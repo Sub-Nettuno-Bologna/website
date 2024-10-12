@@ -1,11 +1,8 @@
-/* eslint-disable @typescript-eslint/no-require-imports */
-const { urlFor } = require('./src/helpers/sanity-client');
-const {
-  myPortableTextComponents,
-} = require('./src/helpers/portable-text-components');
-const { toHTML } = require('@portabletext/to-html');
+import { toHTML } from '@portabletext/to-html';
+import { urlFor } from './src/helpers/sanity-client.js';
+import { myPortableTextComponents } from './src/helpers/portable-text-components.js';
 
-module.exports = (config) => {
+export default async function (config) {
   config.addPassthroughCopy({
     'src/js': 'js',
     'static/images': 'images',
@@ -25,8 +22,9 @@ module.exports = (config) => {
 
   return {
     dir: {
+      includes: '_includes',
       input: 'src',
       output: 'public',
     },
   };
-};
+}

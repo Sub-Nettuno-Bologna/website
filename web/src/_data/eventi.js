@@ -1,6 +1,4 @@
-/* eslint-disable @typescript-eslint/no-require-imports */
-
-const { client, urlFor } = require('../helpers/sanity-client');
+import { client, urlFor } from '../helpers/sanity-client.js';
 
 const query = `
     *[_type == "event"]{
@@ -8,7 +6,7 @@ const query = `
     } | order(date desc)
   `;
 
-module.exports = async function () {
+export default async function () {
   try {
     const events = await client.fetch(query);
 
@@ -32,4 +30,4 @@ module.exports = async function () {
     console.error('Error fetching Sanity data: ', err);
     return []; // Return an empty array if something goes wrong
   }
-};
+}

@@ -1,6 +1,4 @@
-/* eslint-disable @typescript-eslint/no-require-imports */
-// _data/sanity.js
-const { client, urlFor } = require('../helpers/sanity-client');
+import { client, urlFor } from '../helpers/sanity-client.js';
 
 // Define your GROQ query to fetch the data
 const query = `
@@ -16,7 +14,7 @@ const query = `
 `;
 
 // Fetch the data from Sanity during the build
-module.exports = async function () {
+export default async function () {
   const [sanityData] = await client.fetch(query);
 
   if (!sanityData) {
@@ -34,4 +32,4 @@ module.exports = async function () {
   data.curYear = new Date().getFullYear();
 
   return data;
-};
+}
