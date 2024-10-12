@@ -1,6 +1,4 @@
 /* eslint-disable @typescript-eslint/no-require-imports */
-
-require('dotenv').config({ path: '../.env' });
 const { urlFor } = require('./src/helpers/sanity-client');
 const {
   myPortableTextComponents,

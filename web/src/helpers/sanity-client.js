@@ -1,5 +1,5 @@
-require('dotenv').config();
-const sanityClient = require('@sanity/client');
+require('dotenv').config({ path: '../.env' });
+const { createClient } = require('@sanity/client');
 const imageUrlBuilder = require('@sanity/image-url');
 
 const projectId = process.env.SANITY_PROJECT;
@@ -12,7 +12,7 @@ if (!projectId) {
   throw new Error('Missing env SANITY_PROJECT');
 }
 
-const client = sanityClient({
+const client = createClient({
   apiVersion: '2021-08-31',
   dataset: 'production',
   projectId,
