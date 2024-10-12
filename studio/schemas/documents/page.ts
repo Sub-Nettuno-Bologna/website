@@ -19,15 +19,15 @@ export const page = defineType({
       type: 'slug',
     },
     {
-      name: 'body',
-      title: 'Body',
-      type: 'pagePortableText',
-    },
-    {
       initialValue: false,
       name: 'hidden',
       title: 'Nascosta',
       type: 'boolean',
+    },
+    {
+      name: 'body',
+      title: 'Body',
+      type: 'pagePortableText',
     },
   ],
   icon: FiFileText,

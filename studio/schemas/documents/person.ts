@@ -26,7 +26,7 @@ export default {
       title: 'Foto',
       type: 'figure',
     },
-    {
+    /*     {
       initialValue: true,
       name: 'gender',
       options: {
@@ -35,7 +35,7 @@ export default {
       },
       title: 'Genere',
       type: 'string',
-    },
+    }, */
     {
       initialValue: true,
       name: 'active',

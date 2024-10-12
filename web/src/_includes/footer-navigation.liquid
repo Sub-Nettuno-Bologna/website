@@ -5,20 +5,17 @@
     </a>
   </li>
   {% for page in pagine %}
-    <li>
-    <a class="text-white" href="/{{page.slug.current}}">
-    {{ page.title }}
-    </a>
-    </li>
+    {% unless page.hidden %}
+      <li>
+      <a class="text-white" href="/{{page.slug.current}}">
+      {{ page.title }}
+      </a>
+      </li>
+    {% endunless %}
   {% endfor %}
   <li>
     <a class="text-white" href="/dove-siamo">
       Dove siamo
-    </a>
-  </li>
-  <li>
-    <a class="text-white" href="/guide">
-      Guide
     </a>
   </li>
   <li>
