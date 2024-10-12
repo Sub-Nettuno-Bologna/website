@@ -26,9 +26,17 @@ export const figure = defineType({
   ],
   name: 'figure',
   preview: {
+    prepare(selection) {
+      const { caption, imageUrl, alt } = selection;
+      return {
+        imageUrl,
+        title: caption || alt || 'Immagine',
+      };
+    },
     select: {
+      alt: 'alt',
+      caption: 'caption',
       imageUrl: 'image.asset.url',
-      title: 'caption',
     },
   },
   title: 'Image',
