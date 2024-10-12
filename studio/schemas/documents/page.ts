@@ -24,24 +24,11 @@ export const page = defineType({
       type: 'pagePortableText',
     },
     {
-      name: 'category',
-      options: { disableNew: true },
-      title: 'Categoria',
-      to: { type: 'category' },
-      type: 'reference',
-    },
-    {
-      initialValue: true,
-      name: 'sidebar',
-      title: 'Mostra nella sidebar del sito',
+      initialValue: false,
+      name: 'hidden',
+      title: 'Nascosta',
       type: 'boolean',
     },
-    /*    {
-      name: 'related corsi',
-      title: 'Related projects',
-      type: 'array',
-      of: [{ type: 'reference', to: { type: 'sampleProject' } }],
-    }, */
   ],
   icon: FiFileText,
   name: 'pagina',

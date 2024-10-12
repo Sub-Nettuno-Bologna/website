@@ -1,39 +1,18 @@
 import { FiSettings, FiFileText } from 'react-icons/fi';
 
 const hiddenDocTypes = (listItem) =>
-  ![
-    'category',
-    'person',
-    'siteSettings',
-    'pagina',
-    'media.tag',
-    'post',
-    'event',
-  ].includes(listItem.getId());
+  !['person', 'siteSettings', 'pagina', 'media.tag', 'event'].includes(
+    listItem.getId()
+  );
 
 export default (S) =>
   S.list()
     .title('Contenuti')
     .items([
       S.listItem()
-        .title('Post')
-        .schemaType('post')
-        .child(S.documentTypeList('post').title('Posts')),
-      S.listItem()
         .title('Pagine')
         .icon(FiFileText)
-        .child(
-          S.documentTypeList('category')
-            .title('Categorie')
-            .child(
-              (id) =>
-                S.documentList()
-                  .title('Pagine')
-                  .schemaType('pagina')
-                  .filter('category._ref == $id')
-                  .params({ id }) // use the id in the filter to return sampleProjects that has a reference to the category
-            )
-        ),
+        .child(S.documentTypeList('pagina').title('Pagine')),
       /*  S.listItem()
         .title('All Pagine')
         .icon(FiFileText)
@@ -46,10 +25,6 @@ export default (S) =>
         .title('Eventi')
         .schemaType('event')
         .child(S.documentTypeList('event').title('Eventi')),
-      S.listItem()
-        .title('Categorie')
-        .schemaType('category')
-        .child(S.documentTypeList('category').title('Categories')),
       S.listItem()
         .title('Staff')
         .schemaType('person')

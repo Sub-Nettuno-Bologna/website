@@ -1,5 +1,4 @@
 // Document types
-import category from './documents/category';
 import corso from './documents/corso';
 import event from './documents/event';
 import { page } from './documents/page';
@@ -16,7 +15,6 @@ import simplePortableText from './objects/simplePortableText';
 // Then we give our schema to the builder and provide the result to Sanity
 export default [
   bioPortableText,
-  category,
   corso,
   event,
   figure,

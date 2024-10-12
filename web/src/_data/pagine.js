@@ -2,9 +2,9 @@
 const { client } = require('../helpers/sanity-client');
 
 const query = `
-    *[_type == "pagina" && sidebar != false]{
+    *[_type == "pagina" && hidden != true]{
       ...
-    } | order(title desc)
+    } | order(title asc)
   `;
 
 module.exports = async function () {

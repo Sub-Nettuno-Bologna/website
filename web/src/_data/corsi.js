@@ -11,7 +11,7 @@ module.exports = async function () {
   try {
     const fetched = await client.fetch(query);
 
-    console.log('Sanity data fetched successfully: ', fetched);
+    //console.log('Sanity data fetched successfully: ', fetched);
 
     return fetched;
   } catch (err) {

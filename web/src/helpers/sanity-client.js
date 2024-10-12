@@ -25,26 +25,6 @@ function urlFor(source) {
   return builder.image(source);
 }
 
-function sanityToMd({ mainImage, category, ingredienti, ...ricetta }) {
-  const data = { ...ricetta };
-  const other = {
-    url: `/r/${ricetta.slug.current}`,
-  };
-  if (mainImage?.asset) {
-    data.image = urlFor(mainImage?.asset).width(500);
-  }
-  if (category?.title) {
-    data.category = category.title;
-  }
-  if (ingredienti) {
-    other.ingredienti_blocks = ingredienti;
-  }
-  return {
-    data,
-    ...other,
-  };
-}
-
 function getRicetteThumbs() {
   return client.fetch(
     `
@@ -78,6 +58,5 @@ module.exports = {
   client,
   getAllCategories,
   getRicetteThumbs,
-  sanityToMd,
   urlFor,
 };

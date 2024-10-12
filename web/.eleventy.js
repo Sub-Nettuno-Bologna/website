@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-require-imports */
 
 require('dotenv').config({ path: '../.env' });
-const { sanityToMd, urlFor } = require('./src/helpers/sanity-client');
+const { urlFor } = require('./src/helpers/sanity-client');
 const { toHTML } = require('@portabletext/to-html');
 
 const myPortableTextComponents = {
@@ -37,9 +37,6 @@ module.exports = (config) => {
 
   config.addFilter('sanityToHTML', function (value) {
     return toHTML(value, { components: myPortableTextComponents });
-  });
-  config.addFilter('sanityRicettaToMd', function (value) {
-    return sanityToMd(value);
   });
   config.addFilter('sanityImage', function (image) {
     return urlFor(image);

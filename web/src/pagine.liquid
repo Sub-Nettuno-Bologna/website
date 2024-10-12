@@ -1,0 +1,17 @@
+---
+pagination:
+  data: pagine
+  size: 1
+  alias: pagina
+permalink: "/{{ pagina.slug.current }}/"
+layout: layouts/base.liquid
+title: "{{pagina.title}}"
+---
+
+<article class="column">
+
+    <h2 class="my-4">{{pagina.title}}</h2>
+    <div class="leading-6">
+        {{pagina.body | sanityToHTML}}
+    </div>
+</article>
