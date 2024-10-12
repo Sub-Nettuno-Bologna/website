@@ -1,6 +1,6 @@
 import { defineConfig } from 'sanity';
 import schemaTypes from './schemas/schema';
-import { deskTool } from 'sanity/desk';
+import { structureTool } from 'sanity/structure';
 
 import {
   dashboardTool,
@@ -34,7 +34,7 @@ export default defineConfig({
   },
   name: 'subnettuno',
   plugins: [
-    deskTool({
+    structureTool({
       structure: deskStructure,
     }),
     dashboardTool({

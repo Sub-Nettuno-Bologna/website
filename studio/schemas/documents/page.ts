@@ -1,7 +1,6 @@
 import { FiFileText } from 'react-icons/fi';
-import { defineType } from 'sanity';
 
-export const page = defineType({
+export const page = {
   fields: [
     {
       name: 'title',
@@ -26,14 +25,15 @@ export const page = defineType({
     },
     {
       name: 'body',
+      of: [{ type: 'block' }],
       title: 'Body',
-      type: 'pagePortableText',
+      type: 'array',
     },
   ],
   icon: FiFileText,
   name: 'pagina',
   preview: {
-    prepare({ title = 'No title', slug = {} }) {
+    prepare({ title = 'No title', slug = { current: '' } }) {
       return {
         subtitle: `/${slug.current}`,
         title,
@@ -46,4 +46,4 @@ export const page = defineType({
   },
   title: 'Pagine',
   type: 'document',
-});
+};

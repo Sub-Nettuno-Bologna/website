@@ -5,23 +5,17 @@ linkHome: false
 ---
 
 {% block content %}
+
       <div class="column">
-       {% comment %}  <FocusBar /> {% endcomment %}
-        <section class="my-16">
-          <h2>Il club Sub Nettuno è con le donne.</h2>
-          <div class="rounded-lg bg-slate-400 p-4">
-            <div class="flex items-center">
-              <img src="/images/scarpe_rosse.jpg" alt="Il club Sub Nettuno è con le donne" />
-            </div>
-            <div class="mt-4">
-              Foto scattata dal socio Stefano Colombo
-              <br />
-              Modella Annalisa Costa
-              <br />
-              Titolo dell’opera: <em>L’amore non incatena</em>
-            </div>
-          </div>
-        </section>
+        {% for sec in homepage %}
+          <section class="my-16 leading-7">
+            <h2>{{ sec.title }}</h2>
+            {{sec.body | sanityToHTML}}
+          </section>  
+        {% endfor %}
+      </div>
+
+      <div class="column">
         <section class="my-16 space-x-6 space-y-6 leading-7 xl:flex xl:space-y-0 items-center">
           <div class="xl:w-3/5">
             <h2>Il club</h2>
