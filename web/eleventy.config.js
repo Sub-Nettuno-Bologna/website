@@ -12,8 +12,12 @@ export default async function (config) {
   config.addFilter('sanityToHTML', function (value) {
     return toHTML(value, { components: myPortableTextComponents });
   });
-  config.addFilter('sanityImage', function (image) {
-    return urlFor(image);
+  config.addFilter('sanityImage', function (figure) {
+    const image = 'image' in figure ? figure.image : figure;
+    if (!image?.asset) {
+      return '';
+    }
+    return urlFor(image.asset);
   });
 
   config.addFilter('json', function (value) {
