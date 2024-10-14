@@ -7,12 +7,14 @@ linkHome: true
 <div class="column">
     <div class="grid grid-cols-2 gap-4 lg:grid-cols-3">
     {% for evento in eventi %}
-    <article class="relative">
-        <div className="mb-6 py-2">
+    <article class="relative max-h-[400px] overflow-hidden hover:overflow-visible hover:z-50">
+        <div class="p-2 bg-white hover:drop-shadow-xl hover:border">
+            <div className="mb-6 py-2">
             <h2>{{ evento.title }} </h2>
-        </div>
-        <div>
-           <img src="{{evento.locandina | sanityImage}}" alt="{{evento.alt}}" class="max-h-[600px] w-full object-contain">
+            </div>
+            <div>
+            <img src="{{evento.locandina | sanityImage}}" alt="{{evento.alt}}" class="object-cover w-full">
+            </div>
         </div>
     </article>
     {% endfor %}
