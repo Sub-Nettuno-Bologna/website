@@ -3,6 +3,7 @@ import corso from './documents/corso';
 import event from './documents/event';
 import { page } from './documents/page';
 import person from './documents/person';
+import homeBlock from './documents/home-block';
 import siteSettings from './documents/siteSettings';
 
 // Object types
@@ -16,6 +17,7 @@ import { simpleImage } from './objects/simpleImage';
 export default [
   bioPortableText,
   corso,
+  homeBlock,
   event,
   figure,
   page,
