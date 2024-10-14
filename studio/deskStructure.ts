@@ -1,9 +1,16 @@
 import { FiSettings, FiFileText } from 'react-icons/fi';
+import { orderableDocumentListDeskItem } from '@sanity/orderable-document-list';
 
-export default (S: any) =>
+export default (S, context) =>
   S.list()
     .title('Contenuti')
     .items([
+      orderableDocumentListDeskItem({
+        S,
+        context,
+        title: 'Sezioni homepage',
+        type: 'home-block',
+      }),
       S.listItem()
         .title('Pagine')
         .icon(FiFileText)
