@@ -3,25 +3,12 @@ export default {
   name: 'pagePortableText',
   of: [
     {
-      
+      lists: [{ title: 'Bullet', value: 'bullet' }],
 
-
-
-lists: [{ title: 'Bullet', value: 'bullet' }],
-      
-
-
-
-
-
-
-
-// Marks let you mark up inline text in the block editor.
-marks: {
-        
-        
+      // Marks let you mark up inline text in the block editor.
+      marks: {
         // Annotations can be any object structure – e.g. a link or a footnote.
-annotations: [
+        annotations: [
           {
             blockEditor: {
               icon: FaLink,
@@ -77,33 +64,29 @@ annotations: [
             type: 'object',
           },
         ],
-        
+
         // Decorators usually describe a single property – e.g. a typographic
-// preference or highlighting by editors.
-decorators: [
+        // preference or highlighting by editors.
+        decorators: [
           { title: 'Grassetto', value: 'strong' },
           { title: 'Enfasi', value: 'em' },
         ],
       },
-      
-      
-      
-      
-      
-// Styles let you set what your user can mark up blocks with. These
-// corrensponds with HTML tags, but you can set any title or value
-// you want and decide how you want to deal with it where you want to
-// use your content.
-styles: [
+
+      // Styles let you set what your user can mark up blocks with. These
+      // corrensponds with HTML tags, but you can set any title or value
+      // you want and decide how you want to deal with it where you want to
+      // use your content.
+      styles: [
         { title: 'Normale', value: 'normal' },
         { title: 'Titolo', value: 'h2' },
         { title: 'Titolo 2', value: 'h3' },
         { title: 'Sezione', value: 'h4' },
         { title: 'Citazione', value: 'blockquote' },
       ],
-      
-title: 'Block',
-      
+
+      title: 'Block',
+
       type: 'block',
     },
     // You can add additional types here. Note that you can't use

@@ -25,18 +25,8 @@ export default defineType({
     {
       name: 'image',
       title: 'Foto',
-      type: 'figure',
+      type: 'simpleImage',
     },
-    /*     {
-      initialValue: true,
-      name: 'gender',
-      options: {
-        layout: 'dropdown',
-        list: ['Uomo', 'Donna', 'Non specificato'],
-      },
-      title: 'Genere',
-      type: 'string',
-    }, */
     {
       initialValue: true,
       name: 'active',

@@ -29,14 +29,14 @@ export default defineType({
       validation: (Rule) => Rule.required(),
     },
     {
-      name: 'body',
-      title: 'Contenuto',
-      type: 'pagePortableText',
-    },
-    {
       name: 'locandina',
       title: 'Locandina',
-      type: 'figure',
+      type: 'simpleImage',
+    },
+    {
+      name: 'body',
+      title: 'Contenuto (non usato per ora)',
+      type: 'pagePortableText',
     },
   ],
   icon: FiSun,

@@ -10,6 +10,7 @@ import bioPortableText from './objects/bioPortableText';
 import { figure } from './objects/figure';
 import projectMember from './objects/projectMember';
 import pagePortableText from './objects/pagePortableText';
+import { simpleImage } from './objects/simpleImage';
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default [
@@ -18,6 +19,7 @@ export default [
   event,
   figure,
   page,
+  simpleImage,
   pagePortableText,
   person,
   projectMember,
