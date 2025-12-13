@@ -1,6 +1,5 @@
 import { fetchList, fetchOne } from "@/lib/sanityFetch";
 import type { Course, CourseCategory, Slug } from "../../sanity.types";
-import { sanityClient } from "@/lib/sanity";
 
 // List course categories for general views
 export async function getCourseCategories(): Promise<
@@ -31,18 +30,24 @@ export async function getAllCategoryCoursePaths(): Promise<
     "category": slug.current,
     "courses": courses[]->slug.current
   }`;
-  const rows = await fetchList<{ category: string; courses: (string | null)[] }>(QUERY);
+  const rows = await fetchList<{
+    category: string;
+    courses: (string | null)[];
+  }>(QUERY);
   const paths: Array<{ category: string; course: string }> = [];
   for (const row of rows) {
     for (const courseSlug of row.courses || []) {
-      if (courseSlug) paths.push({ category: row.category, course: courseSlug });
+      if (courseSlug)
+        paths.push({ category: row.category, course: courseSlug });
     }
   }
   return paths;
 }
 
 // Get single category by slug
-export async function getCategoryBySlug(categorySlug: string): Promise<CourseCategory | null> {
+export async function getCategoryBySlug(
+  categorySlug: string
+): Promise<CourseCategory | null> {
   const QUERY = `*[_type == "course-category" && slug.current == $slug][0]{
     _id,
     _type,
@@ -90,7 +95,11 @@ export async function getCategoryBySlug(categorySlug: string): Promise<CourseCat
 }
 
 // Get a single course by slug with related info (category + nextCourses)
-export async function getCourse({ slug }: { slug: Slug["current"] | string }): Promise<
+export async function getCourse({
+  slug,
+}: {
+  slug: Slug["current"] | string;
+}): Promise<
   | (Course & {
       categorySlug?: string | null;
       nextCourses?: Array<{

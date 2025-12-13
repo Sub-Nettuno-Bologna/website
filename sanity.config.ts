@@ -14,9 +14,10 @@ import {
 
 export default defineConfig({
   title: "SubNettuno",
-  name: process.env.SANITY_PROJECT_NAME,
-  projectId: process.env.SANITY_PROJECT_ID,
-  dataset: process.env.SANITY_DATASET,
+  // TODO: temporary hardcoded values
+  name: process.env.PUBLIC_SANITY_PROJECT_NAME || "subnettuno",
+  projectId: process.env.PUBLIC_SANITY_PROJECT_ID || "r56dtkaq",
+  dataset: process.env.PUBLIC_SANITY_DATASET || "production",
   plugins: [
     structureTool({
       structure: deskStructure,

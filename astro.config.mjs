@@ -18,23 +18,18 @@ export default defineConfig({
   env: {
     schema: {
       RESEND_API_KEY: envField.string({ context: "server", access: "secret" }),
-      RESEND_CONTACT_TO: envField.string({
+      RESEND_EMAIL: envField.string({
         context: "server",
         access: "secret",
         optional: true,
       }),
-      SANITY_PROJECT_ID: envField.string({
+      PUBLIC_SANITY_PROJECT_ID: envField.string({
         context: "client",
         access: "public",
       }),
-      SANITY_DATASET: envField.string({
+      PUBLIC_SANITY_DATASET: envField.string({
         context: "client",
         access: "public",
-      }),
-      SANITY_API_VERSION: envField.string({
-        context: "client",
-        access: "public",
-        optional: true,
       }),
     },
   },
@@ -45,9 +40,10 @@ export default defineConfig({
     sitemaps(),
     react(),
     sanity({
-      projectId: process.env.SANITY_PROJECT_ID,
-      dataset: process.env.SANITY_DATASET,
-      apiVersion: process.env.SANITY_API_VERSION,
+      // TODO: temporary hardcoded values
+      projectId: process.env.PUBLIC_SANITY_PROJECT_ID || "r56dtkaq",
+      dataset: process.env.PUBLIC_SANITY_DATASET || "production",
+      apiVersion: "2023-01-01",
       useCdn: false,
       studioBasePath: "/admin",
       studioRouterHistory: "hash",

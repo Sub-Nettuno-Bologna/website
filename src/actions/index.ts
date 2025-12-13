@@ -1,5 +1,5 @@
 import { defineAction, ActionError } from "astro:actions";
-import { RESEND_API_KEY, RESEND_CONTACT_TO } from "astro:env/server";
+import { RESEND_API_KEY, RESEND_EMAIL } from "astro:env/server";
 import { Resend } from "resend";
 import { z } from "astro:schema";
 
@@ -15,8 +15,8 @@ if (!RESEND_API_KEY) {
   throw new Error("RESEND_API_KEY is not set");
 }
 
-if (!RESEND_CONTACT_TO) {
-  throw new Error("RESEND_CONTACT_TO is not set");
+if (!RESEND_EMAIL) {
+  throw new Error("RESEND_EMAIL is not set");
 }
 
 const resend = new Resend(RESEND_API_KEY);
@@ -60,14 +60,13 @@ export const server = {
         });
       }
 
-      const recipientEmail = RESEND_CONTACT_TO;
       const emailSubject = `Nuovo messaggio da ${name} - SubNettuno.it`;
       const emailText = getMessage(name, email, message, phone);
 
       try {
         const result = await resend.emails.send({
-          from: `${name} <${email}>`,
-          to: [recipientEmail],
+          from: RESEND_EMAIL,
+          to: [RESEND_EMAIL],
           replyTo: email,
           subject: emailSubject,
           text: emailText,

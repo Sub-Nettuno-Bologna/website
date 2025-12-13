@@ -3,9 +3,8 @@ import type { SanityImageSource } from "@sanity/image-url/lib/types/types";
 import imageUrlBuilder from "@sanity/image-url";
 import type { CourseCategory } from "../../sanity.types";
 
-const projectId = import.meta.env.SANITY_PROJECT_ID;
-const dataset = import.meta.env.SANITY_DATASET;
-const apiVersion = import.meta.env.SANITY_API_VERSION ?? "2023-01-01";
+const projectId = import.meta.env.PUBLIC_SANITY_PROJECT_ID;
+const dataset = import.meta.env.PUBLIC_SANITY_DATASET;
 
 if (!projectId || !dataset) {
   throw new Error(
@@ -18,7 +17,7 @@ export const sanityClient = createClient({
   dataset,
   // Use CDN on production for faster, cached responses, disable on dev
   useCdn: import.meta.env.PROD,
-  apiVersion,
+  apiVersion: "2023-01-01",
 });
 
 export const urlFor = (source: SanityImageSource) => {

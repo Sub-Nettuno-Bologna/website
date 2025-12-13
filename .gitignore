@@ -16,6 +16,7 @@ pnpm-debug.log*
 # environment variables
 .env
 .env.dev
+.env.development
 .env.production
 .dev.vars
 
@@ -24,3 +25,6 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# sanity studio
+.sanity/
