@@ -50,6 +50,7 @@
     "sanity": "^4.21.1",
     "sanity-plugin-lucide-icon-picker": "^1.0.3",
     "sanity-plugin-media": "^4.0.0",
+    "sanity-plugin-webhooks-trigger": "^0.5.0",
     "schema-dts": "^1.1.5",
     "styled-components": "^6.1.19",
     "tailwind-merge": "^3.3.1",

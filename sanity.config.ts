@@ -11,6 +11,7 @@ import {
   projectUsersWidget,
   projectInfoWidget,
 } from "@sanity/dashboard";
+import { webhooksTrigger } from "sanity-plugin-webhooks-trigger";
 
 export default defineConfig({
   title: "SubNettuno",
@@ -25,6 +26,10 @@ export default defineConfig({
     visionTool(),
     codeInput(),
     lucideIconPicker(),
+    webhooksTrigger({
+      title: "Deploy",
+      text: "Custom text",
+    }),
     dashboardTool({
       widgets: [projectInfoWidget(), projectUsersWidget()],
     }),
