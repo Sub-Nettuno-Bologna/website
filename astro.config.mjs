@@ -45,8 +45,9 @@ export default defineConfig({
     sitemaps(),
     react(),
     sanity({
-      projectId: import.meta.env.SANITY_PROJECT_ID,
-      dataset: import.meta.env.SANITY_DATASET,
+      projectId: process.env.SANITY_PROJECT_ID,
+      dataset: process.env.SANITY_DATASET,
+      apiVersion: process.env.SANITY_API_VERSION,
       useCdn: false,
       studioBasePath: "/admin",
       studioRouterHistory: "hash",
