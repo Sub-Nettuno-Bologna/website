@@ -3,9 +3,13 @@ import type { SanityImageSource } from "@sanity/image-url/lib/types/types";
 import imageUrlBuilder from "@sanity/image-url";
 import type { CourseCategory } from "../../sanity.types";
 
-const projectId = import.meta.env.PUBLIC_SANITY_PROJECT_ID ?? "h3gj11wn";
-const dataset = import.meta.env.PUBLIC_SANITY_DATASET ?? "production";
+const projectId = import.meta.env.PUBLIC_SANITY_PROJECT_ID;
+const dataset = import.meta.env.PUBLIC_SANITY_DATASET;
 const apiVersion = import.meta.env.PUBLIC_SANITY_API_VERSION ?? "2023-01-01";
+
+if (!projectId || !dataset) {
+  throw new Error("Sanity env vars missing: set PUBLIC_SANITY_PROJECT_ID and PUBLIC_SANITY_DATASET");
+}
 
 export const sanityClient = createClient({
   projectId,
