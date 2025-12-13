@@ -8,7 +8,9 @@ const dataset = import.meta.env.PUBLIC_SANITY_DATASET;
 const apiVersion = import.meta.env.PUBLIC_SANITY_API_VERSION ?? "2023-01-01";
 
 if (!projectId || !dataset) {
-  throw new Error("Sanity env vars missing: set PUBLIC_SANITY_PROJECT_ID and PUBLIC_SANITY_DATASET");
+  throw new Error(
+    "Sanity env vars missing: set PUBLIC_SANITY_PROJECT_ID and PUBLIC_SANITY_DATASET"
+  );
 }
 
 export const sanityClient = createClient({
@@ -22,7 +24,9 @@ export const sanityClient = createClient({
 export const urlFor = (source: SanityImageSource) => {
   if (!source) return null;
   if (typeof source === "string") return source;
-  return projectId && dataset ? imageUrlBuilder({ projectId, dataset }).image(source) : null;
+  return projectId && dataset
+    ? imageUrlBuilder({ projectId, dataset }).image(source)
+    : null;
 };
 
 export type BuildImageOptions = {
@@ -53,7 +57,8 @@ export function buildImageUrl(
   let builder = built;
   if (mergedOptions?.width) builder = builder.width(mergedOptions.width);
   if (mergedOptions?.height) builder = builder.height(mergedOptions.height);
-  if (mergedOptions?.format) builder = builder.format(mergedOptions.format as any);
+  if (mergedOptions?.format)
+    builder = builder.format(mergedOptions.format as any);
   if (mergedOptions?.quality) builder = builder.quality(mergedOptions.quality);
   if (mergedOptions?.fit) builder = builder.fit(mergedOptions.fit as any);
 

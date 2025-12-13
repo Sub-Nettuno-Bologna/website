@@ -12,31 +12,41 @@ export default defineConfig({
   site: "https://subnettuno.it",
 
   vite: {
-    plugins: [
-      tailwindcss(),
-    ],
+    plugins: [tailwindcss()],
   },
 
   env: {
     schema: {
       RESEND_API_KEY: envField.string({ context: "server", access: "secret" }),
-      CONTACT_TO: envField.string({ context: "server", access: "secret", optional: true }),
+      RESEND_CONTACT_TO: envField.string({
+        context: "server",
+        access: "secret",
+        optional: true,
+      }),
       PUBLIC_SANITY_PROJECT_ID: envField.string({ context: "client" }),
       PUBLIC_SANITY_DATASET: envField.string({ context: "client" }),
-      PUBLIC_SANITY_API_VERSION: envField.string({ context: "client", optional: true }),
+      PUBLIC_SANITY_API_VERSION: envField.string({
+        context: "client",
+        optional: true,
+      }),
     },
   },
 
   adapter: cloudflare(),
 
-  integrations: [sitemaps(), react(), sanity({
-    projectId: import.meta.env.PUBLIC_SANITY_PROJECT_ID,
-    dataset: import.meta.env.PUBLIC_SANITY_DATASET,
-    useCdn: false,
-    studioBasePath: '/admin',
-    studioRouterHistory: 'hash',
-    stega: {
-      studioUrl: '/admin#',
-    },
-  }), playformCompress()],
+  integrations: [
+    sitemaps(),
+    react(),
+    sanity({
+      projectId: import.meta.env.PUBLIC_SANITY_PROJECT_ID,
+      dataset: import.meta.env.PUBLIC_SANITY_DATASET,
+      useCdn: false,
+      studioBasePath: "/admin",
+      studioRouterHistory: "hash",
+      stega: {
+        studioUrl: "/admin#",
+      },
+    }),
+    playformCompress(),
+  ],
 });
