@@ -1,0 +1,52 @@
+---
+import { pagesData } from "@/data/pages";
+
+// No props required; reads current URL from Astro.url
+const pathname = Astro.url.pathname;
+const rawSegments = pathname.split("/").filter(Boolean);
+const segments = rawSegments.filter((s) => s !== "page");
+
+function toTitle(label: string): string {
+  const map = pagesData.ui.breadcrumbs.titles;
+  if (map[label as keyof typeof map]) return map[label as keyof typeof map];
+  return label
+    .split("-")
+    .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
+    .join(" ");
+}
+
+const items = segments.map((segment, index) => {
+  const href = "/" + segments.slice(0, index + 1).join("/");
+  const isNumeric = /^\d+$/.test(segment);
+  const label = isNumeric ? `${pagesData.ui.breadcrumbs.pageLabel} ${segment}` : toTitle(segment);
+  return { label, href };
+});
+---
+
+{
+  segments.length > 0 && (
+    <nav aria-label="Breadcrumb" class="px-8 pt-4">
+      <ol class="flex flex-wrap items-center gap-1 text-sm text-gray-600">
+        <li>
+          <a href="/" class="hover:underline text-gray-700">
+            {pagesData.ui.breadcrumbs.home}
+          </a>
+        </li>
+        {items.map((item, idx) => (
+          <li class="flex items-center">
+            <span class="mx-2 text-gray-400">/</span>
+            {idx === items.length - 1 ? (
+              <span aria-current="page" class="text-gray-500">
+                {item.label}
+              </span>
+            ) : (
+              <a href={item.href} class="hover:underline text-gray-700">
+                {item.label}
+              </a>
+            )}
+          </li>
+        ))}
+      </ol>
+    </nav>
+  )
+}

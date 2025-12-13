@@ -1,0 +1,65 @@
+---
+import ContactPanel from "./ContactPanel.astro";
+import SectionContainer from "@/components/layout/Section.astro";
+import SectionHeader from "@/components/layout/SectionHeader.astro";
+import { pagesData } from "@/data/pages";
+import { getClubData } from "@/services/club";
+
+export interface Props {
+  hasBreadcrumbs?: boolean;
+}
+
+const { hasBreadcrumbs = true } = Astro.props;
+
+const club = await getClubData();
+
+const address =
+  club?.address || club?.addressLink
+    ? {
+        text: club?.address ?? "",
+        lines: club?.address ? club.address.split(",").map((s) => s.trim()) : undefined,
+        mapUrl: club?.addressLink,
+        // No embedMapUrl available from Sanity club, the panel handles it as optional
+      }
+    : undefined;
+
+const socialMedia = [
+  club?.facebook
+    ? {
+        platform: "Facebook",
+        url: club.facebook,
+        ariaLabel: pagesData.contact.socialMediaLabels.facebook,
+      }
+    : null,
+  club?.instagram
+    ? {
+        platform: "Instagram",
+        url: club.instagram,
+        ariaLabel: pagesData.contact.socialMediaLabels.instagram,
+      }
+    : null,
+].filter(Boolean) as Array<{ platform: string; url: string; ariaLabel: string }>;
+---
+
+<SectionContainer id="contatti" background="gray" padding="sm">
+  <SectionHeader
+    hasBreadcrumbs={hasBreadcrumbs}
+    title={pagesData.contact.title}
+    subtitle={pagesData.contact.subtitle.formatted}
+    titleColor="secondary"
+    subtitleColor="gray-600"
+    titleSize="lg"
+  />
+
+  <ContactPanel
+    form={pagesData.contact.form}
+    phoneNumber={club?.phone}
+    phoneSchedule={club?.phoneSchedule}
+    email={club?.email}
+    whatsAppNumbers={club?.whatsapp}
+    openingHours={club?.openingHours}
+    address={address}
+    socialMedia={socialMedia}
+    containerClass="shadow-lg"
+  />
+</SectionContainer>

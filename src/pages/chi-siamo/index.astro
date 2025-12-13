@@ -1,0 +1,56 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import AboutSection from "@/features/about/AboutSection.astro";
+import CardSection from "@/components/layout/CardSection.astro";
+import { getAboutUs } from "@/services/aboutus";
+import { getClubData } from "@/services/club";
+const about = await getAboutUs();
+
+const clubData = await getClubData();
+---
+
+<Layout title={`Chi Siamo - ${clubData?.clubName || "Club Sub Nettuno Bologna"}`}>
+  <AboutSection {...about} />
+
+  {
+    about?.cardSections?.map((section, index) => (
+      <CardSection
+        background={index % 2 === 0 ? "white" : "gradient-secondary"}
+        title={section.title ?? ""}
+        description={section.description ?? ""}
+        icon={section.icon as any}
+        cta={
+          section.cta
+            ? {
+                href: section.cta.href!,
+                text: section.cta.text!,
+              }
+            : null
+        }
+        padding="lg"
+      />
+    ))
+  }
+
+  <!-- <section class="text-center py-16">
+    <div
+      class="bg-gradient-to-r from-primary to-secondary rounded-2xl p-8 shadow-2xl transform hover:scale-105 transition-all duration-300"
+    >
+      <Target class="w-16 h-16 text-white mx-auto mb-4" />
+      <h3 class="text-2xl font-bold text-white mb-4">
+        Scopri la Storia della Subacquea
+      </h3>
+      <p class="text-white/90 mb-6 text-lg">
+        Esplora l'affascinante storia della subacquea italiana e mondiale, dalle
+        origini del XVI secolo fino ai giorni nostri
+      </p>
+      <a
+        href={pagesData.chiSiamo.historyButton.href}
+        class="inline-flex items-center px-8 py-4 bg-white text-primary font-bold rounded-xl hover:bg-gray-100 transition-colors duration-300 text-lg shadow-lg hover:shadow-xl transform hover:-translate-y-1"
+      >
+        <BookOpen class="w-6 h-6 mr-2" />
+        {pagesData.chiSiamo.historyButton.text}
+        <ArrowDown class="w-5 h-5 ml-2 rotate-[-90deg]" />
+      </a>
+    </div> -->
+</Layout>

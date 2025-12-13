@@ -1,0 +1,257 @@
+---
+import {
+  BookOpen,
+  Check,
+  FlagTriangleRight,
+  ListTodo,
+  ShieldCheck,
+  Ship,
+  WavesLadder,
+} from "@lucide/astro";
+import * as LucideIcons from "@lucide/astro";
+import { PortableText } from "astro-portabletext";
+import type { Course } from "../../../sanity.types";
+import Card from "@/components/primitives/Card/Card.astro";
+import CardContent from "@/components/primitives/Card/CardContent.astro";
+import CardDescription from "@/components/primitives/Card/CardDescription.astro";
+import CardHeader from "@/components/primitives/Card/CardHeader.astro";
+import CardTitle from "@/components/primitives/Card/CardTitle.astro";
+import SwimmingScuba from "@/components/visuals/animations/SwimmingScuba.astro";
+import { pagesData } from "@/data/pages";
+import { toPascalCase } from "@/lib/utils";
+
+export interface Props {
+  course: Course & {
+    categorySlug?: string | null;
+    nextCourses?: Array<{
+      title?: string;
+      slug?: string;
+      categorySlug?: string | null;
+    }>;
+  };
+  scubaDiving?: boolean;
+}
+
+const { course, scubaDiving = false } = Astro.props;
+---
+
+<div class="mx-auto px-4">
+  <!-- Hero Section -->
+  <section class="relative text-center pt-6 overflow-visible">
+    <div class="relative z-10">
+      <p class="text-lg text-primary font-semibold">
+        {course.certification}
+      </p>
+      <h1 class="text-4xl md:text-6xl font-bold tracking-tighter my-4">
+        {course.title}
+      </h1>
+      <p class="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto">
+        <PortableText value={course.subtitle || []} />
+      </p>
+    </div>
+    {scubaDiving && <SwimmingScuba maxDepth={course.maxDepth} />}
+  </section>
+
+  <!-- Key Info Section -->
+  <section class="my-16">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+      <div class="key-info-card flex flex-col items-center p-6 bg-card rounded-xl border">
+        <ListTodo class="w-12 h-12 mb-2 text-primary" />
+        <h3 class="text-xl font-semibold">
+          {pagesData.courseDetail.keyInfo.prerequisites}
+        </h3>
+        <ul class="space-y-2 mt-2">
+          {
+            course.prerequisites?.map((prereq: string) => (
+              <li class="flex items-start">
+                <Check class="w-4 h-4 mr-3 mt-0.5 text-primary flex-shrink-0" />
+                <span class="text-muted-foreground">{prereq}</span>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+      <div class="key-info-card flex flex-col items-center p-6 bg-card rounded-xl border">
+        <FlagTriangleRight class="w-12 h-12 mb-2 text-primary" />
+        <h3 class="text-xl font-semibold">
+          {
+            course.maxDepth
+              ? pagesData.courseDetail.keyInfo.maxDepth
+              : pagesData.courseDetail.keyInfo.exam
+          }
+        </h3>
+        {
+          course.maxDepth ? (
+            <p class="mt-2 text-4xl font-bold">{course.maxDepth}</p>
+          ) : (
+            <ul class="space-y-2 mt-2">
+              {course.capabilities?.map((step: string) => (
+                <li class="flex items-start">
+                  <Check class="w-4 h-4 mr-3 mt-0.5 text-primary flex-shrink-0" />
+                  <span class="text-muted-foreground">{step}</span>
+                </li>
+              ))}
+            </ul>
+          )
+        }
+      </div>
+      <div
+        class="key-info-card flex flex-col items-center text-center p-6 bg-card rounded-xl border"
+      >
+        <ShieldCheck class="w-12 h-12 mb-2 text-primary" />
+        <h3 class="text-xl font-semibold">
+          {pagesData.courseDetail.keyInfo.certification}
+        </h3>
+        <p class="mt-2 text-muted-foreground">
+          {course.certification}
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <main class="max-w-5xl mx-auto">
+    <Card class="w-full content-card content-card-1">
+      <CardHeader>
+        <CardTitle class="text-3xl">{pagesData.courseDetail.sections.description}</CardTitle>
+      </CardHeader>
+      <CardContent>
+        <p class="text-lg text-muted-foreground">
+          <PortableText value={course.description || []} />
+        </p>
+      </CardContent>
+    </Card>
+
+    <div class="grid md:grid-cols-2 gap-8 my-8">
+      <Card class="w-full content-card content-card-2">
+        <CardHeader>
+          <CardTitle>{pagesData.courseDetail.sections.whatYouWillLearn}</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <ul class="space-y-3">
+            {
+              course.whatYouWillLearn?.map((item: string) => (
+                <li class="flex items-start">
+                  <Check class="w-5 h-5 mr-3 mt-1 text-primary flex-shrink-0" />
+                  <span>{item}</span>
+                </li>
+              ))
+            }
+          </ul>
+        </CardContent>
+      </Card>
+      <Card class="w-full content-card content-card-3">
+        <CardHeader>
+          <CardTitle>{pagesData.courseDetail.sections.structure}</CardTitle>
+        </CardHeader>
+        <CardContent class="space-y-4">
+          <ul class="space-y-4">
+            {
+              (course.structure || []).map((item: any) => {
+                const iconName = toPascalCase(item?.icon) as keyof typeof LucideIcons;
+                const Icon = (LucideIcons as any)[iconName] ?? BookOpen;
+                return (
+                  <li class="flex items-start">
+                    <Icon class="w-6 h-6 mr-4 text-primary flex-shrink-0" />
+                    <div>
+                      <h4 class="font-semibold">{item?.title}</h4>
+                      {item?.description && <p class="text-muted-foreground">{item.description}</p>}
+                    </div>
+                  </li>
+                );
+              })
+            }
+          </ul>
+        </CardContent>
+      </Card>
+    </div>
+
+    <Card class="w-full my-8 content-card content-card-4">
+      <CardHeader>
+        <CardTitle>{pagesData.courseDetail.sections.kit}</CardTitle>
+        <CardDescription>{pagesData.courseDetail.descriptions.kit}</CardDescription>
+      </CardHeader>
+      <CardContent>
+        <ul class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-3">
+          {
+            course.kit?.map((item: string) => (
+              <li class="flex items-start">
+                <Check class="w-5 h-5 mr-3 mt-1 text-primary flex-shrink-0" />
+                <span>{item}</span>
+              </li>
+            ))
+          }
+        </ul>
+      </CardContent>
+    </Card>
+  </main>
+</div>
+
+<style>
+  :root {
+    --color-pastel-cyan: hsla(183, 67%, 81%, 0.15);
+    --color-pastel-blue: hsla(219, 39%, 54%, 0.1);
+    --color-pastel-purple: hsla(262, 40%, 24%, 0.08);
+  }
+
+  .key-info-card {
+    transition:
+      transform 0.3s ease-in-out,
+      box-shadow 0.3s ease-in-out;
+  }
+
+  .key-info-card:hover {
+    transform: translateY(-5px);
+    box-shadow:
+      0 10px 15px -3px rgba(0, 0, 0, 0.1),
+      0 4px 6px -4px rgba(0, 0, 0, 0.1);
+  }
+
+  .content-card {
+    position: relative;
+    overflow: hidden;
+    transition: box-shadow 0.3s ease-in-out;
+  }
+
+  .content-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: inherit;
+    border: 2px solid transparent;
+    -webkit-mask:
+      linear-gradient(#fff 0 0) padding-box,
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: destination-out;
+    mask-composite: exclude;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.4s ease-in-out;
+  }
+
+  .content-card:hover::before {
+    opacity: 1;
+  }
+
+  .content-card-1 {
+    background-color: var(--color-pastel-cyan);
+  }
+  .content-card-2 {
+    background-color: var(--color-pastel-blue);
+  }
+  .content-card-3 {
+    background-color: var(--color-pastel-purple);
+  }
+  .content-card-4 {
+    background-color: var(--color-pastel-cyan);
+  }
+  .content-card-5 {
+    background-color: var(--color-pastel-blue);
+  }
+  .content-card-6 {
+    background-color: var(--color-pastel-purple);
+  }
+</style>

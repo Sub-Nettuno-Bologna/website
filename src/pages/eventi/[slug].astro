@@ -1,0 +1,26 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import EventPost from "@/features/events/EventPost.astro";
+import { getEventBySlug, getEvents } from "@/services/events";
+import type { InferGetStaticParamsType } from "astro";
+
+export async function getStaticPaths() {
+  const posts = await getEvents();
+  return posts.map((event) => ({
+    params: { slug: event.slug?.current },
+  }));
+}
+
+type Params = InferGetStaticParamsType<typeof getStaticPaths>;
+const { slug } = Astro.params as Params;
+
+const event = await getEventBySlug(slug || "");
+
+if (!event) {
+  Astro.redirect("/eventi");
+}
+---
+
+<Layout>
+  {event ? <EventPost post={event} backUrl="/eventi" /> : null}
+</Layout>

@@ -1,0 +1,34 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import EventsSection from "@/features/events/EventsSection.astro";
+import Pagination from "@/components/common/Pagination.astro";
+import { getEvents, getEventsTotalCount } from "@/services/events";
+import { DEFAULT_PAGE_SIZE, buildStaticPaths, clampPage, getTotalPages } from "@/lib/pagination";
+import { pagesData } from "@/data/pages";
+
+export async function getStaticPaths() {
+  const totalCount = await getEventsTotalCount();
+  return buildStaticPaths(totalCount, DEFAULT_PAGE_SIZE);
+}
+
+const { page } = Astro.params;
+const currentPage = clampPage(page);
+const events = await getEvents({ page: currentPage, pageSize: DEFAULT_PAGE_SIZE });
+const totalCount = await getEventsTotalCount();
+const totalPages = getTotalPages(totalCount, DEFAULT_PAGE_SIZE);
+---
+
+<Layout>
+  <EventsSection
+    events={events}
+    title={pagesData.eventi.title}
+    subtitle={pagesData.eventi.subtitle}
+    showFeatured={true}
+  />
+  <Pagination
+    currentPage={currentPage}
+    totalPages={totalPages}
+    indexPath="/eventi"
+    pageBasePath="/eventi/page"
+  />
+</Layout>

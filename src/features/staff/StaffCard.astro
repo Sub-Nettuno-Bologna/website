@@ -1,0 +1,24 @@
+---
+import type { Team } from "../../../sanity.types";
+import { buildImageUrl } from "@/lib/sanity";
+import FeatureCard from "@/components/common/cards/FeatureCard.astro";
+import { Award } from "@lucide/astro";
+import { pagesData } from "@/data/pages";
+
+const { name, instructor_grade, image, description, council_seat } = Astro.props as Required<Team>;
+
+const details =
+  instructor_grade?.map((grade) => ({
+    icon: Award,
+    text: pagesData.ui.instructorGrades[grade] || grade,
+  })) || [];
+---
+
+<FeatureCard
+  title={name}
+  badge={council_seat ? { text: council_seat, color: "tertiary" } : undefined}
+  description={description}
+  image={buildImageUrl(image, { placeholder: "/placeholder-user.svg" })}
+  details={details}
+  blurred={false}
+/>

@@ -1,0 +1,53 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import AboutSection from "@/features/about/AboutSection.astro";
+import CourseCategories from "@/features/courses/CourseCategoriesSection.astro";
+import EventsSection from "@/features/events/EventsSection.astro";
+import Contact from "@/features/contact/ContactSection.astro";
+import { getHero } from "@/services/hero";
+import HeroSection from "@/features/home/HeroSection.astro";
+import { pagesData } from "@/data/pages";
+import { getEvents } from "@/services/events";
+import { getCourseCategories } from "@/services/courses";
+import { getAboutUs } from "@/services/aboutus";
+import BlogSection from "@/features/blog/BlogSection.astro";
+import { getBlogPosts } from "@/services/blog";
+
+const heroData = await getHero();
+const events = await getEvents();
+const about = await getAboutUs();
+const categories = await getCourseCategories();
+const posts = await getBlogPosts();
+---
+
+<Layout>
+  {
+    heroData && (
+      <HeroSection
+        images={heroData.images}
+        title={heroData.title}
+        subtitle={heroData.subtitle}
+        buttons={heroData?.buttons}
+      />
+    )
+  }
+  {about && <AboutSection {...about} />}
+  <CourseCategories
+    categories={categories}
+    title={pagesData.courses.title}
+    description={pagesData.courses.description}
+  />
+  {events && events.length > 0 && <EventsSection events={events} maxEvents={3} />}
+  {
+    posts && posts.length > 0 && (
+      <BlogSection
+        posts={posts}
+        maxPosts={3}
+        title={pagesData.blog.title}
+        subtitle={pagesData.blog.subtitle}
+        showFeatured={true}
+      />
+    )
+  }
+  <Contact />
+</Layout>

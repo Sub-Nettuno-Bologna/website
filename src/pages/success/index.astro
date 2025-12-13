@@ -1,0 +1,29 @@
+---
+import Layout from "@/layouts/Layout.astro";
+
+const title = "Messaggio inviato!";
+const subtitle = "Grazie per averci contattato.";
+const body = "Abbiamo ricevuto la tua richiesta e ti risponderemo il prima possibile.";
+---
+
+<Layout>
+  <main class="min-h-screen flex items-center justify-center bg-background px-6 py-16">
+    <div class="max-w-xl text-center space-y-4">
+      <p class="text-sm font-semibold text-primary uppercase tracking-wide">
+        {subtitle}
+      </p>
+      <h1 class="text-3xl md:text-4xl font-bold tracking-tight text-foreground">
+        {title}
+      </h1>
+      <p class="text-base md:text-lg text-muted-foreground">{body}</p>
+      <div class="pt-4">
+        <a
+          href="/"
+          class="inline-flex items-center justify-center px-6 py-3 rounded-md bg-primary text-white font-medium hover:bg-primary/90 transition-colors"
+        >
+          Torna alla home
+        </a>
+      </div>
+    </div>
+  </main>
+</Layout>

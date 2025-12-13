@@ -1,0 +1,66 @@
+---
+import { ArrowDown } from "@lucide/astro";
+import type { SanityImageSource } from "@sanity/image-url/lib/types/types";
+import type { Course } from "../../../sanity.types";
+import FeatureCard from "@/components/common/cards/FeatureCard.astro";
+import SectionContainer from "@/components/layout/Section.astro";
+import SectionHeader from "@/components/layout/SectionHeader.astro";
+import CourseCertification from "./CourseCertification.astro";
+import { pagesData } from "@/data/pages";
+import { buildImageUrl } from "@/lib/sanity";
+
+export interface Props {
+  title?: string;
+  description?: string;
+  courses: Course[];
+  category?: string;
+}
+
+const { title, description, courses, category } = Astro.props;
+
+const getImageUrl = (source?: SanityImageSource) => buildImageUrl(source);
+---
+
+<SectionContainer id="corsi" background="default" padding="sm">
+  <SectionHeader title={title ?? ""} subtitle={description ?? ""} titleSize="lg" />
+
+  <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 justify-center">
+    {
+      courses
+        .filter((c): c is Course => Boolean(c))
+        .map((corso: Course) => (
+          <FeatureCard
+            title={corso.title || ""}
+            description={corso.description || ""}
+            image={getImageUrl(corso.image as SanityImageSource)}
+            badge={{
+              text: corso.level || "",
+              color: "tertiary",
+            }}
+            details={[
+              ...(corso.maxDepth
+                ? [
+                    {
+                      icon: ArrowDown,
+                      text: corso.maxDepth || "",
+                    },
+                  ]
+                : []),
+            ]}
+            action={{
+              text: pagesData.commons.learnMore,
+              href: category
+                ? `/corsi/${category}/${corso.slug?.current ?? ""}`
+                : `/corsi/${corso.slug?.current ?? ""}`,
+              color: "primary",
+            }}
+          />
+        ))
+    }
+  </div>
+
+  <CourseCertification
+    title={pagesData.certifications.title}
+    description={pagesData.certifications.description}
+  />
+</SectionContainer>

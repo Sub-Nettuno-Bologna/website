@@ -1,0 +1,22 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import BlogSection from "@/features/blog/BlogSection.astro";
+import Pagination from "@/components/common/Pagination.astro";
+import { getBlogPosts, getBlogTotalCount } from "@/services/blog";
+import { DEFAULT_PAGE_SIZE, getTotalPages } from "@/lib/pagination";
+import { pagesData } from "@/data/pages";
+
+const posts = await getBlogPosts({ page: 1, pageSize: DEFAULT_PAGE_SIZE });
+const totalCount = await getBlogTotalCount();
+const totalPages = getTotalPages(totalCount, DEFAULT_PAGE_SIZE);
+---
+
+<Layout>
+  <BlogSection
+    posts={posts}
+    title={pagesData.blog.title}
+    subtitle={pagesData.blog.subtitle}
+    showFeatured={true}
+  />
+  <Pagination currentPage={1} totalPages={totalPages} indexPath="/blog" pageBasePath="/blog/page" />
+</Layout>

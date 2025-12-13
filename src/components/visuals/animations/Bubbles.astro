@@ -1,0 +1,170 @@
+---
+interface Props {
+  count?: number;
+  bubbleColor?: string;
+  opacity?: number;
+  animationDuration?: number;
+  theme?: "light" | "dark";
+}
+
+const {
+  count = 20,
+  bubbleColor,
+  opacity = 0.5,
+  animationDuration = 15,
+  theme = "dark",
+} = Astro.props;
+
+// Determina il colore delle bolle in base al tema, se bubbleColor non è specificato
+const getDefaultBubbleColor = () => {
+  if (bubbleColor) return bubbleColor;
+  return theme === "light"
+    ? "rgba(30, 58, 138, 0.2)" // Blu scuro per sfondo chiaro
+    : "rgba(255, 255, 255, 0.1)"; // Bianco per sfondo scuro
+};
+
+const finalBubbleColor = getDefaultBubbleColor();
+---
+
+<div class={`bubbles`}>
+  {Array.from({ length: count }).map(() => <div class="bubble" />)}
+</div>
+
+<style
+  define:vars={{
+    bubbleColor: finalBubbleColor,
+    opacity,
+    animationDuration: `${animationDuration}s`,
+  }}
+>
+  .bubbles {
+    position: absolute;
+    bottom: -100px;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .bubble {
+    position: absolute;
+    bottom: -50px;
+    width: 30px;
+    height: 30px;
+    background: var(--bubbleColor);
+    border-radius: 50%;
+    opacity: var(--opacity);
+    animation: rise var(--animationDuration) infinite ease-in;
+  }
+
+  .bubble:nth-child(2n) {
+    width: 15px;
+    height: 15px;
+  }
+
+  .bubble:nth-child(3n) {
+    width: 45px;
+    height: 45px;
+  }
+
+  @keyframes rise {
+    0% {
+      transform: translateY(0) translateX(0);
+      opacity: 0;
+    }
+    50% {
+      opacity: var(--opacity);
+    }
+    75% {
+      transform: translateY(-75vh) translateX(50px);
+      opacity: calc(var(--opacity) * 0.6);
+    }
+    100% {
+      transform: translateY(-100vh) translateX(-50px);
+      opacity: 0;
+    }
+  }
+
+  /* Randomize bubble positions and animation delays */
+  .bubble:nth-child(1) {
+    left: 10%;
+    animation-delay: 0.2s;
+  }
+  .bubble:nth-child(2) {
+    left: 20%;
+    animation-delay: 1.8s;
+  }
+  .bubble:nth-child(3) {
+    left: 30%;
+    animation-delay: 3.6s;
+  }
+  .bubble:nth-child(4) {
+    left: 40%;
+    animation-delay: 5.4s;
+  }
+  .bubble:nth-child(5) {
+    left: 50%;
+    animation-delay: 7.2s;
+  }
+  .bubble:nth-child(6) {
+    left: 60%;
+    animation-delay: 9s;
+  }
+  .bubble:nth-child(7) {
+    left: 70%;
+    animation-delay: 10.8s;
+  }
+  .bubble:nth-child(8) {
+    left: 80%;
+    animation-delay: 12.6s;
+  }
+  .bubble:nth-child(9) {
+    left: 90%;
+    animation-delay: 14.4s;
+  }
+  .bubble:nth-child(10) {
+    left: 15%;
+    animation-delay: 2s;
+  }
+  .bubble:nth-child(11) {
+    left: 25%;
+    animation-delay: 3.8s;
+  }
+  .bubble:nth-child(12) {
+    left: 35%;
+    animation-delay: 5.6s;
+  }
+  .bubble:nth-child(13) {
+    left: 45%;
+    animation-delay: 7.4s;
+  }
+  .bubble:nth-child(14) {
+    left: 55%;
+    animation-delay: 9.2s;
+  }
+  .bubble:nth-child(15) {
+    left: 65%;
+    animation-delay: 11s;
+  }
+  .bubble:nth-child(16) {
+    left: 75%;
+    animation-delay: 12.8s;
+  }
+  .bubble:nth-child(17) {
+    left: 85%;
+    animation-delay: 14.6s;
+  }
+  .bubble:nth-child(18) {
+    left: 95%;
+    animation-delay: 16.4s;
+  }
+  .bubble:nth-child(19) {
+    left: 5%;
+    animation-delay: 1s;
+  }
+  .bubble:nth-child(20) {
+    left: 85%;
+    animation-delay: 13.2s;
+  }
+</style>

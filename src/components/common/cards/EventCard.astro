@@ -1,0 +1,59 @@
+---
+import { Calendar, MapPin, Users } from "@lucide/astro";
+import type { Event } from "../../../../sanity.types";
+import FeatureCard from "./FeatureCard.astro";
+import { pagesData } from "@/data/pages";
+import { buildImageUrl } from "@/lib/sanity";
+import { formatDate, isPast } from "@/lib/utils";
+
+export interface Props {
+  event: Event;
+}
+
+const { event } = Astro.props;
+
+// Determine event status
+const isConcluded = event.eventDate ? isPast(event.eventDate) : false;
+const badge = {
+  text: isConcluded ? pagesData.eventi.labels.concluded : pagesData.eventi.labels.active,
+  color: (isConcluded ? "tertiary" : "secondary") as "primary" | "secondary" | "tertiary",
+};
+---
+
+<FeatureCard
+  blurred
+  title={event.title || ""}
+  image={buildImageUrl(event.featuredImage, { width: 500, height: 650 })}
+  badge={badge}
+  details={[
+    ...(event.eventDate
+      ? [
+          {
+            icon: Calendar,
+            text: formatDate(event.eventDate || ""),
+          },
+        ]
+      : []),
+    ...(event.location
+      ? [
+          {
+            icon: MapPin,
+            text: event.location || "",
+          },
+        ]
+      : []),
+    ...(event.maxParticipants
+      ? [
+          {
+            icon: Users,
+            text: `${pagesData.eventi.participantsLabel} ${event.maxParticipants}`,
+          },
+        ]
+      : []),
+  ]}
+  action={{
+    text: pagesData.commons.learnMore,
+    href: `/eventi/${event.slug?.current}`,
+    color: "secondary",
+  }}
+/>

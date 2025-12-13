@@ -1,0 +1,35 @@
+---
+const stats = [
+  { icon: Users, value: "7+", label: "Anni di esperienza" },
+  { icon: List, value: "30+", label: "Piatti nel menu" },
+  { icon: Star, value: "500+", label: "Recensioni clienti" },
+  { icon: PartyPopper, value: "10k+", label: "Clienti felici" },
+];
+---
+
+<div class="relative z-30 -mt-12 sm:-mt-16 md:-mt-20 mb-6 sm:mb-10">
+  <div class="max-w-6xl mx-auto px-4">
+    <div
+      class="rounded-2xl border border-gray-200 bg-white/95 backdrop-blur shadow-xl shadow-black/5"
+    >
+      <div
+        class="grid grid-cols-2 sm:grid-cols-4 divide-y sm:divide-y-0 sm:divide-x divide-gray-200"
+      >
+        {
+          stats.map((item) => {
+            const Icon = item.icon;
+            return (
+              <div class="p-6 sm:p-8 flex flex-col items-center text-center">
+                <div class="mb-4 inline-flex items-center justify-center rounded-full bg-primary/10 text-primary w-12 h-12">
+                  <Icon class="w-6 h-6" />
+                </div>
+                <div class="text-2xl sm:text-3xl font-bold text-secondary mb-1">{item.value}</div>
+                <div class="text-sm text-gray-600">{item.label}</div>
+              </div>
+            );
+          })
+        }
+      </div>
+    </div>
+  </div>
+</div>

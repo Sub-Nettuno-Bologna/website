@@ -1,0 +1,88 @@
+@import "tailwindcss";
+
+html {
+  font-family: "Science Gothic", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
+html,
+body {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* Prevent horizontal overflow */
+html {
+  overflow-x: hidden;
+}
+
+body {
+  overflow-x: hidden;
+  width: 100%;
+  position: relative;
+}
+
+/* Ensure container doesn't exceed viewport on mobile */
+@media (max-width: 768px) {
+  .container {
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+}
+
+@theme {
+  --color-primary: hsl(262, 100%, 30%);
+  --color-secondary: hsl(262, 40%, 24%);
+  --color-tertiary: hsl(0, 4%, 10%);
+  --color-accent: hsl(177, 59%, 69%);
+  --color-info: hsl(183, 67%, 81%);
+  --color-danger: hsl(354, 65%, 59%);
+  --color-orange: #FF991C;
+}
+
+:root {
+  --color-orange: #FF991C;
+}
+
+.link-nav {
+  @apply text-lg font-medium text-primary hover:text-secondary transition-colors duration-200 hover:scale-102 transform rounded-md px-1 py-2 hover:bg-gray-50 relative;
+}
+
+.link-nav::after {
+  @apply content-[''] absolute bottom-1 left-1 right-1 h-0.5 bg-secondary scale-x-0 transition-transform duration-200 origin-left;
+}
+
+.link-nav:hover::after {
+  @apply scale-x-100;
+}
+
+.btn-area-soci {
+  @apply bg-secondary hover:bg-primary text-white px-4 py-2 rounded-md transition-colors;
+}
+
+.gradient-primary {
+  @apply bg-gradient-to-br from-primary to-secondary;
+}
+
+.gradient-secondary {
+  @apply bg-gradient-to-br from-primary/5 to-secondary/5;
+}
+
+.color-gradient-secondary {
+  color: #f7f8fb;
+}
+
+.bg-gradient-primary {
+  background-color: #f7f8fb;
+}
+
+/* Reusable card utility for subtle elevation/hover */
+.u-card {
+  @apply border border-transparent transition-transform duration-300;
+}
+
+.u-card:hover {
+  @apply -translate-y-0.5 border-white/10;
+}

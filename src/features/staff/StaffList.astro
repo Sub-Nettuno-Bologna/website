@@ -1,0 +1,21 @@
+---
+import type { Team } from "../../../sanity.types";
+import StaffCard from "./StaffCard.astro";
+import { pagesData } from "@/data/pages";
+
+export interface Props {
+  teams: Team[];
+}
+
+const { teams } = Astro.props;
+---
+
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+  {teams.map((member: Team) => <StaffCard {...member} />)}
+</div>
+
+<div class="mt-12 bg-blue-50 rounded-lg p-6 text-center">
+  <p class="text-blue-800 text-base">
+    {pagesData.staff.collaborators.content}
+  </p>
+</div>

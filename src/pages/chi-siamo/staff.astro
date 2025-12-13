@@ -1,0 +1,23 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import { getTeam } from "@/services/team";
+import { pagesData } from "@/data/pages";
+import StaffList from "@/features/staff/StaffList.astro";
+import SectionHeader from "@/components/layout/SectionHeader.astro";
+import { getClubData } from "@/services/club";
+const clubData = await getClubData();
+const teamList = await getTeam();
+---
+
+<Layout title={`Staff - ${clubData?.clubName} Bologna"`}>
+  <div class="container mx-auto px-4 py-12">
+    <SectionHeader
+      title={pagesData.staff.title}
+      subtitle={pagesData.staff.description}
+      titleColor="secondary"
+      subtitleColor="gray-600"
+      titleSize="sm"
+    />
+    <StaffList teams={teamList} />
+  </div>
+</Layout>

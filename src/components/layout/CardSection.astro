@@ -1,0 +1,72 @@
+---
+import SectionContainer from "@/components/layout/Section.astro";
+import SectionHeader from "@/components/layout/SectionHeader.astro";
+import { Users, BookOpen, Award, Heart, GlassWater, ArrowDown } from "@lucide/astro";
+
+export interface Props {
+  title: string;
+  description?: string;
+  icon?: "Users" | "BookOpen" | "Award" | "Heart" | "GlassWater";
+  cta?: {
+    href: string;
+    text: string;
+  } | null;
+  background?: "default" | "gradient-primary" | "gradient-secondary" | "gray" | "white";
+  padding?: "sm" | "md" | "lg" | "xl";
+  id?: string;
+}
+
+const {
+  title,
+  description = "",
+  icon,
+  cta = null,
+  background = "white",
+  padding = "lg",
+  id,
+} = Astro.props;
+
+const iconComponents = {
+  Users,
+  BookOpen,
+  Award,
+  Heart,
+  GlassWater,
+} as const;
+
+const Icon = icon ? iconComponents[icon] : null;
+---
+
+<SectionContainer id={id} background={background} padding={padding}>
+  <div class="text-center">
+    {
+      Icon && (
+        <div class="flex justify-center mb-4">
+          <Icon class="w-12 h-12 text-primary" />
+        </div>
+      )
+    }
+    <SectionHeader
+      title={title}
+      subtitle={description}
+      titleColor="primary-content"
+      subtitleColor="secondary"
+      hasBreadcrumbs={false}
+    />
+
+    {
+      cta && (
+        <div class="mt-8">
+          <a
+            href={cta.href}
+            class="inline-flex items-center px-8 py-4 bg-gradient-to-r from-primary to-secondary text-white font-bold rounded-xl hover:shadow-lg transition-all duration-300 text-lg transform hover:scale-105"
+          >
+            {Icon && <Icon class="w-6 h-6 mr-2" />}
+            {cta.text}
+            <ArrowDown class="w-5 h-5 ml-2 rotate-[-90deg]" />
+          </a>
+        </div>
+      )
+    }
+  </div>
+</SectionContainer>

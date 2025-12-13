@@ -1,0 +1,156 @@
+---
+import { ArrowRight } from "@lucide/astro";
+import type { Hero } from "sanity.types";
+import Button from "@/components/primitives/Button.astro";
+import SectionContainer from "@/components/layout/Section.astro";
+import { buildImageUrl } from "@/lib/sanity";
+
+export interface Props extends Hero {}
+
+const { images, title, subtitle, buttons } = Astro.props;
+---
+
+<style>
+  .hero-carousel-image.active {
+    animation: zoomInEntrance 6s ease-out forwards;
+  }
+
+  @keyframes zoomInEntrance {
+    0% {
+      transform: scale(1.05);
+    }
+    100% {
+      transform: scale(1.15);
+    }
+  }
+
+  .hero-title-gradient {
+    background-image: linear-gradient(to right, var(--color-orange), var(--color-orange));
+  }
+
+  .hero-logo {
+    filter: brightness(0) saturate(100%) invert(64%) sepia(95%) saturate(1352%) hue-rotate(1deg)
+      brightness(102%) contrast(101%);
+    max-width: 200px;
+    width: auto;
+    height: auto;
+  }
+
+  @media (min-width: 640px) {
+    .hero-logo {
+      max-width: 250px;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .hero-logo {
+      max-width: 300px;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .hero-logo {
+      max-width: 600px;
+    }
+  }
+</style>
+
+<SectionContainer
+  id="home"
+  background="default"
+  padding="sm"
+  customClass="relative h-[65vh] flex items-center justify-center overflow-hidden !py-0"
+  waveColorClass="color-gradient-secondary"
+>
+  <div class="absolute inset-0 w-full h-full bg-primary">
+    <!-- <div class="absolute inset-0 bg-black/40 z-10"></div> -->
+
+    {
+      images?.map((image, index) => (
+        <img
+          id={`hero-image-${index}`}
+          class={`hero-carousel-image w-full h-full object-cover absolute inset-0 ${index === 0 ? "opacity-100 active" : "opacity-0"}`}
+          src={buildImageUrl(image, { width: 1920, height: 1080 })}
+          width={1920}
+          height={1080}
+          sizes="100vw"
+          fetchpriority={index === 0 ? "high" : "low"}
+          loading={index === 0 ? "eager" : "lazy"}
+          decoding="async"
+          alt=""
+          aria-hidden="true"
+        />
+      ))
+    }
+  </div>
+
+  <div class="relative z-20 text-center text-white max-w-4xl mx-auto px-4">
+    <div class="mb-4 md:mb-6 animate-fade-in drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
+      <img
+        src="/logo.svg"
+        alt="Club Sub Nettuno"
+        class="hero-logo mx-auto mb-4"
+        width="200"
+        style="height: auto;"
+        loading="eager"
+      />
+    </div>
+    <p
+      class="text-lg sm:text-xl md:text-2xl mb-6 md:mb-8 text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]"
+    >
+      E ora immergiti con noi..
+      {subtitle}
+    </p>
+    <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
+      {
+        buttons?.map((button) => (
+          <Button href={button.href} size="lg" variant={button.variant || "default"}>
+            <span class="flex items-center justify-center">
+              {button.text}
+              <ArrowRight class="ml-2 w-4 sm:w-5 h-4 sm:h-5" />
+            </span>
+          </Button>
+        ))
+      }
+    </div>
+  </div>
+</SectionContainer>
+
+<script>
+  const images = document.querySelectorAll("img[id^='hero-image-']");
+  let currentImageIndex = 0;
+  const SLIDE_DURATION = 6000; // 6 seconds per image
+
+  function showNextImage() {
+    if (images.length === 0) return;
+
+    const currentImage = images[currentImageIndex];
+    const nextImageIndex = (currentImageIndex + 1) % images.length;
+    const nextImage = images[nextImageIndex];
+
+    // Fade out current image and remove zoom animation
+    currentImage.classList.remove("opacity-100", "active");
+    currentImage.classList.add("opacity-0");
+
+    // Fade in next image and start zoom animation
+    nextImage.classList.remove("opacity-0");
+    nextImage.classList.add("opacity-100", "active");
+
+    // Update current index
+    currentImageIndex = nextImageIndex;
+  }
+
+  // Start the carousel
+  function startCarousel() {
+    if (images.length > 1) {
+      setInterval(showNextImage, SLIDE_DURATION);
+    }
+  }
+
+  // Initialize carousel when page loads
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", startCarousel);
+  } else {
+    startCarousel();
+  }
+</script>

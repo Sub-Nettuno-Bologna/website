@@ -1,0 +1,76 @@
+---
+import Lightbox from "@/components/common/galleries/Lightbox.astro";
+import SectionContainer from "@/components/layout/Section.astro";
+import SectionHeader from "@/components/layout/SectionHeader.astro";
+import Button from "@/components/primitives/Button.astro";
+import { getGalleries } from "@/services/gallery";
+
+export interface Props {
+  preview: boolean;
+  title: string;
+  subtitle: string;
+}
+
+const { preview, title, subtitle } = Astro.props;
+const galleries = await getGalleries();
+const galleryImages =
+  galleries?.[0]?.images?.map((img: any) => ({ src: img?.url, alt: img?.alt })) ?? [];
+const galleryData = {
+  ui: {
+    altTextTemplate: "Foto",
+    photoLabel: "Foto",
+  },
+  buttonText: "Vedi tutto",
+};
+---
+
+<SectionContainer id="gallery" background="gradient-primary" padding="sm">
+  <SectionHeader title={title} subtitle={subtitle} />
+
+  <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+    {
+      Array.from({ length: preview ? 4 : galleryImages.length }).map((_, index) => (
+        <div
+          class="relative group overflow-hidden rounded-lg aspect-square cursor-pointer gallery-item"
+          data-index={index}
+        >
+          <img
+            src={galleryImages[index].src}
+            alt={`${galleryData.ui?.altTextTemplate} ${index + 1}`}
+            class="object-cover w-full h-full group-hover:scale-110 transition-transform duration-300"
+            width={800}
+            height={800}
+            loading="lazy"
+            decoding="async"
+            sizes="(min-width: 1024px) 25vw, 50vw"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-secondary/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
+            {/* <p class="text-white p-4 text-sm">
+                {galleryData.ui?.photoLabel} {index + 1}
+              </p> */}
+          </div>
+        </div>
+      ))
+    }
+  </div>
+  {
+    preview && (
+      <div class="text-center mt-12">
+        <Button
+          href="/gallery"
+          size="lg"
+          variant="outline"
+          class="border-primary text-primary hover:bg-primary hover:text-white"
+        >
+          {galleryData.buttonText}
+        </Button>
+      </div>
+    )
+  }
+</SectionContainer>
+
+<Lightbox />
+
+<script>
+  // Nothing here: Lightbox mounts its own script and binds to .gallery-item
+</script>
