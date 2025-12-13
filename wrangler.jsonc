@@ -1,5 +1,5 @@
 {
-    "name": "astro-subnettuno-test",
+    "name": "subnettuno",
     "compatibility_date": "2025-12-10",
     "compatibility_flags": [
       "nodejs_compat",
