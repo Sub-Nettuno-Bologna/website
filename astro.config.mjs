@@ -23,15 +23,15 @@ export default defineConfig({
         access: "secret",
         optional: true,
       }),
-      PUBLIC_SANITY_PROJECT_ID: envField.string({
+      SANITY_PROJECT_ID: envField.string({
         context: "client",
         access: "public",
       }),
-      PUBLIC_SANITY_DATASET: envField.string({
+      SANITY_DATASET: envField.string({
         context: "client",
         access: "public",
       }),
-      PUBLIC_SANITY_API_VERSION: envField.string({
+      SANITY_API_VERSION: envField.string({
         context: "client",
         access: "public",
         optional: true,
@@ -45,8 +45,8 @@ export default defineConfig({
     sitemaps(),
     react(),
     sanity({
-      projectId: import.meta.env.PUBLIC_SANITY_PROJECT_ID,
-      dataset: import.meta.env.PUBLIC_SANITY_DATASET,
+      projectId: import.meta.env.SANITY_PROJECT_ID,
+      dataset: import.meta.env.SANITY_DATASET,
       useCdn: false,
       studioBasePath: "/admin",
       studioRouterHistory: "hash",

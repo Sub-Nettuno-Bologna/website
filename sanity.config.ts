@@ -1,22 +1,22 @@
-import { visionTool } from '@sanity/vision'
-import { defineConfig } from 'sanity'
-import { schemaTypes } from './schemaTypes'
-import { structureTool } from 'sanity/structure'
-import deskStructure from './sanity.structure';
-import { codeInput } from '@sanity/code-input'
-import { lucideIconPicker } from 'sanity-plugin-lucide-icon-picker'
-import { media } from 'sanity-plugin-media';
+import { visionTool } from "@sanity/vision";
+import { defineConfig } from "sanity";
+import { schemaTypes } from "./schemaTypes";
+import { structureTool } from "sanity/structure";
+import deskStructure from "./sanity.structure";
+import { codeInput } from "@sanity/code-input";
+import { lucideIconPicker } from "sanity-plugin-lucide-icon-picker";
+import { media } from "sanity-plugin-media";
 import {
   dashboardTool,
   projectUsersWidget,
   projectInfoWidget,
-} from '@sanity/dashboard';
+} from "@sanity/dashboard";
 
 export default defineConfig({
-  name: 'subnettuno',
-  title: 'SubNettuno',
-  projectId: 'h3gj11wn',
-  dataset: 'production',
+  title: "SubNettuno",
+  name: process.env.SANITY_PROJECT_NAME,
+  projectId: process.env.SANITY_PROJECT_ID,
+  dataset: process.env.SANITY_DATASET,
   plugins: [
     structureTool({
       structure: deskStructure,
@@ -25,10 +25,7 @@ export default defineConfig({
     codeInput(),
     lucideIconPicker(),
     dashboardTool({
-      widgets: [
-        projectInfoWidget(),
-        projectUsersWidget(),
-      ],
+      widgets: [projectInfoWidget(), projectUsersWidget()],
     }),
     media(),
   ],
@@ -36,7 +33,4 @@ export default defineConfig({
   schema: {
     types: schemaTypes,
   },
-})
-
-
-
+});
