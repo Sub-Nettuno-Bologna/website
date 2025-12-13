@@ -1,0 +1,21 @@
+---
+import { Schema } from "astro-seo-schema";
+import { getSeo } from "@/services/seo";
+
+const seo = await getSeo();
+---
+
+{
+  seo?.siteUrl && (
+    <Schema
+      item={{
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "@id": `${seo.siteUrl}/#website`,
+        url: seo.siteUrl,
+        ...(seo.siteName && { name: seo.siteName }),
+        ...(seo.inLanguage && { inLanguage: seo.inLanguage }),
+      }}
+    />
+  )
+}

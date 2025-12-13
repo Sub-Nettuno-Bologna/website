@@ -1,0 +1,27 @@
+---
+import StandardCard from "@/components/common/cards/StandardCard.astro";
+import FlipCard from "@/components/common/cards/FlipCard.astro";
+import { type PagesData } from "@/data/pages";
+
+const { title, description } = Astro.props as PagesData["certifications"];
+---
+
+<div class="flex flex-col items-center mt-12">
+  <h3 class="text-blue-800 text-2xl font-bold mb-4 text-center">{title}</h3>
+  <StandardCard
+    variant="default"
+    hoverEffect={false}
+    customClass="bg-blue-50 p-6 flex flex-col md:flex-row justify-center items-center gap-6 w-full max-w-4xl"
+  >
+    <p class="text-blue-800 text-base text-center md:text-left flex-1 max-w-2xl">
+      {description}
+    </p>
+
+    <div class="flex justify-center w-full md:w-auto flex-shrink-0 min-w-[220px]">
+      <FlipCard
+        frontImage="/media/images/certification/p1_front.jpg"
+        backImage="/media/images/certification/p1_back.jpg"
+      />
+    </div>
+  </StandardCard>
+</div>

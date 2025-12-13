@@ -1,0 +1,22 @@
+---
+import type { Blog as BlogPost } from "../../../sanity.types";
+import { formatDate } from "@/lib/utils";
+import PostArticle from "@/features/posts/PostArticle.astro";
+
+export interface Props {
+  post: BlogPost;
+  backUrl: string;
+}
+
+const { post, backUrl } = Astro.props;
+---
+
+<PostArticle
+  title={post.title}
+  excerpt={post.excerpt}
+  content={post.content}
+  featuredImage={post.featuredImage}
+  featured={post.featured}
+  publishedAt={formatDate(post.publishedAt || "")}
+  backUrl={backUrl}
+/>

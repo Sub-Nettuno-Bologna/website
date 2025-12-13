@@ -1,0 +1,338 @@
+---
+import { ChevronDown, Menu, Waves, X } from "@lucide/astro";
+import { headerData } from "@/data/header";
+import { pagesData } from "@/data/pages";
+import { getClubData } from "@/services/club";
+
+const clubData = await getClubData();
+---
+
+<header class="bg-white/95 backdrop-blur-sm border-b border-info sticky top-0 z-50">
+  <div class="container mx-auto px-4 py-4 overflow-visible">
+    <div class="flex items-center justify-between">
+      <!-- Logo -->
+      <a href="/" class="flex items-center space-x-3">
+        <div>
+          <h1 class="text-xl font-bold text-primary uppercase">{clubData?.clubName || ""}</h1>
+          <p class="text-sm text-primary-content">{clubData?.subtitle || ""}</p>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation -->
+      <nav class="hidden xl:flex items-center space-x-4">
+        {
+          headerData.navigation.map((item: any) => {
+            const IconComponent = item.icon;
+            const dropdownName = item.label?.toLowerCase?.().replace(/\s+/g, "-");
+
+            if (item.dropdown) {
+              return (
+                <div class="relative group">
+                  <a
+                    id={`desktop-${dropdownName}-button`}
+                    href={item.href}
+                    role="button"
+                    aria-haspopup="menu"
+                    aria-expanded="false"
+                    aria-controls={`desktop-${dropdownName}-menu`}
+                    data-dropdown={dropdownName}
+                    class="link-nav flex items-center space-x-1 desktop-dropdown-button"
+                  >
+                    <IconComponent class="w-4 h-4" />
+                    <span>{item.label}</span>
+                    <ChevronDown
+                      data-dropdown-toggle="true"
+                      class="w-4 h-4 ml-1 transition-transform group-hover:rotate-180 group-focus-within:rotate-180"
+                    />
+                  </a>
+                  <div
+                    id={`desktop-${dropdownName}-menu`}
+                    role="menu"
+                    aria-labelledby={`desktop-${dropdownName}-button`}
+                    data-dropdown-content={dropdownName}
+                    class="absolute left-0 mt-2 w-56 bg-white rounded-lg border border-gray-100 shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible group-focus-within:opacity-100 group-focus-within:visible transition-all duration-200 transform origin-top-left"
+                  >
+                    <div class="p-2">
+                      {item.dropdown.map((dropdownItem: any) => {
+                        const DropdownIconComponent = dropdownItem.icon;
+                        return (
+                          <a
+                            href={dropdownItem.href}
+                            role="menuitem"
+                            class="flex items-center space-x-3 px-3 py-2 rounded-md text-primary hover:text-secondary hover:bg-gray-50 transition-colors desktop-menu-item"
+                          >
+                            <DropdownIconComponent class="w-5 h-5" />
+                            <span>{dropdownItem.label}</span>
+                          </a>
+                        );
+                      })}
+                    </div>
+                  </div>
+                </div>
+              );
+            } else {
+              return (
+                <a href={item.href} class="link-nav flex items-center space-x-2">
+                  <IconComponent class="w-4 h-4" />
+                  <span>{item.label}</span>
+                </a>
+              );
+            }
+          })
+        }
+      </nav>
+
+      <!-- Desktop CTA -->
+      <a
+        href="/contatti"
+        class="hidden xl:inline-flex items-center gap-2 px-4 py-2 rounded-full bg-secondary text-white hover:bg-secondary/90 shadow-sm focus:outline-none focus:ring-2 focus:ring-secondary/40 transition-colors"
+      >
+        <Waves class="w-4 h-4" />
+        <span>{headerData.hero.free_trial}</span>
+      </a>
+
+      <!-- Mobile Menu Button -->
+      <button
+        id="mobile-menu-button"
+        class="xl:hidden p-2 rounded-md text-primary hover:text-secondary hover:bg-gray-50 transition-colors"
+        aria-label={headerData.ui.mobileMenuToggle}
+      >
+        <Menu id="menu-icon" class="w-6 h-6" />
+        <X id="close-icon" class="w-6 h-6 hidden" />
+      </button>
+    </div>
+
+    <!-- Mobile Navigation -->
+    <nav id="mobile-menu" class="xl:hidden hidden mt-4 pb-4 border-t border-gray-100">
+      <div class="flex flex-col space-y-2 pt-4">
+        <a
+          href="/contatti"
+          class="inline-flex items-center justify-center gap-2 mx-3 mb-2 px-4 py-2 rounded-md bg-secondary text-white hover:bg-secondary/90 shadow-sm"
+        >
+          <Waves class="w-4 h-4" />
+          <span>{headerData.hero.free_trial}</span>
+        </a>
+        {
+          headerData.navigation.map((item) => {
+            const IconComponent = item.icon;
+
+            if (item.dropdown) {
+              return (
+                <div class="mobile-dropdown">
+                  <button
+                    class="mobile-dropdown-button w-full flex items-center justify-between px-3 py-2 rounded-md text-primary hover:text-secondary hover:bg-gray-50 transition-colors text-left"
+                    data-dropdown={item.label.toLowerCase()}
+                  >
+                    <div class="flex items-center space-x-3">
+                      <IconComponent class="w-5 h-5" />
+                      <span>{item.label}</span>
+                    </div>
+                    <ChevronDown class="w-4 h-4 transition-transform" />
+                  </button>
+                  <div
+                    class="mobile-dropdown-content hidden ml-8 mt-2 space-y-1"
+                    data-dropdown-content={item.label.toLowerCase()}
+                  >
+                    {item.dropdown.map((dropdownItem) => {
+                      const DropdownIconComponent = dropdownItem.icon;
+                      return (
+                        <a
+                          href={dropdownItem.href}
+                          class="flex items-center space-x-3 px-3 py-2 rounded-md text-primary hover:text-secondary hover:bg-gray-50 transition-colors"
+                        >
+                          <DropdownIconComponent class="w-4 h-4" />
+                          <span>{dropdownItem.label}</span>
+                        </a>
+                      );
+                    })}
+                  </div>
+                </div>
+              );
+            } else {
+              return (
+                <a
+                  href={item.href}
+                  class="flex items-center space-x-3 px-3 py-2 rounded-md text-primary hover:text-secondary hover:bg-gray-50 transition-colors"
+                >
+                  <IconComponent class="w-5 h-5" />
+                  <span>{item.label}</span>
+                </a>
+              );
+            }
+          })
+        }
+      </div>
+    </nav>
+  </div>
+</header>
+
+<script>
+  // Mobile menu toggle functionality
+  const mobileMenuButton = document.getElementById("mobile-menu-button");
+  const mobileMenu = document.getElementById("mobile-menu");
+  const menuIcon = document.getElementById("menu-icon");
+  const closeIcon = document.getElementById("close-icon");
+
+  if (mobileMenuButton && mobileMenu && menuIcon && closeIcon) {
+    mobileMenuButton.addEventListener("click", () => {
+      const isHidden = mobileMenu.classList.contains("hidden");
+
+      if (isHidden) {
+        mobileMenu.classList.remove("hidden");
+        menuIcon.classList.add("hidden");
+        closeIcon.classList.remove("hidden");
+        mobileMenuButton.setAttribute("aria-expanded", "true");
+      } else {
+        mobileMenu.classList.add("hidden");
+        menuIcon.classList.remove("hidden");
+        closeIcon.classList.add("hidden");
+        mobileMenuButton.setAttribute("aria-expanded", "false");
+      }
+    });
+  }
+
+  // Mobile dropdown functionality
+  const dropdownButtons = document.querySelectorAll(".mobile-dropdown-button");
+
+  dropdownButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      const dropdownName = button.getAttribute("data-dropdown");
+      const dropdownContainer = button.closest(".mobile-dropdown");
+      const content = dropdownContainer?.querySelector(`[data-dropdown-content="${dropdownName}"]`);
+      const chevron = button.querySelector(".w-4.h-4");
+
+      if (content && chevron) {
+        const isHidden = content.classList.contains("hidden");
+
+        if (isHidden) {
+          content.classList.remove("hidden");
+          chevron.classList.add("rotate-180");
+        } else {
+          content.classList.add("hidden");
+          chevron.classList.remove("rotate-180");
+        }
+      }
+    });
+  });
+
+  // Close mobile menu when clicking on a link
+  const mobileMenuLinks = document.querySelectorAll("#mobile-menu a");
+  mobileMenuLinks.forEach((link) => {
+    link.addEventListener("click", () => {
+      if (mobileMenu && menuIcon && closeIcon) {
+        mobileMenu.classList.add("hidden");
+        menuIcon?.classList.remove("hidden");
+        closeIcon?.classList.add("hidden");
+      }
+    });
+  });
+
+  // Desktop dropdown keyboard accessibility
+  const desktopDropdownButtons = document.querySelectorAll<HTMLElement>(".desktop-dropdown-button");
+
+  function getDesktopMenu(button: HTMLElement) {
+    const dropdownName = button.getAttribute("data-dropdown");
+    if (!dropdownName) return { menu: null, items: [] };
+    const menu = document.querySelector<HTMLElement>(`[data-dropdown-content="${dropdownName}"]`);
+    const items = menu ? Array.from(menu.querySelectorAll<HTMLElement>(".desktop-menu-item")) : [];
+    return { menu, items };
+  }
+
+  function openDesktopMenu(button: HTMLElement) {
+    button.setAttribute("aria-expanded", "true");
+  }
+
+  function closeDesktopMenu(button: HTMLElement) {
+    button.setAttribute("aria-expanded", "false");
+  }
+
+  desktopDropdownButtons.forEach((button) => {
+    // Initialize state
+    button.setAttribute("aria-expanded", button.getAttribute("aria-expanded") || "false");
+
+    // Toggle on click (desktop only)
+    button.addEventListener("click", (e) => {
+      if (window.matchMedia && window.matchMedia("(min-width: 1280px)").matches) {
+        const target = e.target as HTMLElement | null;
+        const clickedToggle = target?.closest?.('[data-dropdown-toggle="true"]');
+        if (clickedToggle) {
+          e.preventDefault();
+          const isExpanded = button.getAttribute("aria-expanded") === "true";
+          if (isExpanded) {
+            closeDesktopMenu(button);
+          } else {
+            openDesktopMenu(button);
+            const { items } = getDesktopMenu(button);
+            items[0]?.focus();
+          }
+        }
+      }
+    });
+
+    // Keyboard interactions
+    button.addEventListener("keydown", (e: KeyboardEvent) => {
+      const key = e.key;
+      if (key === " " || key === "Spacebar" || key === "Enter" || key === "ArrowDown") {
+        e.preventDefault();
+        openDesktopMenu(button);
+        const { items } = getDesktopMenu(button);
+        (key === "ArrowDown" ? items[0] : items[0])?.focus();
+      } else if (key === "ArrowUp") {
+        e.preventDefault();
+        openDesktopMenu(button);
+        const { items } = getDesktopMenu(button);
+        items[items.length - 1]?.focus();
+      }
+    });
+  });
+
+  // Keyboard navigation within desktop menu
+  document.addEventListener("keydown", (e: KeyboardEvent) => {
+    const target = e.target as HTMLElement | null;
+    if (!target || !(target instanceof HTMLElement)) return;
+    if (!target.classList.contains("desktop-menu-item")) return;
+
+    const container = target.closest(".group");
+    const button = container?.querySelector<HTMLElement>(".desktop-dropdown-button");
+    const items = container
+      ? Array.from(container.querySelectorAll<HTMLElement>(".desktop-menu-item"))
+      : [];
+    const index = items.indexOf(target);
+
+    if (e.key === "ArrowDown") {
+      e.preventDefault();
+      const next = items[(index + 1) % items.length];
+      next?.focus();
+    } else if (e.key === "ArrowUp") {
+      e.preventDefault();
+      const prev = items[(index - 1 + items.length) % items.length];
+      prev?.focus();
+    } else if (e.key === "Home") {
+      e.preventDefault();
+      items[0]?.focus();
+    } else if (e.key === "End") {
+      e.preventDefault();
+      items[items.length - 1]?.focus();
+    } else if (e.key === "Escape") {
+      e.preventDefault();
+      if (button) {
+        closeDesktopMenu(button);
+        button.focus();
+      }
+    }
+  });
+
+  // Close all desktop menus on outside click or focus loss
+  document.addEventListener("click", (e: MouseEvent) => {
+    const target = e.target as HTMLElement | null;
+    if (!target || !(target instanceof HTMLElement)) return;
+    const isInsideDropdown = target?.closest?.(".group");
+    if (!isInsideDropdown) {
+      document
+        .querySelectorAll<HTMLElement>(`.desktop-dropdown-button[aria-expanded="true"]`)
+        .forEach((btn) => {
+          closeDesktopMenu(btn);
+        });
+    }
+  });
+</script>

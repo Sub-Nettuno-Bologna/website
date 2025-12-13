@@ -1,0 +1,198 @@
+---
+const { maxDepth = "40m" } = Astro.props;
+
+const parsedDepth = Number.parseInt(String(maxDepth).replace(/[^0-9]/g, ""), 10);
+const depthValue = Number.isFinite(parsedDepth) ? Math.min(40, Math.max(0, parsedDepth)) : 0;
+
+const meterStops = [0, 18, 30, 40];
+const meterOffsetTopPx = 0;
+const meterExtraOffsetPx = 0;
+const meterScalePx = 12 + (depthValue / 40) * 4; // 12–16px per metro
+const meterPosition = (value: number) =>
+  `${meterOffsetTopPx + value * meterScalePx + meterExtraOffsetPx}px`;
+
+const diveDistancePx = Math.max(0, depthValue * meterScalePx - 50);
+const bounceOffsetPx = Math.round(meterScalePx * 2);
+---
+
+<style>
+  .scuba-container {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+    pointer-events: none;
+    z-index: 5;
+  }
+
+  .depth-meter {
+    position: absolute;
+    right: 12px;
+    left: auto;
+    top: 12%;
+    bottom: 8%;
+    width: 52px;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 12px;
+    font-weight: 600;
+    text-align: right;
+  }
+
+  .depth-line {
+    position: absolute;
+    right: 18px;
+    left: auto;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    border-radius: 999px;
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.15),
+      rgba(255, 255, 255, 0.4),
+      rgba(255, 255, 255, 0.15)
+    );
+  }
+
+  .meter-tick {
+    position: absolute;
+    right: 0;
+    left: auto;
+    display: inline-flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex-direction: row-reverse;
+    gap: 8px;
+    padding: 2px 6px;
+    border-radius: 999px;
+    background: rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(8px);
+  }
+
+  .tick-mark {
+    display: inline-block;
+    width: 12px;
+    height: 2px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.7);
+  }
+
+  .scuba-diver {
+    position: absolute;
+    top: 0;
+    right: 6%;
+    animation: dive 12s ease-in-out infinite;
+  }
+
+  #scuba1-container {
+    animation-delay: 0s;
+    transform: scale(0.8);
+  }
+
+  .scuba-svg {
+    width: 220px;
+    height: auto;
+    filter: drop-shadow(0 12px 24px rgba(0, 0, 0, 0.2));
+  }
+
+  @keyframes dive {
+    0% {
+      transform: translate(50%, 0) scale(0.8);
+    }
+    35% {
+      transform: translate(24%, var(--dive-distance)) scale(0.8);
+    }
+    65% {
+      transform: translate(18%, calc(var(--dive-distance) + var(--dive-bounce))) scale(0.8);
+    }
+    100% {
+      transform: translate(50%, 0) scale(0.8);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .depth-meter {
+      right: 8px;
+      left: auto;
+      top: 14%;
+      width: 48px;
+      font-size: 11px;
+      text-align: right;
+    }
+
+    .meter-tick {
+      padding: 2px 5px;
+    }
+
+    #scuba1-container {
+      right: 0;
+      transform: scale(0.6);
+    }
+
+    .scuba-svg {
+      width: 160px;
+    }
+
+    @keyframes dive {
+      0% {
+        transform: translate(40%, 0) scale(0.6);
+      }
+      40% {
+        transform: translate(12%, var(--dive-distance)) scale(0.6);
+      }
+      100% {
+        transform: translate(40%, 0) scale(0.6);
+      }
+    }
+  }
+</style>
+
+<div
+  class="scuba-container"
+  style={`--dive-distance: ${diveDistancePx}px; --dive-bounce: ${bounceOffsetPx}px;`}
+>
+  <div class="depth-meter" aria-hidden="true">
+    <div class="depth-line"></div>
+    {
+      meterStops.map((value) => (
+        <div class="meter-tick" style={`top: ${meterPosition(value)};`}>
+          <span class="tick-mark" />
+          <span>{value}m</span>
+        </div>
+      ))
+    }
+  </div>
+  <div id="scuba1-container" class="scuba-diver">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      class="scuba-svg"
+      viewBox="0 0 140 70"
+      role="img"
+      aria-hidden="true"
+    >
+      <g id="yellowscuba1" data-name="yellowscuba1">
+        <path
+          id="scuba-fins"
+          d="M125.91 23.25L113 19.88l-16.26-5-6.33-2.48a2.28 2.28 0 0 0-2.71 1.35l-.9 4A7.55 7.55 0 0 1 92.26 19l2.93 1.8h2.94l2.48.68 2.49.68s.22.19 5.42 1.11a66 66 0 0 0 10.16.92zM125.91 54s-12.2-1.13-17.17-3.84-8.58-4.74-10.38-6.77-3.62-4.3-3.62-4.3-1.58-3.4-3.39-1.09l-1.8 2.25L92 44.27l1.58 3.39 4.07 2.71a31.67 31.67 0 0 0 7.9 3.61c5.42 1.81 13.78 2 13.78 2h2.71z"
+          fill="#e3e987"></path>
+        <path
+          id="scuba-all-body-legs"
+          d="M95.19 20.78s-3.38.45-3.84 1.36-4.51 6.55-4.51 6.55a27.67 27.67 0 0 1-4.74 4.06c-2.49 1.58-8.36 2.94-8.36 2.94h-5.19L62 34.11l3.38 3.06s5.2 3.26 8.13 3.94a48.77 48.77 0 0 0 5.09.9s5.53 0 8.24-.9l2.71-.91 4.06 7.46s-1.61-2.94-4.06-1.81-12.65 1.81-12.65 1.81A21.76 21.76 0 0 1 60 43.37c-8.35-6.33-9.93-9-9.93-9L46.19 33l4.06-12.2 13.1 3.39a48.35 48.35 0 0 0 8.58 1.58c3.84.23 5 1.81 8.36-.45a43.62 43.62 0 0 0 6.55-5.65V17.8h2.36l3.06 1.2zM45.75 19.61l-2.8-1c-1.47-.52-2.93-1-4.36-1.51a11.34 11.34 0 0 0-5-1.43 11.1 11.1 0 0 0-4.14.61 5.62 5.62 0 0 0-4.07 3.16 20.37 20.37 0 0 0-2 5.87c-.13 1.33-.25 2.66-.38 4a3.08 3.08 0 0 1-.37 1.58 3.2 3.2 0 0 1-1.72 1.44 19.13 19.13 0 0 1-7 1.57h-5v5.4h7.45l5.64-.6a12.77 12.77 0 0 0 6.85-5.82 11.87 11.87 0 0 0 1.3-4.88l6.1 1.58 5.65 1.58z"
+          fill="#2f3331"></path>
+        <path
+          id="scuba-bomb"
+          d="M46.19 33l-4.29-1.83 3.85-11.56-7.16-2.52-4.15-1.44s-6.16-.43-7.83 2.15a30 30 0 0 0-2 3.32l-.84 2.45-.39 1.73-.68-3.92v-2.63a3.88 3.88 0 0 1 1-3.13 12.89 12.89 0 0 1 3.66-2.14V11s-.2-3 2-4.14a7.69 7.69 0 0 1 3.5-1.06h1.57l5.51.68L45.75 8l4 1.35 3.09 1 2.33.83 1.81.6 1.58.68s3.84 2.25 4.52 3.84l.67 1.58s.23-.08 0 1.54L63.58 21l-.53 1.65-.57 1.28-12.23-3.15z"
+          fill="#e3e987"></path>
+        <path
+          id="scuba-head"
+          d="M27.34 13.48l-1.93-.68s-1.58-.3-1.5-1.35.3-2.86.3-2.86V6.86a7.82 7.82 0 0 0-.31-2.49A10.31 10.31 0 0 0 22.67 2 5.7 5.7 0 0 0 19.46.16L17.73 0H15.4S12.31-.22 11 2.19L9.75 4.6l-.37 1.2A1.4 1.4 0 0 0 8 7.08a26.78 26.78 0 0 0 0 2.71V13s.26 1.28 1 1.35l.75.08.15 1.19.38 1.29a10.66 10.66 0 0 0 2.25 2.45l.91.49a2.73 2.73 0 0 0 2 0l1.21-.38 1.58-.6 1.58-1.1s.53-.95 1.13 0A16.87 16.87 0 0 0 22 19.39l.72.94v-1.58l.13-1.75.83-1.4.73-.59 1.12-.7z"
+          fill="#2f3331"></path>
+        <path
+          id="scuba-mask"
+          d="M24.21 7.83h-12.8s-.23-2-1.13-2h-.9S8 5.88 8 7.08V13s.64 1.73 1.77 1.43a2.81 2.81 0 0 0 1.65-1.36l.08-1.95 12.5.3zM8.93 33.88H3.81S-1 34 .19 35.24a16.42 16.42 0 0 0 2 1.88 5.46 5.46 0 0 0 2.23.75c1.83.38 3.45.83 3.45.83l1-.08z"
+          fill="#e3e987"></path>
+      </g>
+    </svg>
+  </div>
+</div>

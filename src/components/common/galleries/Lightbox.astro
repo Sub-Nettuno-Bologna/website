@@ -1,0 +1,167 @@
+---
+import { ArrowLeft, ArrowRight } from "@lucide/astro";
+---
+
+<!-- Lightbox Modal -->
+<div
+  id="lightbox-modal"
+  class="fixed inset-0 z-50 hidden bg-black bg-opacity-90 flex items-center justify-center p-4"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="lightbox-caption"
+>
+  <div class="relative max-w-4xl max-h-full" role="document">
+    <!-- Close button -->
+    <button
+      id="close-lightbox"
+      class="absolute -top-12 right-0 text-white hover:text-gray-300 text-2xl font-bold z-10"
+      type="button"
+      aria-label="Chiudi"
+    >
+      ✕
+    </button>
+
+    <!-- Previous button -->
+    <button
+      id="prev-lightbox"
+      class="absolute left-4 top-1/2 -translate-y-1/2 text-white hover:text-gray-300 text-4xl font-bold z-10 bg-black bg-opacity-50 rounded-full w-12 h-12 flex items-center justify-center"
+      type="button"
+      aria-label="Immagine precedente"
+    >
+      <ArrowLeft />
+    </button>
+
+    <!-- Next button -->
+    <button
+      id="next-lightbox"
+      class="absolute right-4 top-1/2 -translate-y-1/2 text-white hover:text-gray-300 text-4xl font-bold z-10 bg-black bg-opacity-50 rounded-full w-12 h-12 flex items-center justify-center"
+      type="button"
+      aria-label="Immagine successiva"
+    >
+      <ArrowRight />
+    </button>
+
+    <!-- Image container -->
+    <div class="relative">
+      <img
+        id="lightbox-image"
+        src=""
+        alt=""
+        class="max-w-full max-h-[80vh] object-contain rounded-lg"
+      />
+    </div>
+
+    <!-- Image caption -->
+    <div class="text-center mt-4">
+      <p id="lightbox-caption" class="text-white text-lg"></p>
+    </div>
+  </div>
+</div>
+
+<script>
+  const defer = (cb: () => void) => {
+    if ("requestIdleCallback" in window) {
+      (window as any).requestIdleCallback(cb);
+    } else {
+      setTimeout(cb, 0);
+    }
+  };
+
+  defer(() => {
+    // Lightbox functionality
+    const galleryItems = document.querySelectorAll(".gallery-item");
+    const lightboxModal = document.getElementById("lightbox-modal");
+    const lightboxImage = document.getElementById("lightbox-image") as HTMLImageElement;
+    const lightboxCaption = document.getElementById("lightbox-caption");
+    const closeLightbox = document.getElementById("close-lightbox");
+    const prevLightbox = document.getElementById("prev-lightbox");
+    const nextLightbox = document.getElementById("next-lightbox");
+
+    let currentImageIndex = 0;
+    let totalImages = 0;
+
+    // Gallery images data for the script
+    const galleryImagesData = Array.from({ length: galleryItems.length }).map((_, index) => {
+      const img = galleryItems[index].querySelector("img");
+      if (!img) return { src: "", alt: "" };
+      return {
+        src: img.src,
+        alt: img.alt,
+      };
+    });
+
+    totalImages = galleryImagesData.length;
+
+    function showImage(index: number) {
+      if (!lightboxImage || !lightboxCaption) return;
+      const imageData = galleryImagesData[index];
+      lightboxImage.src = imageData.src;
+      lightboxImage.alt = imageData.alt;
+      currentImageIndex = index;
+    }
+
+    // Open lightbox when clicking on gallery item
+    galleryItems.forEach((item, index) => {
+      item.addEventListener("click", () => {
+        if (!lightboxModal) return;
+        showImage(index);
+        lightboxModal.classList.remove("hidden");
+        document.body.classList.add("overflow-hidden");
+        (document.getElementById("close-lightbox") as HTMLButtonElement)?.focus();
+      });
+    });
+
+    // Close lightbox when clicking close button
+    closeLightbox?.addEventListener("click", () => {
+      if (!lightboxModal) return;
+      lightboxModal.classList.add("hidden");
+      document.body.classList.remove("overflow-hidden");
+      (document.activeElement as HTMLElement)?.blur();
+    });
+
+    // Navigate to previous image
+    prevLightbox?.addEventListener("click", () => {
+      const prevIndex = currentImageIndex === 0 ? totalImages - 1 : currentImageIndex - 1;
+      showImage(prevIndex);
+    });
+
+    // Navigate to next image
+    nextLightbox?.addEventListener("click", () => {
+      const nextIndex = currentImageIndex === totalImages - 1 ? 0 : currentImageIndex + 1;
+      showImage(nextIndex);
+    });
+
+    // Close lightbox when clicking outside the image
+    lightboxModal?.addEventListener("click", (e) => {
+      if (e.target === lightboxModal && lightboxModal) {
+        lightboxModal.classList.add("hidden");
+        document.body.classList.remove("overflow-hidden");
+      }
+    });
+
+    // Keyboard navigation
+    document.addEventListener("keydown", (e) => {
+      if (!lightboxModal || lightboxModal.classList.contains("hidden")) return;
+      switch (e.key) {
+        case "Escape":
+          lightboxModal.classList.add("hidden");
+          document.body.classList.remove("overflow-hidden");
+          break;
+        case "ArrowLeft":
+          e.preventDefault();
+          {
+            const prevIndex = currentImageIndex === 0 ? totalImages - 1 : currentImageIndex - 1;
+            showImage(prevIndex);
+          }
+          break;
+        case "ArrowRight":
+          e.preventDefault();
+          {
+            const nextIndex = currentImageIndex === totalImages - 1 ? 0 : currentImageIndex + 1;
+            showImage(nextIndex);
+          }
+          break;
+      }
+    });
+  });
+</script>

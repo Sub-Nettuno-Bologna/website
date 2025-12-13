@@ -1,0 +1,137 @@
+---
+import { getCourseCategories } from "@/services/courses";
+import { Schema } from "astro-seo-schema";
+import { getCategoryHref } from "@/features/courses/CourseCategoriesSection.astro";
+import { getSeo } from "@/services/seo";
+import { getClubData } from "@/services/club";
+import { buildImageUrl } from "@/lib/sanity";
+import type { CourseCategory } from "../../sanity.types";
+
+const seo = await getSeo();
+const org = seo?.organization;
+const club = await getClubData();
+
+const categories = await getCourseCategories();
+const offerCatalog = categories.map((course) => ({
+  "@type": "Offer",
+  itemOffered: {
+    "@type": "Service",
+    name: course.title,
+    description: course.description,
+    url: getCategoryHref(course as CourseCategory),
+  },
+}));
+
+const getImageUrl = (image: any) => {
+  if (!image) return "";
+  return buildImageUrl(image, { width: 512, height: 512 }) || "";
+};
+---
+
+{
+  org?.url && org?.name && (
+    <Schema
+      item={
+        {
+          "@context": "https://schema.org",
+          "@type": "SportsActivityLocation",
+          "@id": `${org.url}/#organization`,
+          name: org.name,
+          url: org.url,
+          ...(org.alternateName && { alternateName: org.alternateName }),
+          ...(org.email && { email: org.email }),
+          ...(org.telephone && { telephone: org.telephone }),
+          ...(() => {
+            const logoUrl = getImageUrl(org.logo);
+            const imageUrl = getImageUrl(org.image);
+            return {
+              ...(logoUrl && { logo: logoUrl }),
+              ...(imageUrl && { image: imageUrl }),
+            };
+          })(),
+          ...(org.description && { description: org.description }),
+          ...(org.priceRange && { priceRange: org.priceRange }),
+          ...(org.areaServedCity && {
+            areaServed: { "@type": "City", name: org.areaServedCity },
+          }),
+          ...(org.sameAs && org.sameAs.length > 0 && { sameAs: org.sameAs }),
+          ...(org.address && {
+            address: {
+              "@type": "PostalAddress",
+              ...(org.address.streetAddress && { streetAddress: org.address.streetAddress }),
+              ...(org.address.addressLocality && {
+                addressLocality: org.address.addressLocality,
+              }),
+              ...(org.address.postalCode && { postalCode: org.address.postalCode }),
+              ...(org.address.addressRegion && { addressRegion: org.address.addressRegion }),
+              ...(org.address.addressCountry && { addressCountry: org.address.addressCountry }),
+            },
+          }),
+          ...(org.geo &&
+            org.geo.latitude !== undefined &&
+            org.geo.longitude !== undefined && {
+              geo: {
+                "@type": "GeoCoordinates",
+                latitude: org.geo.latitude,
+                longitude: org.geo.longitude,
+              },
+            }),
+          ...(club?.openingHours &&
+            club.openingHours.length > 0 && {
+              openingHoursSpecification: club.openingHours.map((oh: any) => ({
+                "@type": "OpeningHoursSpecification",
+                ...(oh.dayOfWeek && oh.dayOfWeek.length > 0 && { dayOfWeek: oh.dayOfWeek }),
+                ...(oh.opens && { opens: oh.opens }),
+                ...(oh.closes && { closes: oh.closes }),
+              })),
+            }),
+          ...(org.offerCatalogName && {
+            hasOfferCatalog: {
+              "@type": "OfferCatalog",
+              name: org.offerCatalogName,
+              itemListElement: offerCatalog,
+            },
+          }),
+          ...(org.aggregateRating && {
+            aggregateRating: {
+              "@type": "AggregateRating",
+              ...(org.aggregateRating.ratingValue && {
+                ratingValue: org.aggregateRating.ratingValue,
+              }),
+              ...(org.aggregateRating.reviewCount && {
+                reviewCount: org.aggregateRating.reviewCount,
+              }),
+            },
+          }),
+          ...(org.reviews &&
+            org.reviews.length > 0 && {
+              review: org.reviews.map((review: any) => ({
+                "@type": "Review",
+                ...(review.authorName && {
+                  author: { "@type": "Person", name: review.authorName },
+                }),
+                ...(review.datePublished && { datePublished: review.datePublished }),
+                ...(review.reviewBody && { reviewBody: review.reviewBody }),
+                ...(review.rating && {
+                  reviewRating: {
+                    "@type": "Rating",
+                    ...(review.rating.ratingValue && {
+                      ratingValue: review.rating.ratingValue,
+                    }),
+                    ...(review.rating.bestRating && { bestRating: review.rating.bestRating }),
+                    ...(review.rating.worstRating && {
+                      worstRating: review.rating.worstRating,
+                    }),
+                  },
+                }),
+              })),
+            }),
+          ...(org.keywords &&
+            org.keywords.length > 0 && {
+              keywords: org.keywords.join(", "),
+            }),
+        } as any
+      }
+    />
+  )
+}

@@ -1,0 +1,137 @@
+---
+import Breadcrumbs from "./Breadcrumbs.astro";
+import { getClubData } from "@/services/club";
+
+type ColorToken =
+  | "primary"
+  | "secondary"
+  | "tertiary"
+  | "accent"
+  | "info"
+  | "danger"
+  | "gray-600"
+  | "primary-content"
+  | "white"
+  | "tertiary-strong";
+
+export interface Props {
+  title?: string;
+  logo?: boolean;
+  subtitle?: string;
+  titleSize?: "sm" | "md" | "lg" | "xl";
+  titleColor?: ColorToken;
+  subtitleColor?: ColorToken;
+  centered?: boolean;
+  hasBreadcrumbs?: boolean;
+  showTitle?: boolean;
+}
+
+const {
+  title,
+  logo,
+  subtitle,
+  titleSize = "lg",
+  titleColor = "secondary",
+  subtitleColor = "gray-600",
+  centered = true,
+  hasBreadcrumbs = true,
+  showTitle = true,
+} = Astro.props;
+
+// Use a deterministic gradient id to avoid clashes when the component is repeated
+const gradientId = `underline-${(title || "").replace(/\s+/g, "-").toLowerCase()}`;
+
+const titleSizes = {
+  sm: "text-2xl",
+  md: "text-3xl",
+  lg: "text-4xl",
+  xl: "text-5xl",
+};
+
+const colorClassMap: Record<ColorToken, string> = {
+  primary: "text-primary",
+  secondary: "text-secondary",
+  tertiary: "text-tertiary",
+  accent: "text-accent",
+  info: "text-info",
+  danger: "text-danger",
+  "gray-600": "text-gray-600",
+  "primary-content": "text-primary-content",
+  white: "text-white",
+  "tertiary-strong": "text-[#111112]", // fallback until token exists
+};
+
+const clubData = await getClubData();
+---
+
+{
+  hasBreadcrumbs && (
+    <div class="px-8 text-center justify-center flex mb-8">
+      <Breadcrumbs />
+    </div>
+  )
+}
+
+<div class={`${centered ? "text-center" : ""} mb-16`}>
+  {
+    title && showTitle && (
+      <h2 class={`${titleSizes[titleSize]} font-bold ${colorClassMap[titleColor]} mb-8`}>
+        <span class="relative inline-block">
+          {title}
+          <svg
+            class="absolute left-0 w-full -bottom-2 h-3"
+            viewBox="0 0 100 12"
+            preserveAspectRatio="none"
+            xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true"
+            focusable="false"
+          >
+            <defs>
+              <linearGradient id={gradientId} x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color={`hsl(var(--color-primary))`} />
+                <stop offset="100%" stop-color={`hsl(var(--color-info))`} />
+              </linearGradient>
+            </defs>
+            <path
+              d="M2 6 C 25 9, 75 9, 98 6"
+              stroke={`hsl(var(--color-primary))`}
+              stroke-opacity="0.15"
+              stroke-width="6"
+              fill="none"
+              stroke-linecap="round"
+            />
+            <path
+              d="M2 6 C 25 4, 75 4, 98 6"
+              stroke={`url(#${gradientId})`}
+              stroke-width="3.5"
+              fill="none"
+              stroke-linecap="round"
+            />
+          </svg>
+        </span>
+      </h2>
+    )
+  }
+
+  {
+    logo && (
+      <div class="flex items-center justify-center">
+        <img
+          src={"/logo.svg"}
+          alt={clubData?.clubName || ""}
+          class="w-100 mb-4"
+          width="200"
+          style="height: auto;"
+        />
+      </div>
+    )
+  }
+
+  {
+    subtitle && (
+      <p class={`text-xl ${colorClassMap[subtitleColor]} max-w-3xl ${centered ? "mx-auto" : ""}`}>
+        {subtitle}
+      </p>
+    )
+  }
+</div>

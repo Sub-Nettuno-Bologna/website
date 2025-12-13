@@ -1,0 +1,65 @@
+---
+import type { Blog as BlogPost } from "../../../sanity.types";
+import BlogCard from "@/components/common/cards/BlogCard.astro";
+import SectionContainer from "@/components/layout/Section.astro";
+import SectionHeader from "@/components/layout/SectionHeader.astro";
+import EmptyState from "@/components/states/EmptyState.astro";
+import { pagesData } from "@/data/pages";
+
+export interface Props {
+  posts: BlogPost[];
+  title: string;
+  subtitle: string;
+  showFeatured?: boolean;
+  maxPosts?: number;
+}
+
+const { posts, title, subtitle, showFeatured = false, maxPosts } = Astro.props;
+
+const featuredPosts = showFeatured ? posts.filter((post: BlogPost) => post.featured) : [];
+const regularPosts = showFeatured ? posts.filter((post: BlogPost) => !post.featured) : posts;
+---
+
+<SectionContainer
+  background="default"
+  padding="sm"
+  waveBottom
+  waveColorClass="color-gradient-secondary"
+>
+  <SectionHeader title={title} subtitle={subtitle} titleColor="primary" subtitleColor="gray-600" />
+
+  {
+    posts.length === 0 ? (
+      <EmptyState
+        title={pagesData.states.empty.blog.title}
+        description={pagesData.states.empty.blog.description}
+      />
+    ) : (
+      <div class="space-y-12">
+        {showFeatured && featuredPosts.length > 0 && (
+          <div>
+            <h2 class="text-2xl font-bold text-gray-900 mb-6">{pagesData.commons.featured}</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 justify-center">
+              {featuredPosts.map((post: BlogPost) => (
+                <BlogCard post={post} featured={true} />
+              ))}
+            </div>
+          </div>
+        )}
+
+        {regularPosts.length > 0 && (
+          <div>
+            {showFeatured && featuredPosts.length > 0 && (
+              <h2 class="text-2xl font-bold text-gray-900 mb-6">{pagesData.commons.allPosts}</h2>
+            )}
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 justify-center">
+              {(maxPosts ? regularPosts.slice(0, maxPosts) : regularPosts).map((post: BlogPost) => (
+                <BlogCard post={post} />
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
+    )
+  }
+</SectionContainer>

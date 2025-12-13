@@ -1,0 +1,26 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import BlogPost from "@/features/blog/BlogPost.astro";
+import { getBlogPostBySlug, getBlogPosts } from "@/services/blog";
+import type { InferGetStaticParamsType } from "astro";
+
+export async function getStaticPaths() {
+  const posts = await getBlogPosts();
+  return posts.map((post) => ({
+    params: { slug: post.slug.current },
+  }));
+}
+
+type Params = InferGetStaticParamsType<typeof getStaticPaths>;
+const { slug } = Astro.params as Params;
+
+const post = await getBlogPostBySlug(slug || "");
+
+if (!post) {
+  Astro.redirect("/blog");
+}
+---
+
+<Layout>
+  <BlogPost post={post} backUrl="/blog" />
+</Layout>

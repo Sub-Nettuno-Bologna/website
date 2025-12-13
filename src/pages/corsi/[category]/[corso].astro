@@ -1,0 +1,71 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Course from "@/features/courses/CourseDetail.astro";
+import { getAllCategoryCoursePaths, getCourse } from "@/services/courses";
+import ContactSection from "@/features/contact/ContactSection.astro";
+import { pagesData } from "@/data/pages";
+import { getClubData } from "@/services/club";
+import CourseSeoSchema from "@/seo/CourseSeoSchema.astro";
+import { Seo } from "astro-seo-meta";
+
+export async function getStaticPaths() {
+  try {
+    const paths = await getAllCategoryCoursePaths();
+    return paths.map((p) => ({
+      params: { category: p.category, corso: p.course },
+    }));
+  } catch (error) {
+    console.error("Error generating static paths for courses:", error);
+    return [];
+  }
+}
+
+const { params } = Astro;
+const category = params.category as string;
+const slug = params.corso as string;
+
+const course = await getCourse({ slug });
+
+if (!course) {
+  throw new Error("Course not found");
+}
+
+const scubaDiving = category === "subacquea";
+---
+
+<Layout title={course.title}>
+  <CourseSeoSchema course={course} />
+  <Course course={course} scubaDiving={scubaDiving} />
+
+  <!-- Contact Section -->
+  <ContactSection hasBreadcrumbs={false} />
+
+  {
+    course.nextCourses && course.nextCourses.length > 0 && (
+      <section class="text-center my-16">
+        <h2 class="text-3xl font-bold tracking-tight">
+          {pagesData.courseDetail.sections.nextSteps}
+        </h2>
+        <p class="mt-2 text-lg text-muted-foreground">
+          {pagesData.courseDetail.descriptions.nextSteps}
+        </p>
+        <div class="mt-8 flex flex-wrap justify-center gap-4">
+          {(course?.nextCourses || []).map((next) =>
+            next?.slug ? (
+              <a
+                href={
+                  (next as any).categorySlug || (course as any).categorySlug
+                    ? `/corsi/${(next as any).categorySlug ?? (course as any).categorySlug}/${(next as any).slug}`
+                    : `/corsi/${(next as any).slug}`
+                }
+                class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2"
+              >
+                {(next as any).title ?? (next as any).slug}
+              </a>
+            ) : null
+          )}
+        </div>
+      </section>
+    )
+  }
+</Layout>

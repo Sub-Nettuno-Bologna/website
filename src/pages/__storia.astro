@@ -1,0 +1,126 @@
+---
+import { timelineEvents } from "@/data/history";
+import Layout from "@/layouts/Layout.astro";
+import { cn } from "@/lib/utils";
+import { pagesData } from "@/data/pages";
+import Bubbles from "@/components/visuals/animations/Bubbles.astro";
+---
+
+<Layout title="La Nostra Storia | Club Subnettuno" noWaves={true}>
+  <main
+    class="mx-auto px-4 py-16 min-h-screen bg-gradient-to-b from-blue-400 to-blue-950 relative overflow-hidden"
+  >
+    <Bubbles />
+
+    <div class="max-w-4xl mx-auto relative z-10">
+      <h1 class="text-5xl font-bold text-center mb-16 text-white">
+        {pagesData.storia.title}
+        <div class="h-1 w-24 bg-blue-400 mx-auto mt-4 rounded-full"></div>
+      </h1>
+
+      <div class="relative">
+        {/* Timeline line */}
+        <div
+          class="absolute left-8 md:left-1/2 transform md:-translate-x-1/2 h-full w-1 bg-blue-400/50 timeline-line"
+        >
+        </div>
+
+        {/* Timeline events */}
+        <div class="space-y-24">
+          {
+            timelineEvents.map((event, index) => (
+              <div
+                class={cn(
+                  "relative flex items-center gap-8",
+                  "md:flex-row", // Desktop: use flex-row
+                  index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse", // Desktop: alternate
+                  "flex-row", // Mobile: always flex-row
+                )}
+              >
+                {/* Content */}
+                <div
+                  class={cn(
+                    // Desktop: 50% width, Mobile: full width with padding
+                    "md:w-[calc(50%-2rem)] w-full pl-20 md:pl-8 pr-4",
+                    "opacity-0 transform transition-all duration-700 ease-out",
+                    // Desktop: alternate translate, Mobile: always from right
+                    index % 2 === 0
+                      ? "md:translate-x-12 translate-x-8"
+                      : "md:-translate-x-12 translate-x-8",
+                    "data-[visible=true]:opacity-100 data-[visible=true]:translate-x-0",
+                  )}
+                  data-timeline-item
+                >
+                  <div class="bg-white/10 backdrop-blur-md rounded-xl p-6 border border-white/10 shadow-xl hover:bg-white/15 transition-colors">
+                    <span class="inline-block px-4 py-2 mb-4 text-sm font-bold rounded-full bg-blue-400/20 text-blue-200 border border-blue-400/20">
+                      {event.year}
+                    </span>
+                    <h3 class="text-2xl font-bold mb-3 text-white">{event.title}</h3>
+                    <p class="text-blue-100/90 leading-relaxed">{event.description}</p>
+                    {event.cta && (
+                      <div class="mt-6 text-center">
+                        <a
+                          href={event.cta.href}
+                          class="inline-flex items-center gap-2 px-6 py-3 bg-blue-400 hover:bg-blue-500 text-white font-bold rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+                        >
+                          {event.cta.text}
+                          <svg
+                            class="w-5 h-5"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              stroke-width="2"
+                              d="M17 8l4 4m0 0l-4 4m4-4H3"
+                            />
+                          </svg>
+                        </a>
+                      </div>
+                    )}
+                  </div>
+                </div>
+
+                {/* Timeline dot and line */}
+                <div class="absolute left-8 md:left-1/2 transform md:-translate-x-1/2 flex items-center justify-center timeline-dot">
+                  <div class="w-8 h-8 rounded-full bg-blue-400 border-4 border-blue-900 shadow-lg shadow-blue-400/20 z-10" />
+                </div>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </main>
+</Layout>
+
+<script>
+  // Intersection Observer for timeline animations
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.setAttribute("data-visible", "true");
+        }
+      });
+    },
+    {
+      threshold: 0.2,
+      rootMargin: "0px 0px -10% 0px",
+    },
+  );
+
+  // Observe all timeline items
+  document.querySelectorAll("[data-timeline-item]").forEach((item) => {
+    observer.observe(item);
+  });
+</script>
+
+<style>
+  [data-timeline-item] {
+    will-change: opacity, transform;
+  }
+</style>

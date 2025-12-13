@@ -1,0 +1,91 @@
+---
+import "@/styles/global.css";
+import Header from "@/components/layout/site/Header.astro";
+import Footer from "@/components/layout/site/Footer.astro";
+import Wave from "@/components/visuals/animations/Wave.astro";
+import { Seo } from "astro-seo-meta";
+import BaseSeoSchema from "@/seo/BaseSeoSchema.astro";
+import WebsiteSeoSchema from "@/seo/WebsiteSeoSchema.astro";
+
+const { noWaves = false } = Astro.props;
+---
+
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <meta name="generator" content={Astro.generator} />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://cdn.sanity.io" crossorigin />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Science+Gothic:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
+
+    <Seo
+      title="Corsi Subacquea Bologna | Club Sub Nettuno – Scuola Sub dal 1984"
+      description="Scuola subacquea a Bologna dal 1984. Corsi sub base, apnea e specialità con brevetti FIPSAS/CMAS riconosciuti in tutto il mondo. Prova sub gratuita, istruttori certificati, piscina a Bologna."
+      keywords={[
+        "corsi sub Bologna",
+        "scuola sub Bologna",
+        "subacquea Bologna",
+        "apnea Bologna",
+        "corsi apnea Bologna",
+        "brevetto sub Bologna",
+        "prova sub gratuita",
+        "immersioni Bologna",
+        "corsi CMAS FIPSAS Bologna",
+      ]}
+      icon="/favicon.svg"
+      themeColor={`hsl(var(--color-primary))`}
+      colorScheme="light"
+      robots="index, follow"
+      facebook={{
+        image: "/logo.svg",
+        url: "https://subnettuno.it",
+        type: "website",
+      }}
+      twitter={{
+        image: "/logo.svg",
+        site: "@clubsubnettuno",
+        card: "summary",
+      }}
+    />
+
+    <BaseSeoSchema />
+    <WebsiteSeoSchema />
+    <style>
+      .below-the-fold {
+        content-visibility: auto;
+        contain-intrinsic-size: 1px 800px;
+      }
+    </style>
+  </head>
+  <body>
+    <a
+      href="#content"
+      class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 focus:bg-white focus:text-black focus:px-3 focus:py-2 focus:rounded-md"
+      >Salta al contenuto principale</a
+    >
+    <Header />
+
+    <main id="content">
+      <slot />
+      {
+        !noWaves && (
+          <div class="relative px-8 py-12 bg-gray-50 below-the-fold">
+            <Wave />
+          </div>
+        )
+      }
+    </main>
+    <div class="below-the-fold">
+      <Footer />
+    </div>
+  </body>
+</html>

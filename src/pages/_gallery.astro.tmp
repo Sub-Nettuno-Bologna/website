@@ -1,0 +1,15 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import GallerySection from "@/features/gallery/GallerySection.astro";
+import { getGalleries } from "@/services/gallery";
+import { pagesData } from "@/data/pages";
+const galleries = await getGalleries();
+const galleryData = {
+  title: galleries[0]?.title || "Gallery",
+  subtitle: galleries[0]?.subtitle || pagesData.ui.gallery.defaultSubtitle,
+};
+---
+
+<Layout>
+  <GallerySection preview={false} title={galleryData.title} subtitle={galleryData.subtitle} />
+</Layout>

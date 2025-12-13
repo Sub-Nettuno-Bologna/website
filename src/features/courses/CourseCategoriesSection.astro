@@ -1,0 +1,81 @@
+---
+import { BookOpen } from "@lucide/astro";
+import type { SanityImageSource } from "@sanity/image-url/lib/types/types";
+import type { CourseCategory } from "../../../sanity.types";
+import FeatureCard from "@/components/common/cards/FeatureCard.astro";
+import SectionContainer from "@/components/layout/Section.astro";
+import SectionHeader from "@/components/layout/SectionHeader.astro";
+import EmptyState from "@/components/states/EmptyState.astro";
+import { pagesData } from "@/data/pages";
+import { buildImageUrl } from "@/lib/sanity";
+
+export interface Props {
+  categories: Array<CourseCategory & { coursesCount?: number }>;
+  title: string;
+  description: string;
+}
+
+const { categories, title, description } = Astro.props;
+
+export function getCategoryHref(category: CourseCategory): string {
+  return `/corsi/${category.slug?.current}`;
+}
+---
+
+<SectionContainer
+  id="corsi"
+  background="default"
+  padding="sm"
+  waveBottom
+  waveColorClass="color-gradient-secondary"
+>
+  <SectionHeader
+    title={title}
+    subtitle={description}
+    titleColor="tertiary"
+    subtitleColor="gray-600"
+    titleSize="lg"
+  />
+
+  {
+    categories.length === 0 ? (
+      <EmptyState
+        title={pagesData.states.empty.courses.title}
+        description={pagesData.states.empty.courses.description}
+      />
+    ) : (
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 justify-center">
+        {categories.map((cat) => (
+          <FeatureCard
+            title={cat.title || ""}
+            description={[
+              {
+                _type: "block",
+                _key: `${cat._id}-desc`,
+                children: [
+                  {
+                    _type: "span",
+                    _key: `${cat._id}-desc-span`,
+                    text: cat.description || "",
+                  },
+                ],
+              },
+            ]}
+            image={buildImageUrl(cat.image, { width: 310, height: 150 })}
+            details={[
+              {
+                icon: BookOpen,
+                text: `${cat.coursesCount ?? 0} ${pagesData.ui.courses.available}`,
+              },
+            ]}
+            action={{
+              text: pagesData.commons.learnMore,
+              href: getCategoryHref(cat),
+              color: "primary",
+            }}
+          />
+        ))}
+      </div>
+    )
+  }
+</SectionContainer>

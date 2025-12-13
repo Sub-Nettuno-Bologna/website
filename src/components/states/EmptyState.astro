@@ -1,0 +1,61 @@
+---
+export interface ActionProps {
+  href?: string;
+  text?: string;
+  color?: "primary" | "secondary" | "tertiary" | "default";
+}
+
+export interface Props {
+  title: string;
+  description?: string;
+  icon?: any;
+  action?: ActionProps;
+}
+
+const { title, description, icon, action } = Astro.props;
+---
+
+<div class="text-center py-12">
+  <div class="text-gray-400 mb-4">
+    {
+      icon ? (
+        <Fragment set:html={icon} />
+      ) : (
+        <svg class="w-16 h-16 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="1"
+            d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+          />
+        </svg>
+      )
+    }
+  </div>
+  <h3 class="text-lg font-medium text-gray-900 mb-2">{title}</h3>
+  {description && <p class="text-gray-500 max-w-xl mx-auto">{description}</p>}
+  {
+    action?.href && action?.text && (
+      <div class="mt-6">
+        <a
+          href={action.href}
+          class={`inline-flex items-center px-4 py-2 rounded-md border transition-colors
+            ${
+              action.color === "secondary"
+                ? "border-secondary text-secondary hover:bg-secondary hover:text-white"
+                : action.color === "tertiary"
+                  ? "border-tertiary text-tertiary hover:bg-tertiary hover:text-white"
+                  : action.color === "primary"
+                    ? "border-primary text-primary hover:bg-primary hover:text-white"
+                    : "border-gray-300 text-gray-700 hover:bg-gray-100"
+            }
+          `}
+        >
+          {action.text}
+        </a>
+      </div>
+    )
+  }
+  <slot />
+  {/* Slot allows extra content if needed */}
+</div>

@@ -1,0 +1,41 @@
+---
+export interface Props {
+    variant?: "default" | "feature" | "info" | "content";
+    hoverEffect?: boolean;
+    customClass?: string;
+}
+
+const {
+    variant = "default",
+    hoverEffect = true,
+    customClass = "",
+} = Astro.props;
+
+const variants = {
+    default: "bg-card rounded-xl ",
+    feature: "bg-card rounded-xl p-6 ",
+    info: "bg-card rounded-xl p-6 flex flex-col items-center ",
+    content: "bg-card rounded-xl overflow-hidden ",
+};
+
+const hoverClass = hoverEffect ? "standard-card-hover" : "";
+---
+
+<div class={`${variants[variant]} ${hoverClass} ${customClass}`}>
+    <slot />
+</div>
+
+<style>
+    .standard-card-hover {
+        transition:
+            transform 0.3s ease-in-out,
+            box-shadow 0.3s ease-in-out;
+    }
+
+    .standard-card-hover:hover {
+        transform: translateY(-5px);
+        box-shadow:
+            0 10px 15px -3px rgba(0, 0, 0, 0.1),
+            0 4px 6px -4px rgba(0, 0, 0, 0.1);
+    }
+</style>

@@ -1,0 +1,79 @@
+---
+import { getCourse } from "@/services/courses";
+import { Schema } from "astro-seo-schema";
+import { getSeo } from "@/services/seo";
+
+const { params } = Astro;
+const slug = params.corso as string;
+
+const course = await getCourse({ slug });
+const seo = await getSeo();
+
+if (!course) {
+  throw new Error("Course not found");
+}
+---
+
+<Schema
+  item={{
+    "@context": "https://schema.org",
+    "@type": "Course",
+    name: course.title,
+    alternateName: `${course.title} ${seo?.organization?.name} ${seo?.organization?.areaServedCity}`,
+    description: "Include teoria, piscina e immersioni in mare con istruttori certificati.",
+    ...((seo?.organization?.name || seo?.organization?.url) && {
+      provider: {
+        "@type": "SportsActivityLocation",
+        ...(seo.organization.name && { name: seo.organization.name }),
+        ...(seo.organization.url && { url: seo.organization.url }),
+        ...(seo.organization.address && {
+          address: {
+            "@type": "PostalAddress",
+            ...(seo.organization.address.streetAddress && {
+              streetAddress: seo.organization.address.streetAddress,
+            }),
+            ...(seo.organization.address.addressLocality && {
+              addressLocality: seo.organization.address.addressLocality,
+            }),
+            ...(seo.organization.address.postalCode && {
+              postalCode: seo.organization.address.postalCode,
+            }),
+            ...(seo.organization.address.addressRegion && {
+              addressRegion: seo.organization.address.addressRegion,
+            }),
+            ...(seo.organization.address.addressCountry && {
+              addressCountry: seo.organization.address.addressCountry,
+            }),
+          },
+        }),
+        ...(seo.organization.telephone && { telephone: seo.organization.telephone }),
+        ...(seo.organization.email && { email: seo.organization.email }),
+      } as any,
+    }),
+    educationalCredentialAwarded: course.certification,
+    timeRequired: "P3W",
+    teaches: [...(course.whatYouWillLearn ?? [])],
+    coursePrerequisites: [...(course.prerequisites ?? [])],
+    hasCourseInstance: {
+      "@type": "CourseInstance",
+      name: `${course.title} - ${seo?.organization?.areaServedCity}`,
+      courseMode: ["In aula", "Piscina", "Mare"],
+      location: {
+        "@type": "Place",
+        name: `${seo?.organization?.name}`,
+        address: {
+          "@type": "PostalAddress",
+          addressLocality: seo?.organization?.address?.addressLocality,
+          addressRegion: seo?.organization?.address?.addressRegion,
+          addressCountry: seo?.organization?.address?.addressCountry,
+        },
+      },
+      offers: {
+        "@type": "Offer",
+        availability: "https://schema.org/InStock",
+        url: `${seo?.organization?.url}/corsi/${course.categorySlug}/${course.slug?.current}`,
+      },
+    },
+    keywords: `${course.title} ${seo?.organization?.areaServedCity}, ${course.certification}, ${course.prerequisites?.join(", ")}`,
+  }}
+/>

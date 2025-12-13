@@ -1,0 +1,16 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import CourseCategories from "@/features/courses/CourseCategoriesSection.astro";
+import { getCourseCategories } from "@/services/courses";
+import { pagesData } from "@/data/pages";
+
+const categories = await getCourseCategories();
+---
+
+<Layout>
+  <CourseCategories
+    categories={categories}
+    title={pagesData.courses.title}
+    description={pagesData.courses.description}
+  />
+</Layout>

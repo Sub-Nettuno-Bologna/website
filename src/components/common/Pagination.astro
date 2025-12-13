@@ -1,0 +1,61 @@
+---
+import Button from "@/components/primitives/Button.astro";
+import { pagesData } from "@/data/pages";
+
+export interface Props {
+  currentPage: number;
+  totalPages: number;
+  indexPath: string; // e.g., "/blog" or "/eventi"
+  pageBasePath: string; // e.g., "/blog/page" or "/eventi/page"
+}
+
+const { currentPage, totalPages, indexPath, pageBasePath } = Astro.props;
+
+const prevUrl =
+  currentPage > 2 ? `${pageBasePath}/${currentPage - 1}` : currentPage === 2 ? indexPath : null;
+const nextUrl = currentPage < totalPages ? `${pageBasePath}/${currentPage + 1}` : null;
+
+const pageLabel = pagesData.ui.pagination.pageFormat
+  .replace("{currentPage}", currentPage.toString())
+  .replace("{totalPages}", totalPages.toString());
+---
+
+{
+  totalPages > 1 && (
+    <nav class="mt-10 flex items-center justify-center gap-3" aria-label="Pagination">
+      {prevUrl ? (
+        <Button href={prevUrl} variant="outline" size="sm" class="rounded-lg">
+          ← {pagesData.ui.pagination.previous}
+        </Button>
+      ) : (
+        <Button
+          variant="outline"
+          size="sm"
+          class="rounded-lg opacity-50 cursor-not-allowed"
+          buttonType="button"
+          disabled
+        >
+          ← {pagesData.ui.pagination.previous}
+        </Button>
+      )}
+
+      <span class="px-2 text-gray-600 text-sm">{pageLabel}</span>
+
+      {nextUrl ? (
+        <Button href={nextUrl} variant="outline" size="sm" class="rounded-lg">
+          {pagesData.ui.pagination.next} →
+        </Button>
+      ) : (
+        <Button
+          variant="outline"
+          size="sm"
+          class="rounded-lg opacity-50 cursor-not-allowed"
+          buttonType="button"
+          disabled
+        >
+          {pagesData.ui.pagination.next} →
+        </Button>
+      )}
+    </nav>
+  )
+}

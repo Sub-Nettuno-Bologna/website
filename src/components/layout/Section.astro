@@ -1,0 +1,71 @@
+---
+export interface Props {
+  id?: string;
+  background?: "default" | "gradient-primary" | "gradient-secondary" | "gray" | "white";
+  padding?: "sm" | "md" | "lg" | "xl";
+  customClass?: string;
+  /**
+   * Enable a decorative wave border at the bottom of the section.
+   * This helps create a smoother transition to the next section.
+   */
+  waveBottom?: boolean;
+  /**
+   * Tailwind text color class applied to the wave SVG (uses currentColor fill).
+   * Example: "text-white", "text-gray-50", "text-primary".
+   */
+  waveColorClass?: string;
+}
+
+const {
+  id,
+  background = "default",
+  padding = "lg",
+  customClass = "",
+  waveBottom = false,
+  waveColorClass = "text-white",
+} = Astro.props;
+
+const backgrounds = {
+  default: "",
+  "gradient-primary": "bg-gradient-primary",
+  "gradient-secondary": "bg-gradient-to-br from-primary/5 to-secondary/5",
+  gray: "bg-gray-50",
+  white: "bg-white",
+};
+
+const paddings = {
+  sm: "py-10",
+  md: "py-16",
+  lg: "py-20",
+  xl: "py-24",
+};
+---
+
+<section
+  id={id}
+  class={`relative overflow-hidden ${backgrounds[background]} ${paddings[padding]} ${customClass}`}
+>
+  <div class="container mx-auto px-4">
+    <slot />
+  </div>
+  {
+    waveBottom && (
+      <div
+        aria-hidden="true"
+        class="pointer-events-none absolute bottom-0 left-0 w-full leading-[0]"
+      >
+        <svg
+          class={`relative block w-[calc(100%+1.3px)] h-10 md:h-16 ${waveColorClass}`}
+          viewBox="0 0 1440 80"
+          preserveAspectRatio="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M0,64L48,69.3C96,75,192,85,288,82.7C384,80,480,64,576,53.3C672,43,768,37,864,37.3C960,37,1056,53,1152,58.7C1248,64,1344,59,1392,56.5L1440,54V120H0Z"
+            fill="currentColor"
+          />
+        </svg>
+      </div>
+    )
+  }
+</section>

@@ -1,0 +1,101 @@
+---
+export interface Props {
+  frontImage: string;
+  backImage: string;
+  backAlt?: string;
+}
+
+const { frontImage, backImage } = Astro.props;
+---
+
+<div class="flip-card">
+  <div class="flip-card-inner">
+    <div class="flip-card-front bg-white">
+      <img
+        src={frontImage}
+        alt={"Fronte"}
+        class="flip-card-image"
+        width={300}
+        height={188}
+        loading="lazy"
+        decoding="async"
+      />
+    </div>
+    <div class="flip-card-back bg-white">
+      <img
+        src={backImage}
+        alt={"Retro"}
+        class="flip-card-image"
+        width={300}
+        height={188}
+        loading="lazy"
+        decoding="async"
+      />
+    </div>
+  </div>
+</div>
+
+<style>
+  /* 3D Flip Card Styles */
+  .flip-card {
+    background-color: transparent;
+    perspective: 1000px;
+    cursor: pointer;
+    margin: 0 auto;
+    width: 100%;
+    max-width: 300px;
+    aspect-ratio: 1.6;
+  }
+
+  .flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+  }
+
+  .flip-card:hover .flip-card-inner {
+    transform: rotateY(180deg);
+  }
+
+  .flip-card-front,
+  .flip-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    overflow: hidden;
+  }
+
+  .flip-card-front {
+  }
+
+  .flip-card-back {
+    transform: rotateY(180deg);
+  }
+
+  .flip-card-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 12px;
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .flip-card {
+      max-width: 250px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .flip-card {
+      max-width: 200px;
+    }
+  }
+</style>

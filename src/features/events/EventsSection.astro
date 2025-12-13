@@ -1,0 +1,45 @@
+---
+import type { Event } from "../../../sanity.types";
+import EventCard from "@/components/common/cards/EventCard.astro";
+import SectionContainer from "@/components/layout/Section.astro";
+import SectionHeader from "@/components/layout/SectionHeader.astro";
+import EmptyState from "@/components/states/EmptyState.astro";
+import { pagesData } from "@/data/pages";
+
+export interface Props {
+  events: Event[];
+  maxEvents?: number;
+}
+
+const { events, maxEvents } = Astro.props;
+---
+
+<SectionContainer
+  id="eventi"
+  background="gradient-primary"
+  padding="sm"
+  waveBottom
+  waveColorClass="text-white"
+>
+  <SectionHeader
+    title={pagesData.eventi.title}
+    subtitle={pagesData.eventi.subtitle}
+    titleColor="secondary"
+    subtitleColor="gray-600"
+  />
+
+  {
+    events.length === 0 ? (
+      <EmptyState
+        title={pagesData.states.empty.eventi.title}
+        description={pagesData.states.empty.eventi.description}
+      />
+    ) : (
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 justify-center">
+        {(maxEvents ? events.slice(0, maxEvents) : events).map((evento: Event) => (
+          <EventCard event={evento} />
+        ))}
+      </div>
+    )
+  }
+</SectionContainer>

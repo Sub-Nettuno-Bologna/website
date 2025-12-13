@@ -1,0 +1,184 @@
+---
+import SectionContainer from "@/components/layout/Section.astro";
+import { PortableText } from "astro-portabletext";
+import { pagesData } from "@/data/pages";
+import { buildImageUrl } from "@/lib/sanity";
+import Breadcrumbs from "@/components/layout/Breadcrumbs.astro";
+import type { PortableText as SanityPortableText } from "../../../sanity.types";
+
+export interface Props {
+  title?: string;
+  excerpt?: string;
+  content?: SanityPortableText;
+  featuredImage?: unknown;
+  publishedAt?: string;
+  featured?: boolean;
+  backUrl: string;
+}
+
+const { title, excerpt, content, featuredImage, publishedAt, featured, backUrl } = Astro.props;
+---
+
+<SectionContainer background="white" padding="md">
+  <div class="px-8 text-center justify-center flex mb-8">
+    <Breadcrumbs />
+  </div>
+  <article class="max-w-4xl mx-auto">
+    <header class="mb-8">
+      <div class="flex items-center gap-4 mb-4">
+        {
+          featured && (
+            <span class="px-3 py-1 rounded-full text-sm font-medium bg-accent text-white">
+              {pagesData.commons.featured}
+            </span>
+          )
+        }
+      </div>
+
+      <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">{title}</h1>
+
+      <div class="flex items-center text-gray-500 mb-6">
+        {
+          publishedAt && (
+            <time datetime={publishedAt} class="text-lg">
+              {publishedAt}
+            </time>
+          )
+        }
+      </div>
+      {excerpt && <p class="text-xl text-gray-600 leading-relaxed">{excerpt}</p>}
+
+      <slot name="meta" />
+    </header>
+
+    {
+      featuredImage && (
+        <img
+          src={buildImageUrl(featuredImage)}
+          alt={title || ""}
+          class="w-full h-full object-cover rounded-xl shadow-lg mb-8"
+          loading="lazy"
+          decoding="async"
+          sizes="(min-width: 1024px) 960px, 100vw"
+        />
+      )
+    }
+
+    <div class="prose prose-lg max-w-none">
+      <PortableText value={content || []} />
+    </div>
+
+    <footer class="mt-12 pt-8 border-t border-gray-200">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center gap-4">
+          {
+            publishedAt && (
+              <span class="text-sm text-gray-500">
+                {pagesData.commons.publishedAt}
+                {publishedAt}
+              </span>
+            )
+          }
+        </div>
+
+        <div class="flex items-center gap-2">
+          <a
+            href={backUrl}
+            class="inline-flex items-center text-primary hover:text-secondary font-medium transition-colors duration-200"
+          >
+            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M15 19l-7-7 7-7"></path>
+            </svg>
+            {pagesData.commons.backToList}
+          </a>
+        </div>
+      </div>
+    </footer>
+  </article>
+</SectionContainer>
+
+<style>
+  .prose {
+    color: #374151;
+  }
+
+  .prose h1,
+  .prose h2,
+  .prose h3,
+  .prose h4,
+  .prose h5,
+  .prose h6 {
+    color: #1f2937;
+    font-weight: 700;
+  }
+
+  .prose h2 {
+    font-size: 1.875rem;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .prose h3 {
+    font-size: 1.5rem;
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .prose p {
+    margin-bottom: 1.25rem;
+    line-height: 1.75;
+  }
+
+  .prose ul,
+  .prose ol {
+    margin-bottom: 1.25rem;
+    padding-left: 1.5rem;
+  }
+
+  .prose li {
+    margin-bottom: 0.5rem;
+  }
+
+  .prose blockquote {
+    border-left: 4px solid #8b5cf6;
+    padding-left: 1rem;
+    margin: 1.5rem 0;
+    font-style: italic;
+    color: #6b7280;
+  }
+
+  .prose code {
+    background-color: #f3f4f6;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    font-size: 0.875rem;
+  }
+
+  .prose pre {
+    background-color: #1f2937;
+    color: #f9fafb;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    overflow-x: auto;
+    margin: 1.5rem 0;
+  }
+
+  .prose img {
+    border-radius: 0.5rem;
+    margin: 1.5rem 0;
+  }
+
+  .prose a {
+    color: #8b5cf6;
+    text-decoration: none;
+  }
+
+  .prose a:hover {
+    color: #7c3aed;
+    text-decoration: underline;
+  }
+</style>

@@ -1,0 +1,36 @@
+---
+import { Calendar } from "@lucide/astro";
+import type { Blog } from "../../../../sanity.types";
+import FeatureCard from "./FeatureCard.astro";
+import { pagesData } from "@/data/pages";
+import { buildImageUrl } from "@/lib/sanity";
+import { formatDate } from "@/lib/utils";
+
+export interface Props {
+  post: Required<Blog>;
+  featured?: boolean;
+}
+
+const { post, featured = false } = Astro.props;
+const cardClass = featured ? "md:col-span-2" : "";
+---
+
+<article class={`group ${cardClass}`}>
+  <FeatureCard
+    blurred
+    title={post.title}
+    description={post.excerpt}
+    image={buildImageUrl(post.featuredImage, { width: 500, height: 650 })}
+    details={[
+      {
+        icon: Calendar,
+        text: formatDate(post.publishedAt),
+      },
+    ]}
+    action={{
+      text: pagesData.commons.learnMore,
+      href: `/blog/${post.slug.current}`,
+      color: "secondary",
+    }}
+  />
+</article>
