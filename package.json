@@ -8,8 +8,6 @@
     "preview": "astro preview",
     "astro": "astro",
     "deploy": "wrangler pages deploy dist",
-    "deploy:api": "wrangler deploy -c wrangler.api.jsonc",
-    "dev:api": "wrangler dev -c wrangler.api.jsonc --local",
     "format": "prettier --write src/**/**/*.{ts,astro,css,astro}",
     "lint": "eslint src/**/*.{ts,astro,astro}",
     "sanity:dev": "sanity dev",

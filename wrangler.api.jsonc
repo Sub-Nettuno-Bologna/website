@@ -1,9 +1,0 @@
-{
-  "name": "subnettuno-contact-api",
-  "main": "src/functions/_worker.ts",
-  "compatibility_date": "2025-12-10",
-  "compatibility_flags": ["nodejs_compat"],
-  "observability": {
-    "enabled": true,
-  },
-}
