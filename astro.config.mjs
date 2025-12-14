@@ -18,7 +18,12 @@ export default defineConfig({
   env: {
     schema: {
       RESEND_API_KEY: envField.string({ context: "server", access: "secret" }),
-      RESEND_EMAIL: envField.string({
+      RESEND_TO_EMAIL: envField.string({
+        context: "server",
+        access: "secret",
+        optional: true,
+      }),
+      RESEND_FROM_EMAIL: envField.string({
         context: "server",
         access: "secret",
         optional: true,
@@ -34,7 +39,9 @@ export default defineConfig({
     },
   },
 
-  adapter: cloudflare(),
+  output: "static",
+
+  adapter: cloudflare({}),
 
   integrations: [
     sitemaps(),
