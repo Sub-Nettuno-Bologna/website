@@ -5,7 +5,6 @@ import sanity from "@sanity/astro";
 import sitemaps from "@astrojs/sitemap";
 import react from "@astrojs/react";
 import playformCompress from "@playform/compress";
-import cloudflare from "@astrojs/cloudflare";
 
 // https://astro.build/config
 export default defineConfig({
@@ -17,17 +16,6 @@ export default defineConfig({
 
   env: {
     schema: {
-      RESEND_API_KEY: envField.string({ context: "server", access: "secret" }),
-      RESEND_TO_EMAIL: envField.string({
-        context: "server",
-        access: "secret",
-        optional: true,
-      }),
-      RESEND_FROM_EMAIL: envField.string({
-        context: "server",
-        access: "secret",
-        optional: true,
-      }),
       PUBLIC_SANITY_PROJECT_ID: envField.string({
         context: "client",
         access: "public",
@@ -36,28 +24,31 @@ export default defineConfig({
         context: "client",
         access: "public",
       }),
+      PUBLIC_CONTACT_API_URL: envField.string({
+        context: "client",
+        access: "public",
+        optional: true,
+      }),
     },
   },
 
   output: "static",
 
-  adapter: cloudflare({}),
-
   integrations: [
     sitemaps(),
-    react(),
-    sanity({
-      // TODO: temporary hardcoded values
-      projectId: process.env.PUBLIC_SANITY_PROJECT_ID || "r56dtkaq",
-      dataset: process.env.PUBLIC_SANITY_DATASET || "production",
-      apiVersion: "2023-01-01",
-      useCdn: false,
-      studioBasePath: "/admin",
-      studioRouterHistory: "hash",
-      stega: {
-        studioUrl: "/admin#",
-      },
-    }),
+    // react(),
+    // sanity({
+    //   // TODO: temporary hardcoded values
+    //   projectId: process.env.PUBLIC_SANITY_PROJECT_ID || "r56dtkaq",
+    //   dataset: process.env.PUBLIC_SANITY_DATASET || "production",
+    //   apiVersion: "2023-01-01",
+    //   useCdn: false,
+    //   // Removed studioBasePath - Sanity Studio requires SSR
+    //   // Studio should be deployed separately if needed
+    //   stega: {
+    //     enabled: false, // Disable stega for static build
+    //   },
+    // }),
     playformCompress(),
   ],
 });
