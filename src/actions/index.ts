@@ -15,18 +15,34 @@ const ContactSchema = z.object({
   "bot-field": z.string().optional(),
 });
 
-if (!RESEND_API_KEY) {
-  throw new Error("RESEND_API_KEY is not set");
-}
+const getResendClient = () => {
+  // IMPORTANT: don't throw at module init. If env vars are missing in production,
+  // a top-level throw can prevent the actions module from loading, and Astro will
+  // surface it as "Expected `server` export ... Received undefined."
+  if (!RESEND_API_KEY) {
+    throw new ActionError({
+      code: "INTERNAL_SERVER_ERROR",
+      message: "Configurazione server mancante (RESEND_API_KEY).",
+    });
+  }
+  return new Resend(RESEND_API_KEY);
+};
 
-if (!RESEND_TO_EMAIL) {
-  throw new Error("RESEND_TO_EMAIL is not set");
-}
-
-if (!RESEND_FROM_EMAIL) {
-  throw new Error("RESEND_FROM_EMAIL is not set");
-}
-const resend = new Resend(RESEND_API_KEY);
+const getEmailConfig = () => {
+  if (!RESEND_TO_EMAIL) {
+    throw new ActionError({
+      code: "INTERNAL_SERVER_ERROR",
+      message: "Configurazione server mancante (RESEND_TO_EMAIL).",
+    });
+  }
+  if (!RESEND_FROM_EMAIL) {
+    throw new ActionError({
+      code: "INTERNAL_SERVER_ERROR",
+      message: "Configurazione server mancante (RESEND_FROM_EMAIL).",
+    });
+  }
+  return { to: RESEND_TO_EMAIL, from: RESEND_FROM_EMAIL };
+};
 
 const getMessage = (
   name: string,
@@ -71,9 +87,12 @@ export const server = {
       const emailText = getMessage(name, email, message, phone);
 
       try {
+        const resend = getResendClient();
+        const { to, from } = getEmailConfig();
+
         const result = await resend.emails.send({
-          from: RESEND_FROM_EMAIL,
-          to: [RESEND_TO_EMAIL],
+          from,
+          to: [to],
           replyTo: email,
           subject: emailSubject,
           text: emailText,
