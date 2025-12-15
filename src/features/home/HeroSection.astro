@@ -17,30 +17,49 @@ const carouselImages =
 ---
 
 <style>
+  @keyframes heroZoom {
+    from {
+      scale: 1;
+    }
+    to {
+      scale: var(--hero-zoom-scale);
+    }
+  }
+
   /* Slide-left carousel */
   .hero-carousel-image {
+    /* Keep in sync with SLIDE_DURATION in the script below */
+    --hero-slide-duration: 6000ms;
+    --hero-zoom-scale: 1.08;
+
     transform: translateX(100%);
     transition: transform 900ms ease-in-out;
-    will-change: transform;
+    transform-origin: center center;
+    scale: 1;
+    will-change: transform, scale;
   }
 
   .hero-carousel-image.is-active {
     transform: translateX(0);
     z-index: 1;
+    animation: heroZoom var(--hero-slide-duration) linear forwards;
   }
 
   .hero-carousel-image.is-prev {
     transform: translateX(-100%);
     z-index: 0;
+    scale: var(--hero-zoom-scale);
   }
 
   .hero-carousel-image.is-next {
     transform: translateX(100%);
     z-index: 0;
+    scale: 1;
   }
 
   .hero-carousel-image.no-transition {
     transition: none !important;
+    animation: none !important;
   }
 
   .hero-title-gradient {
