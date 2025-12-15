@@ -7,21 +7,40 @@ import { buildImageUrl } from "@/lib/sanity";
 
 export interface Props extends Hero {}
 
-const { images, title, subtitle, buttons } = Astro.props;
+const { images, subtitle, buttons } = Astro.props;
+
+// Use Sanity images for the hero carousel
+const carouselImages =
+  images?.map((image) =>
+    buildImageUrl(image, { width: 1920, height: 1080 })
+  ) ?? [];
 ---
 
 <style>
-  .hero-carousel-image.active {
-    animation: zoomInEntrance 6s ease-out forwards;
+  /* Slide-left carousel */
+  .hero-carousel-image {
+    transform: translateX(100%);
+    transition: transform 900ms ease-in-out;
+    will-change: transform;
   }
 
-  @keyframes zoomInEntrance {
-    0% {
-      transform: scale(1.05);
-    }
-    100% {
-      transform: scale(1.15);
-    }
+  .hero-carousel-image.is-active {
+    transform: translateX(0);
+    z-index: 1;
+  }
+
+  .hero-carousel-image.is-prev {
+    transform: translateX(-100%);
+    z-index: 0;
+  }
+
+  .hero-carousel-image.is-next {
+    transform: translateX(100%);
+    z-index: 0;
+  }
+
+  .hero-carousel-image.no-transition {
+    transition: none !important;
   }
 
   .hero-title-gradient {
@@ -65,23 +84,21 @@ const { images, title, subtitle, buttons } = Astro.props;
   <div class="absolute inset-0 w-full h-full bg-primary">
     <!-- <div class="absolute inset-0 bg-black/40 z-10"></div> -->
 
-    {
-      images?.map((image, index) => (
-        <img
-          id={`hero-image-${index}`}
-          class={`hero-carousel-image w-full h-full object-cover absolute inset-0 ${index === 0 ? "opacity-100 active" : "opacity-0"}`}
-          src={buildImageUrl(image, { width: 1920, height: 1080 })}
-          width={1920}
-          height={1080}
-          sizes="100vw"
-          fetchpriority={index === 0 ? "high" : "low"}
-          loading={index === 0 ? "eager" : "lazy"}
-          decoding="async"
-          alt=""
-          aria-hidden="true"
-        />
-      ))
-    }
+    {carouselImages.map((src, index) => (
+      <img
+        id={`hero-image-${index}`}
+        class={`hero-carousel-image w-full h-full object-cover absolute inset-0 ${index === 0 ? "is-active" : "is-next"}`}
+        src={src}
+        width={1920}
+        height={1080}
+        sizes="100vw"
+        fetchpriority={index === 0 ? "high" : "low"}
+        loading={index === 0 ? "eager" : "lazy"}
+        decoding="async"
+        alt=""
+        aria-hidden="true"
+      />
+    ))}
   </div>
 
   <div class="relative z-20 text-center text-white max-w-4xl mx-auto px-4">
@@ -117,9 +134,12 @@ const { images, title, subtitle, buttons } = Astro.props;
 </SectionContainer>
 
 <script>
-  const images = document.querySelectorAll("img[id^='hero-image-']");
+  const images = Array.from(
+    document.querySelectorAll<HTMLImageElement>("img[id^='hero-image-']")
+  );
   let currentImageIndex = 0;
   const SLIDE_DURATION = 6000; // 6 seconds per image
+  const TRANSITION_DURATION = 900; // keep in sync with CSS
 
   function showNextImage() {
     if (images.length === 0) return;
@@ -128,13 +148,30 @@ const { images, title, subtitle, buttons } = Astro.props;
     const nextImageIndex = (currentImageIndex + 1) % images.length;
     const nextImage = images[nextImageIndex];
 
-    // Fade out current image and remove zoom animation
-    currentImage.classList.remove("opacity-100", "active");
-    currentImage.classList.add("opacity-0");
+    // Ensure the next image starts from the right
+    nextImage.classList.remove("is-prev", "no-transition");
+    nextImage.classList.add("is-next");
 
-    // Fade in next image and start zoom animation
-    nextImage.classList.remove("opacity-0");
-    nextImage.classList.add("opacity-100", "active");
+    // Trigger the slide transition on the next frame
+    requestAnimationFrame(() => {
+      // Current image slides out left
+      currentImage.classList.remove("is-active");
+      currentImage.classList.add("is-prev");
+
+      // Next image slides in from right to center
+      nextImage.classList.remove("is-next");
+      nextImage.classList.add("is-active");
+    });
+
+    // After the transition, reset the previous image to the right (ready for reuse)
+    window.setTimeout(() => {
+      currentImage.classList.add("no-transition");
+      currentImage.classList.remove("is-prev", "is-active");
+      currentImage.classList.add("is-next");
+      // Force reflow so the no-transition takes effect before we re-enable transitions
+      void currentImage.offsetHeight;
+      currentImage.classList.remove("no-transition");
+    }, TRANSITION_DURATION + 50);
 
     // Update current index
     currentImageIndex = nextImageIndex;

@@ -30,6 +30,8 @@ export interface Props {
   }>;
   form: ContactForm;
   containerClass?: string;
+  formHiddenFields?: Record<string, string>;
+  formDefaultMessage?: string;
 }
 
 const {
@@ -42,6 +44,8 @@ const {
   socialMedia = [],
   form,
   containerClass = "w-full my-8",
+  formHiddenFields = {},
+  formDefaultMessage,
 } = Astro.props;
 
 const detailedHours = formatOpeningHoursDetailed(openingHours);
@@ -145,8 +149,9 @@ const detailedHours = formatOpeningHoursDetailed(openingHours);
         formTitle={form.title}
         formDescription={form.description}
         formFieldsPlaceholder={form.fieldsPlaceholder}
-        formDefaultMessage={form.defaultMessage}
+        formDefaultMessage={formDefaultMessage ?? form.defaultMessage}
         submitButtonText={form.submitButton}
+        formHiddenFields={formHiddenFields}
       />
 
       <!-- Address and Social below the form -->

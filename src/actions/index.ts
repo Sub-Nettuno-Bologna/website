@@ -13,6 +13,7 @@ const ContactSchema = z.object({
   phone: z.string().optional(),
   message: z.string().min(1, "Il messaggio è obbligatorio"),
   "bot-field": z.string().optional(),
+  campaign: z.string().optional(),
 });
 
 const getResendClient = () => {
@@ -48,7 +49,8 @@ const getMessage = (
   name: string,
   email: string,
   message: string,
-  phone?: string
+  phone?: string,
+  campaign?: string
 ): string => {
   let result = `${message}\n\n${email}`;
   if (name) {
@@ -56,6 +58,9 @@ const getMessage = (
   }
   if (phone) {
     result += `\n${phone}`;
+  }
+  if (campaign) {
+    result += `\n\nCampagna: ${campaign}`;
   }
   return result;
 };
@@ -73,7 +78,14 @@ export const server = {
     accept: "form",
     input: ContactSchema,
     handler: async (input) => {
-      const { name, email, phone, message, "bot-field": botField } = input;
+      const {
+        name,
+        email,
+        phone,
+        message,
+        "bot-field": botField,
+        campaign,
+      } = input;
 
       // Honeypot check
       if (botField) {
@@ -83,8 +95,10 @@ export const server = {
         });
       }
 
-      const emailSubject = `Nuovo messaggio da ${name} - SubNettuno.it`;
-      const emailText = getMessage(name, email, message, phone);
+      const emailSubject = campaign
+        ? `[${campaign}] Nuovo messaggio da ${name} - SubNettuno.it`
+        : `Nuovo messaggio da ${name} - SubNettuno.it`;
+      const emailText = getMessage(name, email, message, phone, campaign);
 
       try {
         const resend = getResendClient();

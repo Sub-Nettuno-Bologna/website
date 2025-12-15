@@ -2,10 +2,32 @@
 import Input from "@/components/primitives/Input.astro";
 import Textarea from "@/components/primitives/Textarea.astro";
 import Button from "@/components/primitives/Button.astro";
-import { pagesData } from "@/data/pages";
+import { pagesData, type ContactForm } from "@/data/pages";
 
-const { title, description, fieldsPlaceholder, defaultMessage, submitButton } =
-  pagesData.contact.form;
+export interface Props {
+  formTitle?: string;
+  formDescription?: string;
+  formFieldsPlaceholder?: ContactForm["fieldsPlaceholder"];
+  formDefaultMessage?: string;
+  submitButtonText?: string;
+  formHiddenFields?: Record<string, string>;
+}
+
+const {
+  formTitle,
+  formDescription,
+  formFieldsPlaceholder,
+  formDefaultMessage,
+  submitButtonText,
+  formHiddenFields = {},
+} = Astro.props;
+
+// Fallback to pagesData if props not provided (backward compatibility)
+const title = formTitle ?? pagesData.contact.form.title;
+const description = formDescription ?? pagesData.contact.form.description;
+const fieldsPlaceholder = formFieldsPlaceholder ?? pagesData.contact.form.fieldsPlaceholder;
+const defaultMessage = formDefaultMessage ?? pagesData.contact.form.defaultMessage;
+const submitButton = submitButtonText ?? pagesData.contact.form.submitButton;
 ---
 
 <form
@@ -20,6 +42,11 @@ const { title, description, fieldsPlaceholder, defaultMessage, submitButton } =
       <input name="bot-field" id="bot-field" />
     </label>
   </div>
+  {
+    Object.entries(formHiddenFields).map(([key, value]) => (
+      <input type="hidden" name={key} value={value} />
+    ))
+  }
   <div class="mb-4">
     <h3 id="contact-form-title" class="font-semibold text-lg">{title}</h3>
     {description && <p class="text-sm text-muted-foreground">{description}</p>}

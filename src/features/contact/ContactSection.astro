@@ -7,9 +7,11 @@ import { getClubData } from "@/services/club";
 
 export interface Props {
   hasBreadcrumbs?: boolean;
+  formHiddenFields?: Record<string, string>;
+  formDefaultMessage?: string;
 }
 
-const { hasBreadcrumbs = true } = Astro.props;
+const { hasBreadcrumbs = true, formHiddenFields = {}, formDefaultMessage } = Astro.props;
 
 const club = await getClubData();
 
@@ -61,5 +63,7 @@ const socialMedia = [
     address={address}
     socialMedia={socialMedia}
     containerClass="shadow-lg"
+    formHiddenFields={formHiddenFields}
+    formDefaultMessage={formDefaultMessage}
   />
 </SectionContainer>
