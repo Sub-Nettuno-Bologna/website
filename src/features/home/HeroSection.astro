@@ -26,35 +26,35 @@ const carouselImages =
     }
   }
 
-  /* Slide-left carousel */
+  /* Fade carousel with subtle zoom */
   .hero-carousel-image {
     /* Keep in sync with SLIDE_DURATION in the script below */
     --hero-slide-duration: 6000ms;
-    --hero-zoom-scale: 1.08;
+    --hero-zoom-scale: 1.05;
 
-    transform: translateX(100%);
-    transition: transform 900ms ease-in-out;
+    opacity: 0;
+    transform: scale(1);
+    transition: opacity 1200ms ease-in-out, transform 1200ms ease-in-out;
     transform-origin: center center;
-    scale: 1;
-    will-change: transform, scale;
+    will-change: opacity, transform;
   }
 
   .hero-carousel-image.is-active {
-    transform: translateX(0);
+    opacity: 1;
     z-index: 1;
-    animation: heroZoom var(--hero-slide-duration) linear forwards;
+    animation: heroZoom var(--hero-slide-duration) ease-out forwards;
   }
 
   .hero-carousel-image.is-prev {
-    transform: translateX(-100%);
+    opacity: 0;
     z-index: 0;
-    scale: var(--hero-zoom-scale);
+    transform: scale(var(--hero-zoom-scale));
   }
 
   .hero-carousel-image.is-next {
-    transform: translateX(100%);
+    opacity: 0;
     z-index: 0;
-    scale: 1;
+    transform: scale(1);
   }
 
   .hero-carousel-image.no-transition {
@@ -97,12 +97,12 @@ const carouselImages =
   id="home"
   background="default"
   padding="sm"
-  customClass="relative h-[65vh] flex items-center justify-center overflow-hidden !py-0"
+  customClass="relative min-h-[80vh] flex items-center justify-center overflow-hidden !py-0"
   waveColorClass="color-gradient-secondary"
 >
-  <div class="absolute inset-0 w-full h-full bg-primary">
-    <!-- <div class="absolute inset-0 bg-black/40 z-10"></div> -->
-
+  <div class="absolute inset-0 w-full h-full bg-gradient-to-b from-primary via-secondary to-primary">
+    <!-- Ocean gradient overlay -->
+    <div class="absolute inset-0 bg-gradient-to-b from-transparent via-primary/10 to-primary/20 z-10"></div>
     {carouselImages.map((src, index) => (
       <img
         id={`hero-image-${index}`}
@@ -118,6 +118,7 @@ const carouselImages =
         aria-hidden="true"
       />
     ))}
+
   </div>
 
   <div class="relative z-20 text-center text-white max-w-4xl mx-auto px-4">
@@ -125,19 +126,21 @@ const carouselImages =
       <img
         src="/logo.svg"
         alt="Club Sub Nettuno"
-        class="hero-logo mx-auto mb-4"
+        class="hero-logo mx-auto mb-4 animate-emerge"
         width="200"
         style="height: auto;"
         loading="eager"
       />
     </div>
+    <!-- Subtitle with fade-in delay -->
     <p
-      class="text-lg sm:text-xl md:text-2xl mb-6 md:mb-8 text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]"
+      class="text-lg sm:text-xl md:text-2xl mb-6 md:mb-8 text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)] fade-in-on-scroll"
+      style="animation-delay: 0.2s;"
     >
-      E ora immergiti con noi..
       {subtitle}
     </p>
-    <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
+    <!-- CTA buttons with fade-in delay -->
+    <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center fade-in-on-scroll" style="animation-delay: 0.4s;">
       {
         buttons?.map((button) => (
           <Button href={button.href} size="lg" variant={button.variant || "default"}>
@@ -167,22 +170,22 @@ const carouselImages =
     const nextImageIndex = (currentImageIndex + 1) % images.length;
     const nextImage = images[nextImageIndex];
 
-    // Ensure the next image starts from the right
-    nextImage.classList.remove("is-prev", "no-transition");
+    // Ensure the next image starts hidden
+    nextImage.classList.remove("is-prev", "is-active", "no-transition");
     nextImage.classList.add("is-next");
 
-    // Trigger the slide transition on the next frame
+    // Trigger the fade transition on the next frame
     requestAnimationFrame(() => {
-      // Current image slides out left
+      // Current image fades out
       currentImage.classList.remove("is-active");
       currentImage.classList.add("is-prev");
 
-      // Next image slides in from right to center
+      // Next image fades in
       nextImage.classList.remove("is-next");
       nextImage.classList.add("is-active");
     });
 
-    // After the transition, reset the previous image to the right (ready for reuse)
+    // After the transition, reset the previous image
     window.setTimeout(() => {
       currentImage.classList.add("no-transition");
       currentImage.classList.remove("is-prev", "is-active");
@@ -209,4 +212,14 @@ const carouselImages =
   } else {
     startCarousel();
   }
+
+  // Trigger initial fade-in for hero elements
+  window.addEventListener("load", () => {
+    const heroElements = document.querySelectorAll(".fade-in-on-scroll");
+    heroElements.forEach((el, index) => {
+      setTimeout(() => {
+        el.classList.add("visible");
+      }, index * 200);
+    });
+  });
 </script>

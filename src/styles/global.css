@@ -39,11 +39,12 @@ body {
   --color-accent: hsl(177, 59%, 69%);
   --color-info: hsl(183, 67%, 81%);
   --color-danger: hsl(354, 65%, 59%);
-  --color-orange: #FF991C;
+  --color-orange: #ff991c;
+  --color-surface: hsl(200, 30%, 97%);
 }
 
 :root {
-  --color-orange: #FF991C;
+  --color-orange: #ff991c;
 }
 
 .link-nav {
@@ -85,4 +86,81 @@ body {
 
 .u-card:hover {
   @apply -translate-y-0.5 border-white/10;
+}
+
+/* Ocean-themed animations */
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+@keyframes wave {
+  0%,
+  100% {
+    transform: translateX(0) translateY(0);
+  }
+  25% {
+    transform: translateX(25px) translateY(-10px);
+  }
+  50% {
+    transform: translateX(50px) translateY(0);
+  }
+  75% {
+    transform: translateX(25px) translateY(10px);
+  }
+}
+
+@keyframes emerge {
+  0% {
+    transform: translateY(20px);
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Utility classes */
+
+.ocean-shadow {
+  box-shadow:
+    0 10px 30px rgba(200, 80%, 25%, 0.2),
+    0 5px 15px rgba(195, 70%, 35%, 0.1);
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-emerge {
+  animation: emerge 0.6s ease-out forwards;
+}
+
+/* Fade in on scroll utility */
+.fade-in-on-scroll {
+  opacity: 0;
+  transform: translateY(30px);
+  transition:
+    opacity 0.6s ease-out,
+    transform 0.6s ease-out;
+}
+
+.fade-in-on-scroll.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
