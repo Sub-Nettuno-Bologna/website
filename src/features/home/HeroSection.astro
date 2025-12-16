@@ -17,44 +17,64 @@ const carouselImages =
 ---
 
 <style>
-  @keyframes heroZoom {
+  /* Zoom IN: scale 1 → 1.05 */
+  @keyframes heroZoomIn {
     from {
-      scale: 1;
+      transform: scale(1);
     }
     to {
-      scale: var(--hero-zoom-scale);
+      transform: scale(var(--hero-zoom-scale));
     }
   }
 
-  /* Fade carousel with subtle zoom */
+  /* Zoom OUT: scale 1.05 → 1 */
+  @keyframes heroZoomOut {
+    from {
+      transform: scale(var(--hero-zoom-scale));
+    }
+    to {
+      transform: scale(1);
+    }
+  }
+
+  /* Fade carousel with alternating zoom */
   .hero-carousel-image {
-    /* Keep in sync with SLIDE_DURATION in the script below */
+    /* Keep in sync with SLIDE_DURATION and CROSSFADE_DURATION in the script below */
     --hero-slide-duration: 6000ms;
+    --hero-crossfade-duration: 1500ms;
     --hero-zoom-scale: 1.05;
 
     opacity: 0;
     transform: scale(1);
-    transition: opacity 1200ms ease-in-out, transform 1200ms ease-in-out;
+    transition: opacity var(--hero-crossfade-duration) ease-in-out;
     transform-origin: center center;
     will-change: opacity, transform;
   }
 
-  .hero-carousel-image.is-active {
+  /* Active image with zoom IN */
+  .hero-carousel-image.is-active.zoom-in {
     opacity: 1;
+    z-index: 2;
+    animation: heroZoomIn var(--hero-slide-duration) ease-out forwards;
+  }
+
+  /* Active image with zoom OUT */
+  .hero-carousel-image.is-active.zoom-out {
+    opacity: 1;
+    z-index: 2;
+    animation: heroZoomOut var(--hero-slide-duration) ease-out forwards;
+  }
+
+  /* Outgoing image: fading out, frozen at its end scale */
+  .hero-carousel-image.is-fading-out {
+    opacity: 0;
     z-index: 1;
-    animation: heroZoom var(--hero-slide-duration) ease-out forwards;
   }
 
-  .hero-carousel-image.is-prev {
+  /* Waiting images: hidden */
+  .hero-carousel-image.is-waiting {
     opacity: 0;
     z-index: 0;
-    transform: scale(var(--hero-zoom-scale));
-  }
-
-  .hero-carousel-image.is-next {
-    opacity: 0;
-    z-index: 0;
-    transform: scale(1);
   }
 
   .hero-carousel-image.no-transition {
@@ -106,7 +126,7 @@ const carouselImages =
     {carouselImages.map((src, index) => (
       <img
         id={`hero-image-${index}`}
-        class={`hero-carousel-image w-full h-full object-cover absolute inset-0 ${index === 0 ? "is-active" : "is-next"}`}
+        class={`hero-carousel-image w-full h-full object-cover absolute inset-0 ${index === 0 ? "is-active zoom-in" : "is-waiting"}`}
         src={src}
         width={1920}
         height={1080}
@@ -160,8 +180,12 @@ const carouselImages =
     document.querySelectorAll<HTMLImageElement>("img[id^='hero-image-']")
   );
   let currentImageIndex = 0;
-  const SLIDE_DURATION = 6000; // 6 seconds per image
-  const TRANSITION_DURATION = 900; // keep in sync with CSS
+  let isZoomingIn = true; // First image zooms IN, next will zoom OUT, etc.
+  
+  // Keep in sync with CSS variables
+  const SLIDE_DURATION = 6000; // --hero-slide-duration
+  const CROSSFADE_DURATION = 1500; // --hero-crossfade-duration
+  const ZOOM_SCALE = 1.05; // --hero-zoom-scale
 
   function showNextImage() {
     if (images.length === 0) return;
@@ -169,34 +193,47 @@ const carouselImages =
     const currentImage = images[currentImageIndex];
     const nextImageIndex = (currentImageIndex + 1) % images.length;
     const nextImage = images[nextImageIndex];
+    
+    // Determine end scale of current image and start scale for next
+    // If current zoomed IN (1→1.05), it ends at 1.05, so next starts at 1.05 and zooms OUT
+    // If current zoomed OUT (1.05→1), it ends at 1, so next starts at 1 and zooms IN
+    const currentEndScale = isZoomingIn ? ZOOM_SCALE : 1;
+    const nextZoomIn = !isZoomingIn; // Alternate
 
-    // Ensure the next image starts hidden
-    nextImage.classList.remove("is-prev", "is-active", "no-transition");
-    nextImage.classList.add("is-next");
+    // Prepare next image: set starting scale to match current image's end scale
+    nextImage.classList.add("no-transition");
+    nextImage.classList.remove("is-active", "is-fading-out", "zoom-in", "zoom-out");
+    nextImage.classList.add("is-waiting");
+    nextImage.style.transform = `scale(${currentEndScale})`;
+    void nextImage.offsetHeight;
+    nextImage.classList.remove("no-transition");
 
-    // Trigger the fade transition on the next frame
+    // Start the crossfade
     requestAnimationFrame(() => {
-      // Current image fades out
-      currentImage.classList.remove("is-active");
-      currentImage.classList.add("is-prev");
+      // Freeze current image at its end scale
+      currentImage.style.transform = `scale(${currentEndScale})`;
+      currentImage.classList.remove("is-active", "zoom-in", "zoom-out");
+      currentImage.classList.add("is-fading-out");
 
-      // Next image fades in
-      nextImage.classList.remove("is-next");
-      nextImage.classList.add("is-active");
+      // Next image fades in and starts its zoom animation
+      nextImage.classList.remove("is-waiting");
+      nextImage.classList.add("is-active", nextZoomIn ? "zoom-in" : "zoom-out");
+      nextImage.style.transform = ""; // Let the animation take over
     });
 
-    // After the transition, reset the previous image
+    // After crossfade completes, clean up the previous image
     window.setTimeout(() => {
       currentImage.classList.add("no-transition");
-      currentImage.classList.remove("is-prev", "is-active");
-      currentImage.classList.add("is-next");
-      // Force reflow so the no-transition takes effect before we re-enable transitions
+      currentImage.classList.remove("is-fading-out");
+      currentImage.classList.add("is-waiting");
+      currentImage.style.transform = "";
       void currentImage.offsetHeight;
       currentImage.classList.remove("no-transition");
-    }, TRANSITION_DURATION + 50);
+    }, CROSSFADE_DURATION + 100);
 
-    // Update current index
+    // Update state for next transition
     currentImageIndex = nextImageIndex;
+    isZoomingIn = nextZoomIn;
   }
 
   // Start the carousel
