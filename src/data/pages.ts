@@ -37,7 +37,8 @@ export interface PagesData {
       MApP1: string;
       MApP2: string;
       MApP3: string;
-      AIST: string;
+      PAiAr: string;
+      PAiAp: string;
       BM1: string;
       BM2: string;
       MUTA: string;
@@ -250,7 +251,8 @@ export const pagesData: PagesData = {
   },
   blog: {
     title: "Blog",
-    subtitle: "Scopri le ultime novità, consigli e storie dal mondo della subacquea",
+    subtitle:
+      "Scopri le ultime novità, consigli e storie dal mondo della subacquea",
     noPosts: "Nessun articolo disponibile",
     noPostsDescription: "Torna presto per leggere i nostri ultimi articoli!",
   },
@@ -290,7 +292,8 @@ export const pagesData: PagesData = {
         "Contattaci per informazioni e iscrizioni, ti offriremo la prima lezione gratuita dove potrai provare a immergerti in totale sicurezza con i nostri istruttori certificati",
       nextSteps: "Continua la tua formazione con i nostri corsi consigliati:",
     },
-    messageTemplate: (courseTitle: string) => `Ciao, sono interessato al corso ${courseTitle}.`,
+    messageTemplate: (courseTitle: string) =>
+      `Ciao, sono interessato al corso ${courseTitle}.`,
   },
   contact: {
     title: "Contattaci",
@@ -331,7 +334,8 @@ export const pagesData: PagesData = {
   },
   newsletter: {
     title: "Vuoi rimanere aggiornato su tutti gli eventi?",
-    description: "Iscriviti alla nostra newsletter per non perderti nessuna uscita!",
+    description:
+      "Iscriviti alla nostra newsletter per non perderti nessuna uscita!",
     form: {
       placeholder: "La tua email",
       buttonText: "Iscriviti",
@@ -351,7 +355,8 @@ export const pagesData: PagesData = {
       MApP1: "Istruttore 1° grado Apnea (MApP1)",
       MApP2: "Istruttore 2° grado Apnea (MApP2)",
       MApP3: "Istruttore 3° grado Apnea (MApP3)",
-      AIST: "Aiuto Istruttore (PAiAr)",
+      PAiAr: "Aiuto Istruttore ARA (PAiAr)",
+      PAiAp: "Aiuto Istruttore Apnea (PAiAp)",
       BM1: "Istruttore 1° grado Biologia marina",
       BM2: "Istruttore 2° grado Biologia marina",
       MUTA: "Istruttore muta stagna",
