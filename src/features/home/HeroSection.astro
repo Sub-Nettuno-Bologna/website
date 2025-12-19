@@ -7,7 +7,7 @@ import { buildImageUrl } from "@/lib/sanity";
 
 export interface Props extends Hero {}
 
-const { images, subtitle, buttons } = Astro.props;
+const { images, subtitle, buttons, title } = Astro.props;
 
 // Use Sanity images for the hero carousel
 const carouselImages =
@@ -152,6 +152,7 @@ const carouselImages =
         loading="eager"
       />
     </div>
+    <h1 class="text-4xl font-bold mb-4">{title}</h1>
     <!-- Subtitle with fade-in delay -->
     <p
       class="text-lg sm:text-xl md:text-2xl mb-6 md:mb-8 text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)] fade-in-on-scroll"
