@@ -20,6 +20,9 @@ pnpm-debug.log*
 .env.production
 .dev.vars
 
+# local search db (generated)
+public/assets/oramaDB_*.json
+
 # macOS-specific files
 .DS_Store
 

@@ -12,7 +12,7 @@ export default defineConfig({
   site: "https://subnettuno.it",
 
   vite: {
-    plugins: [tailwindcss()],
+    plugins: [/** @type {any} */ (tailwindcss())],
   },
 
   env: {
