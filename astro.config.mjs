@@ -6,8 +6,15 @@ import sitemaps from "@astrojs/sitemap";
 import react from "@astrojs/react";
 import playformCompress from "@playform/compress";
 import netlify from "@astrojs/netlify";
+import node from "@astrojs/node";
+import orama from "@orama/plugin-astro";
 
-// https://astro.build/config
+let adapter = netlify();
+
+if (process.argv[3] === "--node" || process.argv[4] === "--node") {
+  adapter = node({ mode: "standalone" });
+}
+
 export default defineConfig({
   site: "https://subnettuno.it",
 
@@ -17,7 +24,10 @@ export default defineConfig({
 
   env: {
     schema: {
-      RESEND_API_KEY: envField.string({ context: "server", access: "secret" }),
+      RESEND_API_KEY: envField.string({
+        context: "server",
+        access: "secret",
+      }),
       RESEND_TO_EMAIL: envField.string({
         context: "server",
         access: "secret",
@@ -39,9 +49,17 @@ export default defineConfig({
     },
   },
 
-  adapter: netlify({}),
+  adapter,
 
   integrations: [
+    orama({
+      // We can generate more than one DB, with different configurations
+      search: {
+        pathMatcher: /^(?!admin).*$/,
+        language: "italian",
+        contentSelectors: ["main#content"],
+      },
+    }),
     sitemaps(),
     react(),
     sanity({

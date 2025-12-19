@@ -4,8 +4,9 @@
   "version": "0.0.1",
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
-    "preview": "astro preview",
+    "build": "astro build ",
+    "build:node": "astro build  --node",
+    "preview": "astro preview --node",
     "astro": "astro",
     "deploy": "wrangler deploy",
     "format": "prettier --write src/**/**/*.{ts,astro,css,astro}",
@@ -26,6 +27,7 @@
     "@astrojs/react": "^4.4.2",
     "@astrojs/sitemap": "^3.6.0",
     "@lucide/astro": "^0.518.0",
+    "@orama/plugin-astro": "^3.1.17",
     "@playform/compress": "^0.2.0",
     "@portabletext/react": "^4.0.3",
     "@portabletext/to-html": "^2.0.17",
@@ -58,6 +60,7 @@
     "tailwindcss": "^4.1.18"
   },
   "devDependencies": {
+    "@astrojs/node": "^9.5.1",
     "@eslint/css": "^0.11.1",
     "@eslint/js": "^9.39.2",
     "@eslint/json": "^0.13.2",
