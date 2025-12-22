@@ -18,7 +18,7 @@ const category = params.category as string;
 const categoryDoc = await getCategoryBySlug(category);
 ---
 
-<Layout>
+<Layout title={categoryDoc?.title!}>
     <Courses
         courses={categoryDoc?.courses ?? []}
         category={category}

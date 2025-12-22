@@ -21,6 +21,6 @@ if (!event) {
 }
 ---
 
-<Layout>
+<Layout title={event?.title}>
   {event ? <EventPost post={event} backUrl="/eventi" /> : null}
 </Layout>

@@ -11,7 +11,7 @@ const totalCount = await getEventsTotalCount();
 const totalPages = getTotalPages(totalCount, DEFAULT_PAGE_SIZE);
 ---
 
-<Layout>
+<Layout title="Eventi">
   <EventsSection
     events={events}
     title={pagesData.eventi.title}

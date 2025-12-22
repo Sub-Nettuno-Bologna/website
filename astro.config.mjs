@@ -53,9 +53,11 @@ export default defineConfig({
 
   integrations: [
     orama({
-      // We can generate more than one DB, with different configurations
       search: {
-        pathMatcher: /^(?!admin).*$/,
+        // Exclude the Studio and the events pagination routes from indexing
+        // - /admin/**
+        // - /eventi/page/*
+        pathMatcher: /^(?!admin)(?!eventi\/page\/).*$/,
         language: "italian",
         contentSelectors: ["main#content"],
       },

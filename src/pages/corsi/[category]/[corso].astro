@@ -4,9 +4,7 @@ import Course from "@/features/courses/CourseDetail.astro";
 import { getAllCategoryCoursePaths, getCourse } from "@/services/courses";
 import ContactSection from "@/features/contact/ContactSection.astro";
 import { pagesData } from "@/data/pages";
-import { getClubData } from "@/services/club";
 import CourseSeoSchema from "@/seo/CourseSeoSchema.astro";
-import { Seo } from "astro-seo-meta";
 
 export async function getStaticPaths() {
   try {
@@ -51,7 +49,7 @@ const scubaDiving = category === "subacquea";
         </p>
         <div class="mt-8 flex flex-wrap justify-center gap-4">
           {(course?.nextCourses || []).map((next) =>
-            next?.slug ? (
+            (next as any)?.slug ? (
               <a
                 href={
                   (next as any).categorySlug || (course as any).categorySlug

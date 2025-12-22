@@ -1,0 +1,360 @@
+---
+import { Search, X } from "@lucide/astro";
+---
+
+<div class="relative" data-site-search>
+  <button
+    type="button"
+    class="p-2 rounded-md text-primary hover:text-secondary hover:bg-gray-50 transition-colors"
+    aria-label="Cerca nel sito"
+    aria-haspopup="dialog"
+    aria-controls="site-search-overlay"
+    aria-expanded="false"
+    data-site-search-open
+  >
+    <Search class="w-5 h-5" />
+  </button>
+
+  <div
+    id="site-search-overlay"
+    class="fixed inset-0 z-[60] hidden"
+    role="dialog"
+    aria-modal="true"
+    aria-label="Ricerca nel sito"
+    data-site-search-overlay
+  >
+    <div class="absolute inset-0 bg-black/40" data-site-search-backdrop></div>
+
+    <div class="relative mx-auto mt-24 w-[min(720px,calc(100%-2rem))]">
+      <div class="bg-white rounded-xl shadow-2xl border border-gray-100 overflow-hidden">
+        <div class="flex items-center gap-2 px-4 py-3 border-b border-gray-100">
+          <Search class="w-5 h-5 text-gray-400" />
+          <input
+            type="search"
+            inputmode="search"
+            autocomplete="off"
+            spellcheck="false"
+            placeholder="Cerca pagine e contenuti…"
+            class="w-full outline-none text-primary placeholder:text-gray-400"
+            data-site-search-input
+          />
+          <button
+            type="button"
+            class="p-2 rounded-md text-primary hover:text-secondary hover:bg-gray-50 transition-colors"
+            aria-label="Chiudi ricerca"
+            data-site-search-close
+          >
+            <X class="w-5 h-5" />
+          </button>
+        </div>
+
+        <div class="px-4 py-3">
+          <p class="text-sm text-gray-500" data-site-search-status>Scrivi almeno 2 caratteri.</p>
+          <div class="mt-3 flex flex-wrap gap-2" data-site-search-tabs></div>
+          <ul class="mt-3 divide-y divide-gray-100" data-site-search-results></ul>
+        </div>
+      </div>
+
+      <p class="mt-3 text-xs text-white/80">
+        Scorciatoie: <kbd class="px-1 py-0.5 bg-white/10 rounded">/</kbd> oppure
+        <kbd class="px-1 py-0.5 bg-white/10 rounded">Ctrl</kbd>+
+        <kbd class="px-1 py-0.5 bg-white/10 rounded">K</kbd>. Chiudi con
+        <kbd class="px-1 py-0.5 bg-white/10 rounded">Esc</kbd>.
+      </p>
+    </div>
+  </div>
+</div>
+
+<script>
+  // @ts-nocheck
+  import { getOramaDB, search } from "@orama/plugin-astro/client";
+
+  const DEFAULT_SITE_TITLE =
+    "Corsi Subacquea e Apnea Bologna | Club Sub Nettuno – Scuola Sub dal 1984";
+
+  function escHtml(str) {
+    return String(str)
+      .replaceAll("&", "&amp;")
+      .replaceAll("<", "&lt;")
+      .replaceAll(">", "&gt;")
+      .replaceAll('"', "&quot;")
+      .replaceAll("'", "&#039;");
+  }
+
+  function normalizeH1(h1) {
+    const s = String(h1 || "").trim();
+    if (!s) return "";
+    return s.split("\n").map((x) => x.trim()).filter(Boolean)[0] || s;
+  }
+
+  function bestHeadingFromH1(h1) {
+    const s = String(h1 || "").trim();
+    if (!s) return "";
+    const lines = s.split("\n").map((x) => x.trim()).filter(Boolean);
+    if (!lines.length) return "";
+    const first = lines[0];
+    const second = lines[1];
+    // Many pages end up with an H1 like "CLUB SUB NETTUNO\n...\n<page title>".
+    // If the first line is just the club name, prefer the next line.
+    if (second && first.toLowerCase().includes("club sub nettuno")) return second;
+    return first;
+  }
+
+  function excerpt(content, term) {
+    const text = String(content || "").replace(/\s+/g, " ").trim();
+    if (!text) return "";
+    const t = String(term || "").trim();
+    if (!t) return text.slice(0, 140);
+    const lower = text.toLowerCase();
+    const idx = lower.indexOf(t.toLowerCase());
+    if (idx < 0) return text.slice(0, 140);
+    const start = Math.max(0, idx - 60);
+    const end = Math.min(text.length, idx + t.length + 80);
+    const prefix = start > 0 ? "…" : "";
+    const suffix = end < text.length ? "…" : "";
+    return prefix + text.slice(start, end) + suffix;
+  }
+
+  function categoryFromPath(path) {
+    const p = String(path || "").toLowerCase();
+    if (p.startsWith("/corsi/") || p === "/corsi" || p.startsWith("/corsi?")) return "corsi";
+    if (p.startsWith("/blog/") || p === "/blog" || p.startsWith("/blog?")) return "blog";
+    if (p.startsWith("/eventi/") || p === "/eventi" || p.startsWith("/eventi?")) return "eventi";
+    return "altro";
+  }
+
+  function categoryLabel(category) {
+    if (category === "corsi") return "Corsi";
+    if (category === "blog") return "Blog";
+    if (category === "eventi") return "Eventi";
+    return "Altro";
+  }
+
+  function initSiteSearch(root) {
+    const openBtn = root.querySelector("[data-site-search-open]");
+    const overlay = root.querySelector("[data-site-search-overlay]");
+    const backdrop = root.querySelector("[data-site-search-backdrop]");
+    const closeBtn = root.querySelector("[data-site-search-close]");
+    const input = root.querySelector("[data-site-search-input]");
+    const status = root.querySelector("[data-site-search-status]");
+    const tabs = root.querySelector("[data-site-search-tabs]");
+    const results = root.querySelector("[data-site-search-results]");
+
+    if (!openBtn || !overlay || !input || !status || !tabs || !results) return;
+
+    // Ensure the overlay/backdrop covers the whole viewport even if the header (or any ancestor)
+    // creates a containing block that would otherwise constrain `position: fixed`.
+    // Moving the overlay to `document.body` avoids "fixed inside transformed element" issues.
+    if (overlay.parentElement !== document.body) {
+      document.body.appendChild(overlay);
+    }
+
+    let dbPromise = null;
+    async function ensureDb() {
+      if (!dbPromise) dbPromise = getOramaDB("search");
+      return dbPromise;
+    }
+
+    const CATEGORY_ORDER = ["corsi", "blog", "eventi", "altro"];
+    let lastGroups = null;
+    let activeCategory = "corsi";
+
+    function setOpen(isOpen) {
+      overlay.classList.toggle("hidden", !isOpen);
+      openBtn.setAttribute("aria-expanded", isOpen ? "true" : "false");
+      if (isOpen) input.focus();
+      else openBtn.focus();
+    }
+
+    function clearResults(message) {
+      status.textContent = message || "";
+      tabs.innerHTML = "";
+      results.innerHTML = "";
+    }
+
+    function firstCategoryWithResults(groups) {
+      for (const cat of CATEGORY_ORDER) {
+        if ((groups?.[cat] || []).length > 0) return cat;
+      }
+      return CATEGORY_ORDER[0];
+    }
+
+    function renderTabs() {
+      const groups = lastGroups || { corsi: [], blog: [], eventi: [], altro: [] };
+      tabs.innerHTML = CATEGORY_ORDER.map((cat) => {
+        const count = (groups[cat] || []).length;
+        const isActive = cat === activeCategory;
+        const isDisabled = count === 0;
+        return `
+          <button
+            type="button"
+            class="px-3 py-1.5 rounded-full text-sm border transition-colors ${
+              isActive
+                ? "bg-primary text-white border-primary"
+                : "bg-white text-primary border-gray-200 hover:bg-gray-50"
+            } ${isDisabled ? "opacity-50 cursor-not-allowed" : ""}"
+            data-site-search-tab="${escHtml(cat)}"
+            aria-pressed="${isActive ? "true" : "false"}"
+            ${isDisabled ? "disabled" : ""}
+          >
+            ${escHtml(categoryLabel(cat))} (${count})
+          </button>
+        `;
+      }).join("");
+    }
+
+    function renderActiveList(term) {
+      const groups = lastGroups || { corsi: [], blog: [], eventi: [], altro: [] };
+      const items = groups[activeCategory] || [];
+      if (!items.length) {
+        results.innerHTML = "";
+        status.textContent = `Nessun risultato in ${categoryLabel(activeCategory)}.`;
+        return;
+      }
+
+      status.textContent = `${items.length} risultati in ${categoryLabel(activeCategory)}`;
+      results.innerHTML = items
+        .map(
+          (item) => `
+            <li>
+              <a href="${escHtml(item.path)}" class="block py-3 hover:bg-gray-50 rounded-md px-2 -mx-2 transition-colors">
+                <div class="flex items-start justify-between gap-3">
+                  <div class="min-w-0">
+                    <p class="font-medium text-primary truncate">${escHtml(item.title)}</p>
+                  </div>
+                </div>
+              </a>
+            </li>
+          `
+        )
+        .join("");
+    }
+
+    function renderFromGroups(term) {
+      renderTabs();
+      renderActiveList(term);
+    }
+
+    let lastQueryId = 0;
+    async function doSearch(term) {
+      const queryId = ++lastQueryId;
+      const q = String(term || "").trim();
+
+      if (q.length < 2) {
+        clearResults("Scrivi almeno 2 caratteri.");
+        return;
+      }
+
+      status.textContent = "Sto cercando…";
+      tabs.innerHTML = "";
+      results.innerHTML = "";
+
+      try {
+        const db = await ensureDb();
+        const res = await search(db, { term: q, limit: 10 });
+        if (queryId !== lastQueryId) return;
+
+        const hits = Array.isArray(res?.hits) ? res.hits : [];
+        if (!hits.length) {
+          clearResults("Nessun risultato.");
+          return;
+        }
+
+        const groups = { corsi: [], blog: [], eventi: [], altro: [] };
+
+        for (const hit of hits || []) {
+          const doc = hit?.document || hit?.doc || hit || {};
+          const path = doc?.path || doc?.url || doc?.href || "";
+          const metaTitle = String(doc?.title || "").trim();
+          const h1Title = bestHeadingFromH1(doc?.h1);
+          const title =
+            (metaTitle && metaTitle !== DEFAULT_SITE_TITLE ? metaTitle : "") ||
+            h1Title ||
+            metaTitle ||
+            path ||
+            "Risultato";
+
+          const cat = categoryFromPath(path);
+          groups[cat]?.push({ path, title });
+        }
+
+        lastGroups = groups;
+        activeCategory = firstCategoryWithResults(groups);
+        renderFromGroups(q);
+      } catch (err) {
+        console.error(err);
+        clearResults("Errore durante la ricerca.");
+      }
+    }
+
+    openBtn.addEventListener("click", () => {
+      setOpen(true);
+      clearResults("Scrivi almeno 2 caratteri.");
+    });
+    closeBtn?.addEventListener("click", () => setOpen(false));
+    backdrop?.addEventListener("click", () => setOpen(false));
+
+    overlay.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") {
+        e.preventDefault();
+        setOpen(false);
+      }
+    });
+
+    input.addEventListener("input", (e) => {
+      const target = e.target;
+      const value = target?.value ?? "";
+      doSearch(value);
+    });
+
+    results.addEventListener("click", (e) => {
+      const target = e.target;
+      const link = target?.closest?.("a");
+      if (link) setOpen(false);
+    });
+
+    tabs.addEventListener("click", (e) => {
+      const target = e.target;
+      const btn = target?.closest?.("[data-site-search-tab]");
+      if (!btn) return;
+      const cat = btn.getAttribute("data-site-search-tab");
+      if (!cat) return;
+      const groups = lastGroups || { corsi: [], blog: [], eventi: [], altro: [] };
+      if ((groups[cat] || []).length === 0) {
+        // Keep the "always active tab has results" rule: jump to next available.
+        activeCategory = firstCategoryWithResults(groups);
+      } else {
+        activeCategory = cat;
+      }
+      renderFromGroups(input.value);
+    });
+
+    document.addEventListener("keydown", (e) => {
+      const target = e.target;
+      const tag = target?.tagName?.toLowerCase?.();
+      const typing =
+        tag === "input" ||
+        tag === "textarea" ||
+        target?.getAttribute?.("contenteditable") === "true";
+
+      if (!typing && e.key === "/") {
+        e.preventDefault();
+        setOpen(true);
+        clearResults("Scrivi almeno 2 caratteri.");
+        return;
+      }
+
+      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "k") {
+        e.preventDefault();
+        setOpen(true);
+        clearResults("Scrivi almeno 2 caratteri.");
+      }
+    });
+  }
+
+  document.querySelectorAll("[data-site-search]").forEach((el) => {
+    initSiteSearch(el);
+  });
+</script>
+
+

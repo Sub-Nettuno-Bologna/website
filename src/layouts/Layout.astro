@@ -7,7 +7,24 @@ import { Seo } from "astro-seo-meta";
 import BaseSeoSchema from "@/seo/BaseSeoSchema.astro";
 import WebsiteSeoSchema from "@/seo/WebsiteSeoSchema.astro";
 
-const { noWaves = false } = Astro.props;
+const {
+  noWaves = false,
+  title = "Corsi Subacquea e Apnea Bologna | Club Sub Nettuno – Scuola Sub dal 1984",
+  description = "Scuola di subacquea e apnea a Bologna dal 1984. Corsi sub base, apnea e specialità con brevetti FIPSAS/CMAS riconosciuti in tutto il mondo. Prova sub e apnea gratuita, istruttori certificati, piscina a Bologna.",
+  keywords = [
+    "corsi sub Bologna",
+    "corsi apnea Bologna",
+    "scuola sub Bologna",
+    "scuola apnea Bologna",
+    "subacquea Bologna",
+    "apnea Bologna",
+    "brevetto sub Bologna",
+    "prova gratuita sub Bologna",
+    "prova gratuita apnea Bologna",
+    "immersioni Bologna",
+    "corsi CMAS FIPSAS Bologna",
+  ],
+} = Astro.props;
 ---
 
 <!doctype html>
@@ -27,20 +44,12 @@ const { noWaves = false } = Astro.props;
       rel="stylesheet"
     />
 
+     <!-- Other stuff -->
+
     <Seo
-      title="Corsi Subacquea Bologna | Club Sub Nettuno – Scuola Sub dal 1984"
-      description="Scuola subacquea a Bologna dal 1984. Corsi sub base, apnea e specialità con brevetti FIPSAS/CMAS riconosciuti in tutto il mondo. Prova sub gratuita, istruttori certificati, piscina a Bologna."
-      keywords={[
-        "corsi sub Bologna",
-        "scuola sub Bologna",
-        "subacquea Bologna",
-        "apnea Bologna",
-        "corsi apnea Bologna",
-        "brevetto sub Bologna",
-        "prova sub gratuita",
-        "immersioni Bologna",
-        "corsi CMAS FIPSAS Bologna",
-      ]}
+      title={title}
+      description={description}
+      keywords={keywords}
       icon="/favicon.svg"
       themeColor={`hsl(var(--color-primary))`}
       colorScheme="light"

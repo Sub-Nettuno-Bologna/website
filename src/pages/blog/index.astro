@@ -11,7 +11,7 @@ const totalCount = await getBlogTotalCount();
 const totalPages = getTotalPages(totalCount, DEFAULT_PAGE_SIZE);
 ---
 
-<Layout>
+<Layout title="Blog">
   <BlogSection
     posts={posts}
     title={pagesData.blog.title}

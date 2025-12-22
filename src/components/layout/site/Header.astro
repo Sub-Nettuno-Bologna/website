@@ -3,6 +3,7 @@ import { ChevronDown, Menu, Waves, X } from "@lucide/astro";
 import { headerData } from "@/data/header";
 import { pagesData } from "@/data/pages";
 import { getClubData } from "@/services/club";
+import SiteSearch from "@/components/layout/site/SiteSearch.astro";
 
 const clubData = await getClubData();
 ---
@@ -82,24 +83,28 @@ const clubData = await getClubData();
         }
       </nav>
 
-      <!-- Desktop CTA -->
-      <a
-        href="/contatti"
-        class="hidden xl:inline-flex items-center gap-2 px-4 py-2 rounded-full bg-secondary text-white hover:bg-secondary/90 shadow-sm focus:outline-none focus:ring-2 focus:ring-secondary/40 transition-colors"
-      >
-        <Waves class="w-4 h-4" />
-        <span>{headerData.hero.free_trial}</span>
-      </a>
+      <div class="flex items-center gap-1">
+        <SiteSearch />
 
-      <!-- Mobile Menu Button -->
-      <button
-        id="mobile-menu-button"
-        class="xl:hidden p-2 rounded-md text-primary hover:text-secondary hover:bg-gray-50 transition-colors"
-        aria-label={headerData.ui.mobileMenuToggle}
-      >
-        <Menu id="menu-icon" class="w-6 h-6" />
-        <X id="close-icon" class="w-6 h-6 hidden" />
-      </button>
+        <!-- Desktop CTA -->
+        <a
+          href="/contatti"
+          class="hidden xl:inline-flex items-center gap-2 px-4 py-2 rounded-full bg-secondary text-white hover:bg-secondary/90 shadow-sm focus:outline-none focus:ring-2 focus:ring-secondary/40 transition-colors"
+        >
+          <Waves class="w-4 h-4" />
+          <span>{headerData.hero.free_trial}</span>
+        </a>
+
+        <!-- Mobile Menu Button -->
+        <button
+          id="mobile-menu-button"
+          class="xl:hidden p-2 rounded-md text-primary hover:text-secondary hover:bg-gray-50 transition-colors"
+          aria-label={headerData.ui.mobileMenuToggle}
+        >
+          <Menu id="menu-icon" class="w-6 h-6" />
+          <X id="close-icon" class="w-6 h-6 hidden" />
+        </button>
+      </div>
     </div>
 
     <!-- Mobile Navigation -->
