@@ -207,9 +207,11 @@ export type Aboutus = {
     _type: "image";
   };
   imageCaption?: string;
-  features?: Array<{
-    _key: string;
-  } & List>;
+  features?: Array<
+    {
+      _key: string;
+    } & List
+  >;
   cardSections?: Array<{
     title?: string;
     description?: string;
@@ -245,9 +247,11 @@ export type Hero = {
     _type: "image";
     _key: string;
   }>;
-  buttons?: Array<{
-    _key: string;
-  } & Button>;
+  buttons?: Array<
+    {
+      _key: string;
+    } & Button
+  >;
 };
 
 export type Club = {
@@ -296,8 +300,22 @@ export type Team = {
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
+  orderRank?: string;
   name?: string;
-  instructor_grade?: Array<"M1" | "M2" | "M3" | "MApP1" | "MApP2" | "MApP3" | "PAiAr" | "PAiAp" | "BM" | "MINISUB" | "MUTA" | "FOTOSUB">;
+  instructor_grade?: Array<
+    | "M1"
+    | "M2"
+    | "M3"
+    | "MApP1"
+    | "MApP2"
+    | "MApP3"
+    | "PAiAr"
+    | "PAiAp"
+    | "BM"
+    | "MINISUB"
+    | "MUTA"
+    | "FOTOSUB"
+  >;
   description?: PortableText;
   image?: {
     asset?: {
@@ -313,7 +331,12 @@ export type Team = {
   };
   active?: boolean;
   council?: boolean;
-  council_seat?: "Presidente" | "Vicepresidente" | "Consigliere" | "Segretario" | "Tesoriere";
+  council_seat?:
+    | "Presidente"
+    | "Vicepresidente"
+    | "Consigliere"
+    | "Segretario"
+    | "Tesoriere";
 };
 
 export type CourseCategory = {
@@ -371,15 +394,22 @@ export type Course = {
     _type: "image";
   };
   duration?: string;
-  level?: "Bambini" | "\u2B50 Principiante" | "\u2B50\u2B50 Intermedio" | "\u2B50\u2B50\u2B50 Avanzato" | "Tutti i livelli";
+  level?:
+    | "Bambini"
+    | "\u2B50 Principiante"
+    | "\u2B50\u2B50 Intermedio"
+    | "\u2B50\u2B50\u2B50 Avanzato"
+    | "Tutti i livelli";
   certification?: string;
   maxDepth?: "18m" | "30m" | "40m";
   prerequisites?: Array<string>;
   whatYouWillLearn?: Array<string>;
   capabilities?: Array<string>;
-  structure?: Array<{
-    _key: string;
-  } & List>;
+  structure?: Array<
+    {
+      _key: string;
+    } & List
+  >;
   kit?: Array<string>;
   nextCourses?: Array<{
     _ref: string;
@@ -517,5 +547,31 @@ export type Geopoint = {
   alt?: number;
 };
 
-export type AllSanitySchemaTypes = Seo | SanityImageCrop | SanityImageHotspot | Event | PortableText | Slug | Blog | Aboutus | LucideIcon | Hero | Club | Team | CourseCategory | Course | List | Button | MediaTag | Code | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageMetadata | SanityFileAsset | SanityAssetSourceData | SanityImageAsset | Geopoint;
+export type AllSanitySchemaTypes =
+  | Seo
+  | SanityImageCrop
+  | SanityImageHotspot
+  | Event
+  | PortableText
+  | Slug
+  | Blog
+  | Aboutus
+  | LucideIcon
+  | Hero
+  | Club
+  | Team
+  | CourseCategory
+  | Course
+  | List
+  | Button
+  | MediaTag
+  | Code
+  | SanityImagePaletteSwatch
+  | SanityImagePalette
+  | SanityImageDimensions
+  | SanityImageMetadata
+  | SanityFileAsset
+  | SanityAssetSourceData
+  | SanityImageAsset
+  | Geopoint;
 export declare const internalGroqTypeReferenceTo: unique symbol;

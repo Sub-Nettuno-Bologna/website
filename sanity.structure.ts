@@ -60,10 +60,13 @@ export default (S: any, context: any) => {
               }),
 
               // Team
-              S.listItem()
-                .title("Team")
-                .icon(SchemaIcon)
-                .child(S.documentTypeList("team").title("Team")),
+              orderableDocumentListDeskItem({
+                title: "Team",
+                type: "team",
+                S,
+                context,
+                icon: SchemaIcon,
+              }),
 
               // Blog
               S.listItem()

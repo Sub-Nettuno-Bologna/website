@@ -1,10 +1,13 @@
 import { fetchList, fetchOne } from "@/lib/sanityFetch";
 import type { Team } from "../../sanity.types";
 
-export async function getTeam({ active = true }: { active?: boolean } = {}): Promise<Team[]> {
+export async function getTeam({
+  active = true,
+}: { active?: boolean } = {}): Promise<Team[]> {
   const baseProjection = `{
         _id,
         _type,
+        orderRank,
         name,
         instructor_grade,
         description,
@@ -14,7 +17,7 @@ export async function getTeam({ active = true }: { active?: boolean } = {}): Pro
         council_seat
     }`;
 
-  const QUERY = `*[_type == "team"${active ? " && active == true" : ""}] | order(council desc, name asc) ${baseProjection}`;
+  const QUERY = `*[_type == "team"${active ? " && active == true" : ""}] | order(orderRank asc, name asc) ${baseProjection}`;
 
   return await fetchList<Team>(QUERY);
 }
@@ -23,6 +26,7 @@ export async function getTeamMemberById(id: string): Promise<Team | null> {
   const MEMBER_QUERY = `*[_type == "team" && _id == $id][0] {
         _id,
         _type,
+        orderRank,
         name,
         instructor_grade,
         description,
