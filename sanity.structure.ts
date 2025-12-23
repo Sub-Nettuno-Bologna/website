@@ -78,7 +78,13 @@ export default (S: any, context: any) => {
               S.listItem()
                 .title("Eventi")
                 .icon(CalendarIcon)
-                .child(S.documentTypeList("event").title("Eventi")),
+                .child(
+                  S.documentTypeList("event")
+                    .title("Eventi")
+                    .defaultOrdering([
+                      { field: "eventDate", direction: "desc" },
+                    ])
+                ),
             ])
         ),
 
