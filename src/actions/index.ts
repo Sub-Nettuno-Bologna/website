@@ -16,6 +16,35 @@ const ContactSchema = z.object({
   campaign: z.string().optional(),
 });
 
+const parseRecipients = (raw: string): string[] => {
+  const recipients = raw
+    .split(",")
+    .map((s) => s.trim())
+    .filter(Boolean);
+
+  // Dedupe, preserve order
+  const unique = [...new Set(recipients)];
+
+  const EmailSchema = z.string().email();
+  for (const r of unique) {
+    if (!EmailSchema.safeParse(r).success) {
+      throw new ActionError({
+        code: "INTERNAL_SERVER_ERROR",
+        message: "Configurazione server non valida (RESEND_TO_EMAIL).",
+      });
+    }
+  }
+
+  if (unique.length === 0) {
+    throw new ActionError({
+      code: "INTERNAL_SERVER_ERROR",
+      message: "Configurazione server mancante (RESEND_TO_EMAIL).",
+    });
+  }
+
+  return unique;
+};
+
 const getResendClient = () => {
   // IMPORTANT: don't throw at module init. If env vars are missing in production,
   // a top-level throw can prevent the actions module from loading, and Astro will
@@ -42,7 +71,7 @@ const getEmailConfig = () => {
       message: "Configurazione server mancante (RESEND_FROM_EMAIL).",
     });
   }
-  return { to: RESEND_TO_EMAIL, from: RESEND_FROM_EMAIL };
+  return { to: parseRecipients(RESEND_TO_EMAIL), from: RESEND_FROM_EMAIL };
 };
 
 const getMessage = (
@@ -106,7 +135,7 @@ export const server = {
 
         const result = await resend.emails.send({
           from,
-          to: [to],
+          to,
           replyTo: email,
           subject: emailSubject,
           text: emailText,
