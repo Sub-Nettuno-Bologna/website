@@ -6,10 +6,15 @@ import sitemaps from "@astrojs/sitemap";
 import react from "@astrojs/react";
 import playformCompress from "@playform/compress";
 import netlify from "@astrojs/netlify";
+import vercel from "@astrojs/vercel";
 import node from "@astrojs/node";
 import orama from "@orama/plugin-astro";
 
 let adapter = netlify();
+
+if (process.env.ADAPTER === "vercel") {
+  adapter = vercel();
+}
 
 if (process.argv[3] === "--node" || process.argv[4] === "--node") {
   adapter = node({ mode: "standalone" });
