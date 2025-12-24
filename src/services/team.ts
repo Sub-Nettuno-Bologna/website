@@ -17,7 +17,7 @@ export async function getTeam({
         council_seat
     }`;
 
-  const QUERY = `*[_type == "team"${active ? " && active == true" : ""}] | order(orderRank asc, name asc) ${baseProjection}`;
+  const QUERY = `*[_type == "team"${active ? " && active == true" : ""}] | order(council desc, orderRank asc, name asc) ${baseProjection}`;
 
   return await fetchList<Team>(QUERY);
 }

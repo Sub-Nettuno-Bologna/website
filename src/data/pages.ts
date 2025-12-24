@@ -116,6 +116,7 @@ export interface PagesData {
     subtitle: string;
     participantsLabel: string;
     labels: {
+      active: string;
       concluded: string;
       date: string;
       location: string;
