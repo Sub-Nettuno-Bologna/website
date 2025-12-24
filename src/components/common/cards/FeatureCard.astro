@@ -17,16 +17,22 @@ export interface Props {
     href: string;
     color?: "primary" | "secondary";
   };
-  badge?: {
+  badge?:
+    | {
     text: string;
-    color?: "primary" | "secondary" | "tertiary";
-  };
+    color?: "primary" | "accent" | "secondary" | "tertiary";
+    }
+    | Array<{
+        text: string;
+        color?: "primary" | "accent" | "secondary" | "tertiary";
+      }>;
 }
 
 const { title, description, image, details, action, blurred = true, badge } = Astro.props;
 
-const badgeVariant =
-  badge?.color === "secondary" ? "secondary" : badge?.color === "tertiary" ? "outline" : "default";
+const badges = Array.isArray(badge) ? badge : badge ? [badge] : [];
+const getBadgeVariant = (color?: "primary" | "accent" | "secondary" | "tertiary") =>
+  color === "secondary" ? "secondary" : color === "tertiary" ? "outline" : color === "accent" ? "accent" : "default";
 ---
 
 <article
@@ -70,9 +76,11 @@ const badgeVariant =
     <div class="flex-1">
       <div>
         {
-          badge && (
-            <div class="mb-3">
-              <Badge variant={badgeVariant}>{badge.text}</Badge>
+          badges.length > 0 && (
+            <div class="mb-3 flex flex-wrap gap-2">
+              {badges.map((b) => (
+                <Badge variant={getBadgeVariant(b.color)}>{b.text}</Badge>
+              ))}
             </div>
           )
         }

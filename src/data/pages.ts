@@ -123,6 +123,7 @@ export interface PagesData {
       price: string;
       registration: string;
       registrationBy: string;
+      registrationClosed: string;
       registrationRequired: string;
     };
   };
@@ -262,13 +263,14 @@ export const pagesData: PagesData = {
     subtitle: "Partecipa ai nostri eventi, gite e attività speciali",
     participantsLabel: "Max. partecipanti:",
     labels: {
-      active: "Evento attivo",
+      active: "In programma",
       concluded: "Evento concluso",
       date: "Data",
       location: "Luogo",
       price: "Prezzo",
       registration: "Iscrizione",
       registrationBy: "entro",
+      registrationClosed: "Iscrizioni terminate",
       registrationRequired: "obbligatoria",
     },
   },

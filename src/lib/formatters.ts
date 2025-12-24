@@ -30,6 +30,15 @@ export function isPast(dateInput: string | Date): boolean {
   return date.getTime() < Date.now();
 }
 
+export function isRegistrationClosed(options: {
+  registrationRequired?: boolean | null;
+  registrationDeadline?: string | Date | null;
+}): boolean {
+  if (!options.registrationRequired) return false;
+  if (!options.registrationDeadline) return false;
+  return isPast(options.registrationDeadline);
+}
+
 const DAY_MAP: Record<string, string> = {
   Monday: "Lun",
   Tuesday: "Mar",

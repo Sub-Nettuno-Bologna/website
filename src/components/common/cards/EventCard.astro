@@ -4,7 +4,7 @@ import type { Event } from "../../../../sanity.types";
 import FeatureCard from "./FeatureCard.astro";
 import { pagesData } from "@/data/pages";
 import { buildImageUrl } from "@/lib/sanity";
-import { formatDate, isPast } from "@/lib/utils";
+import { formatDate, isPast, isRegistrationClosed } from "@/lib/utils";
 
 export interface Props {
   event: Event;
@@ -14,17 +14,32 @@ const { event } = Astro.props;
 
 // Determine event status
 const isConcluded = event.eventDate ? isPast(event.eventDate) : false;
-const badge = {
-  text: isConcluded ? pagesData.eventi.labels.concluded : pagesData.eventi.labels.active,
-  color: (isConcluded ? "tertiary" : "accent") as "primary" | "accent" | "tertiary",
-};
+const isRegClosed = isRegistrationClosed({
+  registrationRequired: event.registrationRequired,
+  registrationDeadline: event.registrationDeadline,
+});
+
+const badges = [
+  {
+    text: isConcluded ? pagesData.eventi.labels.concluded : pagesData.eventi.labels.active,
+    color: isConcluded ? "tertiary" : "accent",
+  },
+  ...(isRegClosed
+    ? [
+        {
+          text: pagesData.eventi.labels.registrationClosed,
+          color: "secondary",
+        },
+      ]
+    : []),
+] satisfies Array<{ text: string; color: "primary" | "accent" | "secondary" | "tertiary" }>;
 ---
 
 <FeatureCard
   blurred
   title={event.title || ""}
   image={buildImageUrl(event.featuredImage, { width: 500, height: 650 })}
-  badge={badge}
+  badge={badges}
   details={[
     ...(event.eventDate
       ? [
