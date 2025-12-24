@@ -16,7 +16,7 @@ const { event } = Astro.props;
 const isConcluded = event.eventDate ? isPast(event.eventDate) : false;
 const badge = {
   text: isConcluded ? pagesData.eventi.labels.concluded : pagesData.eventi.labels.active,
-  color: (isConcluded ? "tertiary" : "secondary") as "primary" | "secondary" | "tertiary",
+  color: (isConcluded ? "tertiary" : "accent") as "primary" | "accent" | "tertiary",
 };
 ---
 

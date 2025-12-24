@@ -12,6 +12,7 @@ import { getCourseCategories } from "@/services/courses";
 import { getAboutUs } from "@/services/aboutus";
 import BlogSection from "@/features/blog/BlogSection.astro";
 import { getBlogPosts } from "@/services/blog";
+import Analytics from '@vercel/analytics/astro'
 
 const heroData = await getHero();
 const events = await getEvents();
@@ -21,6 +22,7 @@ const posts = await getBlogPosts();
 ---
 
 <Layout>
+  <Analytics />
   {
     heroData && (
       <HeroSection
