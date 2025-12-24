@@ -6,7 +6,7 @@ import Wave from "@/components/visuals/animations/Wave.astro";
 import { Seo } from "astro-seo-meta";
 import BaseSeoSchema from "@/seo/BaseSeoSchema.astro";
 import WebsiteSeoSchema from "@/seo/WebsiteSeoSchema.astro";
-
+import Analytics from '@vercel/analytics/astro'
 const {
   noWaves = false,
   title = "Corsi Subacquea e Apnea Bologna | Club Sub Nettuno – Scuola Sub dal 1984",
@@ -76,6 +76,8 @@ const {
     </style>
   </head>
   <body>
+  <Analytics />
+
     <a
       href="#content"
       class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-50 focus:bg-white focus:text-black focus:px-3 focus:py-2 focus:rounded-md"
