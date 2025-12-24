@@ -118,7 +118,7 @@ const clubData = await getClubData();
       <div class="flex items-center justify-center">
         <img
           src={"/logo.svg"}
-          alt={clubData?.clubName || ""}
+          alt={`Logo ${clubData?.clubName ?? "Club Sub Nettuno"}`}
           class="w-100 mb-4"
           width="200"
           style="height: auto;"

@@ -55,7 +55,7 @@ const { title, excerpt, content, featuredImage, publishedAt, featured, backUrl }
       featuredImage && (
         <img
           src={buildImageUrl(featuredImage)}
-          alt={title || ""}
+          alt={title ? `Immagine in evidenza: ${title}` : "Immagine in evidenza"}
           class="w-full h-full object-cover rounded-xl shadow-lg mb-8"
           loading="lazy"
           decoding="async"
