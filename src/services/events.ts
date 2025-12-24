@@ -7,17 +7,45 @@ type EventListOptions = {
 };
 
 export async function getEvents(options?: EventListOptions): Promise<Event[]> {
-  const hasPagination = Number.isFinite(options?.page) || Number.isFinite(options?.pageSize);
+  const hasPagination =
+    Number.isFinite(options?.page) || Number.isFinite(options?.pageSize);
 
   if (hasPagination) {
-    const currentPage = options?.page && options.page > 0 ? Math.floor(options.page) : 1;
-    const size = options?.pageSize && options.pageSize > 0 ? Math.floor(options.pageSize) : 12;
+    const currentPage =
+      options?.page && options.page > 0 ? Math.floor(options.page) : 1;
+    const size =
+      options?.pageSize && options.pageSize > 0
+        ? Math.floor(options.pageSize)
+        : 12;
     const offset = (currentPage - 1) * size;
     const end = offset + size;
 
     const EVENTS_PAGE_QUERY = `*[
         _type == "event" && defined(slug.current)
-      ] | order(eventDate desc) [$offset...$end] {
+      ] | order(
+        select(
+          featured == true &&
+          defined(eventDate) &&
+          dateTime(eventDate) > now() &&
+          !(
+            registrationRequired == true &&
+            defined(registrationDeadline) &&
+            dateTime(registrationDeadline) < now()
+          ) => 1,
+          0
+        ) desc,
+        select(
+          defined(eventDate) &&
+          dateTime(eventDate) > now() &&
+          !(
+            registrationRequired == true &&
+            defined(registrationDeadline) &&
+            dateTime(registrationDeadline) < now()
+          ) => 1,
+          0
+        ) desc,
+        eventDate desc
+      ) [$offset...$end] {
         _id,
         _type,
         title,
@@ -40,7 +68,30 @@ export async function getEvents(options?: EventListOptions): Promise<Event[]> {
 
   const EVENTS_QUERY = `*[
         _type == "event" && defined(slug.current)
-      ] | order(eventDate desc) {
+      ] | order(
+        select(
+          featured == true &&
+          defined(eventDate) &&
+          dateTime(eventDate) > now() &&
+          !(
+            registrationRequired == true &&
+            defined(registrationDeadline) &&
+            dateTime(registrationDeadline) < now()
+          ) => 1,
+          0
+        ) desc,
+        select(
+          defined(eventDate) &&
+          dateTime(eventDate) > now() &&
+          !(
+            registrationRequired == true &&
+            defined(registrationDeadline) &&
+            dateTime(registrationDeadline) < now()
+          ) => 1,
+          0
+        ) desc,
+        eventDate desc
+      ) {
         _id,
         _type,
         title,
