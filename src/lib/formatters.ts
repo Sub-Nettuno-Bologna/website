@@ -1,12 +1,18 @@
 import { DEFAULT_CURRENCY, DEFAULT_LOCALE, DATE_FORMATS } from "@/constants";
 
-export function formatDate(dateInput: string | Date, locale: string = DEFAULT_LOCALE): string {
+export function formatDate(
+  dateInput: string | Date,
+  locale: string = DEFAULT_LOCALE
+): string {
   const date = typeof dateInput === "string" ? new Date(dateInput) : dateInput;
   if (!(date instanceof Date) || Number.isNaN(date.getTime())) return "";
   return date.toLocaleDateString(locale, DATE_FORMATS.long);
 }
 
-export function formatDateTime(dateInput: string | Date, locale: string = DEFAULT_LOCALE): string {
+export function formatDateTime(
+  dateInput: string | Date,
+  locale: string = DEFAULT_LOCALE
+): string {
   const date = typeof dateInput === "string" ? new Date(dateInput) : dateInput;
   if (!(date instanceof Date) || Number.isNaN(date.getTime())) return "";
   return date.toLocaleString(locale, DATE_FORMATS.longWithTime);
@@ -21,7 +27,9 @@ export function formatPriceEUR(price?: number): string {
 }
 
 export function toPascalCase(value: string): string {
-  return value.replace(/(^|-)([a-z])/g, (_, __, letter: string) => letter.toUpperCase());
+  return value.replace(/(^|-)([a-z])/g, (_, __, letter: string) =>
+    letter.toUpperCase()
+  );
 }
 
 export function isPast(dateInput: string | Date): boolean {
