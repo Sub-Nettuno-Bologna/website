@@ -88,6 +88,87 @@ body {
   @apply -translate-y-0.5 border-white/10;
 }
 
+/* Blog/Event rich text (moved from PostArticle.astro to avoid route-scoped CSS chunks) */
+.post-prose {
+  color: #374151;
+}
+
+.post-prose h1,
+.post-prose h2,
+.post-prose h3,
+.post-prose h4,
+.post-prose h5,
+.post-prose h6 {
+  color: #1f2937;
+  font-weight: 700;
+}
+
+.post-prose h2 {
+  font-size: 1.875rem;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+.post-prose h3 {
+  font-size: 1.5rem;
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.post-prose p {
+  margin-bottom: 1.25rem;
+  line-height: 1.75;
+}
+
+.post-prose ul,
+.post-prose ol {
+  margin-bottom: 1.25rem;
+  padding-left: 1.5rem;
+}
+
+.post-prose li {
+  margin-bottom: 0.5rem;
+}
+
+.post-prose blockquote {
+  border-left: 4px solid #8b5cf6;
+  padding-left: 1rem;
+  margin: 1.5rem 0;
+  font-style: italic;
+  color: #6b7280;
+}
+
+.post-prose code {
+  background-color: #f3f4f6;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  font-size: 0.875rem;
+}
+
+.post-prose pre {
+  background-color: #1f2937;
+  color: #f9fafb;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  overflow-x: auto;
+  margin: 1.5rem 0;
+}
+
+.post-prose img {
+  border-radius: 0.5rem;
+  margin: 1.5rem 0;
+}
+
+.post-prose a {
+  color: #8b5cf6;
+  text-decoration: none;
+}
+
+.post-prose a:hover {
+  color: #7c3aed;
+  text-decoration: underline;
+}
+
 /* Ocean-themed animations */
 @keyframes float {
   0%,

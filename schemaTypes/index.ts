@@ -14,20 +14,20 @@ import seo from "./schema/seo.schema";
 import faqPage from "./schema/faqPage.schema";
 
 export const schemaTypes = [
-    // Utility Types
-    portableText,
-    button,
-    list,
+  // Utility Types
+  portableText,
+  button,
+  list,
 
-    // Schemas
-    course,
-    courseCategory,
-    team,
-    club,
-    hero,
-    aboutus,
-    blog,
-    event,
-    seo,
-    faqPage
+  // Schemas
+  course,
+  courseCategory,
+  team,
+  club,
+  hero,
+  aboutus,
+  blog,
+  event,
+  seo,
+  faqPage,
 ];

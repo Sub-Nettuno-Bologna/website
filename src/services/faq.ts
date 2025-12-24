@@ -15,4 +15,3 @@ export async function getFaqPage(): Promise<FaqPage | null> {
   }`;
   return await fetchOne<FaqPage>(FAQ_PAGE_QUERY);
 }
-

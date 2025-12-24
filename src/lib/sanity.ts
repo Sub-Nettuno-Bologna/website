@@ -37,6 +37,22 @@ export type BuildImageOptions = {
   placeholder?: string;
 };
 
+export type BuildImageSrcSetOptions = BuildImageOptions & {
+  /**
+   * List of image widths (in CSS px) to include in the srcset.
+   * Example: [480, 640, 768, 1024, 1280, 1536, 1920]
+   */
+  widths: number[];
+  /**
+   * If provided, generates a matching height for each width as:
+   * height = round(width / aspectRatio)
+   * where aspectRatio is width/height (e.g. 16/9).
+   *
+   * Use this when you need a stable crop (e.g. hero backgrounds).
+   */
+  aspectRatio?: number;
+};
+
 export function buildImageUrl(
   source: SanityImageSource | null | undefined,
   options?: BuildImageOptions
