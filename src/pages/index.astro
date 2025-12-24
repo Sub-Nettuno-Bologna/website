@@ -10,14 +10,14 @@ import { pagesData } from "@/data/pages";
 import { getEvents } from "@/services/events";
 import { getCourseCategories } from "@/services/courses";
 import { getAboutUs } from "@/services/aboutus";
-import BlogSection from "@/features/blog/BlogSection.astro";
-import { getBlogPosts } from "@/services/blog";
+// import BlogSection from "@/features/blog/BlogSection.astro";
+// import { getBlogPosts } from "@/services/blog";
 
 const heroData = await getHero();
 const events = await getEvents();
 const about = await getAboutUs();
 const categories = await getCourseCategories();
-const posts = await getBlogPosts();
+// const posts = await getBlogPosts();
 ---
 
 <Layout>
@@ -38,7 +38,7 @@ const posts = await getBlogPosts();
     description={pagesData.courses.description}
   />
   {events && events.length > 0 && <EventsSection events={events} maxEvents={3} />}
-  {
+  <!-- {
     posts && posts.length > 0 && (
       <BlogSection
         posts={posts}
@@ -48,6 +48,6 @@ const posts = await getBlogPosts();
         showFeatured={true}
       />
     )
-  }
+  } -->
   <Contact />
 </Layout>

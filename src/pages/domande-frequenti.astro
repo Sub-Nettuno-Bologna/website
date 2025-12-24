@@ -1,0 +1,68 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import SectionContainer from "@/components/layout/Section.astro";
+import SectionHeader from "@/components/layout/SectionHeader.astro";
+import Card from "@/components/primitives/Card/Card.astro";
+import CardContent from "@/components/primitives/Card/CardContent.astro";
+import { HelpCircle } from "@lucide/astro";
+import { getFaqPage } from "@/services/faq";
+import ContactSection from "@/features/contact/ContactSection.astro";
+import FaqSeoSchema from "@/seo/FaqSeoSchema.astro";
+
+const faqPage = await getFaqPage();
+
+if (!faqPage) {
+  throw new Error("FAQ page not found");
+}
+
+const pageTitle = faqPage.title || "Domande Frequenti";
+const pageDescription =
+  faqPage.description ||
+  "Trova risposte alle domande più frequenti sui nostri corsi di subacquea e apnea a Bologna. Informazioni su certificati medici, età minima, durata dei corsi e molto altro.";
+---
+
+<Layout title={pageTitle} description={pageDescription}>
+  <FaqSeoSchema faqPage={faqPage} />
+
+  <!-- FAQ Section -->
+  <SectionContainer id="faq" background="white" padding="lg">
+    <SectionHeader
+      title={pageTitle}
+      subtitle={pageDescription}
+      titleColor="secondary"
+      subtitleColor="gray-600"
+      titleSize="xl"
+      hasBreadcrumbs={true}
+    />
+
+    {faqPage.faqs && faqPage.faqs.length > 0 ? (
+      <div class="max-w-3xl mx-auto mt-12 space-y-6">
+        {faqPage.faqs.map((faq) => (
+          <Card class="border-l-4 border-l-primary">
+            <CardContent class="pt-6">
+              <div class="flex items-start">
+                <HelpCircle class="w-6 h-6 text-primary mr-3 mt-1 flex-shrink-0" />
+                <div>
+                  <h3 class="text-xl font-semibold mb-2 text-gray-900">{faq.question}</h3>
+                  <p class="text-gray-700 leading-relaxed whitespace-pre-line">{faq.answer}</p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        ))}
+      </div>
+    ) : (
+      <div class="max-w-3xl mx-auto mt-12 text-center text-gray-600">
+        <p>Nessuna domanda disponibile al momento.</p>
+      </div>
+    )}
+  </SectionContainer>
+
+  <!-- Contact Section -->
+  <ContactSection
+    hasBreadcrumbs={false}
+    formHiddenFields={{ campaign: "FAQ" }}
+    formDefaultMessage="Ciao! Ho una domanda che non ho trovato nella pagina delle FAQ. Vorrei sapere..."
+  />
+</Layout>
+

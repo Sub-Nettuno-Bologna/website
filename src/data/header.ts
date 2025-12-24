@@ -8,6 +8,7 @@ import {
   BookOpen,
   CalendarDays,
   Users,
+  HelpCircle,
 } from "@lucide/astro";
 
 export const headerData = {
@@ -60,16 +61,10 @@ export const headerData = {
       icon: CalendarDays,
     },
 
-    {
-      label: "Blog",
-      href: "/blog",
-      icon: BookOpen,
-    },
-
     // {
-    //   label: "Gallery",
-    //   href: "/gallery",
-    //   icon: Image,
+    //   label: "Blog",
+    //   href: "/blog",
+    //   icon: BookOpen,
     // },
 
     {
@@ -77,5 +72,17 @@ export const headerData = {
       href: "/contatti",
       icon: MessageSquare,
     },
+
+    {
+      label: "Domande frequenti",
+      href: "/domande-frequenti",
+      icon: HelpCircle,
+    },
+
+    // {
+    //   label: "Gallery",
+    //   href: "/gallery",
+    //   icon: Image,
+    // },
   ],
 };

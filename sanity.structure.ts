@@ -10,6 +10,7 @@ import {
   TagsIcon,
   SchemaIcon,
   SearchIcon,
+  HelpCircleIcon,
 } from "@sanity/icons";
 
 export default (S: any, context: any) => {
@@ -58,6 +59,12 @@ export default (S: any, context: any) => {
                 context,
                 icon: TagsIcon,
               }),
+
+              // FAQ
+              S.listItem()
+                .title("FAQ")
+                .icon(HelpCircleIcon)
+                .child(S.documentTypeList("faqPage").title("FAQ")),
 
               // Team
               orderableDocumentListDeskItem({

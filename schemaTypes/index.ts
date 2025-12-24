@@ -11,6 +11,7 @@ import aboutus from "./schema/aboutus.schema";
 import blog from "./schema/blog.schema";
 import event from "./schema/event.schema";
 import seo from "./schema/seo.schema";
+import faqPage from "./schema/faqPage.schema";
 
 export const schemaTypes = [
     // Utility Types
@@ -27,5 +28,6 @@ export const schemaTypes = [
     aboutus,
     blog,
     event,
-    seo
+    seo,
+    faqPage
 ];

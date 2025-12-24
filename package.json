@@ -19,7 +19,7 @@
     "sanity:typegen": "sanity schema extract && sanity typegen generate",
     "sanity:import:all": "./import.sh --all",
     "sanity:import:file": "./import.sh --file",
-    "sanity:delete:all": "./delete.sh --type aboutus,blog,course-category,course,event,hero,team,seo,club --yes"
+    "sanity:delete:all": "./delete.sh --type aboutus,blog,course-category,course,event,hero,team,seo,club,faqPage --yes"
   },
   "dependencies": {
     "@astrojs/cloudflare": "^12.6.12",

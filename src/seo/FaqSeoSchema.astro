@@ -1,0 +1,43 @@
+---
+import { Schema } from "astro-seo-schema";
+import { getSeo } from "@/services/seo";
+import type { FaqPage } from "../../sanity.types";
+
+interface Props {
+  faqPage: FaqPage;
+}
+
+const { faqPage } = Astro.props;
+const seo = await getSeo();
+
+const hasFaqs = Boolean(faqPage.faqs && faqPage.faqs.length > 0);
+---
+
+{
+  hasFaqs ? (
+    <Schema
+      item={{
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: faqPage.faqs!.map((faq) => ({
+          "@type": "Question",
+          name: faq.question,
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: faq.answer,
+          },
+        })),
+        ...(seo?.siteUrl && {
+          url: `${seo.siteUrl}/domande-frequenti`,
+        }),
+        ...(faqPage.title && {
+          headline: faqPage.title,
+        }),
+        ...(faqPage.description && {
+          description: faqPage.description,
+        }),
+      }}
+    />
+  ) : null
+}
+
