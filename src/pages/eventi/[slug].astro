@@ -1,7 +1,9 @@
 ---
 import Layout from "@/layouts/Layout.astro";
 import EventPost from "@/features/events/EventPost.astro";
+import ContactSection from "@/features/contact/ContactSection.astro";
 import { getEventBySlug, getEvents } from "@/services/events";
+import { formatDate } from "@/lib/formatters";
 import type { InferGetStaticParamsType } from "astro";
 
 export async function getStaticPaths() {
@@ -19,8 +21,25 @@ const event = await getEventBySlug(slug || "");
 if (!event) {
   Astro.redirect("/eventi");
 }
+
+const campaign = event?.title ? `Evento: ${event.title}` : "Evento";
+const eventDateLabel = event?.eventDate ? formatDate(event.eventDate) : "";
+const defaultMessage = event?.title
+  ? `Ciao! Vorrei informazioni sull'evento "${event.title}"${eventDateLabel ? ` del ${eventDateLabel}` : ""}${event?.location ? ` (${event.location})` : ""}.`
+  : undefined;
 ---
 
 <Layout title={event?.title}>
   {event ? <EventPost post={event} backUrl="/eventi" /> : null}
+
+  {event ? (
+    <>
+      <!-- Contact Section -->
+      <ContactSection
+        hasBreadcrumbs={false}
+        formHiddenFields={{ campaign }}
+        formDefaultMessage={defaultMessage}
+      />
+    </>
+  ) : null}
 </Layout>
