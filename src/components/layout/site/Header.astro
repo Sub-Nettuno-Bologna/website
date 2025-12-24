@@ -8,165 +8,167 @@ const clubData = await getClubData();
 ---
 
 <header class="bg-white/95 backdrop-blur-sm border-b border-info sticky top-0 z-50">
-  <div class="container mx-auto px-4 py-4 overflow-visible">
-    <div class="flex items-center gap-4">
-      <!-- Logo -->
-      <a href="/" class="flex items-center space-x-3 shrink-0">
-        <div>
-          <h1 class="text-xl font-bold text-primary uppercase">{clubData?.clubName || ""}</h1>
-          <p class="text-sm text-primary-content">{clubData?.subtitle || ""}</p>
-        </div>
-      </a>
+  <div class="w-full flex items-center py-4 overflow-visible">
+    <!-- Logo (flush-left, no padding/borders) -->
+    <a href="/" class="flex items-center space-x-3 shrink-0 px-8 m-0 border-0">
+      <div>
+        <h1 class="text-xl font-bold text-primary uppercase">{clubData?.clubName || ""}</h1>
+        <p class="text-sm text-primary-content">{clubData?.subtitle || ""}</p>
+      </div>
+    </a>
 
-      <!-- Desktop Navigation -->
-      <nav class="hidden xl:flex flex-1 items-center justify-center space-x-4 min-w-0">
-        {
-          headerData.navigation.map((item: any) => {
-            const IconComponent = item.icon;
-            const dropdownName = item.label?.toLowerCase?.().replace(/\s+/g, "-");
+    <div class="container mx-auto px-4 overflow-visible">
+      <div class="flex items-center gap-4">
+        <!-- Desktop Navigation -->
+        <nav class="hidden xl:flex flex-1 items-center justify-center space-x-4 min-w-0">
+          {
+            headerData.navigation.map((item: any) => {
+              const IconComponent = item.icon;
+              const dropdownName = item.label?.toLowerCase?.().replace(/\s+/g, "-");
 
-            if (item.dropdown) {
-              return (
-                <div class="relative group">
-                  <a
-                    id={`desktop-${dropdownName}-button`}
-                    href={item.href}
-                    role="button"
-                    aria-haspopup="menu"
-                    aria-expanded="false"
-                    aria-controls={`desktop-${dropdownName}-menu`}
-                    data-dropdown={dropdownName}
-                    class="link-nav flex items-center space-x-1 desktop-dropdown-button"
-                  >
+              if (item.dropdown) {
+                return (
+                  <div class="relative group">
+                    <a
+                      id={`desktop-${dropdownName}-button`}
+                      href={item.href}
+                      role="button"
+                      aria-haspopup="menu"
+                      aria-expanded="false"
+                      aria-controls={`desktop-${dropdownName}-menu`}
+                      data-dropdown={dropdownName}
+                      class="link-nav flex items-center space-x-1 desktop-dropdown-button"
+                    >
+                      <IconComponent class="w-4 h-4" />
+                      <span>{item.label}</span>
+                      <ChevronDown
+                        data-dropdown-toggle="true"
+                        class="w-4 h-4 ml-1 transition-transform group-hover:rotate-180 group-focus-within:rotate-180"
+                      />
+                    </a>
+                    <div
+                      id={`desktop-${dropdownName}-menu`}
+                      role="menu"
+                      aria-labelledby={`desktop-${dropdownName}-button`}
+                      data-dropdown-content={dropdownName}
+                      class="absolute left-0 mt-2 w-56 bg-white rounded-lg border border-gray-100 shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible group-focus-within:opacity-100 group-focus-within:visible transition-all duration-200 transform origin-top-left"
+                    >
+                      <div class="p-2">
+                        {item.dropdown.map((dropdownItem: any) => {
+                          const DropdownIconComponent = dropdownItem.icon;
+                          return (
+                            <a
+                              href={dropdownItem.href}
+                              role="menuitem"
+                              class="flex items-center space-x-3 px-3 py-2 rounded-md text-primary hover:text-secondary hover:bg-gray-50 transition-colors desktop-menu-item"
+                            >
+                              <DropdownIconComponent class="w-5 h-5" />
+                              <span>{dropdownItem.label}</span>
+                            </a>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  </div>
+                );
+              } else {
+                return (
+                  <a href={item.href} class="link-nav flex items-center space-x-2">
                     <IconComponent class="w-4 h-4" />
                     <span>{item.label}</span>
-                    <ChevronDown
-                      data-dropdown-toggle="true"
-                      class="w-4 h-4 ml-1 transition-transform group-hover:rotate-180 group-focus-within:rotate-180"
-                    />
                   </a>
-                  <div
-                    id={`desktop-${dropdownName}-menu`}
-                    role="menu"
-                    aria-labelledby={`desktop-${dropdownName}-button`}
-                    data-dropdown-content={dropdownName}
-                    class="absolute left-0 mt-2 w-56 bg-white rounded-lg border border-gray-100 shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible group-focus-within:opacity-100 group-focus-within:visible transition-all duration-200 transform origin-top-left"
-                  >
-                    <div class="p-2">
-                      {item.dropdown.map((dropdownItem: any) => {
+                );
+              }
+            })
+          }
+        </nav>
+
+        <div class="flex items-center justify-end gap-1 shrink-0 ml-auto">
+          <SiteSearch />
+
+          <!-- Desktop CTA -->
+          <a
+            href="/contatti"
+            class="hidden xl:inline-flex items-center gap-2 px-4 py-2 rounded-full bg-secondary text-white hover:bg-secondary/90 shadow-sm focus:outline-none focus:ring-2 focus:ring-secondary/40 transition-colors whitespace-nowrap"
+          >
+            <Waves class="w-4 h-4" />
+            <span>{headerData.hero.free_trial}</span>
+          </a>
+
+          <!-- Mobile Menu Button -->
+          <button
+            id="mobile-menu-button"
+            class="xl:hidden p-2 rounded-md text-primary hover:text-secondary hover:bg-gray-50 transition-colors"
+            aria-label={headerData.ui.mobileMenuToggle}
+          >
+            <Menu id="menu-icon" class="w-6 h-6" />
+            <X id="close-icon" class="w-6 h-6 hidden" />
+          </button>
+        </div>
+      </div>
+
+      <!-- Mobile Navigation -->
+      <nav id="mobile-menu" class="xl:hidden hidden mt-4 pb-4 border-t border-gray-100">
+        <div class="flex flex-col space-y-2 pt-4">
+          <a
+            href="/contatti"
+            class="inline-flex items-center justify-center gap-2 mx-3 mb-2 px-4 py-2 rounded-md bg-secondary text-white hover:bg-secondary/90 shadow-sm"
+          >
+            <Waves class="w-4 h-4" />
+            <span>{headerData.hero.free_trial}</span>
+          </a>
+          {
+            headerData.navigation.map((item) => {
+              const IconComponent = item.icon;
+
+              if (item.dropdown) {
+                return (
+                  <div class="mobile-dropdown">
+                    <button
+                      class="mobile-dropdown-button w-full flex items-center justify-between px-3 py-2 rounded-md text-primary hover:text-secondary hover:bg-gray-50 transition-colors text-left"
+                      data-dropdown={item.label.toLowerCase()}
+                    >
+                      <div class="flex items-center space-x-3">
+                        <IconComponent class="w-5 h-5" />
+                        <span>{item.label}</span>
+                      </div>
+                      <ChevronDown class="w-4 h-4 transition-transform" />
+                    </button>
+                    <div
+                      class="mobile-dropdown-content hidden ml-8 mt-2 space-y-1"
+                      data-dropdown-content={item.label.toLowerCase()}
+                    >
+                      {item.dropdown.map((dropdownItem) => {
                         const DropdownIconComponent = dropdownItem.icon;
                         return (
                           <a
                             href={dropdownItem.href}
-                            role="menuitem"
-                            class="flex items-center space-x-3 px-3 py-2 rounded-md text-primary hover:text-secondary hover:bg-gray-50 transition-colors desktop-menu-item"
+                            class="flex items-center space-x-3 px-3 py-2 rounded-md text-primary hover:text-secondary hover:bg-gray-50 transition-colors"
                           >
-                            <DropdownIconComponent class="w-5 h-5" />
+                            <DropdownIconComponent class="w-4 h-4" />
                             <span>{dropdownItem.label}</span>
                           </a>
                         );
                       })}
                     </div>
                   </div>
-                </div>
-              );
-            } else {
-              return (
-                <a href={item.href} class="link-nav flex items-center space-x-2">
-                  <IconComponent class="w-4 h-4" />
-                  <span>{item.label}</span>
-                </a>
-              );
-            }
-          })
-        }
+                );
+              } else {
+                return (
+                  <a
+                    href={item.href}
+                    class="flex items-center space-x-3 px-3 py-2 rounded-md text-primary hover:text-secondary hover:bg-gray-50 transition-colors"
+                  >
+                    <IconComponent class="w-5 h-5" />
+                    <span>{item.label}</span>
+                  </a>
+                );
+              }
+            })
+          }
+        </div>
       </nav>
-
-      <div class="flex items-center justify-end gap-1 shrink-0 ml-auto">
-        <SiteSearch />
-
-        <!-- Desktop CTA -->
-        <a
-          href="/contatti"
-          class="hidden xl:inline-flex items-center gap-2 px-4 py-2 rounded-full bg-secondary text-white hover:bg-secondary/90 shadow-sm focus:outline-none focus:ring-2 focus:ring-secondary/40 transition-colors whitespace-nowrap"
-        >
-          <Waves class="w-4 h-4" />
-          <span>{headerData.hero.free_trial}</span>
-        </a>
-
-        <!-- Mobile Menu Button -->
-        <button
-          id="mobile-menu-button"
-          class="xl:hidden p-2 rounded-md text-primary hover:text-secondary hover:bg-gray-50 transition-colors"
-          aria-label={headerData.ui.mobileMenuToggle}
-        >
-          <Menu id="menu-icon" class="w-6 h-6" />
-          <X id="close-icon" class="w-6 h-6 hidden" />
-        </button>
-      </div>
     </div>
-
-    <!-- Mobile Navigation -->
-    <nav id="mobile-menu" class="xl:hidden hidden mt-4 pb-4 border-t border-gray-100">
-      <div class="flex flex-col space-y-2 pt-4">
-        <a
-          href="/contatti"
-          class="inline-flex items-center justify-center gap-2 mx-3 mb-2 px-4 py-2 rounded-md bg-secondary text-white hover:bg-secondary/90 shadow-sm"
-        >
-          <Waves class="w-4 h-4" />
-          <span>{headerData.hero.free_trial}</span>
-        </a>
-        {
-          headerData.navigation.map((item) => {
-            const IconComponent = item.icon;
-
-            if (item.dropdown) {
-              return (
-                <div class="mobile-dropdown">
-                  <button
-                    class="mobile-dropdown-button w-full flex items-center justify-between px-3 py-2 rounded-md text-primary hover:text-secondary hover:bg-gray-50 transition-colors text-left"
-                    data-dropdown={item.label.toLowerCase()}
-                  >
-                    <div class="flex items-center space-x-3">
-                      <IconComponent class="w-5 h-5" />
-                      <span>{item.label}</span>
-                    </div>
-                    <ChevronDown class="w-4 h-4 transition-transform" />
-                  </button>
-                  <div
-                    class="mobile-dropdown-content hidden ml-8 mt-2 space-y-1"
-                    data-dropdown-content={item.label.toLowerCase()}
-                  >
-                    {item.dropdown.map((dropdownItem) => {
-                      const DropdownIconComponent = dropdownItem.icon;
-                      return (
-                        <a
-                          href={dropdownItem.href}
-                          class="flex items-center space-x-3 px-3 py-2 rounded-md text-primary hover:text-secondary hover:bg-gray-50 transition-colors"
-                        >
-                          <DropdownIconComponent class="w-4 h-4" />
-                          <span>{dropdownItem.label}</span>
-                        </a>
-                      );
-                    })}
-                  </div>
-                </div>
-              );
-            } else {
-              return (
-                <a
-                  href={item.href}
-                  class="flex items-center space-x-3 px-3 py-2 rounded-md text-primary hover:text-secondary hover:bg-gray-50 transition-colors"
-                >
-                  <IconComponent class="w-5 h-5" />
-                  <span>{item.label}</span>
-                </a>
-              );
-            }
-          })
-        }
-      </div>
-    </nav>
   </div>
 </header>
 
