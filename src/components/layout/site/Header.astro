@@ -12,7 +12,7 @@ const clubData = await getClubData();
     <!-- Logo (flush-left, no padding/borders) -->
     <a href="/" class="flex items-center space-x-3 shrink-0 px-8 m-0 border-0">
       <div>
-        <h1 class="text-xl font-bold text-primary uppercase">{clubData?.clubName || ""}</h1>
+        <span class="block text-xl font-bold text-primary uppercase">{clubData?.clubName || ""}</span>
         <p class="text-sm text-primary-content">{clubData?.subtitle || ""}</p>
       </div>
     </a>
