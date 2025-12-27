@@ -10,7 +10,7 @@ const clubData = await getClubData();
 <header class="bg-white/95 backdrop-blur-sm border-b border-info sticky top-0 z-50">
   <div class="w-full flex items-center py-4 overflow-visible">
     <!-- Logo (flush-left, no padding/borders) -->
-    <a href="/" class="flex items-center space-x-3 shrink-0 px-8 m-0 border-0">
+    <a href="/" class="flex items-center space-x-3 shrink-0 px-8 m-0 border-0 hidden xl:flex">
       <div>
         <span class="block text-xl font-bold text-primary uppercase">{clubData?.clubName || ""}</span>
         <p class="text-sm text-primary-content">{clubData?.subtitle || ""}</p>
@@ -19,7 +19,13 @@ const clubData = await getClubData();
 
     <div class="container mx-auto px-4 overflow-visible">
       <div class="flex items-center gap-4">
-        <!-- Desktop Navigation -->
+         <a href="/" class="flex items-center space-x-3 shrink-0 px-8 m-0 border-0 xl:hidden">
+          <div>
+            <span class="block text-xl font-bold text-primary uppercase">{clubData?.clubName || ""}</span>
+            <p class="text-sm text-primary-content">{clubData?.subtitle || ""}</p>
+          </div>
+        </a> 
+        <!-- Desktop Navigation 1 -->
         <nav class="hidden xl:flex flex-1 items-center justify-center space-x-4 min-w-0">
           {
             headerData.navigation.map((item: any) => {
