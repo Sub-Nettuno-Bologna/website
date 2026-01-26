@@ -17,14 +17,14 @@ const clubData = await getClubData();
       </div>
     </a>
 
-    <div class="container mx-auto px-4 overflow-visible">
-      <div class="flex items-center gap-4">
-         <a href="/" class="flex items-center space-x-3 shrink-0 px-8 m-0 border-0 xl:hidden">
+    <div class="container mx-auto px-0 xl:px-4 overflow-visible">
+      <div class="flex items-center gap-2 xl:gap-4">
+        <a href="/" class="flex items-center space-x-3 shrink-0 px-4 xl:px-8 m-0 border-0 xl:hidden">
           <div>
-            <span class="block text-xl font-bold text-primary uppercase">{clubData?.clubName || ""}</span>
+            <span class="block text-sm md:text-base xl:text-xl font-bold text-primary uppercase">{clubData?.clubName || ""}</span>
             <p class="text-sm text-primary-content">{clubData?.subtitle || ""}</p>
           </div>
-        </a> 
+        </a>
         <!-- Desktop Navigation 1 -->
         <nav class="hidden xl:flex flex-1 items-center justify-center space-x-4 min-w-0">
           {

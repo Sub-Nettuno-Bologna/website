@@ -51,31 +51,25 @@ export default defineConfig({
 
   adapter,
 
-  integrations: [
-    orama({
-      search: {
-        // Exclude the Studio and the events pagination routes from indexing
-        // - /admin/**
-        // - /eventi/page/*
-        pathMatcher: /^(?!admin)(?!eventi\/page\/).*$/,
-        language: "italian",
-        contentSelectors: ["main#content"],
-      },
-    }),
-    sitemaps(),
-    react(),
-    sanity({
-      // TODO: temporary hardcoded values
-      projectId: process.env.PUBLIC_SANITY_PROJECT_ID || "r56dtkaq",
-      dataset: process.env.PUBLIC_SANITY_DATASET || "production",
-      apiVersion: "2023-01-01",
-      useCdn: false,
-      studioBasePath: "/admin",
-      studioRouterHistory: "hash",
-      stega: {
-        studioUrl: "/admin#",
-      },
-    }),
-    playformCompress(),
-  ],
+  integrations: [orama({
+    search: {
+      // Exclude the Studio and the events pagination routes from indexing
+      // - /admin/**
+      // - /eventi/page/*
+      pathMatcher: /^(?!admin)(?!eventi\/page\/).*$/,
+      language: "italian",
+      contentSelectors: ["main#content"],
+    },
+  }), sitemaps(), react(), sanity({
+    // TODO: temporary hardcoded values
+    projectId: process.env.PUBLIC_SANITY_PROJECT_ID || "r56dtkaq",
+    dataset: process.env.PUBLIC_SANITY_DATASET || "production",
+    apiVersion: "2023-01-01",
+    useCdn: false,
+    studioBasePath: "/admin",
+    studioRouterHistory: "hash",
+    stega: {
+      studioUrl: "/admin#",
+    },
+  }), playformCompress()],
 });

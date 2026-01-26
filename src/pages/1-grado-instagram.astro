@@ -1,0 +1,238 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import SectionContainer from "@/components/layout/Section.astro";
+import SectionHeader from "@/components/layout/SectionHeader.astro";
+import Button from "@/components/primitives/Button.astro";
+import Card from "@/components/primitives/Card/Card.astro";
+import CardContent from "@/components/primitives/Card/CardContent.astro";
+import CardHeader from "@/components/primitives/Card/CardHeader.astro";
+import CardTitle from "@/components/primitives/Card/CardTitle.astro";
+import ContactSection from "@/features/contact/ContactSection.astro";
+import { Waves, Users, Award, Star, CheckCircle, HelpCircle } from "@lucide/astro";
+---
+
+<Layout>
+  <!-- Hero Section -->
+  <SectionContainer
+    id="hero"
+    background="default"
+    padding="xl"
+    customClass="relative overflow-hidden bg-gradient-to-b from-primary to-secondary"
+  >
+    <video
+      class="absolute inset-0 h-full w-full object-cover"
+      autoplay
+      muted
+      loop
+      playsinline
+      preload="metadata"
+      aria-hidden="true"
+    >
+      <source src="/media/videos/ig-1-grado.mp4" type="video/mp4" />
+    </video>
+    <div class="absolute inset-0 bg-black/40"></div>
+    <div class="relative z-10 text-center text-white max-w-4xl mx-auto">
+      <h1 class="text-2xl md:text-5xl lg:text-6xl font-bold mb-6 drop-shadow-lg">
+        Immergiti con noi...
+      </h1>
+      <span class="promo-highlight mb-6">10% di sconto o 15% se porti un amico 🌊</span>
+   
+      
+      <Button
+        href="#contatti"
+        size="lg"
+        variant="white"
+        class="text-lg px-8 pt-6 py-4 shadow-xl hover:shadow-2xl transition-all bg-orange text-white"
+      >
+        Richiedi la promo →
+      </Button>
+    </div>
+  </SectionContainer>
+
+  <!-- Courses Section -->
+  <SectionContainer id="corsi" background="gray" padding="lg">
+    <SectionHeader
+      title="Corso 1 livello"
+      subtitle="Il percorso ideale per iniziare e ottenere il tuo brevetto"
+      titleColor="secondary"
+      subtitleColor="gray-600"
+      titleSize="xl"
+      hasBreadcrumbs={false}
+    />
+
+    <div class="max-w-3xl mx-auto mt-12">
+      <Card class="h-full hover:shadow-xl transition-shadow duration-300 border-2 border-primary/30">
+        <CardHeader>
+          <div class="flex items-center mb-4">
+            <div class="w-24 h-12 bg-primary rounded-full flex items-center justify-center mr-4">
+              <Award class="w-6 h-6 text-white" />
+            </div>
+            <CardTitle class="text-2xl text-primary">Corso Subacqueo 1 livello</CardTitle>
+          </div>
+          <p class="text-lg font-semibold text-primary/90 mb-2">12 lezioni in 3 mesi </p>
+        </CardHeader>
+        <CardContent>
+          <p class="text-gray-700 mb-4 leading-relaxed">
+            Un percorso completo per diventare subacqueo certificato, con lezioni teoriche e pratiche
+            in piscina e uscita finale in mare.
+          </p>
+          <ul class="space-y-2 mb-6">
+            <li class="flex items-start">
+              <CheckCircle class="w-5 h-5 text-primary mr-2 mt-0.5 flex-shrink-0" />
+              <span class="text-gray-700">Attrezzatura inclusa: GAV, erogatore e bombole</span>
+            </li>
+            <li class="flex items-start">
+              <CheckCircle class="w-5 h-5 text-primary mr-2 mt-0.5 flex-shrink-0" />
+              <span class="text-gray-700">Istruttori certificati e massima sicurezza</span>
+            </li>
+            <li class="flex items-start">
+              <CheckCircle class="w-5 h-5 text-primary mr-2 mt-0.5 flex-shrink-0" />
+              <span class="text-gray-700">Promo: 297€ da solo o 280€ con amico (invece di 330€)</span>
+            </li>
+          </ul>
+          <Button href="#contatti" variant="default" class="w-full">
+            Blocca il tuo posto →
+          </Button>
+        </CardContent>
+      </Card>
+    </div>
+  </SectionContainer>
+
+  <!-- FAQ Section -->
+  <SectionContainer id="faq" background="white" padding="lg">
+    <SectionHeader
+      title="Domande Frequenti"
+      subtitle="Tutto quello che vuoi sapere prima di iniziare"
+      titleColor="secondary"
+      subtitleColor="gray-600"
+      titleSize="lg"
+      hasBreadcrumbs={false}
+    />
+
+    <div class="max-w-3xl mx-auto mt-12 space-y-6">
+      <Card class="border-l-4 border-l-primary">
+        <CardContent class="pt-6">
+          <div class="flex items-start">
+            <HelpCircle class="w-6 h-6 text-primary mr-3 mt-1 flex-shrink-0" />
+            <div>
+              <h3 class="text-xl font-semibold mb-2 text-gray-900">Devo avere esperienza?</h3>
+              <p class="text-gray-700">
+                No, il Corso 1 livello parte da zero. Ti seguiamo passo dopo passo, in totale
+                sicurezza.
+              </p>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+
+      <Card class="border-l-4 border-l-primary">
+        <CardContent class="pt-6">
+          <div class="flex items-start">
+            <HelpCircle class="w-6 h-6 text-primary mr-3 mt-1 flex-shrink-0" />
+            <div>
+              <h3 class="text-xl font-semibold mb-2 text-gray-900">Quanto dura il corso?</h3>
+              <p class="text-gray-700">
+                Il Corso 1 livello dura 12 lezioni distribuite in 3 mesi.. 
+              </p>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+
+      <Card class="border-l-4 border-l-primary">
+        <CardContent class="pt-6">
+          <div class="flex items-start">
+            <HelpCircle class="w-6 h-6 text-primary mr-3 mt-1 flex-shrink-0" />
+            <div>
+              <h3 class="text-xl font-semibold mb-2 text-gray-900">Dove si svolge il corso?</h3>
+              <p class="text-gray-700">
+                Le lezioni si svolgono in piscina a Bologna (Via dello Sport 6), con uscite per la prova finale in
+                mare (spesso in Toscana o Liguria).
+              </p>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+
+      <Card class="border-l-4 border-l-primary">
+        <CardContent class="pt-6">
+          <div class="flex items-start">
+            <HelpCircle class="w-6 h-6 text-primary mr-3 mt-1 flex-shrink-0" />
+            <div>
+              <h3 class="text-xl font-semibold mb-2 text-gray-900">Cosa include l'attrezzatura?</h3>
+              <p class="text-gray-700">
+                Sono inclusi GAV, erogatore e bombole per tutte le lezioni.
+              </p>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+
+      <Card class="border-l-4 border-l-primary">
+        <CardContent class="pt-6">
+          <div class="flex items-start">
+            <HelpCircle class="w-6 h-6 text-primary mr-3 mt-1 flex-shrink-0" />
+            <div>
+              <h3 class="text-xl font-semibold mb-2 text-gray-900">Come funziona la promo?</h3>
+              <p class="text-gray-700">
+                Da solo hai il 10% di sconto, con un amico il 15% si applica a entrambi al momento dell'iscrizione.
+              </p>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+    </div>
+  </SectionContainer>
+
+  <!-- Contact Section -->
+  <ContactSection
+    hasBreadcrumbs={false}
+    formHiddenFields={{ campaign: "Sconto Instagram" }}
+    formDefaultMessage="Ciao! Vi contatto da Instagram: sono interessato alla promo per il Corso 1 livello (10% da solo o 15% con un amico). Vorrei informazioni su..."
+  />
+</Layout>
+
+<style>
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  #hero {
+    animation: fadeInUp 0.6s ease-out;
+  }
+
+  @keyframes underlineWiggle {
+    0%,
+    100% {
+      transform: translateX(0);
+    }
+    50% {
+      transform: translateX(6px);
+    }
+  }
+
+  .promo-friend {
+    position: relative;
+    display: inline-block;
+  }
+
+  .promo-friend::after {
+    content: "";
+    position: absolute;
+    left: -2px;
+    right: -2px;
+    bottom: -0.12em;
+    height: 0.2em;
+    border-radius: 999px;
+    background: linear-gradient(90deg, #ffd166, #ff9f1c, #ffd166);
+    box-shadow: 0 4px 10px rgba(255, 159, 28, 0.45);
+    animation: underlineWiggle 1.6s ease-in-out infinite;
+  }
+</style>
