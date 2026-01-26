@@ -17,10 +17,10 @@ import { Waves, Users, Award, Star, CheckCircle, HelpCircle } from "@lucide/astr
     id="hero"
     background="default"
     padding="xl"
-    customClass="relative overflow-hidden bg-gradient-to-b from-primary to-secondary"
+    customClass="relative overflow-hidden bg-gradient-to-b from-primary to-secondary hero-section"
   >
     <video
-      class="absolute inset-0 h-full w-full object-cover"
+      class="absolute inset-0 h-full w-full object-cover md:object-contain md:bg-black"
       autoplay
       muted
       loop
@@ -35,14 +35,14 @@ import { Waves, Users, Award, Star, CheckCircle, HelpCircle } from "@lucide/astr
       <h1 class="text-2xl md:text-5xl lg:text-6xl font-bold mb-6 drop-shadow-lg">
         Immergiti con noi...
       </h1>
-      <span class="promo-highlight mb-6">10% di sconto o 15% se porti un amico 🌊</span>
+      <span class="promo-highlight mb-6 block">10% di sconto o 15% se porti un amico 🌊</span>
    
       
       <Button
         href="#contatti"
         size="lg"
         variant="white"
-        class="text-lg px-8 pt-6 py-4 shadow-xl hover:shadow-2xl transition-all bg-orange text-white"
+        class="text-lg px-8 pt-6 py-4 shadow-xl bg-orange text-white hover:bg-orange/90"
       >
         Richiedi la promo →
       </Button>
@@ -204,8 +204,15 @@ import { Waves, Users, Award, Star, CheckCircle, HelpCircle } from "@lucide/astr
     }
   }
 
-  #hero {
+  .hero-section {
+    height: 70vh;
     animation: fadeInUp 0.6s ease-out;
+  }
+
+  @media (max-width: 767px) {
+    .hero-section {
+      height: 100vh;
+    }
   }
 
   @keyframes underlineWiggle {
