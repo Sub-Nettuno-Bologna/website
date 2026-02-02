@@ -8,44 +8,121 @@ import CardContent from "@/components/primitives/Card/CardContent.astro";
 import CardHeader from "@/components/primitives/Card/CardHeader.astro";
 import CardTitle from "@/components/primitives/Card/CardTitle.astro";
 import ContactSection from "@/features/contact/ContactSection.astro";
-import { Waves, Users, Award, Star, CheckCircle, HelpCircle } from "@lucide/astro";
+import { Award, CheckCircle } from "@lucide/astro";
 ---
 
-<Layout>
+<Layout
+  noWaves={true}
+  title="Promo Instagram — Corso Sub 1° livello a Bologna | Club Sub Nettuno"
+  description="Corso Sub 1° livello: 12 lezioni in 3 mesi, piscina a Bologna + uscita finale in mare. Promo Instagram: -10% oppure -15% se porti un amico."
+>
   <!-- Hero Section -->
   <SectionContainer
     id="hero"
     background="default"
-    padding="xl"
-    customClass="relative overflow-hidden bg-gradient-to-b from-primary to-secondary hero-section"
+    padding="sm"
+    customClass="relative overflow-hidden ig-hero"
   >
     <video
-      class="absolute inset-0 h-full w-full object-cover md:object-contain md:bg-black"
+      class="ig-hero__video"
       autoplay
       muted
       loop
       playsinline
       preload="metadata"
       aria-hidden="true"
+      poster="/media/images/thumb-video1.jpg"
     >
       <source src="/media/videos/ig-1-grado.mp4" type="video/mp4" />
     </video>
-    <div class="absolute inset-0 bg-black/40"></div>
-    <div class="relative z-10 text-center text-white max-w-4xl mx-auto">
-      <h1 class="text-2xl md:text-5xl lg:text-6xl font-bold mb-6 drop-shadow-lg">
-        Immergiti con noi...
-      </h1>
-      <span class="promo-highlight mb-6 block">10% di sconto o 15% se porti un amico 🌊</span>
-   
-      
-      <Button
-        href="#contatti"
-        size="lg"
-        variant="white"
-        class="text-lg px-8 pt-6 py-4 shadow-xl bg-orange text-white hover:bg-orange/90"
-      >
-        Richiedi la promo →
-      </Button>
+    <div class="ig-hero__veil" aria-hidden="true"></div>
+    <div class="ig-hero__grid">
+      <div class="ig-hero__copy">
+        <p class="ig-kicker">
+          <span class="ig-kicker__dot" aria-hidden="true"></span>
+          Promo Instagram
+        </p>
+        <h1 class="ig-title">
+          Corso Sub <span class="ig-title__accent">1° livello</span>
+        </h1>
+        <p class="ig-subtitle">
+          Parti da zero, fai pratica in piscina, e chiudi con l’uscita finale in mare. Un percorso completo, guidato,
+          sicuro, concreto.
+        </p>
+
+        <div class="ig-hero__meta" aria-label="Dettagli corso">
+          <div class="ig-meta">
+            <span class="ig-meta__label">Durata</span>
+            <span class="ig-meta__value">12 lezioni</span>
+          </div>
+          <div class="ig-meta">
+            <span class="ig-meta__label">Percorso</span>
+            <span class="ig-meta__value">3 mesi</span>
+          </div>
+          <div class="ig-meta">
+            <span class="ig-meta__label">Dove</span>
+            <span class="ig-meta__value">Piscina a Bologna</span>
+          </div>
+        </div>
+
+        <div class="ig-ctaRow">
+          <Button href="#contatti" size="lg" class="ig-cta ig-cta--primary">
+            Richiedi la promo
+            <span class="ig-cta__arrow" aria-hidden="true">→</span>
+          </Button>
+          <a class="ig-cta ig-cta--ghost" href="#corsi">Vedi programma</a>
+        </div>
+        <p class="ig-fineprint">
+          Sconto: <strong>10%</strong> da solo oppure <strong>15%</strong> se porti un amico (si applica a entrambi).
+        </p>
+      </div>
+
+      <aside class="ig-ticket" aria-label="Riepilogo promo">
+        <div class="ig-ticket__top">
+          <p class="ig-ticket__tag">
+            <span class="ig-ticket__stamp">PROMO</span>
+            <span class="ig-ticket__tagText">Instagram</span>
+          </p>
+          <p class="ig-ticket__title">Prezzo promo</p>
+          <div class="ig-ticket__prices">
+            <div class="ig-price">
+              <span class="ig-price__label">Da solo</span>
+              <span class="ig-price__value">297€</span>
+            </div>
+            <div class="ig-price">
+              <span class="ig-price__label">Con amico</span>
+              <span class="ig-price__value">280€</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="ig-ticket__cut" aria-hidden="true"></div>
+
+        <div class="ig-ticket__bottom">
+          <ul class="ig-checks">
+            <li>
+              <CheckCircle class="ig-checks__icon" />
+              Attrezzatura inclusa (GAV, erogatore e bombole)
+            </li>
+            <li>
+              <CheckCircle class="ig-checks__icon" />
+              Istruttori certificati, massimo focus sulla sicurezza
+            </li>
+            <li>
+              <CheckCircle class="ig-checks__icon" />
+              Posti limitati: ti rispondiamo e blocchiamo la disponibilità
+            </li>
+          </ul>
+
+          <div class="ig-ticket__action">
+            <Button href="#contatti" variant="default" class="w-full ig-cta ig-cta--ticket">
+              Scrivici ora
+              <span class="ig-cta__arrow" aria-hidden="true">→</span>
+            </Button>
+            <p class="ig-ticket__note">Nessun impegno: chiedi info e ti guidiamo noi.</p>
+          </div>
+        </div>
+      </aside>
     </div>
   </SectionContainer>
 
@@ -60,40 +137,81 @@ import { Waves, Users, Award, Star, CheckCircle, HelpCircle } from "@lucide/astr
       hasBreadcrumbs={false}
     />
 
-    <div class="max-w-3xl mx-auto mt-12">
-      <Card class="h-full hover:shadow-xl transition-shadow duration-300 border-2 border-primary/30">
-        <CardHeader>
-          <div class="flex items-center mb-4">
-            <div class="w-24 h-12 bg-primary rounded-full flex items-center justify-center mr-4">
-              <Award class="w-6 h-6 text-white" />
-            </div>
-            <CardTitle class="text-2xl text-primary">Corso Subacqueo 1 livello</CardTitle>
+    <div class="ig-course mt-12">
+      <Card class="ig-courseCard">
+        <div class="ig-courseGrid">
+          <div>
+            <CardHeader>
+              <div class="flex items-center gap-4 mb-2">
+                <div class="ig-medallion" aria-hidden="true">
+                  <Award class="w-5 h-5 text-white" />
+                </div>
+                <CardTitle class="text-2xl text-primary">Corso Subacqueo 1° livello</CardTitle>
+              </div>
+              <p class="ig-courseLead">Teoria + piscina + uscita finale in mare</p>
+            </CardHeader>
+            <CardContent>
+              <p class="text-gray-700 leading-relaxed">
+                Un percorso guidato per ottenere una certificazione e sentirti davvero a tuo agio sott’acqua: tecnica,
+                sicurezza, assetto e gestione dell’attrezzatura.
+              </p>
+
+              <ol class="ig-steps" aria-label="Programma in breve">
+                <li>
+                  <span class="ig-steps__n">01</span>
+                  <span class="ig-steps__t">Le basi: attrezzatura, respirazione, segnali, sicurezza</span>
+                </li>
+                <li>
+                  <span class="ig-steps__n">02</span>
+                  <span class="ig-steps__t">Piscina: esercizi pratici, assetto e confidenza</span>
+                </li>
+                <li>
+                  <span class="ig-steps__n">03</span>
+                  <span class="ig-steps__t">Uscita finale in mare: metti insieme tutto con l’istruttore</span>
+                </li>
+              </ol>
+
+              <ul class="ig-checks ig-checks--course">
+                <li>
+                  <CheckCircle class="ig-checks__icon" />
+                  Attrezzatura inclusa (GAV, erogatore, bombole)
+                </li>
+                <li>
+                  <CheckCircle class="ig-checks__icon" />
+                  Lezioni distribuite in 3 mesi (12 incontri)
+                </li>
+                <li>
+                  <CheckCircle class="ig-checks__icon" />
+                  Promo: 297€ da solo oppure 280€ in 2 (invece di 330€)
+                </li>
+              </ul>
+
+              <div class="mt-6 flex flex-col sm:flex-row gap-3">
+                <Button href="#contatti" variant="default" class="ig-cta ig-cta--primary sm:flex-1">
+                  Blocca il tuo posto
+                  <span class="ig-cta__arrow" aria-hidden="true">→</span>
+                </Button>
+                <a class="ig-cta ig-cta--ghost sm:flex-1 text-center" href="#faq">Dubbi? Leggi le FAQ</a>
+              </div>
+            </CardContent>
           </div>
-          <p class="text-lg font-semibold text-primary/90 mb-2">12 lezioni in 3 mesi </p>
-        </CardHeader>
-        <CardContent>
-          <p class="text-gray-700 mb-4 leading-relaxed">
-            Un percorso completo per diventare subacqueo certificato, con lezioni teoriche e pratiche
-            in piscina e uscita finale in mare.
-          </p>
-          <ul class="space-y-2 mb-6">
-            <li class="flex items-start">
-              <CheckCircle class="w-5 h-5 text-primary mr-2 mt-0.5 flex-shrink-0" />
-              <span class="text-gray-700">Attrezzatura inclusa: GAV, erogatore e bombole</span>
-            </li>
-            <li class="flex items-start">
-              <CheckCircle class="w-5 h-5 text-primary mr-2 mt-0.5 flex-shrink-0" />
-              <span class="text-gray-700">Istruttori certificati e massima sicurezza</span>
-            </li>
-            <li class="flex items-start">
-              <CheckCircle class="w-5 h-5 text-primary mr-2 mt-0.5 flex-shrink-0" />
-              <span class="text-gray-700">Promo: 297€ da solo o 280€ con amico (invece di 330€)</span>
-            </li>
-          </ul>
-          <Button href="#contatti" variant="default" class="w-full">
-            Blocca il tuo posto →
-          </Button>
-        </CardContent>
+
+          <div class="ig-courseAside" aria-label="Anteprima brevetto">
+            <div class="ig-photoFrame">
+              <img
+                src="/media/images/certification/p1_front.jpg"
+                alt="Esempio di brevetto subacqueo 1° livello"
+                loading="lazy"
+                width="720"
+                height="480"
+              />
+            </div>
+            <p class="ig-asideCaption">
+              Un percorso che ti porta a una <strong>certificazione</strong> e, soprattutto, a una vera confidenza in
+              acqua.
+            </p>
+          </div>
+        </div>
       </Card>
     </div>
   </SectionContainer>
@@ -109,78 +227,55 @@ import { Waves, Users, Award, Star, CheckCircle, HelpCircle } from "@lucide/astr
       hasBreadcrumbs={false}
     />
 
-    <div class="max-w-3xl mx-auto mt-12 space-y-6">
-      <Card class="border-l-4 border-l-primary">
-        <CardContent class="pt-6">
-          <div class="flex items-start">
-            <HelpCircle class="w-6 h-6 text-primary mr-3 mt-1 flex-shrink-0" />
-            <div>
-              <h3 class="text-xl font-semibold mb-2 text-gray-900">Devo avere esperienza?</h3>
-              <p class="text-gray-700">
-                No, il Corso 1 livello parte da zero. Ti seguiamo passo dopo passo, in totale
-                sicurezza.
-              </p>
-            </div>
-          </div>
-        </CardContent>
-      </Card>
+    <div class="max-w-3xl mx-auto mt-12 space-y-4">
+      <details class="ig-faq">
+        <summary>
+          <span class="ig-faq__q">Devo avere esperienza?</span>
+          <span class="ig-faq__chev" aria-hidden="true"></span>
+        </summary>
+        <div class="ig-faq__a">
+          No: il Corso 1° livello parte da zero. Ti seguiamo passo dopo passo, con progressioni chiare e massima
+          sicurezza.
+        </div>
+      </details>
 
-      <Card class="border-l-4 border-l-primary">
-        <CardContent class="pt-6">
-          <div class="flex items-start">
-            <HelpCircle class="w-6 h-6 text-primary mr-3 mt-1 flex-shrink-0" />
-            <div>
-              <h3 class="text-xl font-semibold mb-2 text-gray-900">Quanto dura il corso?</h3>
-              <p class="text-gray-700">
-                Il Corso 1 livello dura 12 lezioni distribuite in 3 mesi.. 
-              </p>
-            </div>
-          </div>
-        </CardContent>
-      </Card>
+      <details class="ig-faq">
+        <summary>
+          <span class="ig-faq__q">Quanto dura il corso?</span>
+          <span class="ig-faq__chev" aria-hidden="true"></span>
+        </summary>
+        <div class="ig-faq__a">12 lezioni distribuite in circa 3 mesi.</div>
+      </details>
 
-      <Card class="border-l-4 border-l-primary">
-        <CardContent class="pt-6">
-          <div class="flex items-start">
-            <HelpCircle class="w-6 h-6 text-primary mr-3 mt-1 flex-shrink-0" />
-            <div>
-              <h3 class="text-xl font-semibold mb-2 text-gray-900">Dove si svolge il corso?</h3>
-              <p class="text-gray-700">
-                Le lezioni si svolgono in piscina a Bologna (Via dello Sport 6), con uscite per la prova finale in
-                mare (spesso in Toscana o Liguria).
-              </p>
-            </div>
-          </div>
-        </CardContent>
-      </Card>
+      <details class="ig-faq">
+        <summary>
+          <span class="ig-faq__q">Dove si svolge il corso?</span>
+          <span class="ig-faq__chev" aria-hidden="true"></span>
+        </summary>
+        <div class="ig-faq__a">
+          Le lezioni si svolgono in piscina a Bologna (Via dello Sport 6), con uscita finale in mare (spesso Toscana o
+          Liguria).
+        </div>
+      </details>
 
-      <Card class="border-l-4 border-l-primary">
-        <CardContent class="pt-6">
-          <div class="flex items-start">
-            <HelpCircle class="w-6 h-6 text-primary mr-3 mt-1 flex-shrink-0" />
-            <div>
-              <h3 class="text-xl font-semibold mb-2 text-gray-900">Cosa include l'attrezzatura?</h3>
-              <p class="text-gray-700">
-                Sono inclusi GAV, erogatore e bombole per tutte le lezioni.
-              </p>
-            </div>
-          </div>
-        </CardContent>
-      </Card>
+      <details class="ig-faq">
+        <summary>
+          <span class="ig-faq__q">Cosa include l’attrezzatura?</span>
+          <span class="ig-faq__chev" aria-hidden="true"></span>
+        </summary>
+        <div class="ig-faq__a">Sono inclusi GAV, erogatore e bombole per tutte le lezioni.</div>
+      </details>
 
-      <Card class="border-l-4 border-l-primary">
-        <CardContent class="pt-6">
-          <div class="flex items-start">
-            <HelpCircle class="w-6 h-6 text-primary mr-3 mt-1 flex-shrink-0" />
-            <div>
-              <h3 class="text-xl font-semibold mb-2 text-gray-900">Come funziona la promo?</h3>
-              <p class="text-gray-700">
-                Da solo hai il 10% di sconto, con un amico il 15% si applica a entrambi al momento dell'iscrizione.
-              </p>
-            </div>
-          </div>
-        </CardContent>
-      </Card>
+      <details class="ig-faq">
+        <summary>
+          <span class="ig-faq__q">Come funziona la promo?</span>
+          <span class="ig-faq__chev" aria-hidden="true"></span>
+        </summary>
+        <div class="ig-faq__a">
+          -10% se ti iscrivi da solo, oppure -15% se porti un amico: lo sconto si applica a entrambi al momento
+          dell’iscrizione.
+        </div>
+      </details>
     </div>
   </SectionContainer>
 
@@ -193,53 +288,580 @@ import { Waves, Users, Award, Star, CheckCircle, HelpCircle } from "@lucide/astr
 </Layout>
 
 <style>
-  @keyframes fadeInUp {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
+  /* --- Instagram landing: dive-log / promo-ticket aesthetic (page-scoped) --- */
+  :global(body) {
+    background: #f7f8fb;
   }
 
-  .hero-section {
-    height: 70vh;
-    animation: fadeInUp 0.6s ease-out;
+  .ig-hero {
+    padding-top: clamp(4.25rem, 7vw, 6.5rem);
+    padding-bottom: clamp(3.25rem, 6vw, 5.5rem);
+    min-height: min(92vh, 820px);
   }
 
-  @media (max-width: 767px) {
-    .hero-section {
-      height: 100vh;
-    }
+  .ig-hero__video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: saturate(1.05) contrast(1.05) brightness(0.9);
+    transform: scale(1.02);
   }
 
-  @keyframes underlineWiggle {
-    0%,
-    100% {
-      transform: translateX(0);
-    }
-    50% {
-      transform: translateX(6px);
-    }
+  .ig-hero__veil {
+    position: absolute;
+    inset: -2px;
+    background:
+      radial-gradient(1200px 900px at 12% 10%, rgba(255, 153, 28, 0.22), transparent 55%),
+      radial-gradient(900px 700px at 85% 18%, rgba(120, 210, 220, 0.22), transparent 55%),
+      linear-gradient(180deg, rgba(8, 14, 28, 0.55), rgba(8, 14, 28, 0.75));
   }
 
-  .promo-friend {
-    position: relative;
-    display: inline-block;
-  }
-
-  .promo-friend::after {
+  .ig-hero__veil::before {
     content: "";
     position: absolute;
-    left: -2px;
-    right: -2px;
-    bottom: -0.12em;
-    height: 0.2em;
+    inset: 0;
+    background:
+      repeating-linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0.065) 0px,
+        rgba(255, 255, 255, 0.065) 1px,
+        transparent 1px,
+        transparent 44px
+      ),
+      repeating-linear-gradient(
+        0deg,
+        rgba(255, 255, 255, 0.045) 0px,
+        rgba(255, 255, 255, 0.045) 1px,
+        transparent 1px,
+        transparent 44px
+      );
+    opacity: 0.22;
+    mix-blend-mode: overlay;
+    mask-image: radial-gradient(65% 60% at 18% 20%, #000 40%, transparent 78%);
+  }
+
+  .ig-hero__veil::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(800px 420px at 50% 0%, rgba(255, 255, 255, 0.08), transparent 60%);
+    opacity: 0.9;
+    pointer-events: none;
+  }
+
+  .ig-hero__grid {
+    position: relative;
+    z-index: 10;
+    display: grid;
+    grid-template-columns: 1.2fr 0.9fr;
+    gap: clamp(1rem, 4vw, 2.25rem);
+    align-items: start;
+    max-width: 68rem;
+    margin: 0 auto;
+  }
+
+  @media (max-width: 900px) {
+    .ig-hero__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .ig-hero__copy {
+    color: rgba(255, 255, 255, 0.92);
+    padding-right: clamp(0rem, 2vw, 1.25rem);
+  }
+
+  .ig-kicker {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 0.95rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.78);
+    margin: 0 0 1.1rem;
+  }
+
+  .ig-kicker__dot {
+    width: 0.55rem;
+    height: 0.55rem;
     border-radius: 999px;
-    background: linear-gradient(90deg, #ffd166, #ff9f1c, #ffd166);
-    box-shadow: 0 4px 10px rgba(255, 159, 28, 0.45);
-    animation: underlineWiggle 1.6s ease-in-out infinite;
+    background: radial-gradient(circle at 35% 35%, #fff, rgba(255, 255, 255, 0.25) 55%, transparent 70%),
+      radial-gradient(circle at 70% 65%, rgba(120, 210, 220, 0.9), rgba(120, 210, 220, 0.15) 60%, transparent 72%);
+    box-shadow: 0 0 0 6px rgba(120, 210, 220, 0.07);
+  }
+
+  .ig-title {
+    font-weight: 860;
+    line-height: 0.92;
+    letter-spacing: -0.02em;
+    font-size: clamp(2.3rem, 5.7vw, 4.4rem);
+    margin: 0 0 1.1rem;
+    text-wrap: balance;
+    text-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
+  }
+
+  .ig-title__accent {
+    display: inline-block;
+    position: relative;
+  }
+
+  .ig-title__accent::after {
+    content: "";
+    position: absolute;
+    left: -0.06em;
+    right: -0.06em;
+    bottom: -0.14em;
+    height: 0.26em;
+    border-radius: 999px;
+    background: linear-gradient(90deg, rgba(255, 153, 28, 0.9), rgba(255, 209, 102, 0.9));
+    filter: drop-shadow(0 10px 14px rgba(255, 153, 28, 0.25));
+    z-index: -1;
+    opacity: 0.9;
+  }
+
+  .ig-subtitle {
+    font-size: clamp(1.02rem, 1.55vw, 1.25rem);
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.82);
+    margin: 0 0 1.35rem;
+    max-width: 40rem;
+  }
+
+  .ig-hero__meta {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.7rem;
+    margin: 0 0 1.4rem;
+  }
+
+  @media (max-width: 520px) {
+    .ig-hero__meta {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .ig-meta {
+    border-radius: 16px;
+    padding: 0.9rem 0.95rem;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(10px);
+    box-shadow:
+      0 18px 50px rgba(0, 0, 0, 0.22),
+      inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  }
+
+  .ig-meta__label {
+    display: block;
+    font-size: 0.8rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 0.25rem;
+  }
+
+  .ig-meta__value {
+    display: block;
+    font-weight: 780;
+    color: rgba(255, 255, 255, 0.95);
+  }
+
+  .ig-ctaRow {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    flex-wrap: wrap;
+    margin: 0 0 0.85rem;
+  }
+
+  .ig-cta {
+    border-radius: 16px;
+    padding: 0.95rem 1.1rem;
+    font-weight: 760;
+    letter-spacing: 0.01em;
+    transition:
+      transform 180ms ease,
+      box-shadow 180ms ease,
+      background-color 180ms ease,
+      border-color 180ms ease;
+    will-change: transform;
+  }
+
+  .ig-cta__arrow {
+    display: inline-block;
+    transform: translateY(-1px);
+  }
+
+  .ig-cta--primary {
+    background: linear-gradient(180deg, #ffb35d, #ff991c);
+    color: #111112;
+    box-shadow:
+      0 26px 60px rgba(255, 153, 28, 0.28),
+      inset 0 1px 0 rgba(255, 255, 255, 0.35);
+  }
+
+  .ig-cta--primary:hover {
+    transform: translateY(-2px);
+    box-shadow:
+      0 34px 80px rgba(255, 153, 28, 0.35),
+      inset 0 1px 0 rgba(255, 255, 255, 0.45);
+  }
+
+  .ig-cta--ghost {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    color: rgba(255, 255, 255, 0.9);
+    text-decoration: none;
+    padding: 0.95rem 1.1rem;
+    backdrop-filter: blur(10px);
+  }
+
+  .ig-cta--ghost:hover {
+    transform: translateY(-1px);
+    border-color: rgba(255, 255, 255, 0.22);
+    background: rgba(255, 255, 255, 0.08);
+  }
+
+  .ig-fineprint {
+    margin: 0;
+    font-size: 0.98rem;
+    color: rgba(255, 255, 255, 0.75);
+  }
+
+  .ig-ticket {
+    position: relative;
+    border-radius: 22px;
+    overflow: hidden;
+    background:
+      radial-gradient(500px 260px at 25% 15%, rgba(120, 210, 220, 0.18), transparent 62%),
+      linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(247, 248, 251, 0.95));
+    border: 1px solid rgba(255, 255, 255, 0.38);
+    box-shadow:
+      0 40px 90px rgba(0, 0, 0, 0.35),
+      inset 0 1px 0 rgba(255, 255, 255, 0.55);
+  }
+
+  .ig-ticket::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(circle at 18% 22%, rgba(255, 153, 28, 0.16), transparent 55%),
+      radial-gradient(circle at 78% 34%, rgba(56, 0, 153, 0.12), transparent 58%);
+    opacity: 0.9;
+    pointer-events: none;
+  }
+
+  .ig-ticket__top,
+  .ig-ticket__bottom {
+    position: relative;
+    padding: 1.25rem 1.25rem 1.2rem;
+  }
+
+  .ig-ticket__tag {
+    margin: 0 0 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    font-size: 0.88rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(17, 17, 18, 0.72);
+  }
+
+  .ig-ticket__stamp {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.4rem 0.55rem;
+    border-radius: 999px;
+    background: rgba(17, 17, 18, 0.08);
+    border: 1px solid rgba(17, 17, 18, 0.14);
+    font-weight: 860;
+  }
+
+  .ig-ticket__tagText {
+    font-weight: 760;
+  }
+
+  .ig-ticket__title {
+    margin: 0 0 0.7rem;
+    font-weight: 860;
+    letter-spacing: -0.01em;
+    color: #111112;
+    font-size: 1.25rem;
+  }
+
+  .ig-ticket__prices {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.7rem;
+  }
+
+  .ig-price {
+    border-radius: 16px;
+    padding: 0.85rem 0.9rem;
+    background: rgba(255, 255, 255, 0.65);
+    border: 1px solid rgba(17, 17, 18, 0.08);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.55);
+  }
+
+  .ig-price__label {
+    display: block;
+    font-size: 0.8rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(17, 17, 18, 0.65);
+    margin-bottom: 0.2rem;
+  }
+
+  .ig-price__value {
+    display: block;
+    font-weight: 900;
+    letter-spacing: -0.02em;
+    color: #111112;
+    font-size: 1.3rem;
+  }
+
+  .ig-ticket__cut {
+    position: relative;
+    height: 14px;
+    background: transparent;
+  }
+
+  .ig-ticket__cut::before {
+    content: "";
+    position: absolute;
+    left: 18px;
+    right: 18px;
+    top: 50%;
+    height: 1px;
+    transform: translateY(-50%);
+    background: repeating-linear-gradient(
+      90deg,
+      rgba(17, 17, 18, 0.18) 0px,
+      rgba(17, 17, 18, 0.18) 8px,
+      transparent 8px,
+      transparent 14px
+    );
+    opacity: 0.8;
+  }
+
+  .ig-checks {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1rem;
+    display: grid;
+    gap: 0.65rem;
+    color: rgba(17, 17, 18, 0.78);
+    font-size: 0.98rem;
+    line-height: 1.35;
+  }
+
+  .ig-checks li {
+    display: grid;
+    grid-template-columns: 20px 1fr;
+    gap: 0.55rem;
+    align-items: start;
+  }
+
+  .ig-checks__icon {
+    width: 18px;
+    height: 18px;
+    color: hsl(262, 100%, 30%);
+    margin-top: 0.1rem;
+  }
+
+  .ig-ticket__action {
+    margin-top: 0.35rem;
+  }
+
+  .ig-cta--ticket {
+    border-radius: 16px;
+  }
+
+  .ig-ticket__note {
+    margin: 0.65rem 0 0;
+    font-size: 0.92rem;
+    color: rgba(17, 17, 18, 0.62);
+  }
+
+  .ig-course {
+    max-width: 70rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .ig-courseCard {
+    border: 1px solid rgba(56, 0, 153, 0.14);
+    background:
+      radial-gradient(900px 360px at 12% 0%, rgba(120, 210, 220, 0.25), transparent 55%),
+      radial-gradient(760px 360px at 95% 10%, rgba(255, 153, 28, 0.18), transparent 55%),
+      #ffffff;
+    box-shadow: 0 28px 70px rgba(17, 17, 18, 0.08);
+  }
+
+  .ig-courseGrid {
+    display: grid;
+    grid-template-columns: 1.4fr 0.85fr;
+    gap: clamp(1rem, 4vw, 1.75rem);
+    align-items: start;
+  }
+
+  @media (max-width: 900px) {
+    .ig-courseGrid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .ig-medallion {
+    width: 44px;
+    height: 44px;
+    border-radius: 999px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: radial-gradient(circle at 30% 25%, rgba(255, 255, 255, 0.18), transparent 60%),
+      linear-gradient(180deg, hsl(262, 100%, 30%), hsl(262, 40%, 24%));
+    box-shadow:
+      0 16px 34px rgba(56, 0, 153, 0.22),
+      inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  }
+
+  .ig-courseLead {
+    margin: 0.35rem 0 0;
+    color: rgba(56, 0, 153, 0.85);
+    font-weight: 720;
+  }
+
+  .ig-steps {
+    margin: 1rem 0 1.15rem;
+    padding: 0;
+    list-style: none;
+    display: grid;
+    gap: 0.7rem;
+  }
+
+  .ig-steps li {
+    display: grid;
+    grid-template-columns: 44px 1fr;
+    gap: 0.75rem;
+    align-items: center;
+    padding: 0.85rem 0.9rem;
+    border-radius: 16px;
+    border: 1px solid rgba(17, 17, 18, 0.08);
+    background: rgba(255, 255, 255, 0.7);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.65);
+  }
+
+  .ig-steps__n {
+    font-weight: 920;
+    letter-spacing: 0.08em;
+    color: rgba(56, 0, 153, 0.75);
+  }
+
+  .ig-steps__t {
+    color: rgba(17, 17, 18, 0.78);
+    line-height: 1.35;
+  }
+
+  .ig-checks--course {
+    margin-top: 0.25rem;
+  }
+
+  .ig-courseAside {
+    padding: 1.25rem 1.25rem 1.35rem;
+  }
+
+  .ig-photoFrame {
+    border-radius: 18px;
+    overflow: hidden;
+    border: 1px solid rgba(17, 17, 18, 0.12);
+    box-shadow:
+      0 22px 55px rgba(0, 0, 0, 0.12),
+      inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    background: #111112;
+  }
+
+  .ig-photoFrame img {
+    width: 100%;
+    height: auto;
+    display: block;
+    filter: contrast(1.04) saturate(1.03);
+  }
+
+  .ig-asideCaption {
+    margin: 0.9rem 0 0;
+    color: rgba(17, 17, 18, 0.68);
+    line-height: 1.5;
+  }
+
+  .ig-faq {
+    border-radius: 18px;
+    border: 1px solid rgba(56, 0, 153, 0.12);
+    background: #ffffff;
+    box-shadow:
+      0 18px 55px rgba(17, 17, 18, 0.06),
+      inset 0 1px 0 rgba(255, 255, 255, 0.6);
+    overflow: hidden;
+  }
+
+  .ig-faq summary {
+    cursor: pointer;
+    list-style: none;
+    padding: 1rem 1.05rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    color: #111112;
+    font-weight: 820;
+  }
+
+  .ig-faq summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .ig-faq__q {
+    font-size: 1.08rem;
+  }
+
+  .ig-faq__chev {
+    width: 12px;
+    height: 12px;
+    border-right: 2px solid rgba(17, 17, 18, 0.62);
+    border-bottom: 2px solid rgba(17, 17, 18, 0.62);
+    transform: rotate(45deg);
+    transition: transform 180ms ease;
+    flex: 0 0 auto;
+    margin-right: 0.25rem;
+  }
+
+  .ig-faq[open] .ig-faq__chev {
+    transform: rotate(-135deg);
+  }
+
+  .ig-faq__a {
+    padding: 0 1.05rem 1.05rem;
+    color: rgba(17, 17, 18, 0.72);
+    line-height: 1.6;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .ig-cta,
+    .ig-faq__chev {
+      transition: none;
+    }
+
+    .ig-hero__video {
+      transform: none;
+    }
   }
 </style>
