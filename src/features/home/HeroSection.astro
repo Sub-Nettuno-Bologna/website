@@ -5,7 +5,7 @@ import Button from "@/components/primitives/Button.astro";
 import SectionContainer from "@/components/layout/Section.astro";
 import { buildImageUrl } from "@/lib/sanity";
 
-export interface Props extends Hero {}
+export type Props = Pick<Hero, "images" | "subtitle" | "buttons" | "title">;
 
 const { images, subtitle, buttons, title } = Astro.props;
 
