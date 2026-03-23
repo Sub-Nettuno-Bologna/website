@@ -33,3 +33,5 @@ public/assets/oramaDB_*.json
 .sanity/
 # Local Netlify folder
 .netlify
+# local vercel folder
+.vercel/output

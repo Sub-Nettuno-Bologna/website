@@ -1,0 +1,31 @@
+---
+import Card from "@/components/primitives/Card/Card.astro";
+import CardContent from "@/components/primitives/Card/CardContent.astro";
+import { Shield } from "@lucide/astro";
+import { pagesData } from "@/data/pages";
+
+export interface Props {
+  /** Wrapper classes; default adds top margin for use below a list */
+  class?: string;
+}
+
+const { class: className = "max-w-3xl mx-auto mt-10" } = Astro.props;
+const { path, promoCard: t } = pagesData.safeguarding;
+---
+
+<div class={className}>
+  <Card class="border-l-4 border-l-secondary bg-secondary/5">
+    <CardContent class="pt-6">
+      <div class="flex items-start gap-3">
+        <Shield class="w-6 h-6 text-secondary mt-0.5 flex-shrink-0" aria-hidden="true" />
+        <div>
+          <h2 class="text-lg font-semibold text-gray-900 mb-2">{t.title}</h2>
+          <p class="text-gray-700 leading-relaxed">
+            {t.description}
+            <a href={path} class="text-primary font-medium hover:underline">{t.linkText}</a>
+          </p>
+        </div>
+      </div>
+    </CardContent>
+  </Card>
+</div>

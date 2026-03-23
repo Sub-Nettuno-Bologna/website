@@ -1,0 +1,97 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import SectionContainer from "@/components/layout/Section.astro";
+import SectionHeader from "@/components/layout/SectionHeader.astro";
+import Card from "@/components/primitives/Card/Card.astro";
+import CardContent from "@/components/primitives/Card/CardContent.astro";
+import { getClubData } from "@/services/club";
+import { Shield } from "@lucide/astro";
+import { pagesData } from "@/data/pages";
+
+const clubData = await getClubData();
+const clubName = clubData?.clubName || "Sub Nettuno ASD";
+const s = pagesData.safeguarding;
+
+const pageTitle = s.pageTitle;
+const pageDescription = s.metaDescription(clubName);
+const telHref = `tel:${s.responsible.phone.replace(/\s/g, "")}`;
+---
+
+<Layout title={pageTitle} description={pageDescription}>
+  <SectionContainer id="safeguarding" background="white" padding="lg">
+    <SectionHeader
+      title={pageTitle}
+      subtitle={s.subtitle(clubName)}
+      titleColor="secondary"
+      subtitleColor="gray-600"
+      titleSize="xl"
+      hasBreadcrumbs={true}
+    />
+
+    <div class="max-w-3xl mx-auto mt-12 space-y-12 text-gray-700 leading-relaxed">
+      <section>
+        <h2 class="text-2xl font-semibold text-secondary mb-4 flex items-center gap-2">
+          <Shield class="w-7 h-7 text-primary flex-shrink-0" aria-hidden="true" />
+          {s.whatIs.title}
+        </h2>
+        <p>{s.whatIs.body}</p>
+      </section>
+
+      <section>
+        <h2 class="text-2xl font-semibold text-secondary mb-4">{s.commitments.title}</h2>
+        <ul class="list-disc pl-6 space-y-2">
+          {s.commitments.items.map((item) => <li>{item}</li>)}
+        </ul>
+      </section>
+
+      <section>
+        <h2 class="text-2xl font-semibold text-secondary mb-4">{s.reporting.title}</h2>
+        <p class="mb-6">{s.reporting.body}</p>
+        <Card class="border-l-4 border-l-primary">
+          <CardContent class="pt-6">
+            <h3 class="text-lg font-semibold text-gray-900 mb-4">{s.responsible.cardTitle}</h3>
+            <dl class="space-y-2 text-gray-800">
+              <div>
+                <dt class="font-medium text-gray-600">{s.responsible.labels.name}</dt>
+                <dd>{s.responsible.name}</dd>
+              </div>
+              <div>
+                <dt class="font-medium text-gray-600">{s.responsible.labels.email}</dt>
+                <dd>
+                  <a href={`mailto:${s.responsible.email}`} class="text-primary hover:underline">
+                    {s.responsible.email}
+                  </a>
+                </dd>
+              </div>
+              <div>
+                <dt class="font-medium text-gray-600">{s.responsible.labels.phone}</dt>
+                <dd>
+                  <a href={telHref} class="text-primary hover:underline">{s.responsible.phone}</a>
+                </dd>
+              </div>
+            </dl>
+          </CardContent>
+        </Card>
+      </section>
+
+      <section>
+        <h2 class="text-2xl font-semibold text-secondary mb-4">{s.resources.title}</h2>
+        <ul class="space-y-3">
+          {s.resources.items.map((doc) => (
+            <li>
+              <a
+                href={doc.href}
+                class="text-primary font-medium hover:underline"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {doc.label}
+              </a>
+              <span class="text-gray-500 text-sm">{s.resources.pdfSuffix}</span>
+            </li>
+          ))}
+        </ul>
+      </section>
+    </div>
+  </SectionContainer>
+</Layout>

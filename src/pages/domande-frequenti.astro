@@ -4,6 +4,7 @@ import SectionContainer from "@/components/layout/Section.astro";
 import SectionHeader from "@/components/layout/SectionHeader.astro";
 import Card from "@/components/primitives/Card/Card.astro";
 import CardContent from "@/components/primitives/Card/CardContent.astro";
+import SafeguardingPromoCard from "@/components/common/SafeguardingPromoCard.astro";
 import { HelpCircle } from "@lucide/astro";
 import { getFaqPage } from "@/services/faq";
 import ContactSection from "@/features/contact/ContactSection.astro";
@@ -56,6 +57,8 @@ const pageDescription =
         <p>Nessuna domanda disponibile al momento.</p>
       </div>
     )}
+
+    <SafeguardingPromoCard />
   </SectionContainer>
 
   <!-- Contact Section -->

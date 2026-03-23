@@ -78,6 +78,7 @@ export interface PagesData {
         staff: string;
         certificazioni: string;
         galleria: string;
+        safeguarding: string;
       };
     };
     pagination: {
@@ -190,6 +191,33 @@ export interface PagesData {
     form: {
       placeholder: string;
       buttonText: string;
+    };
+  };
+  safeguarding: {
+    path: string;
+    shortTitle: string;
+    pageTitle: string;
+    metaDescription: (clubName: string) => string;
+    subtitle: (clubName: string) => string;
+    whatIs: { title: string; body: string };
+    commitments: { title: string; items: string[] };
+    reporting: { title: string; body: string };
+    responsible: {
+      cardTitle: string;
+      labels: { name: string; email: string; phone: string };
+      name: string;
+      email: string;
+      phone: string;
+    };
+    resources: {
+      title: string;
+      pdfSuffix: string;
+      items: { href: string; label: string }[];
+    };
+    promoCard: {
+      title: string;
+      description: string;
+      linkText: string;
     };
   };
 }
@@ -344,6 +372,60 @@ export const pagesData: PagesData = {
       buttonText: "Iscriviti",
     },
   },
+  safeguarding: {
+    path: "/safeguarding",
+    shortTitle: "Safeguarding",
+    pageTitle: "Safeguarding – Protezione e Benessere degli Atleti",
+    metaDescription: (clubName: string) =>
+      `${clubName} – Impegno per un ambiente sportivo sicuro. Informazioni su tutela, segnalazioni e documenti utili.`,
+    subtitle: (clubName: string) => `${clubName} – Impegno per un ambiente sportivo sicuro`,
+    whatIs: {
+      title: "Cos'è il Safeguarding",
+      body: "Il Safeguarding comprende tutte le misure adottate per garantire la sicurezza, la tutela e il benessere di bambini, ragazzi e adulti vulnerabili all'interno dell'ambiente sportivo. La nostra ASD si impegna a creare un luogo sano, inclusivo e rispettoso, prevenendo ogni forma di abuso, discriminazione o comportamento inappropriato.",
+    },
+    commitments: {
+      title: "I nostri impegni",
+      items: [
+        "Creare un ambiente sportivo accogliente e sicuro per tutti.",
+        "Prevenire comportamenti inappropriati, molestie e abusi.",
+        "Formare allenatori, dirigenti e volontari sui principi del safeguarding.",
+        "Promuovere una cultura del rispetto, dell'ascolto e della trasparenza.",
+        "Gestire in modo tempestivo e appropriato eventuali segnalazioni.",
+      ],
+    },
+    reporting: {
+      title: "Segnalazioni e supporto",
+      body: "Chiunque – atleti, genitori, tecnici o spettatori – può segnalare situazioni problematiche, comportamenti scorretti o rischi per la sicurezza degli atleti.",
+    },
+    responsible: {
+      cardTitle: "Responsabile Safeguarding ASD",
+      labels: {
+        name: "Nome",
+        email: "Email",
+        phone: "Telefono",
+      },
+      name: "Piccini Martin",
+      email: "martin.piccini.contatto@gmail.com",
+      phone: "+39 334 2338263",
+    },
+    resources: {
+      title: "Risorse e documenti utili",
+      pdfSuffix: " (PDF)",
+      items: [
+        { href: "/docs/codice-etico.pdf", label: "Codice etico e di condotta ASD" },
+        {
+          href: "/docs/org.pdf",
+          label: "Modello organizzativo e di controllo dell'attività sportiva",
+        },
+      ],
+    },
+    promoCard: {
+      title: "Safeguarding",
+      description:
+        "Per tutela, benessere degli atleti e segnalazioni in ambito sportivo trovi informazioni e contatti del responsabile nella pagina dedicata. ",
+      linkText: "Vai a Safeguarding",
+    },
+  },
   ui: {
     ages: {
       minimum: "14+ anni",
@@ -399,6 +481,7 @@ export const pagesData: PagesData = {
         staff: "Staff",
         certificazioni: "Certificazioni",
         galleria: "Galleria",
+        safeguarding: "Safeguarding",
       },
     },
     pagination: {

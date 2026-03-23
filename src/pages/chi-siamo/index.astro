@@ -2,6 +2,8 @@
 import Layout from "@/layouts/Layout.astro";
 import AboutSection from "@/features/about/AboutSection.astro";
 import CardSection from "@/components/layout/CardSection.astro";
+import SectionContainer from "@/components/layout/Section.astro";
+import SafeguardingPromoCard from "@/components/common/SafeguardingPromoCard.astro";
 import { getAboutUs } from "@/services/aboutus";
 import { getClubData } from "@/services/club";
 const about = await getAboutUs();
@@ -31,6 +33,10 @@ const clubData = await getClubData();
       />
     ))
   }
+
+  <SectionContainer background="white" padding="lg">
+    <SafeguardingPromoCard class="max-w-3xl mx-auto" />
+  </SectionContainer>
 
   <!-- <section class="text-center py-16">
     <div
