@@ -7,29 +7,28 @@ import { buildImageUrl } from "@/lib/sanity";
 import { formatDate } from "@/lib/utils";
 
 export interface Props {
-  post: Required<Blog>;
-  featured?: boolean;
+  post: Blog;
 }
 
-const { post, featured = false } = Astro.props;
-const cardClass = featured ? "md:col-span-2" : "";
+const { post } = Astro.props;
+const slug = post.slug?.current;
 ---
 
-<article class={`group ${cardClass}`}>
+<article class="group">
   <FeatureCard
     blurred
-    title={post.title}
+    title={post.title ?? ""}
     description={post.excerpt}
     image={buildImageUrl(post.featuredImage, { width: 500, height: 650 })}
     details={[
       {
         icon: Calendar,
-        text: formatDate(post.publishedAt),
+        text: formatDate(post.publishedAt ?? ""),
       },
     ]}
     action={{
       text: pagesData.commons.learnMore,
-      href: `/blog/${post.slug.current}`,
+      href: slug ? `/blog/${slug}` : "#",
       color: "secondary",
     }}
   />

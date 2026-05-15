@@ -12,11 +12,6 @@ const totalPages = getTotalPages(totalCount, DEFAULT_PAGE_SIZE);
 ---
 
 <Layout title="Blog">
-  <BlogSection
-    posts={posts}
-    title={pagesData.blog.title}
-    subtitle={pagesData.blog.subtitle}
-    showFeatured={true}
-  />
+  <BlogSection posts={posts} title={pagesData.blog.title} subtitle={pagesData.blog.subtitle} />
   <Pagination currentPage={1} totalPages={totalPages} indexPath="/blog" pageBasePath="/blog/page" />
 </Layout>

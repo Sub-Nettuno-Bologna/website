@@ -17,7 +17,7 @@ export async function getBlogPosts(options?: BlogListOptions): Promise<Blog[]> {
 
     const BLOGS_PAGE_QUERY = `*[
         _type == "blog" && defined(slug.current)
-      ] | order(publishedAt desc) [$offset...$end] {
+      ] | order(coalesce(featured, false) desc, publishedAt desc) [$offset...$end] {
         _id,
         _type,
         title,
@@ -34,7 +34,7 @@ export async function getBlogPosts(options?: BlogListOptions): Promise<Blog[]> {
 
   const BLOGS_QUERY = `*[
         _type == "blog" && defined(slug.current)
-      ] | order(publishedAt desc) {
+      ] | order(coalesce(featured, false) desc, publishedAt desc) {
         _id,
         _type,
         title,
