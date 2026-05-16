@@ -35,3 +35,6 @@ public/assets/oramaDB_*.json
 .netlify
 # local vercel folder
 .vercel/output
+
+# commandcode folder
+.commandcode

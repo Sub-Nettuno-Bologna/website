@@ -7,8 +7,6 @@ import react from "@astrojs/react";
 import playformCompress from "@playform/compress";
 import vercel from "@astrojs/vercel";
 import node from "@astrojs/node";
-import orama from "@orama/plugin-astro";
-
 let adapter = vercel();
 
 if (process.argv[3] === "--node" || process.argv[4] === "--node") {
@@ -51,16 +49,7 @@ export default defineConfig({
 
   adapter,
 
-  integrations: [orama({
-    search: {
-      // Exclude the Studio and the events pagination routes from indexing
-      // - /admin/**
-      // - /eventi/page/*
-      pathMatcher: /^(?!admin)(?!eventi\/page\/).*$/,
-      language: "italian",
-      contentSelectors: ["main#content"],
-    },
-  }), sitemaps(), react(), sanity({
+  integrations: [sitemaps(), react(), sanity({
     // TODO: temporary hardcoded values
     projectId: process.env.PUBLIC_SANITY_PROJECT_ID || "r56dtkaq",
     dataset: process.env.PUBLIC_SANITY_DATASET || "production",

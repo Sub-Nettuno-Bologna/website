@@ -23,9 +23,9 @@ importers:
       '@lucide/astro':
         specifier: ^0.518.0
         version: 0.518.0(astro@6.3.3(@netlify/blobs@10.4.3)(@types/node@25.8.0)(@vercel/functions@3.5.1)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.60.4)(terser@5.46.1)(tsx@4.22.0)(yaml@2.9.0))
-      '@orama/plugin-astro':
+      '@orama/orama':
         specifier: ^3.1.18
-        version: 3.1.18(astro@6.3.3(@netlify/blobs@10.4.3)(@types/node@25.8.0)(@vercel/functions@3.5.1)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.60.4)(terser@5.46.1)(tsx@4.22.0)(yaml@2.9.0))
+        version: 3.1.18
       '@playform/compress':
         specifier: ^0.2.3
         version: 0.2.3(@netlify/blobs@10.4.3)(@types/node@25.8.0)(@vercel/functions@3.5.1)(jiti@2.7.0)(rollup@4.60.4)(tsx@4.22.0)(yaml@2.9.0)
@@ -150,6 +150,9 @@ importers:
       globals:
         specifier: ^16.5.0
         version: 16.5.0
+      html-to-text:
+        specifier: ^9.0.5
+        version: 9.0.5
       prettier:
         specifier: 3.6.1
         version: 3.6.1
@@ -2491,12 +2494,6 @@ packages:
   '@orama/orama@3.1.18':
     resolution: {integrity: sha512-a61ljmRVVyG5MC/698C8/FfFDw5a8LOIvyOLW5fztgUXqUpc1jOfQzOitSCbge657OgXXThmY3Tk8fpiDb4UcA==}
     engines: {node: '>= 20.0.0'}
-
-  '@orama/plugin-astro@3.1.18':
-    resolution: {integrity: sha512-6JZAkwMwEPIFE39EfbNS86w8hH6aVCV+EtwBJblBfR0xCkG9EjcMBRNSm2swYcTxaQCG2NydAEIF6yD/3hjp2w==}
-    engines: {node: '>= 20.0.0'}
-    peerDependencies:
-      astro: ^2.0.4
 
   '@oslojs/encoding@1.1.0':
     resolution: {integrity: sha512-70wQhgYmndg4GCPxPPxPGevRKqTIJ2Nh4OkiMWmDAVYsTQ+Ta7Sq+rPevXyXGdzr30/qZBnyOalCszoMxlyldQ==}
@@ -10352,12 +10349,6 @@ snapshots:
     optional: true
 
   '@orama/orama@3.1.18': {}
-
-  '@orama/plugin-astro@3.1.18(astro@6.3.3(@netlify/blobs@10.4.3)(@types/node@25.8.0)(@vercel/functions@3.5.1)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.60.4)(terser@5.46.1)(tsx@4.22.0)(yaml@2.9.0))':
-    dependencies:
-      '@orama/orama': 3.1.18
-      astro: 6.3.3(@netlify/blobs@10.4.3)(@types/node@25.8.0)(@vercel/functions@3.5.1)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.60.4)(terser@5.46.1)(tsx@4.22.0)(yaml@2.9.0)
-      html-to-text: 9.0.5
 
   '@oslojs/encoding@1.1.0': {}
 

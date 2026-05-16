@@ -67,7 +67,7 @@ import { Search, X } from "@lucide/astro";
 
 <script>
   // @ts-nocheck
-  import { getOramaDB, search } from "@orama/plugin-astro/client";
+  import { create, load, search } from "@orama/orama";
 
   const DEFAULT_SITE_TITLE =
     "Corsi Subacquea e Apnea Bologna | Club Sub Nettuno – Scuola Sub dal 1984";
@@ -151,7 +151,13 @@ import { Search, X } from "@lucide/astro";
 
     let dbPromise = null;
     async function ensureDb() {
-      if (!dbPromise) dbPromise = getOramaDB("search");
+      if (!dbPromise) {
+        const db = create({ schema: { path: "string", title: "string", h1: "string", content: "string" } });
+        const res = await fetch("/assets/oramaDB_search.json");
+        const data = await res.json();
+        await load(db, data);
+        dbPromise = db;
+      }
       return dbPromise;
     }
 
@@ -265,6 +271,7 @@ import { Search, X } from "@lucide/astro";
         for (const hit of hits || []) {
           const doc = hit?.document || hit?.doc || hit || {};
           const path = doc?.path || doc?.url || doc?.href || "";
+          console.log("hit", { path, title: doc?.title, h1: doc?.h1 });
           const metaTitle = String(doc?.title || "").trim();
           const h1Title = bestHeadingFromH1(doc?.h1);
           const title =
