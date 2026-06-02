@@ -8,6 +8,7 @@ export interface Props {
   description?: any;
   image: string;
   blurred?: boolean;
+  descriptionClamp?: boolean;
   details: {
     icon: any;
     text: string;
@@ -28,7 +29,7 @@ export interface Props {
       }>;
 }
 
-const { title, description, image, details, action, blurred = true, badge } = Astro.props;
+const { title, description, image, details, action, blurred = true, descriptionClamp = true, badge } = Astro.props;
 
 const badges = Array.isArray(badge) ? badge : badge ? [badge] : [];
 const getBadgeVariant = (color?: "primary" | "accent" | "secondary" | "tertiary") =>
@@ -87,7 +88,7 @@ const getBadgeVariant = (color?: "primary" | "accent" | "secondary" | "tertiary"
         <h3 class="text-lg md:text-xl font-semibold tracking-tight leading-snug text-tertiary">
           {title}
         </h3>
-        <div class="mt-2 text-sm leading-relaxed text-gray-600 line-clamp-3">
+        <div class={`mt-2 text-sm leading-relaxed text-gray-600 ${descriptionClamp ? 'line-clamp-3' : ''}`}>
           {typeof description === "string" ? description : <PortableText value={description} />}
         </div>
         <div class="mt-3 md:mt-4 md:mb-4 space-y-2 text-sm text-gray-500">
