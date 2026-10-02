@@ -1,0 +1,14 @@
+{
+  "linkset": [
+    {
+      "anchor": "https://www.subnettuno.it/",
+      "describedby": [
+        {
+          "href": "https://www.subnettuno.it/sitemap-index.xml",
+          "type": "application/xml",
+          "title": "Sitemap index"
+        }
+      ]
+    }
+  ]
+}

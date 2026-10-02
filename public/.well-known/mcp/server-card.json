@@ -1,0 +1,26 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/mcp-server-card/v1.json",
+  "version": "1.0",
+  "protocolVersion": "2025-06-18",
+  "serverInfo": {
+    "name": "sub-nettuno",
+    "title": "Club Sub Nettuno",
+    "version": "0.0.1"
+  },
+  "description": "Club Sub Nettuno: Scuola di subacquea e apnea a Bologna dal 1984. Corsi sub base, apnea e specialità con brevetti FIPSAS/CMAS riconosciuti in tutto il mondo. Prova sub e apnea gratuita, istruttori certificati, piscina a Bologna.",
+  "iconUrl": "https://subnettuno.it/android-chrome-512x512.png",
+  "documentationUrl": "https://subnettuno.it/",
+  "transport": {
+    "type": "streamable-http",
+    "endpoint": "/mcp"
+  },
+  "capabilities": {
+    "tools": {},
+    "resources": {},
+    "prompts": {}
+  },
+  "authentication": {
+    "required": false,
+    "schemes": []
+  }
+}

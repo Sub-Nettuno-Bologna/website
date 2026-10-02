@@ -4,7 +4,7 @@
   "version": "0.0.1",
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build && node scripts/generate-search-db.js",
+    "build": "astro build && node scripts/generate-search-db.js && tsx scripts/apply-discovery-headers.ts",
     "build:node": "astro build --node && node scripts/generate-search-db.js",
     "preview": "astro preview --node",
     "astro": "astro",
