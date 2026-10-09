@@ -310,7 +310,7 @@ export const pagesData: PagesData = {
       exam: "Prova finale",
     },
     sections: {
-      description: "Descrizione del corso",
+      description: "Il percorso",
       whatYouWillLearn: "Cosa Imparerai",
       structure: "Struttura del corso",
       kit: "Kit didattico incluso",

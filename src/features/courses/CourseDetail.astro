@@ -34,6 +34,10 @@ export interface Props {
 }
 
 const { course, scubaDiving = false } = Astro.props;
+const isAraOrApneaCourse = [
+  "course_1-grado-ar", "course_2-grado-ar", "course_3-grado-ar",
+  "course_1-grado-apnea-indoor", "course_2-grado-apnea-indoor", "course_3-grado-apnea-indoor",
+].includes(course._id);
 ---
 
 <div class="mx-auto px-4">
@@ -106,6 +110,11 @@ const { course, scubaDiving = false } = Astro.props;
         <p class="mt-2 text-muted-foreground">
           {course.certification}
         </p>
+        {isAraOrApneaCourse && (
+          <p class="mt-2 text-sm text-muted-foreground">
+            Brevetto riconosciuto in tutto il mondo.
+          </p>
+        )}
       </div>
     </div>
   </section>
@@ -117,9 +126,9 @@ const { course, scubaDiving = false } = Astro.props;
         <CardTitle class="text-3xl">{pagesData.courseDetail.sections.description}</CardTitle>
       </CardHeader>
       <CardContent>
-        <p class="text-lg text-muted-foreground">
+        <div class="text-lg text-muted-foreground space-y-4">
           <PortableText value={course.description || []} />
-        </p>
+        </div>
       </CardContent>
     </Card>
 
@@ -165,6 +174,11 @@ const { course, scubaDiving = false } = Astro.props;
               })
             }
           </ul>
+          {isAraOrApneaCourse && (
+            <p class="text-sm text-muted-foreground">
+              Contattaci per confermare il calendario del tuo corso.
+            </p>
+          )}
         </CardContent>
       </Card>
     </div>

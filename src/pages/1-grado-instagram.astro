@@ -9,13 +9,17 @@ import CardHeader from "@/components/primitives/Card/CardHeader.astro";
 import CardTitle from "@/components/primitives/Card/CardTitle.astro";
 import ContactSection from "@/features/contact/ContactSection.astro";
 import { Award, CheckCircle } from "@lucide/astro";
+import { getCourse } from "@/services/courses";
+
+const course = await getCourse({ slug: "1-grado-ar" });
+if (!course) throw new Error("Corso di 1° grado ARA non disponibile per la landing Instagram.");
 ---
 
 <Layout
   noWaves={true}
   noindex={true}
-  title="Promo Instagram — Corso Sub 1° livello a Bologna | Club Sub Nettuno"
-  description="Corso Sub 1° livello: 12 lezioni in 3 mesi, piscina a Bologna + uscita finale in mare. Promo Instagram: -10% oppure -15% se porti un amico."
+  title="Corso Sub 1° grado a Bologna da Instagram | Club Sub Nettuno"
+  description="Corso sub di 1° grado a Bologna, con teoria, piscina e immersioni in mare. Frequenza concordata e contributo variabile: contattaci per informazioni."
 >
   <!-- Hero Section -->
   <SectionContainer
@@ -41,10 +45,10 @@ import { Award, CheckCircle } from "@lucide/astro";
       <div class="ig-hero__copy">
         <p class="ig-kicker">
           <span class="ig-kicker__dot" aria-hidden="true"></span>
-          Promo Instagram
+          Dal nostro Instagram
         </p>
         <h1 class="ig-title">
-          Corso Sub <span class="ig-title__accent">1° livello</span>
+          Corso Sub <span class="ig-title__accent">1° grado</span>
         </h1>
         <p class="ig-subtitle">
           Parti da zero, fai pratica in piscina, e chiudi con l’uscita finale in mare. Un percorso completo, guidato,
@@ -53,12 +57,12 @@ import { Award, CheckCircle } from "@lucide/astro";
 
         <div class="ig-hero__meta" aria-label="Dettagli corso">
           <div class="ig-meta">
-            <span class="ig-meta__label">Durata</span>
-            <span class="ig-meta__value">12 lezioni</span>
+            <span class="ig-meta__label">Periodo</span>
+            <span class="ig-meta__value">{course.coursePeriod}</span>
           </div>
           <div class="ig-meta">
-            <span class="ig-meta__label">Percorso</span>
-            <span class="ig-meta__value">3 mesi</span>
+            <span class="ig-meta__label">Frequenza</span>
+            <span class="ig-meta__value">Uno o entrambi i giorni di piscina.</span>
           </div>
           <div class="ig-meta">
             <span class="ig-meta__label">Dove</span>
@@ -68,33 +72,24 @@ import { Award, CheckCircle } from "@lucide/astro";
 
         <div class="ig-ctaRow">
           <Button href="#contatti" size="lg" class="ig-cta ig-cta--primary">
-            Richiedi la promo
+            Richiedi informazioni
             <span class="ig-cta__arrow" aria-hidden="true">→</span>
           </Button>
           <a class="ig-cta ig-cta--ghost" href="#corsi">Vedi programma</a>
         </div>
         <p class="ig-fineprint">
-          Sconto: <strong>10%</strong> da solo oppure <strong>15%</strong> se porti un amico (si applica a entrambi).
+          Puoi iniziare anche a corso avviato, recuperando le lezioni.
         </p>
       </div>
 
-      <aside class="ig-ticket" aria-label="Riepilogo promo">
+      <aside class="ig-ticket" aria-label="Informazioni corso">
         <div class="ig-ticket__top">
           <p class="ig-ticket__tag">
-            <span class="ig-ticket__stamp">PROMO</span>
+            <span class="ig-ticket__stamp">Informazioni corso</span>
             <span class="ig-ticket__tagText">Instagram</span>
           </p>
-          <p class="ig-ticket__title">Prezzo promo</p>
-          <div class="ig-ticket__prices">
-            <div class="ig-price">
-              <span class="ig-price__label">Da solo</span>
-              <span class="ig-price__value">297€</span>
-            </div>
-            <div class="ig-price">
-              <span class="ig-price__label">Con amico</span>
-              <span class="ig-price__value">280€</span>
-            </div>
-          </div>
+          <p class="ig-ticket__title">Contributo</p>
+          <p class="ig-ticket__contribution">{course.contributionNote}</p>
         </div>
 
         <div class="ig-ticket__cut" aria-hidden="true"></div>
@@ -111,7 +106,7 @@ import { Award, CheckCircle } from "@lucide/astro";
             </li>
             <li>
               <CheckCircle class="ig-checks__icon" />
-              Posti limitati: ti rispondiamo e blocchiamo la disponibilità
+              Contattaci per concordare il percorso con gli istruttori.
             </li>
           </ul>
 
@@ -130,7 +125,7 @@ import { Award, CheckCircle } from "@lucide/astro";
   <!-- Courses Section -->
   <SectionContainer id="corsi" background="gray" padding="lg">
     <SectionHeader
-      title="Corso 1 livello"
+      title="Corso Sub 1° grado"
       subtitle="Il percorso ideale per iniziare e ottenere il tuo brevetto"
       titleColor="secondary"
       subtitleColor="gray-600"
@@ -147,7 +142,7 @@ import { Award, CheckCircle } from "@lucide/astro";
                 <div class="ig-medallion" aria-hidden="true">
                   <Award class="w-5 h-5 text-white" />
                 </div>
-                <CardTitle class="text-2xl text-primary">Corso Subacqueo 1° livello</CardTitle>
+                <CardTitle class="text-2xl text-primary">Corso Sub 1° grado</CardTitle>
               </div>
               <p class="ig-courseLead">Teoria + piscina + uscita finale in mare</p>
             </CardHeader>
@@ -158,19 +153,17 @@ import { Award, CheckCircle } from "@lucide/astro";
               </p>
 
               <ol class="ig-steps" aria-label="Programma in breve">
-                <li>
-                  <span class="ig-steps__n">01</span>
-                  <span class="ig-steps__t">Le basi: attrezzatura, respirazione, segnali, sicurezza</span>
-                </li>
-                <li>
-                  <span class="ig-steps__n">02</span>
-                  <span class="ig-steps__t">Piscina: esercizi pratici, assetto e confidenza</span>
-                </li>
-                <li>
-                  <span class="ig-steps__n">03</span>
-                  <span class="ig-steps__t">Uscita finale in mare: metti insieme tutto con l’istruttore</span>
-                </li>
+                {(course.structure || []).map((item, index) => (
+                  <li>
+                    <span class="ig-steps__n">{String(index + 1).padStart(2, "0")}</span>
+                    <span class="ig-steps__t">
+                      <strong class="block">{item.title}</strong>
+                      {item.description}
+                    </span>
+                  </li>
+                ))}
               </ol>
+              <p class="text-sm text-gray-600 mb-4">Contattaci per confermare il calendario del tuo corso.</p>
 
               <ul class="ig-checks ig-checks--course">
                 <li>
@@ -179,17 +172,17 @@ import { Award, CheckCircle } from "@lucide/astro";
                 </li>
                 <li>
                   <CheckCircle class="ig-checks__icon" />
-                  Lezioni distribuite in 3 mesi (12 incontri)
+                  {course.enrollmentNote}
                 </li>
                 <li>
                   <CheckCircle class="ig-checks__icon" />
-                  Promo: 297€ da solo oppure 280€ in 2 (invece di 330€)
+                  {course.contributionNote}
                 </li>
               </ul>
 
               <div class="mt-6 flex flex-col sm:flex-row gap-3">
                 <Button href="#contatti" variant="default" class="ig-cta ig-cta--primary sm:flex-1">
-                  Blocca il tuo posto
+                  Parliamone insieme
                   <span class="ig-cta__arrow" aria-hidden="true">→</span>
                 </Button>
                 <a class="ig-cta ig-cta--ghost sm:flex-1 text-center" href="#faq">Dubbi? Leggi le FAQ</a>
@@ -201,7 +194,7 @@ import { Award, CheckCircle } from "@lucide/astro";
             <div class="ig-photoFrame">
               <img
                 src="/media/images/certification/p1_front.jpg"
-                alt="Esempio di brevetto subacqueo 1° livello"
+                alt="Esempio di brevetto subacqueo 1° grado"
                 loading="lazy"
                 width="720"
                 height="480"
@@ -235,7 +228,7 @@ import { Award, CheckCircle } from "@lucide/astro";
           <span class="ig-faq__chev" aria-hidden="true"></span>
         </summary>
         <div class="ig-faq__a">
-          No: il Corso 1° livello parte da zero. Ti seguiamo passo dopo passo, con progressioni chiare e massima
+          No: il Corso 1° grado parte da zero. Ti seguiamo passo dopo passo, con progressioni chiare e massima
           sicurezza.
         </div>
       </details>
@@ -245,7 +238,10 @@ import { Award, CheckCircle } from "@lucide/astro";
           <span class="ig-faq__q">Quanto dura il corso?</span>
           <span class="ig-faq__chev" aria-hidden="true"></span>
         </summary>
-        <div class="ig-faq__a">12 lezioni distribuite in circa 3 mesi.</div>
+        <div class="ig-faq__a">
+          Il corso si svolge abitualmente {course.coursePeriod?.replace(/^Da /, "da ")}
+          Concordiamo la frequenza in base alle tue esigenze.
+        </div>
       </details>
 
       <details class="ig-faq">
@@ -269,12 +265,11 @@ import { Award, CheckCircle } from "@lucide/astro";
 
       <details class="ig-faq">
         <summary>
-          <span class="ig-faq__q">Come funziona la promo?</span>
+          <span class="ig-faq__q">Qual è il contributo per partecipare?</span>
           <span class="ig-faq__chev" aria-hidden="true"></span>
         </summary>
         <div class="ig-faq__a">
-          -10% se ti iscrivi da solo, oppure -15% se porti un amico: lo sconto si applica a entrambi al momento
-          dell’iscrizione.
+          {course.contributionNote}
         </div>
       </details>
     </div>
@@ -283,8 +278,8 @@ import { Award, CheckCircle } from "@lucide/astro";
   <!-- Contact Section -->
   <ContactSection
     hasBreadcrumbs={false}
-    formHiddenFields={{ campaign: "Sconto Instagram" }}
-    formDefaultMessage="Ciao! Vi contatto da Instagram: sono interessato alla promo per il Corso 1 livello (10% da solo o 15% con un amico). Vorrei informazioni su..."
+    formHiddenFields={{ campaign: "Instagram" }}
+    formDefaultMessage="Ciao! Vi contatto da Instagram: sono interessato al corso sub di 1° grado. Vorrei informazioni sul percorso e sul contributo."
   />
 </Layout>
 
@@ -600,35 +595,10 @@ import { Award, CheckCircle } from "@lucide/astro";
     font-size: 1.25rem;
   }
 
-  .ig-ticket__prices {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0.7rem;
-  }
-
-  .ig-price {
-    border-radius: 16px;
-    padding: 0.85rem 0.9rem;
-    background: rgba(255, 255, 255, 0.65);
-    border: 1px solid rgba(17, 17, 18, 0.08);
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.55);
-  }
-
-  .ig-price__label {
-    display: block;
-    font-size: 0.8rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: rgba(17, 17, 18, 0.65);
-    margin-bottom: 0.2rem;
-  }
-
-  .ig-price__value {
-    display: block;
-    font-weight: 900;
-    letter-spacing: -0.02em;
-    color: #111112;
-    font-size: 1.3rem;
+  .ig-ticket__contribution {
+    margin: 0;
+    color: rgba(17, 17, 18, 0.78);
+    line-height: 1.6;
   }
 
   .ig-ticket__cut {
