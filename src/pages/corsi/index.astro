@@ -3,12 +3,15 @@ import Layout from "@/layouts/Layout.astro";
 import CourseCategories from "@/features/courses/CourseCategoriesSection.astro";
 import { getCourseCategories } from "@/services/courses";
 import { pagesData } from "@/data/pages";
+import { buildPageSeo } from "@/lib/seo";
 
 const categories = await getCourseCategories();
+const seo = buildPageSeo({ title: "Corsi", description: pagesData.courses.description });
 ---
 
-<Layout title="Corsi">
+<Layout {...seo}>
   <CourseCategories
+    headingLevel="h1"
     categories={categories}
     title={pagesData.courses.title}
     description={pagesData.courses.description}

@@ -20,12 +20,12 @@ const categories = await getCourseCategories();
 const posts = await getBlogPosts({ page: 1, pageSize: 6 });
 ---
 
-<Layout>
+<Layout title={heroData?.seoTitle?.trim() || undefined} description={heroData?.seoDescription?.trim() || undefined}>
   {
     heroData && (
       <HeroSection
         images={heroData.images}
-        title={heroData.title}
+        title={heroData.title?.trim() || "Corsi subacquea e apnea a Bologna"}
         subtitle={heroData.subtitle}
         buttons={heroData?.buttons}
       />

@@ -9,6 +9,7 @@ import { HelpCircle } from "@lucide/astro";
 import { getFaqPage } from "@/services/faq";
 import ContactSection from "@/features/contact/ContactSection.astro";
 import FaqSeoSchema from "@/seo/FaqSeoSchema.astro";
+import { buildPageSeo } from "@/lib/seo";
 
 const faqPage = await getFaqPage();
 
@@ -20,14 +21,21 @@ const pageTitle = faqPage.title || "Domande Frequenti";
 const pageDescription =
   faqPage.description ||
   "Trova risposte alle domande più frequenti sui nostri corsi di subacquea e apnea a Bologna. Informazioni su certificati medici, età minima, durata dei corsi e molto altro.";
+const seo = buildPageSeo({
+  title: pageTitle,
+  description: pageDescription,
+  seoTitle: faqPage.seoTitle,
+  seoDescription: faqPage.seoDescription,
+});
 ---
 
-<Layout title={pageTitle} description={pageDescription}>
+<Layout {...seo}>
   <FaqSeoSchema faqPage={faqPage} />
 
   <!-- FAQ Section -->
   <SectionContainer id="faq" background="white" padding="lg">
     <SectionHeader
+      headingLevel="h1"
       title={pageTitle}
       subtitle={pageDescription}
       titleColor="secondary"

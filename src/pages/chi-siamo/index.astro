@@ -5,14 +5,19 @@ import CardSection from "@/components/layout/CardSection.astro";
 import SectionContainer from "@/components/layout/Section.astro";
 import SafeguardingPromoCard from "@/components/common/SafeguardingPromoCard.astro";
 import { getAboutUs } from "@/services/aboutus";
-import { getClubData } from "@/services/club";
+import { buildPageSeo } from "@/lib/seo";
 const about = await getAboutUs();
 
-const clubData = await getClubData();
+const seo = buildPageSeo({
+  title: about?.title || "Chi siamo",
+  description: about?.subtitle,
+  seoTitle: about?.seoTitle,
+  seoDescription: about?.seoDescription,
+});
 ---
 
-<Layout title={`Chi Siamo - ${clubData?.clubName || "Club Sub Nettuno Bologna"}`}>
-  <AboutSection {...about} />
+<Layout {...seo}>
+  <AboutSection {...about} headingLevel="h1" />
 
   {
     about?.cardSections?.map((section, index) => (

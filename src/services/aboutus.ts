@@ -16,6 +16,8 @@ export async function getAboutUs(): Promise<AboutUsWithCardSections | null> {
         _id,
         _type,
         title,
+        seoTitle,
+        seoDescription,
         subtitle,
         image,
         imageCaption,

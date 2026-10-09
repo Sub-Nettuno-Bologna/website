@@ -1,7 +1,9 @@
 import { defineType } from "sanity";
+import { seoFields } from '../shared/seoFields';
 
 export default defineType({
     fields: [
+        ...seoFields,
         {
             name: 'title',
             title: 'Titolo',

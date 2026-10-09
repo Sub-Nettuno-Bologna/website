@@ -13,9 +13,10 @@ export interface Props {
   categories: Array<CourseCategory & { coursesCount?: number }>;
   title: string;
   description: string;
+  headingLevel?: "h1" | "h2";
 }
 
-const { categories, title, description } = Astro.props;
+const { categories, title, description, headingLevel = "h2" } = Astro.props;
 
 export function getCategoryHref(category: CourseCategory): string {
   return `/corsi/${category.slug?.current}`;
@@ -30,6 +31,7 @@ export function getCategoryHref(category: CourseCategory): string {
   waveColorClass="color-gradient-secondary"
 >
   <SectionHeader
+    headingLevel={headingLevel}
     title={title}
     subtitle={description}
     titleColor="tertiary"

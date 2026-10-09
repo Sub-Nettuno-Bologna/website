@@ -16,6 +16,7 @@ type ColorToken =
 
 export interface Props {
   title?: string;
+  headingLevel?: "h1" | "h2";
   logo?: boolean;
   subtitle?: string;
   titleSize?: "sm" | "md" | "lg" | "xl";
@@ -28,6 +29,7 @@ export interface Props {
 
 const {
   title,
+  headingLevel = "h2",
   logo,
   subtitle,
   titleSize = "lg",
@@ -62,6 +64,7 @@ const colorClassMap: Record<ColorToken, string> = {
 };
 
 const clubData = await getClubData();
+const Heading = headingLevel;
 ---
 
 {
@@ -75,7 +78,7 @@ const clubData = await getClubData();
 <div class={`${centered ? "text-center" : ""} mb-16`}>
   {
     title && showTitle && (
-      <h2 class={`${titleSizes[titleSize]} font-bold ${colorClassMap[titleColor]} mb-8`}>
+      <Heading class={`${titleSizes[titleSize]} font-bold ${colorClassMap[titleColor]} mb-8`}>
         <span class="relative inline-block">
           {title}
           <svg
@@ -109,7 +112,7 @@ const clubData = await getClubData();
             />
           </svg>
         </span>
-      </h2>
+      </Heading>
     )
   }
 

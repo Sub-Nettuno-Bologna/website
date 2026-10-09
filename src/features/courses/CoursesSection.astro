@@ -14,15 +14,16 @@ export interface Props {
   description?: string;
   courses: Course[];
   category?: string;
+  headingLevel?: "h1" | "h2";
 }
 
-const { title, description, courses, category } = Astro.props;
+const { title, description, courses, category, headingLevel = "h2" } = Astro.props;
 
 const getImageUrl = (source?: SanityImageSource) => buildImageUrl(source);
 ---
 
 <SectionContainer id="corsi" background="default" padding="sm">
-  <SectionHeader title={title ?? ""} subtitle={description ?? ""} titleSize="lg" />
+  <SectionHeader title={title ?? ""} subtitle={description ?? ""} titleSize="lg" headingLevel={headingLevel} />
 
   <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 justify-center">
     {

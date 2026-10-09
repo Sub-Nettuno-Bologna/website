@@ -19,6 +19,8 @@ export type FaqPage = {
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
+  seoTitle?: string;
+  seoDescription?: string;
   title?: string;
   description?: string;
   faqs?: Array<{
@@ -208,6 +210,8 @@ export type Aboutus = {
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
+  seoTitle?: string;
+  seoDescription?: string;
   title?: string;
   subtitle?: string;
   image?: {
@@ -246,6 +250,8 @@ export type Hero = {
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
+  seoTitle?: string;
+  seoDescription?: string;
   title?: string;
   subtitle?: string;
   images?: Array<{
@@ -339,6 +345,8 @@ export type CourseCategory = {
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
+  seoTitle?: string;
+  seoDescription?: string;
   orderRank?: string;
   title?: string;
   slug?: Slug;
@@ -371,6 +379,8 @@ export type Course = {
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
+  seoTitle?: string;
+  seoDescription?: string;
   title?: string;
   slug?: Slug;
   subtitle?: PortableText;

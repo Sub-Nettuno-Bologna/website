@@ -1,4 +1,5 @@
 import { defineType } from 'sanity';
+import { seoFields } from '../shared/seoFields';
 import { orderRankField } from '@sanity/orderable-document-list';
 
 export default defineType({
@@ -6,6 +7,7 @@ export default defineType({
     title: 'Categoria Corsi',
     type: 'document',
     fields: [
+        ...seoFields,
         orderRankField({ type: 'course-category' }),
         {
             name: 'title',

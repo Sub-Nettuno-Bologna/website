@@ -52,6 +52,8 @@ export async function getCategoryBySlug(
     _id,
     _type,
     title,
+    seoTitle,
+    seoDescription,
     slug,
     description,
     image,

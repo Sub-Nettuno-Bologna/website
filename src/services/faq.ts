@@ -6,6 +6,8 @@ export async function getFaqPage(): Promise<FaqPage | null> {
     _id,
     _type,
     title,
+    seoTitle,
+    seoDescription,
     description,
     updatedAt,
     faqs[] {

@@ -34,6 +34,20 @@
           "type": "string"
         }
       },
+      "seoTitle": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        },
+        "optional": true
+      },
+      "seoDescription": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        },
+        "optional": true
+      },
       "title": {
         "type": "objectAttribute",
         "value": {
@@ -1245,6 +1259,20 @@
           "type": "string"
         }
       },
+      "seoTitle": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        },
+        "optional": true
+      },
+      "seoDescription": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        },
+        "optional": true
+      },
       "title": {
         "type": "objectAttribute",
         "value": {
@@ -1468,6 +1496,20 @@
         "value": {
           "type": "string"
         }
+      },
+      "seoTitle": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        },
+        "optional": true
+      },
+      "seoDescription": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        },
+        "optional": true
       },
       "title": {
         "type": "objectAttribute",
@@ -2111,6 +2153,20 @@
           "type": "string"
         }
       },
+      "seoTitle": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        },
+        "optional": true
+      },
+      "seoDescription": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        },
+        "optional": true
+      },
       "orderRank": {
         "type": "objectAttribute",
         "value": {
@@ -2296,6 +2352,20 @@
         "value": {
           "type": "string"
         }
+      },
+      "seoTitle": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        },
+        "optional": true
+      },
+      "seoDescription": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        },
+        "optional": true
       },
       "title": {
         "type": "objectAttribute",

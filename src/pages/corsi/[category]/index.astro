@@ -2,6 +2,7 @@
 import Layout from "@/layouts/Layout.astro";
 import Courses from "@/features/courses/CoursesSection.astro";
 import { getCategoryBySlug, getAllCourseCategorySlugs } from "@/services/courses";
+import { buildPageSeo } from "@/lib/seo";
 
 export async function getStaticPaths() {
     try {
@@ -16,10 +17,18 @@ export async function getStaticPaths() {
 const { params } = Astro;
 const category = params.category as string;
 const categoryDoc = await getCategoryBySlug(category);
+if (!categoryDoc) throw new Error("Course category not found");
+const seo = buildPageSeo({
+    title: categoryDoc.title || category,
+    description: categoryDoc.description,
+    seoTitle: categoryDoc.seoTitle,
+    seoDescription: categoryDoc.seoDescription,
+});
 ---
 
-<Layout title={categoryDoc?.title!}>
+<Layout {...seo}>
     <Courses
+        headingLevel="h1"
         courses={categoryDoc?.courses ?? []}
         category={category}
         title={categoryDoc?.title!}

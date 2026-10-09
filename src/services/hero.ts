@@ -6,6 +6,8 @@ export async function getHero(): Promise<Hero | null> {
         _id,
         _type,
         title,
+        seoTitle,
+        seoDescription,
         subtitle,
         images,
         buttons

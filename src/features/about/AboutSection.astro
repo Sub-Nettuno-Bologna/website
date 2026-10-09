@@ -7,9 +7,11 @@ import StandardCard from "@/components/common/cards/StandardCard.astro";
 import { buildImageUrl } from "@/lib/sanity";
 import { toPascalCase } from "@/lib/utils";
 
-export interface Props extends Partial<Aboutus> {}
+export interface Props extends Partial<Aboutus> {
+  headingLevel?: "h1" | "h2";
+}
 
-const { title, subtitle, image, imageCaption, features } = Astro.props;
+const { title, subtitle, image, imageCaption, features, headingLevel = "h2" } = Astro.props;
 ---
 
 <SectionContainer
@@ -20,6 +22,7 @@ const { title, subtitle, image, imageCaption, features } = Astro.props;
   waveBottom
 >
   <SectionHeader
+    headingLevel={headingLevel}
     title={title}
     subtitle={subtitle}
     titleColor="primary-content"

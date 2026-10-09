@@ -5,6 +5,7 @@ import { getAllCategoryCoursePaths, getCourse } from "@/services/courses";
 import ContactSection from "@/features/contact/ContactSection.astro";
 import { pagesData } from "@/data/pages";
 import CourseSeoSchema from "@/seo/CourseSeoSchema.astro";
+import { buildPageSeo } from "@/lib/seo";
 
 export async function getStaticPaths() {
   try {
@@ -29,9 +30,15 @@ if (!course) {
 }
 
 const scubaDiving = category === "subacquea";
+const seo = buildPageSeo({
+  title: course.title || slug,
+  description: course.description,
+  seoTitle: course.seoTitle,
+  seoDescription: course.seoDescription,
+});
 ---
 
-<Layout title={course.title}>
+<Layout {...seo}>
   <CourseSeoSchema course={course} />
   <Course course={course} scubaDiving={scubaDiving} />
 
