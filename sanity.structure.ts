@@ -1,17 +1,15 @@
 import { orderableDocumentListDeskItem } from "@sanity/orderable-document-list";
-import {
-  ComposeIcon,
-  ImagesIcon,
-  BookIcon,
-  HomeIcon,
-  CalendarIcon,
-  DatabaseIcon,
-  PresentationIcon,
-  TagsIcon,
-  SchemaIcon,
-  SearchIcon,
-  HelpCircleIcon,
-} from "@sanity/icons";
+import { ComposeIcon } from "@sanity/icons/Compose";
+import { ImagesIcon } from "@sanity/icons/Images";
+import { BookIcon } from "@sanity/icons/Book";
+import { HomeIcon } from "@sanity/icons/Home";
+import { CalendarIcon } from "@sanity/icons/Calendar";
+import { DatabaseIcon } from "@sanity/icons/Database";
+import { PresentationIcon } from "@sanity/icons/Presentation";
+import { TagsIcon } from "@sanity/icons/Tags";
+import { SchemaIcon } from "@sanity/icons/Schema";
+import { SearchIcon } from "@sanity/icons/Search";
+import { HelpCircleIcon } from "@sanity/icons/HelpCircle";
 
 export default (S: any, context: any) => {
   return S.list()

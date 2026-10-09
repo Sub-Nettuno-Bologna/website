@@ -1,6 +1,8 @@
 import { createClient } from "@sanity/client";
-import type { SanityImageSource } from "@sanity/image-url/lib/types/types";
-import imageUrlBuilder from "@sanity/image-url";
+import {
+  createImageUrlBuilder,
+  type SanityImageSource,
+} from "@sanity/image-url";
 import type { CourseCategory } from "../../sanity.types";
 
 const projectId = import.meta.env.PUBLIC_SANITY_PROJECT_ID;
@@ -24,7 +26,7 @@ export const urlFor = (source: SanityImageSource) => {
   if (!source) return null;
   if (typeof source === "string") return source;
   return projectId && dataset
-    ? imageUrlBuilder({ projectId, dataset }).image(source)
+    ? createImageUrlBuilder({ projectId, dataset }).image(source)
     : null;
 };
 

@@ -4,7 +4,7 @@ import { schemaTypes } from "./schemaTypes";
 import { structureTool } from "sanity/structure";
 import deskStructure from "./sanity.structure";
 import { codeInput } from "@sanity/code-input";
-import { lucideIconPicker } from "sanity-plugin-lucide-icon-picker";
+import { lucideIconPicker } from "@kodamera/sanity-plugin-lucide-icon-picker";
 import { media } from "sanity-plugin-media";
 import {
   dashboardTool,
