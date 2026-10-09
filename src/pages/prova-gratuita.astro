@@ -1,0 +1,71 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import SectionContainer from "@/components/layout/Section.astro";
+import SectionHeader from "@/components/layout/SectionHeader.astro";
+import Card from "@/components/primitives/Card/Card.astro";
+import CardHeader from "@/components/primitives/Card/CardHeader.astro";
+import CardTitle from "@/components/primitives/Card/CardTitle.astro";
+import CardContent from "@/components/primitives/Card/CardContent.astro";
+import ContactSection from "@/features/contact/ContactSection.astro";
+import { MessageCircle, Waves, CheckCircle, Shirt } from "@lucide/astro";
+---
+
+<Layout
+  title="Prova gratuita sub e apnea a Bologna | Club Sub Nettuno"
+  description="Richiedi una prova gratuita di subacquea o apnea in piscina a Bologna. Scrivici: concordiamo insieme giorno e percorso, senza impegno."
+>
+  <SectionContainer background="gradient-secondary" padding="lg">
+    <SectionHeader
+      title="Prova subacquea e apnea a Bologna"
+      subtitle="La prima prova in piscina è gratuita e senza impegno. Scegli se vuoi avvicinarti alla subacquea con bombole o all’apnea: concordiamo insieme giorno e percorso."
+      headingLevel="h1"
+      hasBreadcrumbs={false}
+      titleSize="xl"
+    />
+
+    <div class="grid max-w-5xl mx-auto gap-8 md:grid-cols-2">
+      <Card class="bg-white">
+        <CardHeader class="text-center">
+          <Waves class="mx-auto h-12 w-12 text-primary" aria-hidden="true" />
+          <CardTitle>Prova subacquea</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <p>Respira sott’acqua con le bombole, impara a conoscere l’attrezzatura e prova i primi esercizi in piscina insieme a un istruttore.</p>
+        </CardContent>
+      </Card>
+      <Card class="bg-white">
+        <CardHeader class="text-center">
+          <MessageCircle class="mx-auto h-12 w-12 text-primary" aria-hidden="true" />
+          <CardTitle>Prova apnea</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <p>Scopri respirazione, rilassamento e primi esercizi di apnea in piscina, sempre seguito dagli istruttori.</p>
+        </CardContent>
+      </Card>
+    </div>
+  </SectionContainer>
+
+  <SectionContainer background="white" padding="lg">
+    <SectionHeader title="Come funziona" hasBreadcrumbs={false} titleSize="lg" />
+    <ol class="mx-auto grid max-w-5xl gap-6 md:grid-cols-3">
+      <li><strong>1. Scrivici.</strong> Indicaci se ti interessa la subacquea o l’apnea.</li>
+      <li><strong>2. Concordiamo.</strong> Ti comunichiamo una data e le informazioni necessarie per la prova.</li>
+      <li><strong>3. Prova in piscina.</strong> Vieni, prova con un istruttore e valuta insieme a noi il percorso.</li>
+    </ol>
+  </SectionContainer>
+
+  <SectionContainer background="gray" padding="lg">
+    <SectionHeader title="Cosa portare" hasBreadcrumbs={false} titleSize="lg" />
+    <ul class="mx-auto grid max-w-3xl gap-4">
+      <li class="flex items-start gap-3"><CheckCircle class="mt-1 shrink-0" aria-hidden="true" /> <span>Costume e asciugamano.</span></li>
+      <li class="flex items-start gap-3"><CheckCircle class="mt-1 shrink-0" aria-hidden="true" /> <span>L’attrezzatura necessaria per la prova viene fornita dal club.</span></li>
+      <li class="flex items-start gap-3"><Shirt class="mt-1 shrink-0" aria-hidden="true" /> <span>Certificato medico non agonistico, se già disponibile; il club conferma prima della prova cosa serve nel caso specifico.</span></li>
+    </ul>
+  </SectionContainer>
+
+  <ContactSection
+    hasBreadcrumbs={false}
+    formHiddenFields={{ campaign: "Prova gratuita" }}
+    formDefaultMessage="Ciao, sono interessato alla prova gratuita. Mi interessa la subacquea o l’apnea e vorrei concordare una data."
+  />
+</Layout>
