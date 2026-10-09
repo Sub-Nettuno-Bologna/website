@@ -9,6 +9,7 @@ import WebsiteSeoSchema from "@/seo/WebsiteSeoSchema.astro";
 import Analytics from '@vercel/analytics/astro'
 const {
   noWaves = false,
+  noindex = false,
   title = "Corsi Subacquea e Apnea Bologna | Club Sub Nettuno",
   description = "Scuola di subacquea e apnea a Bologna dal 1984. Corsi sub base, apnea e specialità con brevetti FIPSAS/CMAS riconosciuti in tutto il mondo. Prova sub e apnea gratuita, istruttori certificati, piscina a Bologna.",
   keywords = [
@@ -28,6 +29,7 @@ const {
 
 const siteName = "Club Sub Nettuno";
 const themeColor = "#380099";
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site).href;
 ---
 
 <!doctype html>
@@ -46,7 +48,7 @@ const themeColor = "#380099";
     <meta name="application-name" content={siteName} />
     <meta name="apple-mobile-web-app-title" content={siteName} />
 
-    <link rel="canonical" href={new URL(Astro.url.pathname, Astro.site)} />
+    <link rel="canonical" href={canonicalUrl} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="preconnect" href="https://cdn.sanity.io" crossorigin />
@@ -72,10 +74,10 @@ const themeColor = "#380099";
       icon="/favicon.ico"
       themeColor={themeColor}
       colorScheme="light"
-      robots="index, follow"
+      robots={noindex ? "noindex, follow" : "index, follow"}
       facebook={{
         image: "/logo.svg",
-        url: "https://subnettuno.it",
+        url: canonicalUrl,
         type: "website",
       }}
       twitter={{

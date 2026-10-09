@@ -8,7 +8,7 @@ import { pagesData } from "@/data/pages";
 
 export async function getStaticPaths() {
   const totalCount = await getBlogTotalCount();
-  return buildStaticPaths(totalCount, DEFAULT_PAGE_SIZE);
+  return buildStaticPaths(totalCount, DEFAULT_PAGE_SIZE).filter(({ params }) => params.page !== "1");
 }
 
 const { page } = Astro.params;

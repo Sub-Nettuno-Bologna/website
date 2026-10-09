@@ -9,9 +9,8 @@ import { formatOpeningHoursCompact } from "@/lib/formatters";
 const clubData = await getClubData();
 
 // Build contact lines dynamically from club data
-const openingHoursLine = clubData?.openingHours
-  ? formatOpeningHoursCompact(clubData.openingHours)
-  : clubData?.phoneSchedule || "";
+const openingHoursLine =
+  formatOpeningHoursCompact(clubData?.openingHours) || clubData?.phoneSchedule || "";
 
 const contactLines = clubData
   ? [
