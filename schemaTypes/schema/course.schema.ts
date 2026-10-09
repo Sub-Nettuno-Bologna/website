@@ -1,4 +1,4 @@
-import { defineType } from 'sanity';
+import { defineField, defineType } from 'sanity';
 import { seoFields } from '../shared/seoFields';
 
 export default defineType({
@@ -55,6 +55,26 @@ export default defineType({
             type: 'string',
             validation: (Rule) => Rule.required(),
         },
+        defineField({
+            name: 'coursePeriod',
+            title: 'Periodo abituale',
+            type: 'string',
+            description: 'Opzionale. Periodo in cui si svolge abitualmente il percorso, per esempio settembre–dicembre oppure gennaio–maggio. Distinto dalla durata in ore o lezioni.',
+        }),
+        defineField({
+            name: 'enrollmentNote',
+            title: 'Frequenza e inserimento',
+            type: 'text',
+            rows: 3,
+            description: 'Opzionale. Descrivi la frequenza concordata, la possibilità di iniziare a percorso avviato e il recupero delle lezioni.',
+        }),
+        defineField({
+            name: 'contributionNote',
+            title: 'Contributo',
+            type: 'text',
+            rows: 3,
+            description: 'Opzionale. Spiega cosa comprende il contributo e da cosa dipende. Inserisci solo informazioni e importi confermati.',
+        }),
         {
             name: 'level',
             title: 'Livello corso',

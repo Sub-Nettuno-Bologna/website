@@ -398,6 +398,9 @@ export type Course = {
     _type: "image";
   };
   duration?: string;
+  coursePeriod?: string;
+  enrollmentNote?: string;
+  contributionNote?: string;
   level?: "Bambini" | "\u2B50 Principiante" | "\u2B50\u2B50 Intermedio" | "\u2B50\u2B50\u2B50 Avanzato" | "Tutti i livelli";
   certification?: string;
   maxDepth?: "18m" | "30m" | "40m";

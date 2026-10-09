@@ -16,7 +16,8 @@ import { webhooksTrigger } from "sanity-plugin-webhooks-trigger";
 export default defineConfig({
   title: "SubNettuno",
   // TODO: temporary hardcoded values
-  name: process.env.PUBLIC_SANITY_PROJECT_NAME || "subnettuno",
+  // Keep the workspace identifier consistent with the hosted Studio.
+  name: (process.env.PUBLIC_SANITY_PROJECT_NAME || "subnettuno").toLowerCase(),
   projectId: process.env.PUBLIC_SANITY_PROJECT_ID || "r56dtkaq",
   dataset: process.env.PUBLIC_SANITY_DATASET || "production",
   plugins: [

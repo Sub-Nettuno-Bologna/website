@@ -1,0 +1,20 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import CourseDetail from "@/features/courses/CourseDetail.astro";
+import ContactSection from "@/features/contact/ContactSection.astro";
+import { getCourse } from "@/services/courses";
+
+export const prerender = false;
+
+// This review page is available only through the local development server.
+if (!import.meta.env.DEV) return new Response(null, { status: 404 });
+
+const course = await getCourse({ slug: "1-grado-ar" });
+if (!course) return new Response("Corso non disponibile", { status: 404 });
+
+---
+
+<Layout title="Anteprima corso 1° grado | Club Sub Nettuno" noindex={true}>
+  <CourseDetail course={course} scubaDiving={true} />
+  <ContactSection hasBreadcrumbs={false} />
+</Layout>

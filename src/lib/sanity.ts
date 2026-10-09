@@ -15,8 +15,8 @@ if (!projectId || !dataset) {
 export const sanityClient = createClient({
   projectId,
   dataset,
-  // Use CDN on production for faster, cached responses, disable on dev
-  useCdn: import.meta.env.PROD,
+  // Pages are generated at build time; fetch the latest published content.
+  useCdn: false,
   apiVersion: "2023-01-01",
 });
 

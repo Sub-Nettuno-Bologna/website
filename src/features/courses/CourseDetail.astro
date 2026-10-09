@@ -19,6 +19,7 @@ import CardTitle from "@/components/primitives/Card/CardTitle.astro";
 import SwimmingScuba from "@/components/visuals/animations/SwimmingScuba.astro";
 import { pagesData } from "@/data/pages";
 import { toPascalCase } from "@/lib/utils";
+import CourseSummary from "./CourseSummary.astro";
 
 export interface Props {
   course: Course & {
@@ -121,6 +122,8 @@ const { course, scubaDiving = false } = Astro.props;
         </p>
       </CardContent>
     </Card>
+
+    <CourseSummary course={course} />
 
     <div class="grid md:grid-cols-2 gap-8 my-8">
       <Card class="w-full content-card content-card-2">

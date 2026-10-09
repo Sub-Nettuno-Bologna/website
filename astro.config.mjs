@@ -24,6 +24,7 @@ const legacyRedirects = {
 };
 
 const excludedSitemapPaths = new Set([
+  "/anteprima-corso",
   "/success",
   "/1-grado-instagram",
   ...Object.keys(legacyRedirects),
