@@ -22,16 +22,15 @@
     "sanity:delete:all": "./delete.sh --type aboutus,blog,course-category,course,event,hero,team,seo,club,faqPage --yes"
   },
   "dependencies": {
-    "@astrojs/cloudflare": "^13.5.1",
-    "@astrojs/react": "^5.0.5",
-    "@astrojs/sitemap": "^3.7.2",
-    "@astrojs/vercel": "^10.0.7",
+    "@astrojs/react": "^7.0.1",
+    "@astrojs/sitemap": "^3.7.4",
+    "@astrojs/vercel": "^11.0.12",
     "@lucide/astro": "^0.518.0",
     "@orama/orama": "^3.1.18",
     "@playform/compress": "^0.2.3",
     "@portabletext/react": "^4.0.3",
     "@portabletext/to-html": "^2.0.17",
-    "@sanity/astro": "^3.4.0",
+    "@sanity/astro": "^3.5.1",
     "@sanity/client": "^6.29.1",
     "@sanity/code-input": "^6.0.4",
     "@sanity/dashboard": "^5.0.1",
@@ -41,7 +40,7 @@
     "@sanity/vision": "^4.22.0",
     "@tailwindcss/vite": "^4.3.0",
     "@vercel/analytics": "^1.6.1",
-    "astro": "^6.3.3",
+    "astro": "^7.3.7",
     "astro-portabletext": "^0.11.4",
     "astro-seo-meta": "^5.2.0",
     "class-variance-authority": "^0.7.1",
@@ -60,7 +59,7 @@
     "tailwindcss": "^4.3.0"
   },
   "devDependencies": {
-    "@astrojs/node": "^10.1.1",
+    "@astrojs/node": "^11.1.7",
     "@eslint/css": "^0.11.1",
     "@eslint/js": "^9.39.4",
     "@eslint/json": "^0.13.2",
