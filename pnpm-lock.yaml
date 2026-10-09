@@ -232,9 +232,6 @@ importers:
       astro-seo-meta:
         specifier: ^5.2.0
         version: 5.2.0(astro@6.3.3(@netlify/blobs@10.4.3)(@types/node@25.8.0)(@vercel/functions@3.5.1)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.60.4)(terser@5.46.1)(tsx@4.22.0)(yaml@2.9.0))
-      astro-seo-schema:
-        specifier: ^5.2.0
-        version: 5.2.0(astro@6.3.3(@netlify/blobs@10.4.3)(@types/node@25.8.0)(@vercel/functions@3.5.1)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.60.4)(terser@5.46.1)(tsx@4.22.0)(yaml@2.9.0))(schema-dts@1.1.5)
       class-variance-authority:
         specifier: ^0.7.1
         version: 0.7.1
@@ -3947,12 +3944,6 @@ packages:
     resolution: {integrity: sha512-VVSll8MJzco/5hFMuFtLIL4OzxJh1RVbJ3A5k11fcI0/mMenvaB6YsYd83EzQoBr7nKbnRfJsZ5actH0uTROhQ==}
     peerDependencies:
       astro: ^5.0.0
-
-  astro-seo-schema@5.2.0:
-    resolution: {integrity: sha512-Qj8xQuBMuxlzahV9z8Eav7itAVDTZVoC7CxMnPtgBIHzfWZCRfRoIepwmuPcR5qgM8H3lcbM53JMFJioxKUuiw==}
-    peerDependencies:
-      astro: ^5.0.0
-      schema-dts: ^1.1.0
 
   astro@6.3.3:
     resolution: {integrity: sha512-wvLIZQYbBZt6U8gyflBW4SLBypaqdwLZUH93rT3oT53cmQ0bTGubvMAGjqBRoheOYzYcTJZtW6czztzbu4kQ5g==}
@@ -12190,11 +12181,6 @@ snapshots:
   astro-seo-meta@5.2.0(astro@6.3.3(@netlify/blobs@10.4.3)(@types/node@25.8.0)(@vercel/functions@3.5.1)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.60.4)(terser@5.46.1)(tsx@4.22.0)(yaml@2.9.0)):
     dependencies:
       astro: 6.3.3(@netlify/blobs@10.4.3)(@types/node@25.8.0)(@vercel/functions@3.5.1)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.60.4)(terser@5.46.1)(tsx@4.22.0)(yaml@2.9.0)
-
-  astro-seo-schema@5.2.0(astro@6.3.3(@netlify/blobs@10.4.3)(@types/node@25.8.0)(@vercel/functions@3.5.1)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.60.4)(terser@5.46.1)(tsx@4.22.0)(yaml@2.9.0))(schema-dts@1.1.5):
-    dependencies:
-      astro: 6.3.3(@netlify/blobs@10.4.3)(@types/node@25.8.0)(@vercel/functions@3.5.1)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.60.4)(terser@5.46.1)(tsx@4.22.0)(yaml@2.9.0)
-      schema-dts: 1.1.5
 
   astro@6.3.3(@netlify/blobs@10.4.3)(@types/node@25.8.0)(@vercel/functions@3.5.1)(jiti@2.7.0)(lightningcss@1.32.0)(rollup@4.60.4)(terser@5.46.1)(tsx@4.22.0)(yaml@2.9.0):
     dependencies:

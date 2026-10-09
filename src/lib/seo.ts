@@ -16,7 +16,7 @@ export function firstParagraph(value: unknown): string {
     if (block?._type !== "block" || !Array.isArray(block.children)) continue;
     if (block.style && block.style !== "normal") continue;
     const text = block.children
-      .filter((child: { _type?: string; text?: unknown }) => child?._type === "span" && typeof child.text === "string")
+      .filter((child: { text?: unknown }) => typeof child?.text === "string")
       .map((child: { text: string }) => child.text)
       .join("");
     const paragraph = firstParagraph(text);

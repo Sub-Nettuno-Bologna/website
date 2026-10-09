@@ -3,6 +3,7 @@ import Layout from "@/layouts/Layout.astro";
 import EventPost from "@/features/events/EventPost.astro";
 import ContactSection from "@/features/contact/ContactSection.astro";
 import { getEventBySlug, getEvents } from "@/services/events";
+import EventSeoSchema from "@/seo/EventSeoSchema.astro";
 import { formatDate } from "@/lib/formatters";
 import type { InferGetStaticParamsType } from "astro";
 
@@ -30,6 +31,7 @@ const defaultMessage = event?.title
 ---
 
 <Layout title={event?.title}>
+  {event ? <EventSeoSchema event={event} /> : null}
   {event ? <EventPost post={event} backUrl="/eventi" /> : null}
 
   {event ? (

@@ -114,11 +114,11 @@ export async function getCourse({
 > {
   const QUERY = `*[_type == "course" && slug.current == $slug][0]{
     ...,
-    "categorySlug": *[_type == "course-category" && references(^._id)][0].slug.current,
+    "categorySlug": *[_type == "course-category" && references(^._id)] | order(orderRank asc)[0].slug.current,
     "nextCourses": nextCourses[]->{
       title,
       "slug": slug.current,
-      "categorySlug": *[_type == "course-category" && references(^._id)][0].slug.current
+      "categorySlug": *[_type == "course-category" && references(^._id)] | order(orderRank asc)[0].slug.current
     }
   }`;
   return await fetchOne<

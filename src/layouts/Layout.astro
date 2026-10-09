@@ -10,6 +10,7 @@ import Analytics from '@vercel/analytics/astro'
 const {
   noWaves = false,
   noindex = false,
+  canonicalPath,
   title = "Corsi Subacquea e Apnea Bologna | Club Sub Nettuno",
   description = "Scuola di subacquea e apnea a Bologna dal 1984. Corsi sub base, apnea e specialità con brevetti FIPSAS/CMAS riconosciuti in tutto il mondo. Prova sub e apnea gratuita, istruttori certificati, piscina a Bologna.",
   keywords = [
@@ -29,7 +30,7 @@ const {
 
 const siteName = "Club Sub Nettuno";
 const themeColor = "#380099";
-const canonicalUrl = new URL(Astro.url.pathname, Astro.site).href;
+const canonicalUrl = new URL(canonicalPath ?? Astro.url.pathname, Astro.site).href;
 ---
 
 <!doctype html>

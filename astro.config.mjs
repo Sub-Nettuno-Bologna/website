@@ -7,7 +7,16 @@ import react from "@astrojs/react";
 import playformCompress from "@playform/compress";
 import vercel from "@astrojs/vercel";
 import node from "@astrojs/node";
+import { buildSitemapData } from "./src/lib/sitemapLastmod.ts";
 let adapter = vercel();
+
+let sitemapDataPromise;
+const getSitemapData = () => {
+  if (!sitemapDataPromise) {
+    sitemapDataPromise = buildSitemapData();
+  }
+  return sitemapDataPromise;
+};
 
 const legacyRedirects = {
   "/contattaci": "/contatti#contatti",
@@ -83,6 +92,13 @@ export default defineConfig({
       return pathname !== "/admin" &&
         !pathname.startsWith("/admin/") &&
         !excludedSitemapPaths.has(pathname);
+    },
+    serialize: async (item) => {
+      const { lastmod, excludedPaths } = await getSitemapData();
+      const pathname = new URL(item.url).pathname.replace(/\/+$/, "") || "/";
+      if (excludedPaths.has(pathname)) return undefined;
+      const lastModified = lastmod.get(pathname);
+      return lastModified ? { ...item, lastmod: lastModified } : item;
     },
   }), react(), sanity({
     // TODO: temporary hardcoded values

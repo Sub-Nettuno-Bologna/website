@@ -1,5 +1,5 @@
 ---
-import { Schema } from "astro-seo-schema";
+import JsonLd from "@/seo/JsonLd.astro";
 import { getSeo } from "@/services/seo";
 import type { FaqPage } from "../../sanity.types";
 
@@ -15,7 +15,7 @@ const hasFaqs = Boolean(faqPage.faqs && faqPage.faqs.length > 0);
 
 {
   hasFaqs ? (
-    <Schema
+    <JsonLd
       item={{
         "@context": "https://schema.org",
         "@type": "FAQPage",

@@ -1,79 +1,100 @@
 ---
-import { getCourse } from "@/services/courses";
-import { Schema } from "astro-seo-schema";
+import JsonLd from "@/seo/JsonLd.astro";
 import { getSeo } from "@/services/seo";
+import { buildImageUrl } from "@/lib/sanity";
+import { firstParagraph } from "@/lib/seo";
+import type { Course } from "../../sanity.types";
 
-const { params } = Astro;
-const slug = params.corso as string;
-
-const course = await getCourse({ slug });
-const seo = await getSeo();
-
-if (!course) {
-  throw new Error("Course not found");
+interface Props {
+  course: Course & { categorySlug?: string | null };
 }
+
+const { course } = Astro.props;
+const seo = await getSeo();
+const org = seo?.organization;
+
+const categoryParam = Astro.params.category as string | undefined;
+const categorySlug = categoryParam || course.categorySlug;
+const baseUrl = org?.url || seo?.siteUrl;
+const courseUrl =
+  baseUrl && categorySlug && course.slug?.current
+    ? `${baseUrl}/corsi/${categorySlug}/${course.slug.current}`
+    : undefined;
+
+const imageUrl = course.image
+  ? buildImageUrl(course.image, { width: 1200, height: 675 }) || ""
+  : "";
+const description =
+  firstParagraph(course.description) ||
+  "Include teoria, piscina e immersioni in mare con istruttori certificati.";
 ---
 
-<Schema
-  item={{
-    "@context": "https://schema.org",
-    "@type": "Course",
-    name: course.title,
-    alternateName: `${course.title} ${seo?.organization?.name} ${seo?.organization?.areaServedCity}`,
-    description: "Include teoria, piscina e immersioni in mare con istruttori certificati.",
-    ...((seo?.organization?.name || seo?.organization?.url) && {
-      provider: {
-        "@type": "SportsActivityLocation",
-        ...(seo.organization.name && { name: seo.organization.name }),
-        ...(seo.organization.url && { url: seo.organization.url }),
-        ...(seo.organization.address && {
+<JsonLd
+  item={
+    {
+      "@context": "https://schema.org",
+      "@type": "Course",
+      name: course.title,
+      alternateName: `${course.title} ${org?.name}`,
+      description,
+      ...(courseUrl && { url: courseUrl }),
+      ...(imageUrl && { image: imageUrl }),
+      ...((org?.name || org?.url) && {
+        provider: {
+          "@type": "SportsActivityLocation",
+          ...(org.url && { "@id": `${org.url}/#organization` }),
+          ...(org.name && { name: org.name }),
+          ...(org.url && { url: org.url }),
+          ...(org.address && {
+            address: {
+              "@type": "PostalAddress",
+              ...(org.address.streetAddress && {
+                streetAddress: org.address.streetAddress,
+              }),
+              ...(org.address.addressLocality && {
+                addressLocality: org.address.addressLocality,
+              }),
+              ...(org.address.postalCode && {
+                postalCode: org.address.postalCode,
+              }),
+              ...(org.address.addressRegion && {
+                addressRegion: org.address.addressRegion,
+              }),
+              ...(org.address.addressCountry && {
+                addressCountry: org.address.addressCountry,
+              }),
+            },
+          }),
+          ...(org.telephone && { telephone: org.telephone }),
+          ...(org.email && { email: org.email }),
+        } as any,
+      }),
+      educationalCredentialAwarded: course.certification,
+      teaches: [...(course.whatYouWillLearn ?? [])],
+      coursePrerequisites: [...(course.prerequisites ?? [])],
+      hasCourseInstance: {
+        "@type": "CourseInstance",
+        name: `${course.title} - ${org?.areaServedCity}`,
+        courseMode: ["In aula", "Piscina", "Mare"],
+        location: {
+          "@type": "Place",
+          name: `${org?.name}`,
           address: {
             "@type": "PostalAddress",
-            ...(seo.organization.address.streetAddress && {
-              streetAddress: seo.organization.address.streetAddress,
-            }),
-            ...(seo.organization.address.addressLocality && {
-              addressLocality: seo.organization.address.addressLocality,
-            }),
-            ...(seo.organization.address.postalCode && {
-              postalCode: seo.organization.address.postalCode,
-            }),
-            ...(seo.organization.address.addressRegion && {
-              addressRegion: seo.organization.address.addressRegion,
-            }),
-            ...(seo.organization.address.addressCountry && {
-              addressCountry: seo.organization.address.addressCountry,
-            }),
+            addressLocality: org?.address?.addressLocality,
+            addressRegion: org?.address?.addressRegion,
+            addressCountry: org?.address?.addressCountry,
+          },
+        },
+        ...(courseUrl && {
+          offers: {
+            "@type": "Offer",
+            availability: "https://schema.org/InStock",
+            url: courseUrl,
           },
         }),
-        ...(seo.organization.telephone && { telephone: seo.organization.telephone }),
-        ...(seo.organization.email && { email: seo.organization.email }),
-      } as any,
-    }),
-    educationalCredentialAwarded: course.certification,
-    timeRequired: "P3W",
-    teaches: [...(course.whatYouWillLearn ?? [])],
-    coursePrerequisites: [...(course.prerequisites ?? [])],
-    hasCourseInstance: {
-      "@type": "CourseInstance",
-      name: `${course.title} - ${seo?.organization?.areaServedCity}`,
-      courseMode: ["In aula", "Piscina", "Mare"],
-      location: {
-        "@type": "Place",
-        name: `${seo?.organization?.name}`,
-        address: {
-          "@type": "PostalAddress",
-          addressLocality: seo?.organization?.address?.addressLocality,
-          addressRegion: seo?.organization?.address?.addressRegion,
-          addressCountry: seo?.organization?.address?.addressCountry,
-        },
       },
-      offers: {
-        "@type": "Offer",
-        availability: "https://schema.org/InStock",
-        url: `${seo?.organization?.url}/corsi/${course.categorySlug}/${course.slug?.current}`,
-      },
-    },
-    keywords: `${course.title} ${seo?.organization?.areaServedCity}, ${course.certification}, ${course.prerequisites?.join(", ")}`,
-  }}
+      keywords: `${course.title} ${org?.areaServedCity}, ${course.certification}, ${course.prerequisites?.join(", ")}`,
+    } as any
+  }
 />

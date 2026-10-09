@@ -1,6 +1,6 @@
 ---
 import { getCourseCategories } from "@/services/courses";
-import { Schema } from "astro-seo-schema";
+import JsonLd from "@/seo/JsonLd.astro";
 import { getCategoryHref } from "@/features/courses/CourseCategoriesSection.astro";
 import { getSeo } from "@/services/seo";
 import { getClubData } from "@/services/club";
@@ -30,7 +30,7 @@ const getImageUrl = (image: any) => {
 
 {
   org?.url && org?.name && (
-    <Schema
+    <JsonLd
       item={
         {
           "@context": "https://schema.org",

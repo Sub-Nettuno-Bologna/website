@@ -1,5 +1,5 @@
 ---
-import { Schema } from "astro-seo-schema";
+import JsonLd from "@/seo/JsonLd.astro";
 import { getSeo } from "@/services/seo";
 
 const seo = await getSeo();
@@ -7,7 +7,7 @@ const seo = await getSeo();
 
 {
   seo?.siteUrl && (
-    <Schema
+    <JsonLd
       item={{
         "@context": "https://schema.org",
         "@type": "WebSite",

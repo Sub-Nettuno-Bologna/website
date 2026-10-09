@@ -73,9 +73,9 @@ export function buildImageUrl(
   if (mergedOptions?.width) builder = builder.width(mergedOptions.width);
   if (mergedOptions?.height) builder = builder.height(mergedOptions.height);
   if (mergedOptions?.format)
-    builder = builder.format(mergedOptions.format as any);
+    builder = builder.format(mergedOptions.format as Parameters<typeof builder.format>[0]);
   if (mergedOptions?.quality) builder = builder.quality(mergedOptions.quality);
-  if (mergedOptions?.fit) builder = builder.fit(mergedOptions.fit as any);
+  if (mergedOptions?.fit) builder = builder.fit(mergedOptions.fit as Parameters<typeof builder.fit>[0]);
 
   return builder.url();
 }

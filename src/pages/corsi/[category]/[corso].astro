@@ -30,6 +30,10 @@ if (!course) {
 }
 
 const scubaDiving = category === "subacquea";
+const canonicalPath =
+  course.categorySlug && course.categorySlug !== category
+    ? `/corsi/${course.categorySlug}/${slug}/`
+    : undefined;
 const seo = buildPageSeo({
   title: course.title || slug,
   description: course.description,
@@ -38,7 +42,7 @@ const seo = buildPageSeo({
 });
 ---
 
-<Layout {...seo}>
+<Layout {...seo} canonicalPath={canonicalPath}>
   <CourseSeoSchema course={course} />
   <Course course={course} scubaDiving={scubaDiving} />
 

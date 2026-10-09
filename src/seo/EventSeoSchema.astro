@@ -1,0 +1,98 @@
+---
+import JsonLd from "@/seo/JsonLd.astro";
+import { getSeo } from "@/services/seo";
+import { buildImageUrl } from "@/lib/sanity";
+import { firstParagraph } from "@/lib/seo";
+import type { Event } from "../../sanity.types";
+
+interface Props {
+  event: Event;
+}
+
+const { event } = Astro.props;
+const seo = await getSeo();
+const org = seo?.organization;
+
+const slug = event.slug?.current;
+const eventUrl = seo?.siteUrl && slug ? `${seo.siteUrl}/eventi/${slug}` : undefined;
+const imageUrl = event.featuredImage
+  ? buildImageUrl(event.featuredImage, { width: 1200, height: 630 }) || ""
+  : "";
+const description = event.excerpt || firstParagraph(event.content) || undefined;
+// Only assert a price when it is known: >0 -> paid offer, ==0 -> free.
+// An undefined price means "not specified", so we stay silent.
+const isFree = event.price === 0;
+const hasPrice = typeof event.price === "number" && event.price > 0;
+
+// Prefer the event's own venue name. The club address only applies to events
+// hosted at the club, so it is attached only when no specific location is set.
+const location = event.location
+  ? { "@type": "Place" as const, name: event.location }
+  : org?.name || org?.address
+    ? {
+        "@type": "Place" as const,
+        ...(org.name && { name: org.name }),
+        ...(org.address && {
+          address: {
+            "@type": "PostalAddress" as const,
+            ...(org.address.streetAddress && {
+              streetAddress: org.address.streetAddress,
+            }),
+            ...(org.address.addressLocality && {
+              addressLocality: org.address.addressLocality,
+            }),
+            ...(org.address.postalCode && { postalCode: org.address.postalCode }),
+            ...(org.address.addressRegion && {
+              addressRegion: org.address.addressRegion,
+            }),
+            ...(org.address.addressCountry && {
+              addressCountry: org.address.addressCountry,
+            }),
+          },
+        }),
+      }
+    : undefined;
+---
+
+{
+  event.title && event.eventDate && (
+    <JsonLd
+      item={
+        {
+          "@context": "https://schema.org",
+          "@type": "Event",
+          name: event.title,
+          startDate: event.eventDate,
+          eventStatus: "https://schema.org/EventScheduled",
+          eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
+          ...(description && { description }),
+          ...(eventUrl && { url: eventUrl }),
+          ...(imageUrl && { image: imageUrl }),
+          ...(location && { location }),
+          ...((org?.name || org?.url) && {
+            organizer: {
+              "@type": "Organization",
+              ...(org.url && { "@id": `${org.url}/#organization` }),
+              ...(org.name && { name: org.name }),
+              ...(org.url && { url: org.url }),
+            },
+          }),
+          ...(event.maxParticipants && { maximumAttendeeCapacity: event.maxParticipants }),
+          ...(hasPrice
+            ? {
+                offers: {
+                  "@type": "Offer",
+                  price: event.price,
+                  priceCurrency: "EUR",
+                  availability: "https://schema.org/InStock",
+                  ...(eventUrl && { url: eventUrl }),
+                },
+              }
+            : isFree
+              ? { isAccessibleForFree: true }
+              : {}),
+        } as any
+      }
+    />
+  )
+}

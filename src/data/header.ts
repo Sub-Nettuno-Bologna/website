@@ -3,7 +3,6 @@ import {
   FlagTriangleRight,
   FireExtinguisher,
   Users2,
-  Image,
   MessageSquare,
   BookOpen,
   CalendarDays,

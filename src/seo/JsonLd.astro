@@ -1,0 +1,20 @@
+---
+interface Props {
+  item: unknown;
+  space?: string | number;
+}
+
+const { item, space } = Astro.props;
+
+// Escape only the characters that would break the raw-text <script> element.
+// Everything else stays as valid JSON, so text values keep their real quotes
+// and apostrophes (HTML entities are not decoded inside a script element).
+const json = JSON.stringify(item, null, space)
+  .replace(/</g, "\\u003c")
+  .replace(/>/g, "\\u003e")
+  .replace(/&/g, "\\u0026")
+  .replace(/\u2028/g, "\\u2028")
+  .replace(/\u2029/g, "\\u2029");
+---
+
+<script type="application/ld+json" set:html={json} is:inline></script>
