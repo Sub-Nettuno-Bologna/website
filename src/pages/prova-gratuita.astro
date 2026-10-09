@@ -4,7 +4,6 @@ import SectionContainer from "@/components/layout/Section.astro";
 import SectionHeader from "@/components/layout/SectionHeader.astro";
 import Card from "@/components/primitives/Card/Card.astro";
 import CardHeader from "@/components/primitives/Card/CardHeader.astro";
-import CardTitle from "@/components/primitives/Card/CardTitle.astro";
 import CardContent from "@/components/primitives/Card/CardContent.astro";
 import ContactSection from "@/features/contact/ContactSection.astro";
 import { MessageCircle, Waves, CheckCircle, Shirt } from "@lucide/astro";
@@ -27,7 +26,7 @@ import { MessageCircle, Waves, CheckCircle, Shirt } from "@lucide/astro";
       <Card class="bg-white">
         <CardHeader class="text-center">
           <Waves class="mx-auto h-12 w-12 text-primary" aria-hidden="true" />
-          <CardTitle>Prova subacquea</CardTitle>
+          <h2 class="text-2xl font-semibold leading-none tracking-tight">Prova subacquea</h2>
         </CardHeader>
         <CardContent>
           <p>Respira sott’acqua con le bombole, impara a conoscere l’attrezzatura e prova i primi esercizi in piscina insieme a un istruttore.</p>
@@ -36,7 +35,7 @@ import { MessageCircle, Waves, CheckCircle, Shirt } from "@lucide/astro";
       <Card class="bg-white">
         <CardHeader class="text-center">
           <MessageCircle class="mx-auto h-12 w-12 text-primary" aria-hidden="true" />
-          <CardTitle>Prova apnea</CardTitle>
+          <h2 class="text-2xl font-semibold leading-none tracking-tight">Prova apnea</h2>
         </CardHeader>
         <CardContent>
           <p>Scopri respirazione, rilassamento e primi esercizi di apnea in piscina, sempre seguito dagli istruttori.</p>
