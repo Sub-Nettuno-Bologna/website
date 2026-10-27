@@ -7,6 +7,8 @@ import { Seo } from "astro-seo-meta";
 import BaseSeoSchema from "@/seo/BaseSeoSchema.astro";
 import WebsiteSeoSchema from "@/seo/WebsiteSeoSchema.astro";
 import Analytics from '@vercel/analytics/astro'
+import { getSeo } from "@/services/seo";
+import { buildImageUrl } from "@/lib/sanity";
 const {
   noWaves = false,
   noindex = false,
@@ -27,6 +29,12 @@ const {
     "corsi CMAS FIPSAS Bologna",
   ],
 } = Astro.props;
+
+// Social scrapers need an absolute raster image: 1200x630 JPG from the Sanity org image.
+const seoData = await getSeo();
+const ogImage = seoData?.organization?.image
+  ? buildImageUrl(seoData.organization.image, { width: 1200, height: 630, format: "jpg", quality: 80 })
+  : new URL("/android-chrome-512x512.png", Astro.site).href;
 
 const siteName = "Club Sub Nettuno";
 const themeColor = "#380099";
@@ -81,14 +89,14 @@ const canonicalUrl = new URL(normalizedCanonicalPath, Astro.site).href;
       colorScheme="light"
       robots={noindex ? "noindex, follow" : "index, follow"}
       facebook={{
-        image: "/logo.svg",
+        image: ogImage,
         url: canonicalUrl,
         type: "website",
       }}
       twitter={{
-        image: "/logo.svg",
+        image: ogImage,
         site: "@clubsubnettuno",
-        card: "summary",
+        card: "summary_large_image",
       }}
     />
 
