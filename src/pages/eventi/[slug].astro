@@ -20,7 +20,7 @@ const { slug } = Astro.params as Params;
 const event = await getEventBySlug(slug || "");
 
 if (!event) {
-  Astro.redirect("/eventi");
+  Astro.redirect("/eventi/");
 }
 
 const campaign = event?.title ? `Evento: ${event.title}` : "Evento";
@@ -32,7 +32,7 @@ const defaultMessage = event?.title
 
 <Layout title={event?.title}>
   {event ? <EventSeoSchema event={event} /> : null}
-  {event ? <EventPost post={event} backUrl="/eventi" /> : null}
+  {event ? <EventPost post={event} backUrl="/eventi/" /> : null}
 
   {event ? (
     <>

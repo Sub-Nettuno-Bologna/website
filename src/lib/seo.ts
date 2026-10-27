@@ -51,3 +51,10 @@ export function buildPageSeo(options: {
 
   return { title, description };
 }
+
+/** Absolute URL matching the site's `trailingSlash: "always"` (files like /llms.txt are left alone). */
+export function absoluteUrl(base: string, path: string): string {
+  const [pathname, suffix = ""] = path.split(/(?=[?#])/);
+  const withSlash = /\.[a-z0-9]+$/i.test(pathname) || pathname.endsWith("/") ? pathname : `${pathname}/`;
+  return `${base.replace(/\/+$/, "")}${withSlash}${suffix}`;
+}

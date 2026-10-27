@@ -2,7 +2,7 @@
 import JsonLd from "@/seo/JsonLd.astro";
 import { getSeo } from "@/services/seo";
 import { buildImageUrl } from "@/lib/sanity";
-import { firstParagraph } from "@/lib/seo";
+import { absoluteUrl, firstParagraph } from "@/lib/seo";
 import type { Event } from "../../sanity.types";
 
 interface Props {
@@ -14,7 +14,7 @@ const seo = await getSeo();
 const org = seo?.organization;
 
 const slug = event.slug?.current;
-const eventUrl = seo?.siteUrl && slug ? `${seo.siteUrl}/eventi/${slug}` : undefined;
+const eventUrl = seo?.siteUrl && slug ? absoluteUrl(seo.siteUrl, `/eventi/${slug}`) : undefined;
 const imageUrl = event.featuredImage
   ? buildImageUrl(event.featuredImage, { width: 1200, height: 630 }) || ""
   : "";

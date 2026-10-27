@@ -166,7 +166,7 @@ export const timelineEvents = [
     title: "Futuro",
     cta: {
       text: "Vai ai corsi",
-      href: "/corsi",
+      href: "/corsi/",
     },
     description:
       "Il futuro della subacquea continua a crescere e a svilupparsi, con nuove tecnologie e nuove applicazioni, scopri i nostri corsi e unisciti a noi!",

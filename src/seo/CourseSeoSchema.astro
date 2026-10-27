@@ -2,7 +2,7 @@
 import JsonLd from "@/seo/JsonLd.astro";
 import { getSeo } from "@/services/seo";
 import { buildImageUrl } from "@/lib/sanity";
-import { firstParagraph } from "@/lib/seo";
+import { absoluteUrl, firstParagraph } from "@/lib/seo";
 import type { Course } from "../../sanity.types";
 
 interface Props {
@@ -18,7 +18,7 @@ const categorySlug = categoryParam || course.categorySlug;
 const baseUrl = org?.url || seo?.siteUrl;
 const courseUrl =
   baseUrl && categorySlug && course.slug?.current
-    ? `${baseUrl}/corsi/${categorySlug}/${course.slug.current}`
+    ? absoluteUrl(baseUrl, `/corsi/${categorySlug}/${course.slug.current}`)
     : undefined;
 
 const imageUrl = course.image

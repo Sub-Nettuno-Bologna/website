@@ -49,6 +49,27 @@ export async function getSeo(): Promise<Seo | null> {
       keywords
     }
   }`;
-    return await fetchOne<Seo>(SEO_QUERY);
+    return withCanonicalOrigin(await fetchOne<Seo>(SEO_QUERY));
+}
+
+// Sanity stores the apex domain; structured data must use the canonical origin.
+function withCanonicalOrigin(seo: Seo | null): Seo | null {
+    const origin = new URL(import.meta.env.SITE).origin;
+    const normalize = (url?: string) => {
+        if (!url) return url;
+        const parsed = new URL(url);
+        return parsed.hostname === new URL(origin).hostname.replace(/^www\./, "")
+            ? origin + parsed.pathname.replace(/\/$/, "") + parsed.search + parsed.hash
+            : url;
+    };
+    if (!seo) return seo;
+    return {
+        ...seo,
+        siteUrl: normalize(seo.siteUrl),
+        organization: seo.organization && {
+            ...seo.organization,
+            url: normalize(seo.organization.url),
+        },
+    };
 }
 

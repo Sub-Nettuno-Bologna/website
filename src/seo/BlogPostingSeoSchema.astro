@@ -1,0 +1,47 @@
+---
+import JsonLd from "@/seo/JsonLd.astro";
+import { getSeo } from "@/services/seo";
+import { buildImageUrl } from "@/lib/sanity";
+import { absoluteUrl } from "@/lib/seo";
+import type { Blog } from "../../sanity.types";
+
+interface Props {
+  post: Blog;
+}
+
+const { post } = Astro.props;
+const seo = await getSeo();
+const org = seo?.organization;
+
+const baseUrl = org?.url || seo?.siteUrl;
+const postUrl = baseUrl && post.slug?.current ? absoluteUrl(baseUrl, `/blog/${post.slug.current}`) : undefined;
+const imageUrl = post.featuredImage
+  ? buildImageUrl(post.featuredImage, { width: 1200, height: 675 }) || ""
+  : "";
+---
+
+{
+  postUrl && (
+    <JsonLd
+      item={{
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "@id": `${postUrl}#article`,
+        mainEntityOfPage: postUrl,
+        url: postUrl,
+        headline: post.title,
+        ...(post.excerpt && { description: post.excerpt }),
+        ...(imageUrl && { image: imageUrl }),
+        ...(post.publishedAt && { datePublished: post.publishedAt }),
+        dateModified: post._updatedAt || post.publishedAt,
+        ...(seo?.inLanguage && { inLanguage: seo.inLanguage }),
+        author: {
+          "@type": "Organization",
+          name: org?.name,
+          url: baseUrl,
+        },
+        publisher: { "@id": `${baseUrl}/#organization` },
+      }}
+    />
+  )
+}

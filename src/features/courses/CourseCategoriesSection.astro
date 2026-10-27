@@ -18,7 +18,7 @@ export interface Props {
 const { categories, title, description, headingLevel = "h2" } = Astro.props;
 
 export function getCategoryHref(category: CourseCategory): string {
-  return `/corsi/${category.slug?.current}`;
+  return `/corsi/${category.slug?.current}/`;
 }
 ---
 

@@ -5,15 +5,15 @@ import { pagesData } from "@/data/pages";
 export interface Props {
   currentPage: number;
   totalPages: number;
-  indexPath: string; // e.g., "/blog" or "/eventi"
+  indexPath: string; // e.g., "/blog/" or "/eventi/"
   pageBasePath: string; // e.g., "/blog/page" or "/eventi/page"
 }
 
 const { currentPage, totalPages, indexPath, pageBasePath } = Astro.props;
 
 const prevUrl =
-  currentPage > 2 ? `${pageBasePath}/${currentPage - 1}` : currentPage === 2 ? indexPath : null;
-const nextUrl = currentPage < totalPages ? `${pageBasePath}/${currentPage + 1}` : null;
+  currentPage > 2 ? `${pageBasePath}/${currentPage - 1}/` : currentPage === 2 ? indexPath : null;
+const nextUrl = currentPage < totalPages ? `${pageBasePath}/${currentPage + 1}/` : null;
 
 const pageLabel = pagesData.ui.pagination.pageFormat
   .replace("{currentPage}", currentPage.toString())

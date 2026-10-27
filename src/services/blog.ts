@@ -54,6 +54,7 @@ export async function getBlogPostBySlug(slug: string): Promise<Blog | null> {
     ][0] {
       _id,
       _type,
+      _updatedAt,
       title,
       slug,
       excerpt,

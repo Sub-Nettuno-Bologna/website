@@ -5,6 +5,7 @@ import { getCategoryHref } from "@/features/courses/CourseCategoriesSection.astr
 import { getSeo } from "@/services/seo";
 import { getClubData } from "@/services/club";
 import { buildImageUrl } from "@/lib/sanity";
+import { absoluteUrl } from "@/lib/seo";
 import type { CourseCategory } from "../../sanity.types";
 
 const seo = await getSeo();
@@ -18,7 +19,7 @@ const offerCatalog = categories.map((course) => ({
     "@type": "Service",
     name: course.title,
     description: course.description,
-    url: getCategoryHref(course as CourseCategory),
+    url: absoluteUrl(org?.url || "", getCategoryHref(course as CourseCategory)),
   },
 }));
 

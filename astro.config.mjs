@@ -19,17 +19,17 @@ const getSitemapData = () => {
 };
 
 const legacyRedirects = {
-  "/contattaci": "/contatti#contatti",
-  "/storia": "/chi-siamo",
-  "/staff": "/chi-siamo/staff",
-  "/dove-siamo": "/contatti#contatti",
-  "/didattica": "/corsi",
+  "/contattaci": "/contatti/#contatti",
+  "/storia": "/chi-siamo/",
+  "/staff": "/chi-siamo/staff/",
+  "/dove-siamo": "/contatti/#contatti",
+  "/didattica": "/corsi/",
   "/pagine": "/",
-  "/prove-gratuite-in-piscina": "/contatti#contatti",
-  "/blog/page": "/blog",
-  "/blog/page/1": "/blog",
-  "/eventi/page": "/eventi",
-  "/eventi/page/1": "/eventi",
+  "/prove-gratuite-in-piscina": "/contatti/#contatti",
+  "/blog/page": "/blog/",
+  "/blog/page/1": "/blog/",
+  "/eventi/page": "/eventi/",
+  "/eventi/page/1": "/eventi/",
 };
 
 const excludedSitemapPaths = new Set([
@@ -44,8 +44,7 @@ if (process.argv[3] === "--node" || process.argv[4] === "--node") {
 }
 
 export default defineConfig({
-  site: "https://subnettuno.it",
-
+  site: "https://www.subnettuno.it",
   redirects: Object.fromEntries(
     Object.entries(legacyRedirects).map(([path, destination]) => [
       path,

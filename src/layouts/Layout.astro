@@ -30,7 +30,10 @@ const {
 
 const siteName = "Club Sub Nettuno";
 const themeColor = "#380099";
-const canonicalUrl = new URL(canonicalPath ?? Astro.url.pathname, Astro.site).href;
+const rawCanonicalPath = canonicalPath ?? Astro.url.pathname;
+// Pages are reachable with and without a trailing slash: always canonicalize to the slash form.
+const normalizedCanonicalPath = rawCanonicalPath.endsWith("/") ? rawCanonicalPath : `${rawCanonicalPath}/`;
+const canonicalUrl = new URL(normalizedCanonicalPath, Astro.site).href;
 ---
 
 <!doctype html>
@@ -39,6 +42,7 @@ const canonicalUrl = new URL(canonicalPath ?? Astro.url.pathname, Astro.site).hr
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <link rel="sitemap" href="/sitemap-index.xml" />
+    <link rel="alternate" type="application/rss+xml" title="Club Sub Nettuno Bologna" href="/rss.xml" />
     <meta name="generator" content={Astro.generator} />
 
     <link rel="icon" href="/favicon.ico" sizes="any" />

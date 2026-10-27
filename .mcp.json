@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "search-console": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "search-console-mcp"
+      ]
+    }
+  }
+}

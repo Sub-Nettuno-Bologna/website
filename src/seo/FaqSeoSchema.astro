@@ -1,6 +1,7 @@
 ---
 import JsonLd from "@/seo/JsonLd.astro";
 import { getSeo } from "@/services/seo";
+import { absoluteUrl } from "@/lib/seo";
 import type { FaqPage } from "../../sanity.types";
 
 interface Props {
@@ -28,7 +29,7 @@ const hasFaqs = Boolean(faqPage.faqs && faqPage.faqs.length > 0);
           },
         })),
         ...(seo?.siteUrl && {
-          url: `${seo.siteUrl}/domande-frequenti`,
+          url: absoluteUrl(seo.siteUrl, "/domande-frequenti"),
         }),
         ...(faqPage.title && {
           headline: faqPage.title,

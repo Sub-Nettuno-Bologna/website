@@ -20,17 +20,17 @@ export const headerData = {
   navigation: [
     {
       label: "Chi siamo",
-      href: "/chi-siamo",
+      href: "/chi-siamo/",
       icon: Users2,
       dropdown: [
         {
           label: "Staff",
-          href: "/chi-siamo/staff",
+          href: "/chi-siamo/staff/",
           icon: Users,
         },
         {
           label: "Blog",
-          href: "/blog",
+          href: "/blog/",
           icon: BookOpen,
         },
       ],
@@ -38,22 +38,22 @@ export const headerData = {
 
     {
       label: "Corsi",
-      href: "/corsi",
+      href: "/corsi/",
       icon: FireExtinguisher,
       dropdown: [
         {
           label: "Subacquea",
-          href: "/corsi/subacquea",
+          href: "/corsi/subacquea/",
           icon: FireExtinguisher,
         },
         {
           label: "Apnea",
-          href: "/corsi/apnea",
+          href: "/corsi/apnea/",
           icon: FlagTriangleRight,
         },
         {
           label: "Specialità",
-          href: "/corsi/specialita",
+          href: "/corsi/specialita/",
           icon: Star,
         },
       ],
@@ -61,31 +61,31 @@ export const headerData = {
 
     {
       label: "Eventi",
-      href: "/eventi",
+      href: "/eventi/",
       icon: CalendarDays,
     },
 
     // {
     //   label: "Blog",
-    //   href: "/blog",
+    //   href: "/blog/",
     //   icon: BookOpen,
     // },
 
     {
       label: "Contatti",
-      href: "/contatti",
+      href: "/contatti/",
       icon: MessageSquare,
     },
 
     {
       label: "Domande frequenti",
-      href: "/domande-frequenti",
+      href: "/domande-frequenti/",
       icon: HelpCircle,
     },
 
     // {
     //   label: "Gallery",
-    //   href: "/gallery",
+    //   href: "/gallery/",
     //   icon: Image,
     // },
   ],

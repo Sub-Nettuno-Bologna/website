@@ -373,7 +373,7 @@ export const pagesData: PagesData = {
     },
   },
   safeguarding: {
-    path: "/safeguarding",
+    path: "/safeguarding/",
     shortTitle: "Safeguarding",
     pageTitle: "Safeguarding – Protezione e Benessere degli Atleti",
     metaDescription: (clubName: string) =>

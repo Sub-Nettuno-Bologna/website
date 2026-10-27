@@ -51,8 +51,8 @@ const getImageUrl = (source?: SanityImageSource) => buildImageUrl(source);
             action={{
               text: pagesData.commons.learnMore,
               href: category
-                ? `/corsi/${category}/${corso.slug?.current ?? ""}`
-                : `/corsi/${corso.slug?.current ?? ""}`,
+                ? `/corsi/${category}/${corso.slug?.current ?? ""}/`
+                : `/corsi/${corso.slug?.current ?? ""}/`,
               color: "primary",
             }}
           />

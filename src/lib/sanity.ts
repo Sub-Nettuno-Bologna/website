@@ -83,5 +83,5 @@ export function buildImageUrl(
 }
 
 export function getCategoryHref(category: CourseCategory): string {
-  return `/corsi/${category.slug?.current}`;
+  return `/corsi/${category.slug?.current}/`;
 }

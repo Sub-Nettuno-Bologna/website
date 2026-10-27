@@ -3,4 +3,4 @@ Content-Signal: ai-train=yes, search=yes, ai-input=yes
 Allow: /
 Disallow: /admin
 
-Sitemap: https://subnettuno.it/sitemap-index.xml
+Sitemap: https://www.subnettuno.it/sitemap-index.xml

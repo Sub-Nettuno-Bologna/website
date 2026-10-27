@@ -1,6 +1,7 @@
 ---
 import Layout from "@/layouts/Layout.astro";
 import BlogPost from "@/features/blog/BlogPost.astro";
+import BlogPostingSeoSchema from "@/seo/BlogPostingSeoSchema.astro";
 import { getBlogPostBySlug, getBlogPosts } from "@/services/blog";
 import type { InferGetStaticParamsType } from "astro";
 
@@ -17,10 +18,11 @@ const { slug } = Astro.params as Params;
 const post = await getBlogPostBySlug(slug || "");
 
 if (!post) {
-  Astro.redirect("/blog");
+  Astro.redirect("/blog/");
 }
 ---
 
 <Layout title={post?.title}>
-  <BlogPost post={post} backUrl="/blog" />
+  {post && <BlogPostingSeoSchema post={post} />}
+  <BlogPost post={post} backUrl="/blog/" />
 </Layout>
