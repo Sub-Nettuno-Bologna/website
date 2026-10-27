@@ -5,6 +5,7 @@ import Pagination from "@/components/common/Pagination.astro";
 import { getBlogPosts, getBlogTotalCount } from "@/services/blog";
 import { DEFAULT_PAGE_SIZE, buildStaticPaths, clampPage, getTotalPages } from "@/lib/pagination";
 import { pagesData } from "@/data/pages";
+import { buildPageSeo } from "@/lib/seo";
 
 export async function getStaticPaths() {
   const totalCount = await getBlogTotalCount();
@@ -16,9 +17,10 @@ const currentPage = clampPage(page);
 const posts = await getBlogPosts({ page: currentPage, pageSize: DEFAULT_PAGE_SIZE });
 const totalCount = await getBlogTotalCount();
 const totalPages = getTotalPages(totalCount, DEFAULT_PAGE_SIZE);
+const seo = buildPageSeo({ title: "Blog", description: pagesData.blog.subtitle });
 ---
 
-<Layout>
+<Layout {...seo}>
   <BlogSection posts={posts} title={pagesData.blog.title} subtitle={pagesData.blog.subtitle} />
   <Pagination
     currentPage={currentPage}

@@ -5,13 +5,15 @@ import Pagination from "@/components/common/Pagination.astro";
 import { getEvents, getEventsTotalCount } from "@/services/events";
 import { DEFAULT_PAGE_SIZE, getTotalPages } from "@/lib/pagination";
 import { pagesData } from "@/data/pages";
+import { buildPageSeo } from "@/lib/seo";
 
 const events = await getEvents({ page: 1, pageSize: DEFAULT_PAGE_SIZE });
 const totalCount = await getEventsTotalCount();
 const totalPages = getTotalPages(totalCount, DEFAULT_PAGE_SIZE);
+const seo = buildPageSeo({ title: "Eventi", description: pagesData.eventi.subtitle });
 ---
 
-<Layout title="Eventi">
+<Layout {...seo}>
   <EventsSection
     events={events}
     title={pagesData.eventi.title}

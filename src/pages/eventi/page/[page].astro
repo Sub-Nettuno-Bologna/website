@@ -5,6 +5,7 @@ import Pagination from "@/components/common/Pagination.astro";
 import { getEvents, getEventsTotalCount } from "@/services/events";
 import { DEFAULT_PAGE_SIZE, buildStaticPaths, clampPage, getTotalPages } from "@/lib/pagination";
 import { pagesData } from "@/data/pages";
+import { buildPageSeo } from "@/lib/seo";
 
 export async function getStaticPaths() {
   const totalCount = await getEventsTotalCount();
@@ -16,9 +17,10 @@ const currentPage = clampPage(page);
 const events = await getEvents({ page: currentPage, pageSize: DEFAULT_PAGE_SIZE });
 const totalCount = await getEventsTotalCount();
 const totalPages = getTotalPages(totalCount, DEFAULT_PAGE_SIZE);
+const seo = buildPageSeo({ title: "Eventi", description: pagesData.eventi.subtitle });
 ---
 
-<Layout title="Eventi">
+<Layout {...seo}>
   <EventsSection
     events={events}
     title={pagesData.eventi.title}
