@@ -124,3 +124,11 @@ export function formatOpeningHoursDetailed(
 
   return result;
 }
+
+/** Adds the trailing slash required by `trailingSlash: "always"` to internal paths; leaves external URLs, files and bare anchors alone. */
+export function withTrailingSlash(href: string | undefined): string | undefined {
+  if (!href || !href.startsWith("/") || href.startsWith("//")) return href;
+  const [pathname, suffix = ""] = href.split(/(?=[?#])/);
+  if (pathname.endsWith("/") || /\.[a-z0-9]+$/i.test(pathname)) return href;
+  return `${pathname}/${suffix}`;
+}

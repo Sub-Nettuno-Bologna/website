@@ -16,7 +16,7 @@ function toTitle(label: string): string {
 }
 
 const items = segments.map((segment, index) => {
-  const href = "/" + segments.slice(0, index + 1).join("/");
+  const href = "/" + segments.slice(0, index + 1).join("/") + "/";
   const isNumeric = /^\d+$/.test(segment);
   const label = isNumeric ? `${pagesData.ui.breadcrumbs.pageLabel} ${segment}` : toTitle(segment);
   return { label, href };

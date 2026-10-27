@@ -1,4 +1,5 @@
 ---
+import { withTrailingSlash } from "@/lib/formatters";
 import { ArrowRight } from "@lucide/astro";
 import type { Hero } from "sanity.types";
 import Button from "@/components/primitives/Button.astro";
@@ -164,7 +165,7 @@ const carouselImages =
     <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center fade-in-on-scroll" style="animation-delay: 0.4s;">
       {
         buttons?.map((button) => (
-          <Button href={button.href} size="lg" variant={button.variant || "default"}>
+          <Button href={withTrailingSlash(button.href)} size="lg" variant={button.variant || "default"}>
             <span class="flex items-center justify-center">
               {button.text}
               <ArrowRight class="ml-2 w-4 sm:w-5 h-4 sm:h-5" />

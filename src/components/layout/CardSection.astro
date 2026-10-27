@@ -1,4 +1,5 @@
 ---
+import { withTrailingSlash } from "@/lib/formatters";
 import SectionContainer from "@/components/layout/Section.astro";
 import SectionHeader from "@/components/layout/SectionHeader.astro";
 import { Users, BookOpen, Award, Heart, GlassWater, ArrowDown } from "@lucide/astro";
@@ -58,7 +59,7 @@ const Icon = icon ? iconComponents[icon] : null;
       cta && (
         <div class="mt-8">
           <a
-            href={cta.href}
+            href={withTrailingSlash(cta.href)}
             class="inline-flex items-center px-8 py-4 bg-gradient-to-r from-primary to-secondary text-white font-bold rounded-xl hover:shadow-lg transition-all duration-300 text-lg transform hover:scale-105"
           >
             {Icon && <Icon class="w-6 h-6 mr-2" />}
