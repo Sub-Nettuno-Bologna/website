@@ -50,10 +50,22 @@ export default defineType({
             description: 'Data e ora dell\'evento'
         },
         {
+            name: 'eventEndDate',
+            title: 'Data fine evento',
+            type: 'datetime',
+            description: 'Data e ora di fine (opzionale, usata per i dati strutturati di Google)'
+        },
+        {
             name: 'location',
             title: 'Luogo',
             type: 'string',
             description: 'Dove si svolge l\'evento'
+        },
+        {
+            name: 'locationAddress',
+            title: 'Indirizzo del luogo',
+            type: 'string',
+            description: 'Indirizzo completo del luogo (opzionale). Se vuoto, per gli eventi in un luogo diverso dalla sede non viene indicato alcun indirizzo.'
         },
         {
             name: 'maxParticipants',

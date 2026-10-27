@@ -12,6 +12,8 @@
  * ---------------------------------------------------------------------------------
  */
 
+export declare const internalGroqTypeReferenceTo: unique symbol;
+
 // Source: schema.json
 export type FaqPage = {
   _id: string;
@@ -31,6 +33,13 @@ export type FaqPage = {
   updatedAt?: string;
 };
 
+export type SanityImageAssetReference = {
+  _ref: string;
+  _type: "reference";
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+};
+
 export type Seo = {
   _id: string;
   _type: "seo";
@@ -47,24 +56,14 @@ export type Seo = {
     email?: string;
     telephone?: string;
     logo?: {
-      asset?: {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-      };
+      asset?: SanityImageAssetReference;
       media?: unknown;
       hotspot?: SanityImageHotspot;
       crop?: SanityImageCrop;
       _type: "image";
     };
     image?: {
-      asset?: {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-      };
+      asset?: SanityImageAssetReference;
       media?: unknown;
       hotspot?: SanityImageHotspot;
       crop?: SanityImageCrop;
@@ -131,12 +130,7 @@ export type Event = {
   slug?: Slug;
   excerpt?: string;
   featuredImage?: {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
+    asset?: SanityImageAssetReference;
     media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
@@ -144,7 +138,9 @@ export type Event = {
   };
   content?: PortableText;
   eventDate?: string;
+  eventEndDate?: string;
   location?: string;
+  locationAddress?: string;
   maxParticipants?: number;
   registrationRequired?: boolean;
   registrationDeadline?: string;
@@ -187,12 +183,7 @@ export type Blog = {
   slug?: Slug;
   excerpt?: string;
   featuredImage?: {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
+    asset?: SanityImageAssetReference;
     media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
@@ -215,21 +206,18 @@ export type Aboutus = {
   title?: string;
   subtitle?: string;
   image?: {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
+    asset?: SanityImageAssetReference;
     media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
     _type: "image";
   };
   imageCaption?: string;
-  features?: Array<{
-    _key: string;
-  } & List>;
+  features?: Array<
+    {
+      _key: string;
+    } & List
+  >;
   cardSections?: Array<{
     title?: string;
     description?: string;
@@ -255,21 +243,18 @@ export type Hero = {
   title?: string;
   subtitle?: string;
   images?: Array<{
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
+    asset?: SanityImageAssetReference;
     media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
     _type: "image";
     _key: string;
   }>;
-  buttons?: Array<{
-    _key: string;
-  } & Button>;
+  buttons?: Array<
+    {
+      _key: string;
+    } & Button
+  >;
 };
 
 export type Club = {
@@ -282,12 +267,7 @@ export type Club = {
   subtitle?: string;
   description?: string;
   logo?: {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
+    asset?: SanityImageAssetReference;
     media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
@@ -320,15 +300,23 @@ export type Team = {
   _rev: string;
   orderRank?: string;
   name?: string;
-  instructor_grade?: Array<"M1" | "M2" | "M3" | "MApP1" | "MApP2" | "MApP3" | "PAiAr" | "PAiAp" | "BM" | "MINISUB" | "MUTA" | "FOTOSUB">;
+  instructor_grade?: Array<
+    | "M1"
+    | "M2"
+    | "M3"
+    | "MApP1"
+    | "MApP2"
+    | "MApP3"
+    | "PAiAr"
+    | "PAiAp"
+    | "BM"
+    | "MINISUB"
+    | "MUTA"
+    | "FOTOSUB"
+  >;
   description?: PortableText;
   image?: {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
+    asset?: SanityImageAssetReference;
     media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
@@ -336,7 +324,19 @@ export type Team = {
   };
   active?: boolean;
   council?: boolean;
-  council_seat?: "Presidente" | "Vicepresidente" | "Consigliere" | "Segretario" | "Tesoriere";
+  council_seat?:
+    | "Presidente"
+    | "Vicepresidente"
+    | "Consigliere"
+    | "Segretario"
+    | "Tesoriere";
+};
+
+export type CourseReference = {
+  _ref: string;
+  _type: "reference";
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: "course";
 };
 
 export type CourseCategory = {
@@ -352,25 +352,18 @@ export type CourseCategory = {
   slug?: Slug;
   description?: string;
   image?: {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
+    asset?: SanityImageAssetReference;
     media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
     alt?: string;
     _type: "image";
   };
-  courses?: Array<{
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    _key: string;
-    [internalGroqTypeReferenceTo]?: "course";
-  }>;
+  courses?: Array<
+    {
+      _key: string;
+    } & CourseReference
+  >;
 };
 
 export type Course = {
@@ -386,12 +379,7 @@ export type Course = {
   subtitle?: PortableText;
   description?: PortableText;
   image?: {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
+    asset?: SanityImageAssetReference;
     media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
@@ -401,23 +389,28 @@ export type Course = {
   coursePeriod?: string;
   enrollmentNote?: string;
   contributionNote?: string;
-  level?: "Bambini" | "\u2B50 Principiante" | "\u2B50\u2B50 Intermedio" | "\u2B50\u2B50\u2B50 Avanzato" | "Tutti i livelli";
+  level?:
+    | "Bambini"
+    | "\u2B50 Principiante"
+    | "\u2B50\u2B50 Intermedio"
+    | "\u2B50\u2B50\u2B50 Avanzato"
+    | "Tutti i livelli";
   certification?: string;
   maxDepth?: "18m" | "30m" | "40m";
   prerequisites?: Array<string>;
   whatYouWillLearn?: Array<string>;
   capabilities?: Array<string>;
-  structure?: Array<{
-    _key: string;
-  } & List>;
+  structure?: Array<
+    {
+      _key: string;
+    } & List
+  >;
   kit?: Array<string>;
-  nextCourses?: Array<{
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    _key: string;
-    [internalGroqTypeReferenceTo]?: "course";
-  }>;
+  nextCourses?: Array<
+    {
+      _key: string;
+    } & CourseReference
+  >;
 };
 
 export type List = {
@@ -432,6 +425,23 @@ export type Button = {
   text?: string;
   href?: string;
   variant?: "default" | "secondary" | "outline" | "ghost" | "link" | "white";
+};
+
+export type MediaFolderReference = {
+  _ref: string;
+  _type: "reference";
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: "media.folder";
+};
+
+export type MediaFolder = {
+  _id: string;
+  _type: "media.folder";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  name?: string;
+  parent?: MediaFolderReference;
 };
 
 export type MediaTag = {
@@ -484,6 +494,7 @@ export type SanityImageMetadata = {
   palette?: SanityImagePalette;
   lqip?: string;
   blurHash?: string;
+  thumbHash?: string;
   hasAlpha?: boolean;
   isOpaque?: boolean;
 };
@@ -547,5 +558,35 @@ export type Geopoint = {
   alt?: number;
 };
 
-export type AllSanitySchemaTypes = FaqPage | Seo | SanityImageCrop | SanityImageHotspot | Event | PortableText | Slug | Blog | Aboutus | LucideIcon | Hero | Club | Team | CourseCategory | Course | List | Button | MediaTag | Code | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageMetadata | SanityFileAsset | SanityAssetSourceData | SanityImageAsset | Geopoint;
-export declare const internalGroqTypeReferenceTo: unique symbol;
+export type AllSanitySchemaTypes =
+  | FaqPage
+  | SanityImageAssetReference
+  | Seo
+  | SanityImageCrop
+  | SanityImageHotspot
+  | Event
+  | PortableText
+  | Slug
+  | Blog
+  | Aboutus
+  | LucideIcon
+  | Hero
+  | Club
+  | Team
+  | CourseReference
+  | CourseCategory
+  | Course
+  | List
+  | Button
+  | MediaFolderReference
+  | MediaFolder
+  | MediaTag
+  | Code
+  | SanityImagePaletteSwatch
+  | SanityImagePalette
+  | SanityImageDimensions
+  | SanityImageMetadata
+  | SanityFileAsset
+  | SanityAssetSourceData
+  | SanityImageAsset
+  | Geopoint;

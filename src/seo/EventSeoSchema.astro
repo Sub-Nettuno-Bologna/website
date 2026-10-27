@@ -18,6 +18,16 @@ const eventUrl = seo?.siteUrl && slug ? absoluteUrl(seo.siteUrl, `/eventi/${slug
 const imageUrl = event.featuredImage
   ? buildImageUrl(event.featuredImage, { width: 1200, height: 630 }) || ""
   : "";
+const performer =
+  org?.name || org?.url
+    ? {
+        "@type": "Organization" as const,
+        ...(org.url && { "@id": `${org.url}/#organization` }),
+        ...(org.name && { name: org.name }),
+        ...(org.url && { url: org.url }),
+      }
+    : undefined;
+const validFrom = event.publishedAt || event._createdAt;
 const description = event.excerpt || firstParagraph(event.content) || undefined;
 // Only assert a price when it is known: >0 -> paid offer, ==0 -> free.
 // An undefined price means "not specified", so we stay silent.
@@ -27,7 +37,11 @@ const hasPrice = typeof event.price === "number" && event.price > 0;
 // Prefer the event's own venue name. The club address only applies to events
 // hosted at the club, so it is attached only when no specific location is set.
 const location = event.location
-  ? { "@type": "Place" as const, name: event.location }
+  ? {
+      "@type": "Place" as const,
+      name: event.location,
+      ...(event.locationAddress && { address: event.locationAddress }),
+    }
   : org?.name || org?.address
     ? {
         "@type": "Place" as const,
@@ -63,6 +77,7 @@ const location = event.location
           "@type": "Event",
           name: event.title,
           startDate: event.eventDate,
+          ...(event.eventEndDate && { endDate: event.eventEndDate }),
           eventStatus: "https://schema.org/EventScheduled",
           eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
           ...(description && { description }),
@@ -77,6 +92,7 @@ const location = event.location
               ...(org.url && { url: org.url }),
             },
           }),
+          ...(performer && { performer }),
           ...(event.maxParticipants && { maximumAttendeeCapacity: event.maxParticipants }),
           ...(hasPrice
             ? {
@@ -85,6 +101,7 @@ const location = event.location
                   price: event.price,
                   priceCurrency: "EUR",
                   availability: "https://schema.org/InStock",
+                  ...(validFrom && { validFrom }),
                   ...(eventUrl && { url: eventUrl }),
                 },
               }

@@ -54,12 +54,15 @@ export async function getEvents(options?: EventListOptions): Promise<Event[]> {
         featuredImage,
         content,
         eventDate,
+        eventEndDate,
         location,
+        locationAddress,
         maxParticipants,
         registrationRequired,
         registrationDeadline,
         price,
         publishedAt,
+        _createdAt,
         featured
       }`;
 
@@ -100,12 +103,15 @@ export async function getEvents(options?: EventListOptions): Promise<Event[]> {
         featuredImage,
         content,
         eventDate,
+        eventEndDate,
         location,
+        locationAddress,
         maxParticipants,
         registrationRequired,
         registrationDeadline,
         price,
         publishedAt,
+        _createdAt,
         featured
       }`;
   return await fetchList<Event>(EVENTS_QUERY);
@@ -123,12 +129,15 @@ export async function getEventBySlug(slug: string): Promise<Event | null> {
       featuredImage,
       content,
       eventDate,
+      eventEndDate,
       location,
+      locationAddress,
       maxParticipants,
       registrationRequired,
       registrationDeadline,
       price,
       publishedAt,
+      _createdAt,
       featured
     }`;
   return await fetchOne<Event>(EVENT_QUERY, { slug });
