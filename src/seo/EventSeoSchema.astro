@@ -40,7 +40,9 @@ const location = event.location
   ? {
       "@type": "Place" as const,
       name: event.location,
-      ...(event.locationAddress && { address: event.locationAddress }),
+      // Venue strings usually already contain the street ("Via dello sport 6 Bologna"),
+      // so fall back to the location text when no dedicated address is set.
+      address: event.locationAddress || event.location,
     }
   : org?.name || org?.address
     ? {
