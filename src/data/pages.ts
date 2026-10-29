@@ -76,6 +76,7 @@ export interface PagesData {
         contatti: string;
         storia: string;
         staff: string;
+        missione: string;
         certificazioni: string;
         galleria: string;
         safeguarding: string;
@@ -479,6 +480,7 @@ export const pagesData: PagesData = {
         contatti: "Contatti",
         storia: "Storia",
         staff: "Staff",
+        missione: "La nostra missione",
         certificazioni: "Certificazioni",
         galleria: "Galleria",
         safeguarding: "Safeguarding",

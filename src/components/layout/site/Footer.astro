@@ -15,12 +15,15 @@ const openingHoursLine =
 const contactLines = clubData
   ? [
       clubData.clubName,
+      footerData.legal.form,
       clubData.address,
+      footerData.legal.registeredOffice,
       clubData.phone ? `Tel. ${clubData.phone}` : "",
       openingHoursLine,
       clubData.cf ? `C.F. ${clubData.cf}` : "",
       clubData.piva ? `P.IVA ${clubData.piva}` : "",
       clubData.email,
+      footerData.legal.pec,
     ].filter(Boolean)
   : [];
 

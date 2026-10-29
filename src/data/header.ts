@@ -8,6 +8,7 @@ import {
   CalendarDays,
   Users,
   HelpCircle,
+  Target,
 } from "@lucide/astro";
 
 export const headerData = {
@@ -27,6 +28,11 @@ export const headerData = {
           label: "Staff",
           href: "/chi-siamo/staff/",
           icon: Users,
+        },
+        {
+          label: "La nostra missione",
+          href: "/chi-siamo/missione/",
+          icon: Target,
         },
       ],
     },

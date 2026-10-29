@@ -1,0 +1,88 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import SectionContainer from "@/components/layout/Section.astro";
+import SectionHeader from "@/components/layout/SectionHeader.astro";
+import Button from "@/components/primitives/Button.astro";
+import { getClubData } from "@/services/club";
+import { Target, Users, ShieldCheck, Waves } from "@lucide/astro";
+
+const clubData = await getClubData();
+const clubName = clubData?.clubName || "Club Sub Nettuno";
+const pageTitle = "La nostra missione";
+const pageDescription = `La missione del ${clubName} di Bologna: far scoprire il mare in sicurezza, con corsi di subacquea e apnea tenuti da istruttori volontari dal 1984.`;
+---
+
+<Layout title={`${pageTitle} - ${clubName} Bologna`} description={pageDescription}>
+  <SectionContainer id="missione" background="white" padding="lg">
+    <SectionHeader
+      title={pageTitle}
+      subtitle="Far scoprire il mare a chiunque abbia voglia di immergersi, in sicurezza e con passione."
+      titleColor="secondary"
+      subtitleColor="gray-600"
+      titleSize="xl"
+      hasBreadcrumbs={true}
+    />
+
+    <div class="max-w-3xl mx-auto mt-12 space-y-12 text-gray-700 leading-relaxed">
+      <section>
+        <h2 class="text-2xl font-semibold text-secondary mb-4 flex items-center gap-2">
+          <Target class="w-7 h-7 text-primary flex-shrink-0" aria-hidden="true" />
+          Chi siamo e cosa facciamo
+        </h2>
+        <p class="mb-4">
+          Il {clubName} è un'associazione sportiva dilettantistica nata a Bologna nel 1984, affiliata
+          FIPSAS/CMAS e riconosciuta dal CONI. La nostra missione è diffondere la cultura del mare e
+          la pratica della subacquea e dell'apnea, formando persone che si immergono con competenza,
+          rispetto per l'ambiente e attenzione alla sicurezza.
+        </p>
+        <p>
+          Lo facciamo attraverso corsi di subacquea, corsi di apnea e specialità, uscite in mare,
+          viaggi e momenti di ritrovo con i soci, per accompagnare ciascuno dal primo battesimo in
+          piscina fino alle immersioni più avanzate.
+        </p>
+      </section>
+
+      <section>
+        <h2 class="text-2xl font-semibold text-secondary mb-4 flex items-center gap-2">
+          <Users class="w-7 h-7 text-primary flex-shrink-0" aria-hidden="true" />
+          Una scuola fatta di volontari
+        </h2>
+        <p>
+          Tutto lo staff e tutti gli istruttori del club sono volontari: svolgono questo lavoro per
+          pura passione e con la voglia di condividerla con gli altri. È ciò che rende il club una
+          vera famiglia di appassionati, dove chi impara oggi può diventare l'istruttore di domani.
+        </p>
+      </section>
+
+      <section>
+        <h2 class="text-2xl font-semibold text-secondary mb-4 flex items-center gap-2">
+          <ShieldCheck class="w-7 h-7 text-primary flex-shrink-0" aria-hidden="true" />
+          Sicurezza e tutela di tutti
+        </h2>
+        <p>
+          Mettiamo la sicurezza al primo posto in ogni attività, in piscina e in mare, e ci
+          impegniamo a garantire un ambiente sano e rispettoso per tutti i soci, in particolare per
+          i più giovani. Scopri di più nella nostra <a
+            href="/safeguarding/"
+            class="text-primary underline underline-offset-2 hover:text-secondary">politica di safeguarding</a
+          >.
+        </p>
+      </section>
+
+      <section>
+        <h2 class="text-2xl font-semibold text-secondary mb-4 flex items-center gap-2">
+          <Waves class="w-7 h-7 text-primary flex-shrink-0" aria-hidden="true" />
+          Come puoi iniziare
+        </h2>
+        <p class="mb-6">
+          Se vuoi scoprire il mondo sommerso, puoi provare gratuitamente la subacquea o l'apnea nella
+          nostra piscina, senza impegno e con tutta l'attrezzatura a disposizione.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-3">
+          <Button href="/prova-gratuita/" size="lg">Prenota la prova gratuita</Button>
+          <Button href="/corsi/" size="lg" variant="outline">Scopri i corsi</Button>
+        </div>
+      </section>
+    </div>
+  </SectionContainer>
+</Layout>
