@@ -24,8 +24,8 @@ const toContent = compile({ baseElements: { selectors: ["main#content"] } });
 
 function filePathToUrl(fp) {
   let url = fp
-    .replace(/^dist[/\\]/, "")
-    .replace(/[/\\]index\.html$/, "")
+    .replace(/\\/g, "/")
+    .replace(/(^|\/)index\.html$/, "")
     .replace(/\.html$/, "");
   return "/" + url;
 }
@@ -59,7 +59,7 @@ async function main() {
   let indexed = 0;
 
   for (const filePath of htmlFiles) {
-    const urlPath = filePathToUrl(relative(root, filePath));
+    const urlPath = filePathToUrl(relative(distDir, filePath));
     if (!PATH_MATCHER.test(urlPath.replace(/^\//, ""))) continue;
 
     const html = readFileSync(filePath, "utf-8");
@@ -79,6 +79,15 @@ async function main() {
   const outDir = join(distDir, "assets");
   if (!existsSync(outDir)) mkdirSync(outDir, { recursive: true });
   writeFileSync(join(outDir, "oramaDB_search.json"), dbData, "utf-8");
+
+  // The Vercel adapter copies dist/client into .vercel/output/static at the end of
+  // `astro build`, i.e. before this script runs, so the file must be added there too.
+  const vercelStaticDir = join(root, ".vercel", "output", "static");
+  if (existsSync(vercelStaticDir)) {
+    const vercelAssetsDir = join(vercelStaticDir, "assets");
+    mkdirSync(vercelAssetsDir, { recursive: true });
+    writeFileSync(join(vercelAssetsDir, "oramaDB_search.json"), dbData, "utf-8");
+  }
 
   // Also write to public/assets for reference (e.g. local dev without build)
   if (!existsSync(publicAssetsDir)) mkdirSync(publicAssetsDir, { recursive: true });
