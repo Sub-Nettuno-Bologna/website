@@ -6,9 +6,6 @@ export default defineCliConfig({
     projectId: process.env.PUBLIC_SANITY_PROJECT_ID || "r56dtkaq",
     dataset: process.env.PUBLIC_SANITY_DATASET || "production",
   },
-  project: {
-    basePath: "/admin",
-  },
   /**
    * Enable auto-updates for studios.
    * Learn more at https://www.sanity.io/docs/cli#auto-updates
