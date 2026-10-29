@@ -3,25 +3,25 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full text-base font-semibold ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
   {
     variants: {
       variant: {
         default:
-          "bg-primary text-white hover:bg-primary/90 hover:scale-105 transition-all duration-200 rounded-xl focus:ring-primary",
+          "bg-primary text-white shadow-sm hover:bg-secondary transition-colors duration-200 focus:ring-primary",
         destructive: "bg-destructive text-destructive-foreground hover:bg-destructive/90",
         outline:
-          "border border-input bg-background hover:bg-accent hover:text-primary focus:ring-primary",
+          "border border-primary/30 bg-transparent text-primary hover:bg-primary hover:text-white focus:ring-primary",
         secondary: "bg-secondary text-white hover:bg-secondary/80 focus:ring-secondary",
         ghost: "hover:bg-accent hover:text-accent-foreground focus:ring-accent",
         link: "text-primary underline-offset-4 hover:underline focus:ring-primary",
         white:
-          "bg-white text-black hover:bg-gray-100 hover:scale-105 transition-all duration-200 rounded-xl focus:ring-gray-300",
+          "btn-wave relative isolate overflow-hidden bg-white text-secondary shadow-sm transition-colors duration-300 focus:ring-gray-300",
       },
       size: {
-        default: "h-10 px-4 py-2",
-        sm: "h-9 rounded-md px-3",
-        lg: "h-11 rounded-md px-8",
+        default: "h-11 px-5 py-2",
+        sm: "h-9 px-4",
+        lg: "h-12 px-8",
         icon: "h-10 w-10",
       },
     },
@@ -68,3 +68,41 @@ const {
     </button>
   )
 }
+
+<style>
+  /* Liquid-fill wave on hover: a light-blue rounded square, wide enough for a gentle wave, rises from below. */
+  .btn-wave::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    left: 50%;
+    top: 100%;
+    width: 500%;
+    aspect-ratio: 1;
+    border-radius: 42%;
+    background-color: var(--color-blue-200);
+    transform: translateX(-50%) rotate(0deg);
+    transition: top 0.7s ease;
+    pointer-events: none;
+  }
+
+  .btn-wave:hover::before,
+  .btn-wave:focus-visible::before {
+    top: -45%;
+    animation: btn-wave-spin 5s linear infinite;
+  }
+
+  @keyframes btn-wave-spin {
+    to {
+      transform: translateX(-50%) rotate(360deg);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .btn-wave:hover::before,
+    .btn-wave:focus-visible::before {
+      animation: none;
+      top: -45%;
+    }
+  }
+</style>

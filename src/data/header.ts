@@ -28,11 +28,6 @@ export const headerData = {
           href: "/chi-siamo/staff/",
           icon: Users,
         },
-        {
-          label: "Blog",
-          href: "/blog/",
-          icon: BookOpen,
-        },
       ],
     },
 
@@ -65,11 +60,11 @@ export const headerData = {
       icon: CalendarDays,
     },
 
-    // {
-    //   label: "Blog",
-    //   href: "/blog/",
-    //   icon: BookOpen,
-    // },
+    {
+      label: "Blog",
+      href: "/blog/",
+      icon: BookOpen,
+    },
 
     {
       label: "Contatti",

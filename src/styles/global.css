@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 html {
-  font-family: "Science Gothic", sans-serif;
+  font-family: var(--font-body);
   font-optical-sizing: auto;
   font-style: normal;
 }
@@ -33,14 +33,29 @@ body {
 }
 
 @theme {
-  --color-primary: hsl(262, 100%, 30%);
-  --color-secondary: hsl(262, 40%, 24%);
+  /* TEMP brand-black experiment — original: primary hsl(262, 100%, 30%), secondary hsl(262, 40%, 24%) */
+  --color-primary: var(--color-blue-800);
+  --color-secondary: var(--color-blue-900);
   --color-tertiary: hsl(0, 4%, 10%);
   --color-accent: hsl(177, 59%, 69%);
   --color-info: hsl(183, 67%, 81%);
   --color-danger: hsl(354, 65%, 59%);
   --color-orange: #ff991c;
   --color-surface: hsl(200, 30%, 97%);
+  --color-orange-strong: #f08a00;
+  --font-display: "Fraunces", ui-serif, Georgia, serif;
+  --font-body: "Figtree", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-body);
+}
+
+@layer base {
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    letter-spacing: -0.015em;
+    text-wrap: balance;
+  }
 }
 
 :root {
